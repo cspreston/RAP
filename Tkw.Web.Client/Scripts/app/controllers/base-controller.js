@@ -6,7 +6,8 @@ var RapApp;
             return str.indexOf(end, str.length - end.length) !== -1;
         }
         var BaseController = (function () {
-            function BaseController() {
+            function BaseController(scope) {
+                this.$scope = scope;
                 this.$scope.Message = {
                     Title: null,
                     Text: null,

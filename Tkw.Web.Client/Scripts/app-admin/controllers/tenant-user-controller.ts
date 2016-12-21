@@ -2,7 +2,7 @@
     export class TenantUserController extends BaseController {
 
         constructor($scope: Models.ITenantUserModel) {
-            super();
+            super($scope);
             this.$scope = $scope;
             var itemTenant: RapApp.Models.ITenant;
 

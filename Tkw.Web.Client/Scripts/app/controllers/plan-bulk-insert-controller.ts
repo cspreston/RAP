@@ -6,7 +6,7 @@
         // initializes the controller
         constructor($scope: RapApp.Models.PlanBulkInsert) {  
                    
-            super();   
+            super($scope);   
             this.$scope = $scope;
             // get the current plan id
             this.BuildingId = TKWApp.HardRouting.ApplicationRoutes.UriUtils.UriParameters["id"];

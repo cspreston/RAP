@@ -9,7 +9,7 @@
         private hashSweetHashTable: {};  
         // initializes the controller
         constructor($scope: RapApp.Models.ISinglePlanEdit) {  
-            super();   
+            super($scope);   
             this.$scope = $scope;
             this.ZoomLevel = 1;
             (<any>$scope).ShowSaveCrop = false;

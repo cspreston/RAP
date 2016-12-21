@@ -3,7 +3,7 @@
         // initializes the controller
         constructor($scope: Models.ITenantModel) {
 
-            super();
+            super($scope);
             this.$scope = $scope;
 
             (<any>$scope).isInRole = false;

@@ -3,7 +3,7 @@
         // initializes the controller
         constructor($scope: RapApp.Models.IBuildingsList) {
 
-            super();
+            super($scope);
             this.$scope = $scope;
             // initialize scope
             (<any>$scope).Controller = this;

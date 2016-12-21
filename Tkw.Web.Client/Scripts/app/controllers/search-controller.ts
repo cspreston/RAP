@@ -3,7 +3,7 @@
         // initializes the controller
         constructor($scope: Models.ISearchModel) {
 
-            super();
+            super($scope);
             this.$scope = $scope;
 
             

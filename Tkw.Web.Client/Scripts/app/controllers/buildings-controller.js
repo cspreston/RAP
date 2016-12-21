@@ -11,7 +11,7 @@ var RapApp;
             __extends(BuildingsController, _super);
             // initializes the controller
             function BuildingsController($scope) {
-                _super.call(this);
+                _super.call(this, $scope);
                 this.$scope = $scope;
                 // initialize scope
                 $scope.Controller = this;

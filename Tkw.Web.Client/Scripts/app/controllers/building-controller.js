@@ -13,7 +13,7 @@ var RapApp;
             // initializes the controller
             function BuildingController($scope) {
                 var _this = this;
-                _super.call(this);
+                _super.call(this, $scope);
                 this.$scope = $scope;
                 var headerTab = $(".header-tabs.scrollable-tabs.sticky");
                 var userIcon = $(".nav-user");

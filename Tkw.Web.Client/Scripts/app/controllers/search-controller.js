@@ -11,7 +11,7 @@ var RapApp;
             __extends(SearchController, _super);
             // initializes the controller
             function SearchController($scope) {
-                _super.call(this);
+                _super.call(this, $scope);
                 this.$scope = $scope;
                 // attach functions
                 this.$scope.performSearch = this.performSearch;

@@ -12,7 +12,7 @@ var RapApp;
             // initializes the controller
             function PlanEditController($scope) {
                 var _this = this;
-                _super.call(this);
+                _super.call(this, $scope);
                 this.$scope = $scope;
                 this.ZoomLevel = 1;
                 $scope.ShowSaveCrop = false;
