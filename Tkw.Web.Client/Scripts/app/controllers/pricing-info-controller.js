@@ -30,7 +30,7 @@ var RapApp;
             };
             PricingInfoData.PricingInfos = new Array();
             return PricingInfoData;
-        }());
+        })();
         Controllers.PricingInfoData = PricingInfoData;
         var PricingInfoController = (function (_super) {
             __extends(PricingInfoController, _super);
@@ -105,7 +105,8 @@ var RapApp;
                 });
             };
             return PricingInfoController;
-        }(Controllers.BaseController));
+        })(Controllers.BaseController);
         Controllers.PricingInfoController = PricingInfoController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
+//# sourceMappingURL=pricing-info-controller.js.map

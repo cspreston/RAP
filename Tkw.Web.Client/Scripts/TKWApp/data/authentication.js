@@ -54,7 +54,7 @@ var TKWApp;
                 window.localStorage.removeItem("AuthenticationToken");
             };
             return AuthenticationToken;
-        }());
+        })();
         Data.AuthenticationToken = AuthenticationToken;
         /// Authentication manager class - handles authentication and any other operations that need
         /// to set up our system with the authorization tokens.
@@ -195,9 +195,10 @@ var TKWApp;
                     return false;
             };
             return AuthenticationManagerClass;
-        }());
+        })();
         Data.AuthenticationManagerClass = AuthenticationManagerClass;
         /// Singleton instance of authentication manager - to be used in the site.
         Data.AuthenticationManager = new AuthenticationManagerClass();
     })(Data = TKWApp.Data || (TKWApp.Data = {}));
 })(TKWApp || (TKWApp = {}));
+//# sourceMappingURL=authentication.js.map

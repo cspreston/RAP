@@ -58,7 +58,7 @@ var RapApp;
             return string.replace("'", "%27").replace("&", "&").replace("<", "%3C").replace(">", "%3E").replace("\"", "% 22");
         };
         return FileUtils;
-    }());
+    })();
     RapApp.FileUtils = FileUtils;
     var CanvasUtils = (function () {
         function CanvasUtils() {
@@ -154,6 +154,7 @@ var RapApp;
             return ret;
         };
         return CanvasUtils;
-    }());
+    })();
     RapApp.CanvasUtils = CanvasUtils;
 })(RapApp || (RapApp = {}));
+//# sourceMappingURL=rap-file-utils.js.map

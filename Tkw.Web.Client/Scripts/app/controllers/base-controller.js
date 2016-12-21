@@ -55,7 +55,8 @@ var RapApp;
                 return "fa-file";
             };
             return BaseController;
-        }());
+        })();
         Controllers.BaseController = BaseController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
+//# sourceMappingURL=base-controller.js.map

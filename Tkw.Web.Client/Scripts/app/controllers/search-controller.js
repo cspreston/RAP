@@ -65,7 +65,8 @@ var RapApp;
                 return url;
             };
             return SearchController;
-        }(Controllers.BaseController));
+        })(Controllers.BaseController);
         Controllers.SearchController = SearchController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
+//# sourceMappingURL=search-controller.js.map

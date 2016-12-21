@@ -462,7 +462,8 @@ var RapApp;
                 };
             }
             return TenantUserController;
-        }(Controllers.BaseController));
+        })(Controllers.BaseController);
         Controllers.TenantUserController = TenantUserController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
+//# sourceMappingURL=tenant-user-controller.js.map
