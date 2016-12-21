@@ -958,7 +958,6 @@ var RapApp;
                     if (self.$scope.CurrentPlanHotspots[t - 1].Dto.HotspotDisplayType.Type == 2 ||
                         self.$scope.CurrentPlanHotspots[t - 1].Dto.HotspotDisplayType.Type == 3) {
                         return self.$scope.CurrentPlanHotspots[t - 1];
-                        break;
                     }
                     t--;
                 }
@@ -976,53 +975,6 @@ var RapApp;
                             scope.$apply();
                             scope.reloadPlan();
                             return;
-                            obj.Dto.BeaconuuId = null;
-                            for (var c = 0; c < scope.CurrentPlanHotspots.length; c++) {
-                                if (scope.CurrentPlanHotspots[c].Dto.BeaconuuId == obj.Dto.Id) {
-                                    scope.CurrentPlanHotspots[c].Dto.BeaconuuId = null;
-                                }
-                            }
-                            for (var c = 0; c < scope.CurrentPlan.Hotspots.length; c++) {
-                                if (scope.CurrentPlan.Hotspots[c].BeaconuuId == obj.Dto.Id) {
-                                    scope.CurrentPlanHotspots[c].Dto.BeaconuuId = null;
-                                }
-                            }
-                            for (var g in self.hashPinedLineTable2) {
-                                if (self.hashPinedLineTable2[g].Dto.Id == obj.Dto.Id) {
-                                    delete self.hashPinedLineTable2[g];
-                                    break;
-                                }
-                            }
-                            if (self.hashPinedHashTable[obj.Dto.Id]) {
-                                delete self.hashPinedHashTable[obj.Dto.Id];
-                            }
-                            if (self.hashPinedLineTable[obj.Dto.Id]) {
-                                delete self.hashPinedLineTable[obj.Dto.Id];
-                            }
-                            scope.IsUnPinAction = false;
-                            scope.PinAct = false;
-                            // enable canvas object selection
-                            fabric.Object.prototype.selectable = true;
-                            if (self.canvas) {
-                                self.canvas.forEachObject(function (o) {
-                                    if (o.get('type') != 'line' && o.get('type') != 'circle')
-                                        o.selectable = true;
-                                });
-                                if (scope.CurrentPlanHotspots) {
-                                    var fObjs = self.canvas.getObjects();
-                                    for (var i = 0; i < scope.CurrentPlanHotspots.length; i++) {
-                                        if (!scope.CurrentPlanHotspots[i].Dto.BeaconuuId) {
-                                            for (var k = 0; k < fObjs.length; k++) {
-                                                if (fObjs[k] == scope.CurrentPlanHotspots[i].FabricJSObject) {
-                                                    fObjs[k].selectable = true;
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            scope.$apply();
                         }
                     }, function (error) {
                         alert(JSON.stringify(error));

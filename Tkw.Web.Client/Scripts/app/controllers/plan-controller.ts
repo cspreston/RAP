@@ -1047,7 +1047,7 @@
                 if ((<any>self).$scope.CurrentPlanHotspots[t - 1].Dto.HotspotDisplayType.Type == 2 ||
                     (<any>self).$scope.CurrentPlanHotspots[t - 1].Dto.HotspotDisplayType.Type == 3) {
                     return (<any>self).$scope.CurrentPlanHotspots[t - 1];
-                    break;
+                    //break;
                 }
                 t--;
             }
@@ -1066,6 +1066,7 @@
                             scope.$apply();
                             (<any>scope).reloadPlan();
                             return;
+                            /*
                             obj.Dto.BeaconuuId = null;
                             for (var c = 0; c < scope.CurrentPlanHotspots.length; c++) {
                                 if (scope.CurrentPlanHotspots[c].Dto.BeaconuuId == obj.Dto.Id) {
@@ -1113,6 +1114,7 @@
                                 }
                             }
                             scope.$apply();
+                            */
                         }
                     }, (error) => {
                         alert(JSON.stringify(error));
