@@ -1617,7 +1617,7 @@
     <Content Include="Content\files\Templates\PricingInfo.xls" />
     <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
     <Content Include="Scripts\angular-aria.min.js.map" />
-    <None Include="Properties\PublishProfiles\RAP Test.pubxml" />
+    <None Include="Properties\PublishProfiles\RAP-Test.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2939,8 +2939,8 @@
   <Target Name="AfterBuild">
   </Target> -->
   <Target Name="AddTsToContent" AfterTargets="CompileTypeScript" Condition="'$(BuildingProject)' != 'false'">
-     <ItemGroup>
-        <Content Include="@(TypeScriptCompile)"/>
-     </ItemGroup>
+    <ItemGroup>
+      <Content Include="@(TypeScriptCompile)" />
+    </ItemGroup>
   </Target>
 </Project>
