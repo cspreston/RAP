@@ -11,8 +11,8 @@ var RapApp;
             __extends(BuildingsController, _super);
             // initializes the controller
             function BuildingsController($scope) {
-                this.$scope = $scope;
                 _super.call(this);
+                this.$scope = $scope;
                 // initialize scope
                 $scope.Controller = this;
                 $scope.UserName = TKWApp.Data.AuthenticationManager.AuthenticationToken.getUserName();
@@ -281,8 +281,7 @@ var RapApp;
                 return url;
             };
             return BuildingsController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.BuildingsController = BuildingsController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=buildings-controller.js.map

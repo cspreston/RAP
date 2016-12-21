@@ -28,7 +28,7 @@ var RapApp;
                 }
             }
             return FileUploadModel;
-        })();
+        }());
         Models.FileUploadModel = FileUploadModel;
         var BuildimgImageUploadModel = (function (_super) {
             __extends(BuildimgImageUploadModel, _super);
@@ -36,7 +36,7 @@ var RapApp;
                 _super.call(this, fileUploader, previewElement);
             }
             return BuildimgImageUploadModel;
-        })(FileUploadModel);
+        }(FileUploadModel));
         Models.BuildimgImageUploadModel = BuildimgImageUploadModel;
         var BuildFileUploadModel = (function (_super) {
             __extends(BuildFileUploadModel, _super);
@@ -44,7 +44,7 @@ var RapApp;
                 _super.call(this, fileUploader, previewElement);
             }
             return BuildFileUploadModel;
-        })(FileUploadModel);
+        }(FileUploadModel));
         Models.BuildFileUploadModel = BuildFileUploadModel;
         var BuildDisasterInfoUploadModel = (function (_super) {
             __extends(BuildDisasterInfoUploadModel, _super);
@@ -52,7 +52,7 @@ var RapApp;
                 _super.call(this, fileUploader, previewElement);
             }
             return BuildDisasterInfoUploadModel;
-        })(FileUploadModel);
+        }(FileUploadModel));
         Models.BuildDisasterInfoUploadModel = BuildDisasterInfoUploadModel;
         var BuildimgPlanUploadModel = (function (_super) {
             __extends(BuildimgPlanUploadModel, _super);
@@ -60,7 +60,7 @@ var RapApp;
                 _super.call(this, fileUploader, previewElement);
             }
             return BuildimgPlanUploadModel;
-        })(FileUploadModel);
+        }(FileUploadModel));
         Models.BuildimgPlanUploadModel = BuildimgPlanUploadModel;
         var BuildHotspotUploadModel = (function (_super) {
             __extends(BuildHotspotUploadModel, _super);
@@ -68,8 +68,7 @@ var RapApp;
                 _super.call(this, fileUploader, previewElement);
             }
             return BuildHotspotUploadModel;
-        })(FileUploadModel);
+        }(FileUploadModel));
         Models.BuildHotspotUploadModel = BuildHotspotUploadModel;
     })(Models = RapApp.Models || (RapApp.Models = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=file-upload-model.js.map

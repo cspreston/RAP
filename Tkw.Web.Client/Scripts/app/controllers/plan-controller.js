@@ -12,8 +12,8 @@ var RapApp;
             // initializes the controller
             function PlanController($scope) {
                 var _this = this;
-                this.$scope = $scope;
                 _super.call(this);
+                this.$scope = $scope;
                 this.ZoomLevel = 1;
                 this.CanvasScale = 1;
                 this.ScaleFactor = 1.2;
@@ -1646,7 +1646,7 @@ var RapApp;
                 }
             };
             return PlanController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.PlanController = PlanController;
         function normalizeCanvas(canvas, hp) {
             if (canvas.getWidth() < hp.DisplayDetails.Position.x) {
@@ -1666,4 +1666,3 @@ var RapApp;
         }
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=plan-controller.js.map

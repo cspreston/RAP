@@ -1,8 +1,8 @@
 ﻿module RapApp.Controllers {
     export class RoleController extends BaseController {
         constructor($scope: Models.IRoleModel) {
-            this.$scope = $scope;
             super();
+            this.$scope = $scope;
 
             (<any>$scope).loadRoles = () => {
                 $scope.IsLoading = true;

@@ -317,8 +317,7 @@ var RapApp;
             //]);
         };
         return AngularApp;
-    })();
+    }());
     RapApp.AngularApp = AngularApp;
     RapApp.App = new AngularApp();
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=angular-app-configuration.js.map

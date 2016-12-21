@@ -16,7 +16,7 @@ var TKWApp;
             }
         };
         return ObservableEvent;
-    })();
+    }());
     TKWApp.ObservableEvent = ObservableEvent;
     var Observable = (function () {
         function Observable() {
@@ -64,7 +64,6 @@ var TKWApp;
             }
         };
         return Observable;
-    })();
+    }());
     TKWApp.Observable = Observable;
 })(TKWApp || (TKWApp = {}));
-//# sourceMappingURL=common.js.map

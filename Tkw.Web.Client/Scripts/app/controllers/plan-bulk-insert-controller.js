@@ -12,8 +12,8 @@ var RapApp;
             // initializes the controller
             function PlanBulkInsertController($scope) {
                 var _this = this;
-                this.$scope = $scope;
                 _super.call(this);
+                this.$scope = $scope;
                 // get the current plan id
                 this.BuildingId = TKWApp.HardRouting.ApplicationRoutes.UriUtils.UriParameters["id"];
                 this.$scope.BuildingId = this.BuildingId;
@@ -87,8 +87,7 @@ var RapApp;
                 };
             }
             return PlanBulkInsertController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.PlanBulkInsertController = PlanBulkInsertController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=plan-bulk-insert-controller.js.map

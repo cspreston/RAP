@@ -30,14 +30,14 @@ var RapApp;
             };
             PricingInfoData.PricingInfos = new Array();
             return PricingInfoData;
-        })();
+        }());
         Controllers.PricingInfoData = PricingInfoData;
         var PricingInfoController = (function (_super) {
             __extends(PricingInfoController, _super);
             // initializes the controller
             function PricingInfoController($scope, loadAll, loadById) {
-                this.$scope = $scope;
                 _super.call(this);
+                this.$scope = $scope;
                 // initialize scope
                 $scope.PricingInfos = null;
                 $scope.createNew = this.createNew;
@@ -105,8 +105,7 @@ var RapApp;
                 });
             };
             return PricingInfoController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.PricingInfoController = PricingInfoController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=pricing-info-controller.js.map

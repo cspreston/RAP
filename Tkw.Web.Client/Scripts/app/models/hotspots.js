@@ -61,8 +61,7 @@ var RapApp;
                 }
             };
             return Hotspot;
-        })();
+        }());
         Models.Hotspot = Hotspot;
     })(Models = RapApp.Models || (RapApp.Models = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=hotspots.js.map

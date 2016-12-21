@@ -38,8 +38,8 @@
         // initializes the controller
         constructor($scope: RapApp.Models.IContactInfoList, loadAll: boolean, loadById: boolean) {
             
-            this.$scope = $scope;
             super();
+            this.$scope = $scope;
             // initialize scope
             $scope.ContactInfos = null;
             (<any>$scope).createNew = this.createNew;

@@ -44,14 +44,14 @@ var RapApp;
             };
             ContactInfoData.ContactInfos = new Array();
             return ContactInfoData;
-        })();
+        }());
         Controllers.ContactInfoData = ContactInfoData;
         var ContactInfoController = (function (_super) {
             __extends(ContactInfoController, _super);
             // initializes the controller
             function ContactInfoController($scope, loadAll, loadById) {
-                this.$scope = $scope;
                 _super.call(this);
+                this.$scope = $scope;
                 // initialize scope
                 $scope.ContactInfos = null;
                 $scope.createNew = this.createNew;
@@ -119,8 +119,7 @@ var RapApp;
                 });
             };
             return ContactInfoController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.ContactInfoController = ContactInfoController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=contact-info-controller.js.map

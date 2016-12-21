@@ -13,8 +13,8 @@ var RapApp;
             // initializes the controller
             function BuildingController($scope) {
                 var _this = this;
-                this.$scope = $scope;
                 _super.call(this);
+                this.$scope = $scope;
                 var headerTab = $(".header-tabs.scrollable-tabs.sticky");
                 var userIcon = $(".nav-user");
                 var userIconA = $(".modal-dialog");
@@ -1411,7 +1411,7 @@ var RapApp;
                 }
             };
             return BuildingController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.BuildingController = BuildingController;
         function getFolder(item, id) {
             if (item.type != 2) {
@@ -1449,4 +1449,3 @@ var RapApp;
         }
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=building-controller.js.map

@@ -8,8 +8,8 @@ module RapApp.Controllers {
         public isLoadingFromFile: boolean;
         // initializes the controller
         constructor($scope: RapApp.Models.ISingleBuilding) {
-            this.$scope = $scope;
             super();
+            this.$scope = $scope;
             var headerTab = $(".header-tabs.scrollable-tabs.sticky");
             var userIcon = $(".nav-user");
             var userIconA = $(".modal-dialog");

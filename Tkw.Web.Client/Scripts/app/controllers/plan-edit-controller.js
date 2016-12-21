@@ -12,8 +12,8 @@ var RapApp;
             // initializes the controller
             function PlanEditController($scope) {
                 var _this = this;
-                this.$scope = $scope;
                 _super.call(this);
+                this.$scope = $scope;
                 this.ZoomLevel = 1;
                 $scope.ShowSaveCrop = false;
                 // initialize undo list
@@ -658,8 +658,7 @@ var RapApp;
                 return null;
             };
             return PlanEditController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.PlanEditController = PlanEditController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=plan-edit-controller.js.map

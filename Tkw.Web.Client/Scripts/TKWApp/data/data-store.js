@@ -27,7 +27,7 @@ var TKWApp;
                 return this.StoreFunctions[functionName];
             };
             return DataStore;
-        })();
+        }());
         Data.DataStore = DataStore;
         var DataStoreErrors = {
             ValueCannotBeNull: {
@@ -99,7 +99,7 @@ var TKWApp;
                 return this.Adapter.getFromUrl(endPoint);
             };
             return DataCollection;
-        })();
+        }());
         Data.DataCollection = DataCollection;
         var JQueryAjaxODATAAdater = (function () {
             function JQueryAjaxODATAAdater(resourceUri, IdProp) {
@@ -250,7 +250,7 @@ var TKWApp;
                 edit: "Post",
             };
             return JQueryAjaxODATAAdater;
-        })();
+        }());
         Data.JQueryAjaxODATAAdater = JQueryAjaxODATAAdater;
         /// Local storage based adapter - at this point this is fully implemented
         var LocalStorageAdapter = (function () {
@@ -382,7 +382,7 @@ var TKWApp;
                 return new DataStorePromissForStoredData(data);
             };
             return LocalStorageAdapter;
-        })();
+        }());
         Data.LocalStorageAdapter = LocalStorageAdapter;
         var JQueryStoreFunction = (function () {
             function JQueryStoreFunction(url, method) {
@@ -399,7 +399,7 @@ var TKWApp;
                 return this.adapter.request(_method, this.url + urlParm, data);
             };
             return JQueryStoreFunction;
-        })();
+        }());
         Data.JQueryStoreFunction = JQueryStoreFunction;
         var LocalStorageStoreFunction = (function () {
             function LocalStorageStoreFunction(executeFunction) {
@@ -412,7 +412,7 @@ var TKWApp;
                 return this.executeFunction(method, url, data);
             };
             return LocalStorageStoreFunction;
-        })();
+        }());
         Data.LocalStorageStoreFunction = LocalStorageStoreFunction;
         /// This is a dummy promiss implementor, used to get data from an already existing dataset
         var DataStorePromissForStoredData = (function () {
@@ -443,7 +443,7 @@ var TKWApp;
                 return this;
             };
             return DataStorePromissForStoredData;
-        })();
+        }());
         Data.DataStorePromissForStoredData = DataStorePromissForStoredData;
         /// This is a jquery based returned promiss, to work with jquery ajax adapters
         var DataStorePromissForJquery = (function () {
@@ -466,7 +466,7 @@ var TKWApp;
                 return this;
             };
             return DataStorePromissForJquery;
-        })();
+        }());
         Data.DataStorePromissForJquery = DataStorePromissForJquery;
         /// data item to be stored in the cache
         var CacheData = (function () {
@@ -479,7 +479,7 @@ var TKWApp;
                 return new Date().getTime() - this.DateCreated.getTime() <= this.TTL * 1000;
             };
             return CacheData;
-        })();
+        }());
         Data.CacheData = CacheData;
         /// Cache manager class - to store key value pairs for a while
         var CacheManager = (function () {
@@ -507,7 +507,7 @@ var TKWApp;
                 }
             };
             return CacheManager;
-        })();
+        }());
         Data.CacheManager = CacheManager;
         /*
         // test local storage examples
@@ -643,4 +643,3 @@ var TKWApp;
         };
     })(Data = TKWApp.Data || (TKWApp.Data = {}));
 })(TKWApp || (TKWApp = {}));
-//# sourceMappingURL=data-store.js.map

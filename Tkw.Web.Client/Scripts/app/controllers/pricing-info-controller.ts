@@ -24,8 +24,8 @@
         // initializes the controller
         constructor($scope: RapApp.Models.IPricingInfoList, loadAll: boolean, loadById: boolean) {
 
-            this.$scope = $scope;
             super();
+            this.$scope = $scope;
             // initialize scope
             $scope.PricingInfos = null;
             (<any>$scope).createNew = this.createNew;

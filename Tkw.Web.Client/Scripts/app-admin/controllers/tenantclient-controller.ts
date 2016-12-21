@@ -2,8 +2,8 @@
     export class TenantClientController extends BaseController {
 
         constructor($scope: Models.ITenantClientModel) {
-            this.$scope = $scope;
             super();
+            this.$scope = $scope;
             var itemTenant: RapApp.Models.ITenant;
             $scope.Tenants = new Array<Models.ITenant>();
 

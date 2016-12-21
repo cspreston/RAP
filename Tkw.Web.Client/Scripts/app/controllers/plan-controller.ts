@@ -17,8 +17,8 @@
 
         // initializes the controller
         constructor($scope: RapApp.Models.ISinglePlan) {
-            this.$scope = $scope;
             super();
+            this.$scope = $scope;
             this.ZoomLevel = 1;
 
             this.CanvasScale = 1;

@@ -10,8 +10,8 @@ var RapApp;
         var RoleController = (function (_super) {
             __extends(RoleController, _super);
             function RoleController($scope) {
-                this.$scope = $scope;
                 _super.call(this);
+                this.$scope = $scope;
                 $scope.loadRoles = function () {
                     $scope.IsLoading = true;
                     TKWApp.Data.DataManager.Collections["Roles"].search(null).then(function (data) {
@@ -54,8 +54,7 @@ var RapApp;
                 $scope.loadRoles();
             }
             return RoleController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.RoleController = RoleController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=role-controller.js.map

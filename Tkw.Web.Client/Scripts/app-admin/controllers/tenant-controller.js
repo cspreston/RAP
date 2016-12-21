@@ -11,8 +11,8 @@ var RapApp;
             __extends(TenantController, _super);
             // initializes the controller
             function TenantController($scope) {
-                this.$scope = $scope;
                 _super.call(this);
+                this.$scope = $scope;
                 $scope.isInRole = false;
                 $scope.pageIndex = 1;
                 $scope.pageSize = 25;
@@ -200,8 +200,7 @@ var RapApp;
                 ;
             }
             return TenantController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.TenantController = TenantController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=tenant-controller.js.map

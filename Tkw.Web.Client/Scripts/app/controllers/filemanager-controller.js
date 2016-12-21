@@ -11,8 +11,8 @@ var RapApp;
         var FileManagerController = (function (_super) {
             __extends(FileManagerController, _super);
             function FileManagerController($scope) {
-                this.$scope = $scope;
                 _super.call(this);
+                this.$scope = $scope;
                 this.isLoadingFromFile = false;
                 $scope.Controller = this;
                 this.SelectedFolder = null;
@@ -391,7 +391,7 @@ var RapApp;
                 }
             };
             return FileManagerController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.FileManagerController = FileManagerController;
         function getFolder(item, id) {
             if (item.type != 2) {
@@ -442,4 +442,3 @@ var RapApp;
         }
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=filemanager-controller.js.map

@@ -3,8 +3,8 @@
         // initializes the controller
         constructor($scope: RapApp.Models.IBuildingsList) {
 
-            this.$scope = $scope;
             super();
+            this.$scope = $scope;
             // initialize scope
             (<any>$scope).Controller = this;
             (<any>$scope).UserName = TKWApp.Data.AuthenticationManager.AuthenticationToken.getUserName();

@@ -10,8 +10,8 @@ var RapApp;
         var TenantUserController = (function (_super) {
             __extends(TenantUserController, _super);
             function TenantUserController($scope) {
-                this.$scope = $scope;
                 _super.call(this);
+                this.$scope = $scope;
                 var itemTenant;
                 $scope.selectedClients = [];
                 $scope.isInRole = false;
@@ -462,8 +462,7 @@ var RapApp;
                 };
             }
             return TenantUserController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.TenantUserController = TenantUserController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=tenant-user-controller.js.map

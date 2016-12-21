@@ -9,8 +9,8 @@
         private hashSweetHashTable: {};  
         // initializes the controller
         constructor($scope: RapApp.Models.ISinglePlanEdit) {  
-            this.$scope = $scope;
             super();   
+            this.$scope = $scope;
             this.ZoomLevel = 1;
             (<any>$scope).ShowSaveCrop = false;
             // initialize undo list

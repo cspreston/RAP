@@ -3,8 +3,8 @@
         // initializes the controller
         constructor($scope: Models.ITenantModel) {
 
-            this.$scope = $scope;
             super();
+            this.$scope = $scope;
 
             (<any>$scope).isInRole = false;
             (<any>$scope).pageIndex = 1;
