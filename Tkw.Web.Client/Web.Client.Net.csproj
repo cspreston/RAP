@@ -408,7 +408,6 @@
     </Content>
     <Content Include="App_Data\EmailSettings.xml" />
     <Content Include="App_Data\XmlDocument.XML" />
-    <Content Include="App_Readme\Elmah.txt" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\angular-block-ui.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -1616,14 +1615,9 @@
     <Content Include="Content\pleasure\js\angular\README.md" />
     <Content Include="Content\files\Templates\ContactInfo.xls" />
     <Content Include="Content\files\Templates\PricingInfo.xls" />
-    <None Include="Properties\PublishProfiles\CTR Test.pubxml" />
-    <None Include="Properties\PublishProfiles\fileSys.pubxml" />
-    <None Include="Properties\PublishProfiles\IIS - DOMAIN.pubxml" />
     <Content Include="Properties\SlowCheetah\SlowCheetah.Transforms.targets" />
     <Content Include="Scripts\angular-aria.min.js.map" />
-    <None Include="Properties\PublishProfiles\QA - BevcartsServer FileSystem.pubxml" />
-    <None Include="Properties\PublishProfiles\QA - BevcartsServer FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\QA - BevcartsServer WebDeploy.pubxml" />
+    <None Include="Properties\PublishProfiles\RAP Test.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2757,6 +2751,7 @@
     <Content Include="Views\Root\Clients.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Readme\" />
     <Folder Include="Areas\Conf\Services\" />
     <Folder Include="Views\Accounts\" />
   </ItemGroup>
