@@ -1,0 +1,57 @@
+<ul>
+    <li>
+        <a href="/dashboard">Dashboard</a>
+        <span class="hover-bg"></span>
+    </li>
+    <!--<li>
+        <a href="javascript:;">Settings</a>
+        <span class="hover-bg"></span>
+    </li>
+    <li>
+        <a href="javascript:;">Notifications</a>
+        <span class="hover-bg"></span>
+    </li>-->
+    <li class="has-child admin-item">
+        <a href="javascript:;">Admin </a>
+        <ul class="child-menu">
+            <li>
+                <a href="/Root/Customers">Companies </a>
+                <span class="hover-bg"></span>
+            </li>
+            <li>
+                <a href="/Root/Clients">Clients </a>
+                <span class="hover-bg"></span>
+            </li>
+            <li>
+                <a href="/Root/Users">Users </a>
+                <span class="hover-bg"></span>
+            </li>
+        </ul>
+        <span class="hover-bg"></span>
+    </li>
+    <li>
+        <a href="javascript:;" onclick="doLogOff();">Log Off</a>
+        <span class="hover-bg"></span>
+    </li>
+</ul>
+
+<script type="text/javascript">
+    function doLogOff() {
+        TKWApp.Data.AuthenticationManager.logOff();
+    }
+
+    $(document).ready(function () {
+        var adminItems = $('.admin-item');
+
+        if (!TKWApp.Data.AuthenticationManager.isInRole("Root") &&
+            !TKWApp.Data.AuthenticationManager.isInRole("Company Admin") &&
+            !TKWApp.Data.AuthenticationManager.isInRole("Client Admin")) {
+            adminItems.hide();
+        }
+        else {
+            adminItems.on('click', function () {
+                adminItems.toggleClass('open animate');
+            });
+        }
+    });
+</script>

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <!--
+        Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
+        For details, see http://go.microsoft.com/fwlink/?LinkID=617521
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' http://* https://* data: cdvfile://* content://* file://*; data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'  data: gap: `**cdvfile:**` https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+    <title>Rap.App.Hybrid</title>
+
+    <!-- Rap.App.Hybrid references -->
+    <link href="css/index.css" rel="stylesheet" />
+    <script src="scripts/TKWApp/config/configuration.js"></script>
+    <script src="scripts/TKWApp/hard-routing/application-routes.js"></script>
+    <script src="scripts/TKWApp/data/data-filters.js"></script>
+    <script src="scripts/TKWApp/data/data-store.js"></script>
+    <script src="scripts/TKWApp/data/authentication.js"></script>
+    <script>
+        if (TKWApp.Data.AuthenticationManager.isAuthenticated()) {
+            debugger
+            var url = localStorage.getItem("location");
+            console.log("Index url " + url);
+            if (url && url != "null") {
+                localStorage.removeItem("location");
+                window.location.href = url;
+            }
+            else {
+                TKWApp.HardRouting.ApplicationRoutes.redirect("Dashboard");
+            }
+        }
+        else {
+            TKWApp.HardRouting.ApplicationRoutes.redirect("Login");
+        }
+    </script>
+</head>
+<body>
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/appBundle.js"></script>
+    <script type="text/javascript" src="scripts/app/utils/cordova-file-utils.js"></script>
+</body>
+</html>

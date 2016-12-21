@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+  <connections>
+    <!--<connection Name="Common.Core" Server="localhost\SQL2008" InitialCatalog="RAP#Core" UserId="sa" Password="@#gg123456#@"></connection>
+    <connection Name="Common.Tenant" Server="localhost\SQL2008" InitialCatalog="{0}" UserId="sa" Password="@#gg123456#@"></connection>-->
+
+    <connection Name="Common.Core" Server="WIN8\MSSQLSERVER2016" InitialCatalog="RAP#Core" UserId="sa" Password="RapSecret"></connection>
+    <connection Name="Common.Tenant" Server="WIN8\MSSQLSERVER2016" InitialCatalog="{0}" UserId="sa" Password="RapSecret"></connection>
+
+     <!--
+    <connection Name="Common.Core" Server="TKW493-PC" InitialCatalog="RAP#Core_v1" UserId="sa" Password="ionut.1"></connection>
+    <connection Name="Common.Tenant" Server="TKW493-PC" InitialCatalog="{0}" UserId="sa" Password="ionut.1"></connection>
+    -->
+  </connections>
+</settings>

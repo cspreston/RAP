@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" />
+    <title>Ready Action Plan - Dashboard</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- BEGIN CORE CSS -->
+    <link rel="stylesheet" href="Content/pleasure/css/style.css">
+    <link rel="stylesheet" href="Content/pleasure/css/elements.css">
+    <link rel="stylesheet" href="Content/pleasure/css/dashboard.css" />
+    <!-- END CORE CSS -->
+    <!-- BEGIN PLUGINS CSS -->
+    <link rel="stylesheet" href="Content/pleasure/css/social.css">
+    <!-- END PLUGINS CSS -->
+    <!-- FIX PLUGINS -->
+    <link rel="stylesheet" href="Content/pleasure/css/plugins.css">
+    <!-- END FIX PLUGINS -->
+    <!-- BEGIN SHORTCUT AND TOUCH ICONS -->
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <!-- END SHORTCUT AND TOUCH ICONS -->
+    <!--Kendo styles-->
+    <link rel="stylesheet" href="Content/kendo/kendo.common-material.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.rtl.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.dataviz.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.dataviz.default.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.material.mobile.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.material.min.css">
+
+    <!--Font AWESOME-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+    <link href="Content/font-awesome.min.css" rel="stylesheet" />
+    <!--Add jQuery-->
+    <script src="scripts/jquery-2.1.1.js"></script>
+    <script src="scripts/jqueryui-1.11.1.js"></script>
+    <script src="Content/pleasure/js/global-vendors.js"></script>
+    <script src="Content/pleasure/js/user-pages.js"></script>
+    <script src="Content/pleasure/js/pleasure.js"></script>
+    <script src="Content/pleasure/js/layout.js"></script>
+    <script src="Content/pleasure/js/modernizr.min.js"></script>
+    <script src="scripts/fastclick.js"></script>
+    <!--Add Angular js-->
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-ng-map.js"></script>
+    <script src="scripts/angular-simple-slider.js"></script>
+    <script src="scripts/angular-dragdrop.min.js"></script>
+    <script src="scripts/sortable.js"></script>
+    <!--Add Kendo Grid-->
+    <script src="Content/kendo/kendo.all.min.js"></script>
+
+    <!--Add common application services-->
+    <script src="scripts/TKWApp/config/configuration.js"></script>
+    <script src="scripts/TKWApp/hard-routing/application-routes.js"></script>
+    <script src="scripts/TKWApp/data/data-filters.js"></script>
+    <script src="scripts/TKWApp/data/data-store.js"></script>
+    <script src="scripts/TKWApp/data/authentication.js"></script>
+    <!--Add angular files-->
+    <!--Add Utils-->
+    <script src="cordova.js"></script>
+    <script src="platformOverrides.js"></script>
+    <script type="application/javascript">
+        window.addEventListener('load', function () {
+            FastClick.attach(document.body);
+        }, false);
+    </script>
+    <script type="application/javascript">
+        document.addEventListener("offline", onOffline, false);
+        document.addEventListener("online", onOnline, false);
+        function onOffline() {
+            console.log("Device is offline");
+            $("#btnGoOnline").hide();
+        }
+
+        function onOnline() {
+            console.log("Device is online");
+            $("#btnGoOnline").show();
+        }
+    </script>
+</head>
+<body ng-app="RAPApp" ng-cloak ng-controller="OfflineBuildingsController">
+    <div class="nav-bar-container">
+        <div ng-include="getUrl('LeftMenu')"></div>
+    </div><!--.nav-bar-container-->
+    <div class="content">
+        <div class="page-header full-content bg-blue">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="saveDashboardSuccess" class="toastr-notify btn-ripple" data-toastr-title="Info" data-toastr-notification="Successfully saved"
+                         data-toastr-position="toast-bottom-right"
+                         data-toastr-type="success">
+                    </div>
+                    <div id="saveDashboardFailure" class="toastr-notify btn-ripple" data-toastr-title="Info" data-toastr-notification="Failure while saving"
+                         data-toastr-position="toast-bottom-right"
+                         data-toastr-type="error">
+                    </div>
+                    <h1>
+                        RAP
+                        <small>Dashboard</small>
+                    </h1>
+                    <div ng-include="Templates.Sample"></div>
+                </div><!--.col-->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb" style="color:white">Welcome {{UserName}} {{Tenant}}</ol>
+                </div><!--.col-->
+            </div><!--.row-->
+        </div><!--.page-header-->
+        <!--Add new site/building button container-->
+        <div class="row" style="margin-bottom:10px;">
+            <button id="btnGoOnline" class="btn btn-blue btn-ripple pull-right" ng-show="isInRole" ng-click="goOnline()">
+                Go online
+            </button>
+        </div>
+        <!--Buildings list-->
+        <div class="row">
+            <!--Loading animation-->
+            <loading></loading>
+            <!--Modal messages dialog-->
+            <div class="modal scale fade" id="defaultModal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">{{Message.Title}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            {{Message.Text}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" ng-show="{{Message.HasOkButton}}" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">Close<span class="ripple _12 animate" style="height: 80px; width: 80px; top: -25.2359924316406px; left: 10.5625px;"></span></button>
+                            <button type="button" ng-show="{{Message.HasCloseButton}}" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">Close<span class="ripple _12 animate" style="height: 80px; width: 80px; top: -25.2359924316406px; left: 10.5625px;"></span></button>
+                            <button type="button" ng-show="{{Message.HasSaveChangesButton}}" class="btn btn-flat btn-primary btn-ripple">Save changes</button>
+                        </div>
+                    </div><!--.modal-content-->
+                </div><!--.modal-dialog-->
+            </div>
+
+            <div class="col-md-4" ng-repeat="b in Buildings track by $index">
+                <div class="card card-user card-clickable card-clickable-over-content">
+                   
+                    <div class="layered-content bg-blue-grey">
+                        <div class="card card-meal card-meal-indigo card-square card-hover-shadow">
+                            <div class="card-heading">
+                                <h3 class="card-title">{{b.Name}}</h3>
+                                <div class="card-subhead">
+                                    <a href="#">{{b.ImagesCount}} Images</a>
+                                </div>
+                                <!--.card-subhead-->
+                            </div>
+                            <!--.card-heading-->
+                          
+                        </div>
+                        <!--.card-->
+                        <!-- You need to set the height of clickable button
+                                                  196px is height of user picture -->
+                        <div class="clickable-close-button" style="height: 196px;">
+                            <a class="btn btn-floating initial-position floating-close"><i class="ion-android-close"></i></a>
+                        </div>
+                    </div>
+                    <div class="card-heading heading-full">
+
+                        <div class="user-image" background-src="{{getFeaturedImage(b)}}"
+                             src="{{getFeaturedImage(b)}}" background-fallback-src="{{DefaultBuildingImage}}">
+
+                        </div>
+                    </div><!--.card-heading-->
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <a ng-href="{{getBuildingUrl(b.Id)}}">{{b.Name}}</a>
+                        </h3>
+                        <div class="subhead">{{b.ActorName}}</div>
+                        <div class="card-description">
+                            <p>{{b.Description}}</p>
+                        </div>
+                    </div><!--.card-body-->
+                    <div class="card-footer">
+
+                        <a ng-href="{{getBuildingUrl(b.Id)}}" class="pull-left"><small>{{b.ImagesCount}} images / {{b.ViewsCount}} views</small></a>
+                        <!--<div class="pull-right">
+                            <a href="#"><i class="fa fa-cog fa-spin fa-spaced"></i></a>
+                            <a href="#"><i class="fa fa-search fa-spaced"></i></a>
+                        </div>-->
+                        <!--<button class="btn btn-xs btn-flat pull-right">Add as a Friend</button>-->
+                    </div><!--.card-footer-->
+
+                </div><!--.card-->
+            </div><!--.col-md-4-->
+            <br />
+
+            <div class="modal-footer">
+            </div>
+        </div><!--.row-->
+        <div class="row">
+            <center style="width:100%;text-overflow:ellipsis;" ng-show="!IsLoading">
+                Show {{Buildings.length}} from {{TotalCount}}
+            </center>
+        </div>
+        <br />
+    </div><!--.content-->
+    <div class="layer-container">
+        <!-- BEGIN MENU LAYER -->
+        <div class="menu-layer" ng-include="getUrl('AppMenu')">
+        </div>
+        <!--.menu-layer-->
+        <!-- END OF MENU LAYER -->
+        <!-- BEGIN EDIT LAYER -->
+        <!--<div class="edit-layer">
+            <div class="search">
+                EDIT SITE
+            </div>
+        </div>-->
+        <!-- BEGIN SEARCH LAYER -->
+        <!--<div class="search-layer" ng-include="getUrl('Search')" ng-controller="SearchController">
+
+        </div>-->
+        <!--.search-layer-->
+        <!-- END OF SEARCH LAYER -->
+
+
+    </div>
+    <script src="scripts/app/utils/cordova-file-utils.js"></script>
+    <script src="scripts/app/utils/rap-file-utils.js"></script>
+    <script src="scripts/app/models/base-model.js"></script>
+    <script src="scripts/app/models/building.js"></script>
+    <!--Add Controllers-->
+    <script src="scripts/app/controllers/base-controller.js"></script>
+    <script src="scripts/app/controllers/offline-buildings-controller.js"></script>
+    <!--Add Angular app configuration-->
+    <script src="scripts/app/angular-app-configuration.js"></script>
+    <script>
+        $(document).ready(function () {
+            console.log("!!!");
+            Pleasure.init();
+            Layout.init();
+        });
+    </script>
+</body>
+</html>

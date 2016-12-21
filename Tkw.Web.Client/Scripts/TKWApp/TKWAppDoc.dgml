@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="008f8182-9bdd-456e-95ba-20a36a71deec1" Category="Comment" Bounds="110.306685078939,-382.70338680926,246.023333333333,105.76" Label="The data store is the top level object in the TKW client module. It can be instantiated multiple times, but the default behavior is to use the TKWApp.Data.DataManager instance of it - the instance is already instanciated and available in the library." UseManualLocation="True" />
+    <Node Id="2dd99edf-46c3-43fe-a64e-d704915dae7f1" Category="Comment" Bounds="-358.488334655762,-331.360903118572,213.666666666667,137.68" Label="        Name: string;&#xD;&#xA;        Adapter: IAdapter;&#xD;&#xA;        CacheManager: CacheManager;&#xD;&#xA;        search(query: Query): IPromiss;&#xD;&#xA;        find(id: string): IPromiss;&#xD;&#xA;        create(object: T): IPromiss;&#xD;&#xA;        update(object: T): IPromiss;&#xD;&#xA;        delete(id: any): IPromiss;" UseManualLocation="True" />
+    <Node Id="CacheManager" Bounds="132.230649979624,-233.015450795492,99.4433333333334,25.96" UseManualLocation="True" />
+    <Node Id="CacheManagerWillAllowThe" Category="Comment" Bounds="261.673983311338,-246.943286810653,236.026666666667,57.88" Label="Cache manager will allow the data collections to maintain data into a cache. By default the caching is disabled." UseManualLocation="True" />
+    <Node Id="DataCollection" Bounds="-76.6151109482397,-206.701282845153,97.58,25.96" UseManualLocation="True" />
+    <Node Id="DataStore" Bounds="-71.3066628519694,-318.592931149205,72.6133333333333,25.96" UseManualLocation="True" />
+    <Node Id="IAdapter" Bounds="-229.744623154736,-121.18059733617,65.6766666666667,25.96" UseManualLocation="True" />
+    <Node Id="JQueryAjaxODATAAdapter" Bounds="-381.05220954157,-17.9690332157295,160.346666666667,25.9599999999999" UseManualLocation="True" />
+    <Node Id="LocalStorageAdapter" Bounds="-183.251667807897,-18.5688757705689,130.813333333333,25.96" UseManualLocation="True" />
+    <Node Id="UsageExample:" Category="Comment" Bounds="20.7616655254364,-21.7802294921875,249.613333333333,393.04" Label="TKWApp.Data.Configure();&#xD;&#xA;&#xD;&#xA;        if (TKWApp.Data.AuthenticationManager.isAuthenticated()) {&#xD;&#xA;            var query = new TKWApp.Data.Query().and().eq(&quot;Id&quot;, &quot;be6f53b4-40b1-4471-96d1-d57212386123&quot;);&#xD;&#xA;            &#xD;&#xA;            TKWApp.Data.DataManager.Collections.Buildings.search(query).then(function (data) {&#xD;&#xA;                alert(JSON.stringify(data));&#xD;&#xA;            }, function (error) {&#xD;&#xA;                // log error&#xD;&#xA;                console.log(JSON.stringify(error));&#xD;&#xA;            });&#xD;&#xA;        }&#xD;&#xA;        else {&#xD;&#xA;            TKWApp.HardRouting.ApplicationRoutes.redirect(&quot;Login&quot;);&#xD;&#xA;        }" UseManualLocation="True" />
+    <Node Id="fa93578c-83c7-452a-aafa-8dd3b2ea430d1" Category="Comment" Bounds="-513.846985677083,-163.680803118572,243.956666666667,89.8" Label="IAdapter object is factory created either as JQuery Ajax or as LocalStorage. It basically injects into the DataColleciton the source of data. It uses composition, because Ovidiu likes compositions :))" UseManualLocation="True" />
+  </Nodes>
+  <Links>
+    <Link Source="008f8182-9bdd-456e-95ba-20a36a71deec1" Target="DataStore" Bounds="10.2702558698294,-318.724002348717,100.03642920911,9.02632098189957" />
+    <Link Source="2dd99edf-46c3-43fe-a64e-d704915dae7f1" Target="DataCollection" Bounds="-144.821667989095,-229.683051330371,66.1651732218193,20.33749284055" />
+    <Link Source="CacheManager" Target="DataCollection" Bounds="29.8949071526567,-213.798439013813,102.335742826967,12.8368431005669" />
+    <Link Source="CacheManagerWillAllowThe" Target="CacheManager" Bounds="240.673508055964,-219.431960819865,21.0004752553745,0.215826280015278" />
+    <Link Source="DataStore" Target="DataCollection" Bounds="-34.1676730245606,-292.632931149205,4.93431016923815,76.9500946478554" />
+    <Link Source="IAdapter" Target="DataCollection" Bounds="-171.243800229418,-176.679160925326,109.725062440431,55.4985635891558" />
+    <Link Source="IAdapter" Target="JQueryAjaxODATAAdapter" Bounds="-281.415875367771,-95.22059733617,71.4338785478163,70.9110217637455" />
+    <Link Source="IAdapter" Target="LocalStorageAdapter" Bounds="-186.905331729957,-95.22059733617,53.5663380132024,69.5224458550735" />
+    <Link Source="UsageExample:" Target="DataCollection" Bounds="-17.8847019929139,-172.597914578718,70.9730308417655,150.817685086531" />
+    <Link Source="fa93578c-83c7-452a-aafa-8dd3b2ea430d1" Target="IAdapter" Bounds="-269.890319010416,-112.161290249706,31.1589191975689,1.69093035600514" />
+  </Links>
+  <Categories>
+    <Category Id="Comment" Label="Comment" Description="Represents a user defined comment on the diagram" CanBeDataDriven="True" IsProviderRoot="False" NavigationActionLabel="Comments" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="IsProviderRoot" Label="IsProviderRoot" Description="IsProviderRoot" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Comment" ValueLabel="Has comment">
+      <Condition Expression="HasCategory('Comment')" />
+      <Setter Property="Background" Value="#FFFFFACD" />
+      <Setter Property="Stroke" Value="#FFE5C365" />
+      <Setter Property="StrokeThickness" Value="1" />
+      <Setter Property="NodeRadius" Value="2" />
+      <Setter Property="MaxWidth" Value="250" />
+    </Style>
+  </Styles>
+</DirectedGraph>

@@ -1,0 +1,49 @@
+﻿
+
+.image a.slide-button {
+    display: none;
+    position: absolute;
+    padding: 45% 0px 0px 15px;
+    top: 0px;
+    left: 0px;
+    z-index: 12;
+    width: 30px;
+    height: 100%;
+    color: #FFF !important;
+    background-color: rgba(0,0,0,0.4);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 19px;
+}
+
+.image:hover a.slide-button {
+    display: none;
+}
+
+.image a.slide-button:hover {
+    background-color: rgba(0,0,0,0.6);
+    /*font-size:23px;*/
+}
+
+.next-button {
+    left: auto !important;
+    right: 0px;
+}
+
+.prev-button {
+    left: 0px;
+}
+
+.layered-content .card-heading {
+    color: white !important;
+    padding: 5px 20px 5px 15px !important;
+}
+
+.layered-content .card.card-meal.card-meal-indigo a {
+    color: #ddd !important;
+}
+
+.layered-content.active .clickable-close-button {
+    top: 0px !important;
+    right: 0px !important;
+}

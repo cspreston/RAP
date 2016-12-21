@@ -1,0 +1,952 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <title>Ready Action Plan - Site Plan</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- BEGIN CORE CSS -->
+    <link rel="stylesheet" href="Content/pleasure/css/style.css">
+    <link rel="stylesheet" href="Content/pleasure/css/elements.css">
+    <!-- END CORE CSS -->
+    <!-- FIX PLUGINS -->
+    <link rel="stylesheet" href="Content/pleasure/css/plugins.css">
+    <!-- END FIX PLUGINS -->
+    <!-- BEGIN SHORTCUT AND TOUCH ICONS -->
+    <link rel="shortcut icon" href="Content/pleasure/images/favicon.ico">
+    <link rel="apple-touch-icon" href="Content/pleasure/images/apple-touch-icon.png">
+
+    <!--Kendo styles-->
+    <link rel="stylesheet" href="Content/kendo/kendo.common-material.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.rtl.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.dataviz.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.dataviz.default.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.material.mobile.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.material.min.css">
+
+    <!-- END SHORTCUT AND TOUCH ICONS -->
+    <!-- Angular Material CSS now available via Google CDN; version 0.11.2 used here -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+
+
+    <!--Add Fabric JS-->
+    <script src="scripts/fabric.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+
+    <!--Add Fabric JS-->
+    <!--Add jQuery-->
+    <script src="scripts/jquery-2.1.1.js"></script>
+    <script src="scripts/jqueryui-1.11.1.min.js"></script>
+    <script src="scripts/jquery.ui.touch-punch.min.js"></script>
+    <script src="scripts/jqueryui-1.11.1.js"></script>
+    <script src="Content/pleasure/js/global-vendors.js"></script>
+    <script src="Content/pleasure/js/user-pages.js"></script>
+    <script src="Content/pleasure/js/pleasure.js"></script>
+    <script src="Content/pleasure/js/layout.js"></script>
+    <script src="Content/pleasure/js/modernizr.min.js"></script>
+    <script src="scripts/fastclick.js"></script>
+    <!--Add Angular js-->
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-dragdrop.min.js"></script>
+    <script src="scripts/sortable.js"></script>
+    <!--Add common application services-->
+    <script src="scripts/TKWApp/common.js"></script>
+    <script src="scripts/TKWApp/config/configuration.js"></script>
+    <script src="scripts/TKWApp/hard-routing/application-routes.js"></script>
+    <script src="scripts/TKWApp/data/data-filters.js"></script>
+    <script src="scripts/TKWApp/data/data-store.js"></script>
+    <script src="scripts/TKWApp/data/authentication.js"></script>
+    <script src="scripts/TKWApp/services/file-uploader.js"></script>
+
+    <!--Add angular files-->
+    <!--Add Utils-->
+    <script src="scripts/app/utils/rap-file-utils.js"></script>
+    <script src="scripts/app/utils/image-utils.js"></script>
+    <!--Add Models-->
+    <script src="scripts/app/models/base-model.js"></script>
+    <script src="scripts/app/models/file-upload-model.js"></script>
+    <script src="scripts/app/models/building.js"></script>
+    <script src="scripts/app/models/pricing-info.js"></script>
+    <script src="scripts/app/models/contact-info.js"></script>
+    <script src="scripts/app/models/plan-model.js"></script>
+    <script src="scripts/app/models/hotspots.js"></script>
+
+    <!--Add Controllers-->
+    <script src="scripts/app/controllers/base-controller.js"></script>
+    <script src="scripts/app/controllers/building-controller.js"></script>
+    <script src="scripts/app/controllers/pricing-info-controller.js"></script>
+    <script src="scripts/app/controllers/contact-info-controller.js"></script>
+    <script src="scripts/app/controllers/plan-controller.js"></script>
+    <script src="scripts/app/controllers/search-controller.js"></script>
+
+    <!--Add Angular app configuration-->
+    <script src="scripts/app/angular-app-configuration.js"></script>
+    <script src="Content/kendo/kendo.all.min.js"></script>
+    <style>
+        .table {
+            table-layout: auto;
+        }
+
+        table .fa-trash {
+            font-size: xx-large;
+        }
+
+        #main button {
+            margin: 1px 2px 1px 2px;
+        }
+    </style>
+    <script type='text/javascript'>
+        window.addEventListener('load', function () {
+            FastClick.attach(document.body);
+        }, false);
+
+        function init() {
+            var touchzone = document.getElementById("respondCanvas");
+            touchzone.addEventListener("touchstart", draw, false);
+        }
+
+        function draw() {
+            var canvas = document.getElementById('respondCanvas');
+
+            if (canvas.getContext) {
+                var ctx = canvas.getContext("2d");
+                ctx.fillRect(event.touches[0].pageX, event.touches[0].pageY, 5, 5);
+            }
+        }
+    </script>
+</head>
+<body class="plan-page" ng-app="RAPApp" ng-cloak ng-controller="PlanController">
+    <div class="nav-bar-container">
+        <div ng-include="getUrl('LeftMenu')"></div>
+    </div><!--.nav-bar-container-->
+
+    <div class="content" style="margin-left: 81px;">
+
+        <div id="site-header" class="page-header full-content bg-blue parallax" style="overflow: hidden;">
+            <div class="row">
+                <div id="saveHotSpotSuccess" class="toastr-notify btn-ripple" data-toastr-title="Info" data-toastr-notification="Successfully saved"
+                     data-toastr-position="toast-bottom-right"
+                     data-toastr-type="success">
+                </div>
+                <div id="saveHotSpotFailure" class="toastr-notify btn-ripple" data-toastr-title="Info" data-toastr-notification="Failure while saving"
+                     data-toastr-position="toast-bottom-right"
+                     data-toastr-type="error">
+                </div>
+                <div class="col-sm-6">
+                    <h1>{{CurrentPlan.Name}}</h1>
+                    <small>{{CurrentPlan.BuildingName}}</small>
+                </div>
+                <!--.col-->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+
+                        <li>
+                            <a ng-href="{{getUrl('Dashboard')}}">Dashboard</a>
+                        </li>
+                        <li>
+                            <a ng-href="{{getUrl('Site')+'?id='+CurrentPlan.BuildingId}}">Site Profile</a>
+                        </li>
+                        </ol>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="#" class="active">Site Plan</a>
+                        </li>
+                    </ol>
+                </div>
+                <!--.col-->
+            </div>
+            <!--.row-->
+
+        </div>
+        <!--.page-header-->
+        <div class="modal scale fade" id="delete-spot-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this hotspot?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-flat btn-primary" ng-click="deleteSelectedSpot()">Yes</button>
+                    </div>
+                </div><!--.modal-content-->
+            </div><!--.modal-dialog-->
+        </div><!--.modal-->
+        <!--select new view-->
+        <div class="modal fade full-height from-left" id="choose-view-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div class="legend">Switch View</div>
+                        <div class="row">
+                            <md-list ng-cloak="" class="listdemoListControls">
+                                <md-subheader class="md-no-sticky">Please select a view</md-subheader>
+                                <md-list-item ng-repeat="view in OtherViews" style="cursor:pointer;" ng-click="navigateToPlan(view)">
+                                    <img alt="{{ view.Name}}" ng-src="{{getPlanImage(view)}}" fallback-src="{{DefaultPlanImage}}" class="md-avatar" style="width:80px;height:80px;">
+                                    <p ng-if="CurrentPlan.Id==view.Id" style="color:darkgray;">{{ view.Name}}</p>
+                                    <p ng-if="CurrentPlan.Id!=view.Id">{{ view.Name}}</p>
+                                </md-list-item>
+                            </md-list>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--edit selected spot-->
+        <div class="modal fade full-height from-left in" id="edit-spot-modal" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+            <div class="modal-dialog">
+                <ng-form name="hotspot">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Hotspot</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="legend">Hotspot Details</div>
+
+                            <div class="row">
+                                <div class="col-md-3">Name</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-model="SelectedHotspot.Dto.Name" ng-attr-name="{{SelectedHotspot.Dto.Name}}" ng-required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">Description</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px;" ng-model="SelectedHotspot.Dto.Description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+
+                            <div class="row">
+                                <div class=" col-md-3">Type</div>
+                                <div class="col-md-9">
+                                    <select id="select-clients" ng-model="SelectedHotspot.Dto.HotspotActionTypeId">
+                                        <option style="display:none" value="">select a type</option>
+                                        <option ng-repeat="hotAction in HotspotActionTypes" ng-value="{{hotAction.Id}}" ng-selected="SelectedHotspot.Dto.HotspotActionTypeId==hotAction.Id"
+                                                ng-click="hotspotActionTypeAllowsAttachment()">
+                                            {{hotAction.Name}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="legend" ng-hide="hotspotActionTypeAllowsAttachment()">This hotspot type does not allow file attachments.</div>
+                            <div class="legend" ng-show="hotspotActionTypeAllowsAttachment()">Hotspot Attachments</div>
+                            <div class="row" ng-show="hotspotActionTypeAllowsAttachment()">
+                                <table class="table" style"table-layout auto;">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        <tr ng-repeat="spotFile in SelectedHotspot.Dto.Files">
+                                            <td>{{spotFile.FileName}}</td>
+                                            <td>
+                                                <div class="delete-tab-table" data-toggle="modal" ng-attr-data-target="{{'#delete-file-' + $index}}">
+                                                    <i class="fa fa-trash" style="cursor:pointer; margin:10px"></i>
+                                                </div>
+                                                <div class="modal scale fade in" ng-attr-id="{{'delete-file-' + $index}}" tabindex="-1" role="dialog" aria-hidden="false" style="padding-right: 17px; z-index:9999">
+                                                    <div class="modal-dialog" style="z-index:9999">
+                                                        <div class="modal-content" style="z-index:9999">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title">Confirmation</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure you want to delete this file?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">No<span class="ripple _13 animate" style="height: 57px; width: 57px; top: -1.17798px; left: 5.34375px;"></span></button>
+                                                                <button type="button" class="btn btn-flat btn-primary btn-ripple" data-dismiss="modal" ng-click="removeHotspotFile(spotFile)">Yes</button>
+                                                            </div>
+                                                        </div><!--.modal-content-->
+                                                    </div><!--.modal-dialog-->
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                            <div class="row" ng-show="hotspotActionTypeAllowsAttachment()">
+                                <div class="col-md-12">Select new Attachments</div>
+                                <div class="col-md-12">
+                                    <div class="inputer">
+                                        <div class="input-wrapper k-content">
+                                            <input type="file" id="fuBuildingHotspot" multiple />
+                                            <div class="logger well well-sm" style="display:none">
+                                                Preview:
+                                                <br />
+                                                <img id="fuBuildingHotspotPreview" class="preview-image" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!--File uploader stuff-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-default" data-dismiss="modal" ng-disabled="IsSaving">CANCEL</button>
+                            <button id="save_Hotspot" ng-click="updateSelectedHotspot()" ng-disabled="IsSaving" class="btn btn-default" data-dismiss="modal">SAVE</button>
+                        </div>
+                    </div>
+                </ng-form>
+            </div>
+        </div>
+        <!--edit text hotspot modal-->
+        <div class="modal fade full-height from-left in" id="edit-spot-modal-text" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+            <div class="modal-dialog">
+                <ng-form name="hotspot">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Hotspot</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="legend">Hotspot Details</div>
+
+                            <div class="row">
+                                <div class="col-md-5">Name</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-7">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" disabled placeholder="Enter Name" style="height: 38px !important;" ng-model="SelectedHotspot.Dto.Name" ng-attr-name="{{SelectedHotspot.Dto.Name}}" ng-required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-5">Details</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-7">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px;" ng-model="SelectedHotspot.Dto.Description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-5">Width</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-7">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Width" style="height: 38px;" ng-model="SelectedHotspot.Dto.Width"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-5">Height</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-7">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Height" style="height: 38px;" ng-model="SelectedHotspot.Dto.Height"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-5">Font Size</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-7">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Font Size" style="height: 38px;" ng-model="SelectedHotspot.Dto.FontSize"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">Font Color</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-7">
+                                    <select class="btn-group bootstrap-select selecter" ng-model="selectedTextColor"
+                                            ng-options="item as item.name for item in Colors"></select>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">Text Align</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-7">
+                                    <select class="btn-group bootstrap-select selecter" ng-model="selectedTextAlignment"
+                                            ng-options="item as item for item in TextAlignments"></select>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-default" data-dismiss="modal" ng-disabled="IsSaving">CANCEL</button>
+                            <button id="save_Hotspot" ng-click="updateSelectedHotspot()" ng-disabled="IsSaving" class="btn btn-default" data-dismiss="modal">SAVE</button>
+                        </div>
+                    </div>
+                </ng-form>
+            </div>
+        </div>
+        <!--view hotspot modal-->
+        <div class="modal scale fade" id="view-spot-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Hotspot Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            {{ActiveHotspot.Dto.Description}}
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12" style="text-align:center;">
+                                <audio ng-if="getSpotFileType(ActiveHotspot.ActiveFile)=='audio'" ng-src="{{getSpotFileUrl(ActiveHotspot.ActiveFile)}}"
+                                       style="height:300px;max-width:100%; background-color:#fff;vertical-align: middle;margin:0 auto;
+                                    background-size:contain;background-repeat:no-repeat; background-position:center center;
+                                    background-color:#eee; border-radius:4px;" controls></audio>
+                                <video ng-if="getSpotFileType(ActiveHotspot.ActiveFile)=='video'" ng-src="{{getSpotFileUrl(ActiveHotspot.ActiveFile)}}"
+                                       style="height:300px;max-width:100%; background-color:#fff;vertical-align: middle;margin:0 auto;
+                                    background-size:contain;background-repeat:no-repeat; background-position:center center;
+                                    background-color:#eee; border-radius:4px;" controls></video>
+                                <image ng-if="getSpotFileType(ActiveHotspot.ActiveFile)=='image'"
+                                       background-src="{{getSpotFileUrl(ActiveHotspot.ActiveFile)}}"
+                                       ng-src="{{getSpotFileUrl(ActiveHotspot.ActiveFile)}}"
+                                       style="height:300px;max-width:100%; background-color:#fff;vertical-align: middle;margin:0 auto;
+                                    background-size:contain;background-repeat:no-repeat; background-position:center center;
+                                    background-color:#eee; border-radius:4px;">
+                                </image>
+
+                            </div>
+                            <div class="col-lg-12" style="text-align:center; margin-top:15px;" ng-show="ActiveHotspot.Dto.Files && ActiveHotspot.Dto.Files.length>1">
+                                <div class="col-lg-4">
+                                    <button class="btn btn-success btn-ripple pull-left" ng-show="ActiveHotspot.Dto.Files && ActiveHotspot.Dto.Files.length>1" ng-click="prevActiveFile()" style="width:100px">Previous</button>
+
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="col-lg-12" style="text-align:center; overflow:hidden; text-overflow:ellipsis;">
+                                        {{ActiveHotspot.ActiveFile.FileName}}
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button class="btn btn-success btn-ripple pull-right" ng-show="ActiveHotspot.Dto.Files && ActiveHotspot.Dto.Files.length>0" ng-click="nextActiveFile()" style="width:100px">Next</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div><!--.modal-content-->
+            </div><!--.modal-dialog-->
+        </div><!--.modal-->
+        <!--edit hotspot modal-->
+        <div class="modal fade full-height from-left in" id="customize-pined-objects" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+            <div class="modal-dialog">
+                <ng-form name="hotspot">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit pinned items for {{SelectedHotspot.Dto.Name}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="legend">Lines</div>
+                            <div class="row">
+                                <div class="col-md-5">Size</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-7">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea type="number" class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Width" style="height: 38px;"
+                                                      ng-model="SelectedHotspot.CustomProperties.LineSize"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">Color</div>
+                                <div class="col-md-7">
+                                    <div class="box-col">
+                                        <input kendo-color-picker ng-model="SelectedHotspot.CustomProperties.LineColor" k-buttons="false" k-preview="false" k-input="false" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="legend">Origin Circle</div>
+                            <div class="row">
+                                <div class="col-md-5">Size</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-7">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Width" style="height: 38px;" 
+                                                       ng-model="SelectedHotspot.CustomProperties.CircleSize"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">Color</div>
+                                <div class="col-md-7" >
+                                    <div class="box-col">
+                                            <input kendo-color-picker  ng-model="SelectedHotspot.CustomProperties.CircleColor" k-buttons="false" k-preview="false" k-input="false" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-default" data-dismiss="modal" ng-disabled="IsSaving">CANCEL</button>
+                            <button id="save_Hotspot" ng-click="updatePinedObjectCustomProperties()" ng-disabled="IsSaving" class="btn btn-default" data-dismiss="modal">SAVE</button>
+                        </div>
+                    </div>
+                </ng-form>
+            </div>
+        </div>
+        <div class="modal fade full-height from-left in" id="customize-object" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+            <div class="modal-dialog">
+                <ng-form name="hotspot">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit properties for {{SelectedHotspot.Dto.Name}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-5">Size</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-7">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <input type="number" class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Width" style="height: 38px;"
+                                                   ng-model="SelectedHotspot.CustomProperties.LineSize" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">Color</div>
+                                <div class="col-md-7">
+                                    <div class="box-col">
+                                        <input kendo-color-picker ng-model="SelectedHotspot.CustomProperties.LineColor" k-buttons="false" k-preview="false" k-input="false" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-default" data-dismiss="modal" ng-disabled="IsSaving">CANCEL</button>
+                            <button id="save_Hotspot" ng-click="updateCustomizeObject()" ng-disabled="IsSaving" class="btn btn-default" data-dismiss="modal">SAVE</button>
+                        </div>
+                    </div>
+                </ng-form>
+            </div>
+        </div>
+        <!--Filetr icons -->
+        <div class="modal fade full-height" id="filter-icons" tabindex="-1" data-backdrop="static"
+             data-keyboard="false" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+            <ng-form name="filterIcons">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Filter icons</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="row-height">
+                                    <div class="col-md-3 col-sm-3 col-xs-3 col-xs-height" ng-repeat="spotDisplayType in HotspotDisplayTypes" style="width: 52px;height: 52px;">
+                                        <div class="card card-user-simple" style="cursor:pointer;" ng-click="filterIcon($event, spotDisplayType)">
+                                            <div class="card-body">
+                                                <div class="user-image">
+                                                    <img id="{{spotDisplayType.Id}}" ng-src="{{getHotspotDisplayTypeImage(spotDisplayType)}}" />
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">View<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+        <!--Edit building plan modal -->
+        <div class="modal fade full-height from-left in" id="edit-plan-info" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+            <ng-form name="editPlanDetailInfo">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Building Plan Details</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-3">Name</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;"
+                                                      ng-model="updatePlanInfo.Name" ng-attr-name="{{updatePlanInfo.Name}}" ng-required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">Description</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;"
+                                                      ng-model="updatePlanInfo.Description" ng-attr-name="{{updatePlanInfo.Description}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                            <button type="button" class="btn btn-flat-primary btn-ripple" ng-click="editPlanDetails($event)" ng-disabled="editPlanDetailInfo.$invalid || IsSaving">SAVE</button>
+                        </div>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+        <div class="row" id="fullcontainer">
+
+            <div id="sitekey" class="collapse col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button class="btn-warning btn pull-right btn-lg close-elements" style="display:none">
+                            <i class="fa fa-remove"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-3" ng-repeat="spotDisplayType in HotspotDisplayTypes">
+                        <div class="card card-user-simple" style="cursor:pointer;" on-long-press="pressHp(spotDisplayType)" jqyoui-draggable="{placeholder:true,animate:true,onStart:'hotspotDragging(spotDisplayType)'}"
+                             data-drag="true" data-jqyoui-options="{helper: 'clone'} " ng-click="filterIcon($event, spotDisplayType)">
+                            <div class="card-body">
+                                <div class="user-image btn-sm" style="width:32px;height:32px;">
+                                    <img id="{{spotDisplayType.Id}}"  ng-src="{{getHotspotDisplayTypeImage(spotDisplayType)}}" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sitekeyPoint" class="collapse col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button class="btn-warning btn pull-right btn-lg close-elements" style="display:none">
+                            <i class="fa fa-remove"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-xs-12" style="margin-top:5px" ng-repeat="point in HotspotPoints">
+                        <div style="cursor:pointer;" jqyoui-draggable="{placeholder:true,animate:true,onStart:'hotspotDragging(point)'}"
+                             data-drag="true" data-jqyoui-options="{helper: 'clone'} ">
+                            <div class="row-no-padding">
+                                <div style="width:18px;height:25px; margin-left: 10px;margin-right: 25px; margin-top: -2px; float:left;margin-bottom: 5px;">
+                                    <div class="ng-touched" on-long-press="pressHp(point)">
+                                        <img ng-src="{{getHotspotDisplayTypeImage(point)}}" />
+                                    </div>
+                                </div>
+                                <div style="float:left">
+                                    <span>   {{point.Name}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="main" role="main" class="col-xs-12" style="overflow:visible;">
+                <div class="pc-mode" style="width:100%;padding-bottom:5px;">
+                    <loading></loading>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <center style="position: relative;" ng-show="isInRole">
+                                <strong ng-show="!EditMode">View Mode</strong>
+                                <strong ng-show="EditMode">Edit Mode</strong>
+                            </center>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-left:5px;">
+                        <div class="col-xs-12">
+                            <div class="btn-group btn-group-xs">
+                                <button class="btn btn-success btn-ripple btn-xs" ng-click="loadDetails()">Details</button>
+                                <button class="btn btn-success btn-ripple btn-xs" ng-click="loadOtherPlans()">Switch view</button>
+                                <button class="btn btn-success btn-ripple enable-edit btn-xs" ng-show="!EditMode && isInRole && !Filter" ng-class="{'selected':EditMode}" ng-click="toggleEditMode()" ng-attr-title="{{EditMode?'View is in edit mode':'View is in display mode'}}">Edit Mode</button>
+                                <button class="btn btn-success btn-ripple btn-xs && !Filter" ng-show="EditMode && isInRole && !Filter" ng-class="{'selected':EditMode}" ng-click="toggleEditMode()" ng-attr-title="{{EditMode?'View is in edit mode':'View is in display mode'}}">View Mode</button>
+                                <button class="btn btn-xs" ng-click="!EditMode &&  editPlan(CurrentPlan.Id)" ng-show="isInRole" ng-attr-disabled="{'disabled':!EditMode}" ng-class="{'btn-success btn-ripple':!EditMode}">Edit Image</button>
+                              
+                                <div class="btn-group pull-right" style="margin-top:10px;">
+                                    <button class="btn btn-success btn-ripple pull-right btn-xs" data-toggle="modal" ng-click="shrinkCanvas()">
+                                        -
+                                    </button>
+                                    <button class="btn btn-success btn-ripple pull-right btn-xs" data-toggle="modal"  style="margin-right:10px;" ng-click="growCanvas()">
+                                        +
+                                    </button>
+                                    <button class="btn btn-success btn-ripple pull-right btn-xs" ng-click="filter()" ng-show="!EditMode && !Filter">Filter</button>
+                                    <button class="btn btn-success btn-ripple pull-right btn-xs" ng-click="filter()" ng-show="!EditMode && Filter">Close Filter</button>
+                                    <button class="btn btn-default-focus btn-ripple pull-right btn-xs" data-toggle="modal" data-target="#filter-icons" ng-show="!EditMode && Filter">Filter</button>
+
+                                </div>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button class="btn btn-success btn-ripple pull-right enable-icons btn-xs" ng-show="EditMode && !Filter">Icons</button>
+                            <button class="btn btn-success btn-ripple pull-right enable-points btn-xs" ng-show="EditModee && !Filter">Pins</button>
+                            <!--<button class="btn btn-deep-purple btn-ripple pull-right btn-xs" ng-show="EditMode && HasSelectedSpot && IsPinAction && IsUnPinAction" ng-click="reloadPlan()" title="Lines">
+                                <i class="fa fa-arrows-h"></i>
+                            </button>-->
+                            <button class="btn btn-red btn-ripple pull-right btn-xs" ng-show="EditMode && HasSelectedSpot && IsPinAction && IsUnPinAction" ng-click="undoPin()" title="Release Pin">
+                                <i class="fa fa-arrow-up"></i>
+                            </button>
+                            <button class="btn btn-blue btn-ripple pull-right btn-xs" ng-show="EditMode && HasSelectedSpot && IsPinAction && IsUnPinAction && !HideEditSpot" ng-click="customizePinedObjects()" title="Customize pined objects">
+                                <i class="fa fa-arrows-h"></i>
+                            </button>
+                            <button class="btn btn-blue btn-ripple pull-right btn-xs" ng-show="HasSelectedSpot && EditMode && HideEditSpot" ng-click="customizeObject()" title="Customize pinned objects">
+                                <i class="fa fa-arrows-h"></i>
+                            </button>
+                            <button class="btn btn-success btn-ripple pull-right btn-xs" ng-show="HasSelectedSpot && EditMode && IsPinAction" ng-click="setPin()" title="Pin">
+                                <i class="fa fa-arrow-down"></i>
+                            </button>
+                            <button class="btn btn-red btn-ripple pull-right btn-xs" ng-show="HasSelectedSpot && EditMode" data-toggle="modal" data-target="#delete-spot-modal">
+                                <i class="fa fa-remove"></i>
+                            </button>
+                            <button class="btn btn-success btn-ripple pull-right btn-xs" ng-show="HasSelectedSpot && EditMode && !HideEditSpot" data-toggle="modal" ng-click="editSelectedHotspot()" title="Edit Spot">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row" id="canv-container" style="overflow:scroll;margin-left:15px; margin-top:15px; margin-bottom:25px; padding:20px; border-left:1px dotted #0b2aa5;background-color:gray; border-top:1px dotted #0b2aa5; " >
+                    <canvas id="respondCanvas" width="100" height="100" data-drop="true" style="padding-right:20px;"
+                            data-jqyoui-options jqyoui-droppable="{onDrop: 'hotspotDropped'}">
+                        Canvas
+                    </canvas>
+                </div>
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+    <!--.content-->
+
+    <div class="layer-container">
+        <!-- BEGIN MENU LAYER -->
+        <div class="menu-layer" ng-include="getUrl('AppMenu')">
+        </div>
+        <!--.menu-layer-->
+        <!-- END OF MENU LAYER -->
+    </div>
+
+    <!-- BEGIN SEARCH LAYER -->
+    <div class="modal fade full-height in" id="search-modal" tabindex="-1" role="dialog" aria-hidden="false" ng-include="getUrl('Search')" ng-controller="SearchController">
+    </div>
+    <script src="cordova.js"></script>
+    <script src="platformOverrides.js"></script>
+    <script src="scripts/app/utils/cordova-file-utils.js"></script>
+    <!--.search-->
+    <!--.results-->
+    <!--.search-layer-->
+    <!-- END OF SEARCH LAYER -->
+    <!-- BEGIN INITIALIZATION-->
+    <script>
+        document.addEventListener('pause', onPause, false);
+        function onPause() {
+            console.log("Dash on pause");
+            var path = window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1, window.location.pathname.length) + window.location.search;
+            console.log("Dash location " + path);
+            localStorage.removeItem("location");
+            localStorage.setItem("location", path);
+        }
+        $(document).ready(function () {
+
+
+            console.log("!!!");
+            Pleasure.init();
+            Layout.init();
+
+
+
+            //Run function when browser resizes
+
+
+
+            $(".user-image")
+                    .on("mouseenter", function () {
+                        $(this).children("img").toggle();
+                    })
+                    .on("mouseleave", function () {
+                        $(this).children("img").toggle();
+                    });
+
+            $(".close-elements").on("click", function () {
+                $('#main').width('100%').show();
+                $('#sitekey').hide();
+                $("#sitekeyPoint").hide();
+                $(this).hide();
+            })
+
+            $('.enable-icons')
+                .click(
+                    function () {
+                        if ($(window).width() > 700) {
+                            $("#sitekeyPoint").hide();
+                            var isHidden = $("#sitekey").is(":hidden");
+                            if (isHidden) {
+                                $('#main').width('80%');
+                                $('#sitekey').width('20%');
+                                $('#sitekey').show();
+                            } else {
+                                $('#main').width('100%');
+                                $('#sitekey').width('0%');
+                                $('#sitekey').hide();
+                            }
+                        }
+                        else {
+                            $(".close-elements").show();
+                            $("#sitekeyPoint").hide();
+                            var isHidden = $("#sitekey").is(":hidden");
+                            if (isHidden) {
+                                $('#main').hide();
+                                $('#sitekey').width('100%');
+                                $('#sitekey').show();
+                            } else {
+                                $('#main').width('100%');
+                                $('#sitekey').hide();
+                            }
+                        }
+                    }
+                )
+                .hover(
+                    function () {
+                        $(this).css('background', '#F79F81');
+                    },
+                    function () {
+                        $(this).css('background', '');
+                    }
+                );
+            $('.enable-points')
+           .click(
+               function () {
+                   if ($(window).width() > 700) {
+                       $("#sitekey").hide();
+                       var isHidden = $("#sitekeyPoint").is(":hidden");
+                       if (isHidden) {
+                           $('#main').width('85%');
+                           $('#sitekeyPoint').width('15%');
+                           $('#sitekeyPoint').show();
+                       } else {
+                           $('#main').width('100%');
+                           $('#sitekeyPoint').width('0%');
+                           $('#sitekeyPoint').hide();
+                       }
+                   }
+                   else {
+                       $(".close-elements").show();
+                       $("#sitekey").hide();
+                       var isHidden = $("#sitekeyPoint").is(":hidden");
+                       if (isHidden) {
+                           $('#main').hide();
+                           $('#sitekeyPoint').width('90%');
+                           $('#sitekeyPoint').show();
+                       } else {
+                           $('#main').width('100%');
+                           $('#sitekeyPoint').width('0%');
+                           $('#sitekeyPoint').hide();
+                       }
+                   }
+               }
+           )
+           .hover(
+               function () {
+                   $(this).css('background', '#F79F81');
+               },
+               function () {
+                   $(this).css('background', '');
+               }
+           );
+
+            $('.enable-edit')
+                .one("click",
+                    function () {
+                        $(".card-body img").each(function () {
+                            if ($(this).attr("src").indexOf("2.png") > 5) {
+                                var hoverImg = $(this).attr("src").split("2.png")[0] + ".png";
+                                $(this).closest(".user-image").append("<img style='display:none;' src=" + hoverImg + ">");
+                            }
+                        });
+                    })
+            $('.enable-icons').one('click', function () {
+                $(".card-body .user-image")
+                   .on("mouseenter", function () {
+                       if ($(this).children("img").attr("src").indexOf("2.png") > 5) {
+                           $(this).children("img").toggle();
+                       }
+                   })
+                   .on("mouseleave", function () {
+                       if ($(this).children("img").attr("src").indexOf("2.png") > 5) {
+                           $(this).children("img").toggle();
+                       }
+                   });
+            })
+        });
+    </script>
+    <!-- END INITIALIZATION-->
+</body>
+</html>

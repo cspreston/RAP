@@ -1,0 +1,433 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Ready Action Plan - Site</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- BEGIN CORE CSS -->
+    <link rel="stylesheet" href="Content/pleasure/css/style.css">
+    <link rel="stylesheet" href="Content/pleasure/css/elements.css">
+    <!-- END CORE CSS -->
+
+    <link rel="stylesheet" href="Content/pleasure/css/blueimp-gallery.css">
+    <link rel="stylesheet" href="Content/pleasure/css/bootstrap-image-gallery.css">
+
+    <!-- BEGIN PLUGINS CSS -->
+    <link rel="stylesheet" href="Content/pleasure/css/social.css">
+    <!-- END PLUGINS CSS -->
+    <!-- FIX PLUGINS -->
+    <link rel="stylesheet" href="Content/pleasure/css/plugins.css">
+    <!-- END FIX PLUGINS -->
+    <!-- BEGIN SHORTCUT AND TOUCH ICONS -->
+    <link rel="shortcut icon" href="Content/pleasure/images/favicon.ico">
+    <link rel="apple-touch-icon" href="Content/pleasure/images/apple-touch-icon.png">
+    <!-- END SHORTCUT AND TOUCH ICONS -->
+    <!--Kendo styles-->
+    <link rel="stylesheet" href="Content/kendo/kendo.common-material.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.rtl.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.dataviz.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.dataviz.default.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.material.mobile.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.material.min.css">
+    <!-- Angular Material CSS now available via Google CDN; version 0.11.2 used here -->
+    <link rel="stylesheet" href="Scripts/angular-material.css">
+
+    <!--Add jQuery-->
+    <script src="Scripts/jquery-2.1.1.js"></script>
+    <script src="Scripts/jqueryui-1.11.1.js"></script>
+    <script src="Content/pleasure/js/global-vendors.js"></script>
+    <script src="Content/pleasure/js/masonry.pkgd.min.js"></script>
+    <script src="Content/pleasure/js/jquery.blueimp-gallery.js"></script>
+    <script src="Content/pleasure/js/bootstrap-image-gallery.js"></script>
+    <script src="Content/pleasure/js/user-pages.js"></script>
+    <script src="Content/pleasure/js/pleasure.js"></script>
+    <script src="Content/pleasure/js/form-tools.js"></script>
+    <script src="Content/pleasure/js/layout.js"></script>
+    <script src="Content/pleasure/js/modernizr.min.js"></script>
+
+    <!--Add Angular js-->
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-ng-map.js"></script>
+    <script src="Scripts/angular-dragdrop.min.js"></script>
+    <script src="Scripts/angular-material.min.js"></script>
+    <script src="Scripts/angular-animate.min.js"></script>
+    <script src="Scripts/angular-aria.min.js"></script>
+    <script src="Scripts/sortable.js"></script>
+    <!-- Angular Material Javascript now available via Goo  gle CDN; version 0.11.2 used here -->
+    <!-- BEGIN GLOBAL AND THEME VENDORS-->
+    <!-- BEGIN PLUGINS AREA -->
+    <!-- END PLUGINS AREA -->
+    <!-- PLUGINS INITIALIZATION AND SETTINGS -->
+    <!--Add common application services-->
+    <script src="Scripts/TKWApp/common.js"></script>
+    <script src="Scripts/TKWApp/config/configuration.js"></script>
+    <script src="Scripts/TKWApp/hard-routing/application-routes.js"></script>
+    <script src="Scripts/TKWApp/data/data-filters.js"></script>
+    <script src="Scripts/TKWApp/data/data-store.js"></script>
+    <script src="Scripts/TKWApp/data/authentication.js"></script>
+    <script src="Scripts/TKWApp/services/file-uploader.js"></script>
+
+    <!--Add angular files-->
+    <!--Add Utils-->
+    <script src="Scripts/app/utils/rap-file-utils.js"></script>
+    <script src="Scripts/app/utils/image-utils.js"></script>
+    <!--Add Models-->
+    <script src="Scripts/app/models/base-model.js"></script>
+
+    <!--Add Controllers-->
+    <script src="Scripts/app/controllers/base-controller.js"></script>
+    <script src="Scripts/app/controllers/building-controller.js"></script>
+    <script src="Scripts/app/controllers/search-controller.js"></script>
+
+    <!--Add Angular app configuration-->
+    <script src="Scripts/app/angular-app-configuration.js"></script>
+
+    <script src="Content/kendo/kendo.all.min.js"></script>
+
+</head>
+<body class="site-page" ng-app="RAPApp" ng-cloak ng-controller="BuildingController">
+    <div class="nav-bar-container">
+        <div ng-include="getUrl('LeftMenu')"></div>
+    </div><!--.nav-bar-container-->
+    <div class="content" style="margin-left: 81px;">
+        <div class="page-header full-content bg-blue">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="saveDashboardSuccess" class="toastr-notify btn-ripple" data-toastr-title="Info" data-toastr-notification="Successfully saved"
+                         data-toastr-position="toast-bottom-right"
+                         data-toastr-type="success">
+                    </div>
+                    <div id="saveDashboardFailure" class="toastr-notify btn-ripple" data-toastr-title="Info" data-toastr-notification="Failure while saving"
+                         data-toastr-position="toast-bottom-right"
+                         data-toastr-type="error">
+                    </div>
+                    <h1>
+                        Site Profile
+                        <small>{{SiteClone.Name}}</small>
+                    </h1>
+                </div><!--.col-->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="./"><i class="ion-home"></i></a>
+                        </li>
+                        <li>
+                            <a ng-href="{{getUrl('Dashboard')}}">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <a ng-href="{{getUrl('Site')+'?id='+CurrentBuilding.Id}}">Site Profile</a>
+                        </li>
+                    </ol>
+                </div>
+            </div><!--.row-->
+        </div><!--.page-header-->
+        <!-- copy site options -->
+        <fieldset>
+            <legend>Building</legend>
+            <div id="name" class="tab-pane">
+                <div class="row">
+                    <div class="col-md-3">Name</div>
+                    <!--.col-md-3-->
+                    <div class="col-md-9">
+                        <div class="inputer">
+                            <div class="input-wrapper">
+                                <input type="text" class="form-control" placeholder="Enter building" ng-model="SiteClone.Name" ng-attr-name="{{SiteClone.Name}}" ng-required="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Photos</legend>
+            <div id="photos" class="tab-pane">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" ng-repeat="bi in CurrentBuilding.BuildingImages">
+
+                        <center style="width:100%;height:60px; text-overflow:ellipsis; padding:10px;">
+                            <div class="checkboxer">
+                                <input type="checkbox" value="{{bi.Id}}" id="{{bi.Id}}" ng-checked="bi.Id" ng-click="checkImageInClone(bi)">
+                                <label for="{{bi.Id}}">Select</label>
+                            </div>
+                        </center>
+                        <div background-src="{{getBuildingImage(bi)}}"
+                             src="{{getBuildingImage(bi)}}" background-fallback-src="{{DefaultBuildingImage}}"
+                             onclick="highlightImage(this)"
+                             style="height:200px;width:80%; background-color:#fff;vertical-align: middle;margin:0 auto;
+                                background-size:contain;background-repeat:no-repeat; background-position:center center;
+                                background-color:#eee; border-radius:4px;">
+                        </div>
+                        <center style="width:100%;height:60px; text-overflow:ellipsis; padding:10px;">
+                            {{bi.FileDescription}}
+                        </center>
+                    </div>
+                </div>
+                <!--.row-->
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Plans</legend>
+            <div id="views" class="tab-pane">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" ng-repeat="plan in CurrentBuilding.BuildingPlans">
+                        <center style="width:100%;height:60px; text-overflow:ellipsis; padding:10px;">
+                            <div class="checkboxer">
+                                <input type="checkbox" value="{{plan.Id}}" id="{{plan.Id}}" ng-checked="plan.Id" ng-click="checkPlanInClone(plan)">
+                                <label for="{{plan.Id}}">Select</label>
+                            </div>
+                        </center>
+                        <p class="title">{{plan.Name}}</p>
+                        <div class="card tile card-friend">
+                            <img ng-src="{{getPlanThumbnail(plan)}}" fallback-src="{{DefaultPlanImage}}" alt="No image" class="user-photo">
+                            <!--.friend-content-->
+                        </div>
+                        <div class="friend-content">
+                            <center style="width:100%;height:60px; text-overflow:ellipsis; padding:10px;">
+                                <a href="{{getPlanUrl(plan.Id)}}">{{plan.HotspotsCount}} hot spots</a>
+                                <a ng-href="{{getPlanUrl(plan.Id)}}" class="btn btn-flat btn-primary btn-xs">Open</a>
+                            </center>
+                        </div>
+                        <!--.card-->
+                    </div>
+                    <!--.col-md-6-->
+                </div>
+                <!--.row-->
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <div class="tab-pane active" id="about_pricing">
+                <div class="legend">
+                    Pricing Information
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-4 info-tab" ng-repeat="pi in CurrentBuilding.PricingInfos">
+                            <center style="width:100%;height:60px; text-overflow:ellipsis; padding:10px;">
+                                <div class="checkboxer">
+                                    <input type="checkbox" value="{{pi.Id}}" id="{{pi.Id}}" ng-checked="pi.Id" ng-click="checkPriceInClone(pi)">
+                                    <label for="{{pi.Id}}">Select</label>
+                                </div>
+                            </center>
+                            <h4>{{pi.Name}}</h4>
+                            <p>{{pi.Description}}</p>
+                            <p>Price per Unit: {{pi.UnitPrice | currency:"$"}}</p>
+                            <p>Quantity: {{pi.Quantity}}</p>
+                            <p>Units: {{pi.Units}}</p>
+                            <p>Total: {{pi.UnitPrice * pi.Quantity| currency:"$"}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <div class="tab-pane active" id="about_contact">
+                <div class="legend">
+                    Contact Information
+                </div>
+                <div>
+                    <div class="row">
+                        <div class="col-md-4 info-tab" ng-repeat="ci in CurrentBuilding.ContactInfos">
+                            <center style="width:100%;height:60px; text-overflow:ellipsis; padding:10px;">
+                                <div class="checkboxer">
+                                    <input type="checkbox" value="{{ci.Id}}" id="{{ci.Id}}" ng-checked="ci.Id" ng-click="checkContactInClone(ci)">
+                                    <label for="{{ci.Id}}">Select</label>
+                                </div>
+                            </center>
+                            <h4>{{ci.Title + ' ' + ci.Firstname + ' ' + ci.LastName }}</h4>
+                            <p>{{ci.Role}}</p>
+                            <p>{{ci.EmailAddress}}</p>
+                            <p>{{ci.Phone}}</p>
+                            <p>{{ci.MobilePhone}}</p>
+                            <p>{{ci.Fax}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <div class="tab-pane active" id="about_files">
+                <div class="legend">
+                    Files
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Select</th>
+
+                        </tr>
+                        <tr ng-repeat="fi in CurrentBuilding.BuildingFiles">
+                            <td>{{fi.Title}}</td>
+                            <td>{{fi.Description}}</td>
+                            <td>
+                                <div class="checkboxer">
+                                    <input type="checkbox" value="{{fi.Id}}" id="{{fi.Id}}" ng-checked="fi.Id" ng-click="checkFilesInClone(fi)">
+                                    <label for="{{fi.Id}}"></label>
+                                </div>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+
+
+
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <div class="tab-pane active" id="about_disaster">
+                <div class="legend">
+                    Disaster Information
+                </div>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Select</th>
+                        </tr>
+                        <tr ng-repeat="di in CurrentBuilding.BuildingDisasterInfos">
+                            <td>{{di.Title}}</td>
+                            <td>{{di.Description}}</td>
+                            <td>
+                                <div class="checkboxer">
+                                    <input type="checkbox" value="{{di.Id}}" id="{{di.Id}}" ng-checked="di.Id" ng-click="checkDisasterInfoInClone(di)">
+                                    <label for="{{di.Id}}"></label>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </fieldset>
+        <!-- copy site options end-->
+        <div class="row">
+            <button ng-show="isInRole" class="btn btn-success btn-ripple pull-right" ng-disabled="IsSaving" ng-click="copy()">
+                Copy Site
+            </button>
+        </div>
+    </div>
+    <!--.content-->
+    <div class="layer-container">
+        <!-- BEGIN MENU LAYER -->
+        <div class="menu-layer" ng-include="getUrl('AppMenu')">
+        </div>
+        <!--.menu-layer-->
+        <!-- END OF MENU LAYER -->
+        <!-- BEGIN EDIT LAYER -->
+        <!--<div class="edit-layer">
+            <div class="search">
+                EDIT SITE
+            </div>
+        </div>-->
+        <!-- BEGIN SEARCH LAYER -->
+        <div class="modal fade full-height in" id="search-modal" ng-include="getUrl('Search')" ng-controller="SearchController">
+
+
+        </div>
+        <!--.search-layer-->
+        <!-- END OF SEARCH LAYER -->
+        <!-- BEGIN USER LAYER -->
+        <!--<div class="user-layer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+                <li>
+                    <a href="#notifications" data-toggle="tab">Notifications <span class="badge"></span></a>
+                </li>
+                <li>
+                    <a href="#settings" data-toggle="tab">My Settings</a>
+                </li>
+            </ul>
+            <div class="row no-gutters tab-content">
+                <div class="tab-pane fade in active" id="notifications">
+                    <div class="col-md-6 col-md-offset-3">
+                        <ul class="list-material has-hidden">
+                            <li class="has-action-left has-action-right has-long-story">
+                                <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
+                                <a href="#" class="visible">
+                                    <div class="list-content">
+                                        <span class="caption">An emergency notification from ABC Building</span>
+                                    </div>
+                                    <div class="list-action-right">
+                                        <span class="top">2 hr</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="has-action-left has-action-right has-long-story">
+                                <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
+                                <a href="#" class="visible">
+                                    <div class="list-content">
+                                        <span class="caption">User information notification</span>
+                                    </div>
+                                    <div class="list-action-right">
+                                        <span class="top">16:55</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="has-action-left has-action-right has-long-story">
+                                <a href="#" class="hidden"><i class="ion-android-delete"></i></a>
+                                <a href="#" class="visible">
+                                    <div class="list-content">
+                                        <span class="caption">An emergency notification from DEF Building</span>
+                                    </div>
+                                    <div class="list-action-right">
+                                        <span class="top">Yesterday</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--.col-->
+    </div>
+    <!--.tab-pane #notifications-->
+    <div class="tab-pane fade" id="settings">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="settings-panel">
+                <p class="text-grey">You can update your personal settings here.</p>
+                <div class="legend">Notifications</div>
+                <ul>
+                    <li>
+                        Receive notifications
+                        <div class="switcher switcher-indigo pull-right">
+                            <input id="settings4" type="checkbox" hidden="hidden" checked="checked">
+                            <label for="settings4"></label>
+                        </div>
+                        <!--.switcher-->
+                    </li>
+                </ul>
+            </div>
+            <!--.layer-container-->
+            <!-- BEGIN GLOBAL AND THEME VENDORS-->
+            <!-- BEGIN INITIALIZATION-->
+            <!-- END INITIALIZATION-->
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            Pleasure.init();
+            Layout.init();
+        });
+    </script>
+</body>
+</html>

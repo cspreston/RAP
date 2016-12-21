@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+  <connections>
+    <connection Name="Common.Core" Server="INEAGOS-PC\SQLEXPRESS" InitialCatalog="Click2Pay" UserId="sa" Password="ionut.1"></connection>
+  </connections>
+  <uri>
+    <urlAddress Development="http://localhost:54350" Production="http://127.0.0.1"></urlAddress>
+  </uri>
+</settings>

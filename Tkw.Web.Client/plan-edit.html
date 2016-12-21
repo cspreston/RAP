@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Ready Action Plan - Site Plan</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- BEGIN CORE CSS -->
+    <link rel="stylesheet" href="Content/pleasure/css/style.css">
+    <link rel="stylesheet" href="Content/pleasure/css/elements.css">
+    <!-- END CORE CSS -->
+    <!-- FIX PLUGINS -->
+    <link rel="stylesheet" href="Content/pleasure/css/plugins.css">
+    <!-- END FIX PLUGINS -->
+    <!-- BEGIN SHORTCUT AND TOUCH ICONS -->
+    <link rel="shortcut icon" href="Content/pleasure/images/favicon.ico">
+    <link rel="apple-touch-icon" href="Content/pleasure/images/apple-touch-icon.png">
+    <!-- END SHORTCUT AND TOUCH ICONS -->
+    <!-- Angular Material CSS now available via Google CDN; version 0.11.2 used here -->
+    <link rel="stylesheet" href="Content/angular-material.min.css">
+
+    <!-- Add the sliders css-->
+    <link rel="stylesheet" href="Content/pleasure/plugins/jquery.nouislider.min.css">
+    <link rel="stylesheet" href="Content/pleasure/plugins/jquery.nouislider.pips.min.css">
+
+
+    <!--Add Fabric JS-->
+    <script src="Scripts/fabric.js"></script>
+    <!--Add Fabric JS-->
+    <!--Add jQuery-->
+    <script src="Scripts/jquery-2.1.1.js"></script>
+
+    <script src="Scripts/jqueryui-1.11.1.min.js"></script>
+    <script src="Scripts/jquery.ui.touch-punch.min.js"></script>
+
+
+
+    <!--Add Angular js-->
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-ng-map.js"></script>
+    <script src="Scripts/angular-dragdrop.min.js"></script>
+    <script src="Scripts/sortable.js"></script>
+    <!--Add common application services-->
+    <script src="Scripts/TKWApp/common.js"></script>
+    <script src="Scripts/TKWApp/config/configuration.js"></script>
+    <script src="Scripts/TKWApp/hard-routing/application-routes.js"></script>
+    <script src="Scripts/TKWApp/data/data-filters.js"></script>
+    <script src="Scripts/TKWApp/data/data-store.js"></script>
+    <script src="Scripts/TKWApp/data/authentication.js"></script>
+    <script src="Scripts/TKWApp/services/file-uploader.js"></script>
+
+    <!--Add angular files-->
+    <!--Add Utils-->
+    <script src="Scripts/app/utils/rap-file-utils.js"></script>
+    <script src="Scripts/app/utils/image-utils.js"></script>
+    <!--Add Models-->
+    <script src="Scripts/app/models/base-model.js"></script>
+    <script src="Scripts/app/models/plan-model.js"></script>
+
+    <!--Add Controllers-->
+    <script src="Scripts/app/controllers/base-controller.js"></script>
+    <script src="Scripts/app/controllers/plan-edit-controller.js"></script>
+    <script src="Scripts/app/controllers/search-controller.js"></script>
+
+    <!--Add Angular app configuration-->
+    <script src="Scripts/app/angular-app-configuration.js"></script>
+    <script src="Content/kendo/kendo.all.min.js"></script>
+    <style>
+        .table {
+            table-layout: auto;
+        }
+
+        table .fa-trash {
+            font-size: xx-large;
+        }
+
+        .line-width-val:before {
+            content: 'Line width: ';
+        }
+
+        .line-width-val:after {
+            content: ' px';
+        }
+
+        .transparency-val:before {
+            content: 'Opacity ';
+        }
+
+        .transparency-val:after {
+            content: ' %';
+        }
+
+        .tool-btn {
+            margin: 3px;
+            width: 51px;
+            height: 34px;
+        }
+
+
+            .tool-btn img {
+                width: 30PX !important;
+            }
+    </style>
+
+
+
+</head>
+<body ng-app="RAPApp" ng-cloak ng-controller="PlanEditController">
+    <div class="nav-bar-container">
+        <div ng-include="getUrl('LeftMenu')"></div>
+    </div><!--.nav-bar-container-->
+
+    <div class="content" style="margin-left: 36px;">
+
+        <div id="site-header" class="page-header full-content bg-blue parallax" style="overflow: hidden; margin-left:3px;">
+            <div class="row">
+                <div id="savePlanSuccess" class="toastr-notify btn-ripple" data-toastr-title="Info" data-toastr-notification="Successfully saved"
+                     data-toastr-position="toast-bottom-right"
+                     data-toastr-type="success">
+                </div>
+                <div class="col-sm-6">
+                    <h1>{{CurrentPlan.Name}}</h1>
+                    <small>{{CurrentPlan.BuildingName}}</small>
+                </div>
+                <!--.col-->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+
+                        <li>
+                            <a ng-href="{{getUrl('Dashboard')}}">Dashboard</a>
+                        </li>
+                        <li>
+                            <a ng-href="{{getUrl('Site')+'?id='+CurrentPlan.BuildingId}}">Site Profile</a>
+                        </li>
+                        <li>
+                            <a ng-href="{{getUrl('Plan')+'?id='+CurrentPlan.Id}}">Site Plan</a>
+                        </li>
+                        <li>
+                            <a href="#" class="active">Edit Site Plan</a>
+                        </li>
+                    </ol>
+                </div>
+                <!--.col-->
+            </div>
+            <!--.row-->
+
+        </div>
+
+
+        <div id="fullcontainer">
+
+            <div id="main" role="main" style="overflow:visible;">
+                <div style="width:100%;display:inline-block;padding-bottom:5px;" ng-show="isInRole">
+                    <loading></loading>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="nouislider nouislider-step-line-width" style="margin: 6px;"></div>
+                            <div class="well well-sm line-width-val nouislider-step-line-width-value"></div>
+                        </div>
+                        <div class="col-md-2">
+                            Draw Color: <input type="color" value="#000000" id="drawing-color" ng-model="DrawingColor" style="position:relative;top:-5px">
+                            <div class="well well-sm line-color-val ">{{DrawingColor}}</div>
+                        </div>
+                        <div class="col-md-2">
+                            Fill Color: <input type="color" value="#FFFFFF" id="drawing-color" ng-model="FillingColor" style="position:relative;top:-5px">
+                            <div class="well well-sm line-color-val ">{{FillingColor}}</div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="nouislider nouislider-step-transparency" style="margin: 6px;"></div>
+                            <div class="well well-sm transparency-val nouislider-step-transparency-value"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn tool-btn btn-xs" ng-class="{ 'btn-info': FreeTool}" ng-click="selectTool()">
+                                <i class="fa fa-arrows"></i>
+                            </button>
+                            <button class="btn tool-btn btn-xs" ng-class="{ 'btn-info': FreeDrawingSelected }" ng-click="freeDraw()">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+
+                            <button class="btn tool-btn btn-xs" ng-class="{ 'btn-info': LineDrawingSelected }" ng-click="lineDraw()">
+                                <img src="/Content/Images/EditPlan/stock_draw-line.png" />
+                            </button>
+
+                            <button class="btn tool-btn btn-xs" ng-class="{ 'btn-info': RectangleDrawingSelected }" ng-click="rectDraw()">
+                                <img src="/Content/Images/EditPlan/rect.png" />
+                            </button>
+
+                            <button class="btn tool-btn btn-xs" ng-class="{ 'btn-info': EllipsisDrawingSelected }" ng-click="ellipsisDraw()">
+                                <img src="/Content/Images/EditPlan/circle.png" />
+                            </button>
+                            <button class="btn tool-btn btn-xs" ng-click="undoLastObject()">
+                                <i class="fa fa-undo"></i>
+                            </button>
+                            <button class="btn tool-btn btn-xs" ng-click="deleteSelected()" ng-disabled="!SelectedObject">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                            <button class="btn tool-btn btn-xs" ng-class="{ 'btn-info': FreeWhiteDrawingSelected }" ng-click="freeWhiteDraw()">
+                                <i class="fa fa-eraser"></i>
+                            </button>
+                            <button class="btn tool-btn btn-xs" ng-class="{ 'btn-info': CropSelected }" ng-click="cropImage()">
+                                <i class="fa fa-crop"></i>
+                            </button>
+                            <button class="btn btn-green btn-ripple btn-xs tool-btn" ng-click="saveAndReturn()">
+                                <i class="fa fa-save"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="canv-container" style="overflow:no-display;width:100%;height:100%;border:1px blue dotted"">
+                    <canvas id="respondCanvas" width="100" height="100" data-drop="true" style="margin-bottom:20px;"
+                            data-jqyoui-options jqyoui-droppable="{onDrop: 'hotspotDropped'}">
+                        Canvas
+                    </canvas>
+                </div>
+                <div class="row">
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <!--.content-->
+    <div id="contextual_buttons" style="position: absolute; z-index: 99999; width: 80px; height: 26px; padding-left: 5px; vertical-align: middle; left: -1164px; top: -400px;
+        background-color: rgba(191, 191, 191, 0.6); " ng-show="ShowSaveCrop">
+        <a title="Clear area" style="display: inline-block; width: 16px; line-height: 16px; height: 16px; margin-right: 5px;cursor:pointer" ng-click="removeCrop()">
+            <i class="fa fa-eraser"></i>
+        </a>
+        <a title="Cut area" style="display: inline-block; width: 16px; line-height: 16px; height: 16px; margin-right: 5px;cursor:pointer" ng-click="saveCrop(false)">
+            <i class="fa fa-save"></i>
+        </a>
+        <a title="Fit to zone" style="display: inline-block; width: 16px; line-height: 16px; height: 16px; cursor:pointer" ng-click="saveCrop(true)">
+            <i class="fa fa-forward"></i>
+        </a>
+    </div>
+    <div class="layer-container">
+        <!-- BEGIN MENU LAYER -->
+        <div class="menu-layer" ng-include="getUrl('AppMenu')">
+        </div>
+        <!--.menu-layer-->
+        <!-- END OF MENU LAYER -->
+    </div>
+
+    <!-- BEGIN SEARCH LAYER -->
+    <div class="modal fade full-height in" id="search-modal" ng-include="getUrl('Search')" ng-controller="SearchController">
+
+
+
+    </div>
+    <!--.search-->
+    <!--.results-->
+    <!--.search-layer-->
+    <!-- END OF SEARCH LAYER -->
+    <!-- BEGIN USER LAYER -->
+
+
+    <script src="Content/pleasure/js/global-vendors.js"></script>
+    <!--Add the sliders js-->
+    <script src="Content/pleasure/plugins/jquery.nouislider.all.min.js"></script>
+    <script src="Content/pleasure/plugins/forms-no-ui-slider.js"></script>
+
+    <script src="Content/pleasure/js/pleasure.js"></script>
+
+
+    <script src="Content/pleasure/js/layout.js"></script>
+    <script src="Content/pleasure/js/modernizr.min.js"></script>
+
+    <script src="Content/pleasure/js/controller.js"></script>
+
+    <!-- BEGIN INITIALIZATION-->
+    <script>
+        $(document).ready(function () {
+            Pleasure.init();
+            Layout.init();
+
+            //FormsNoUISlider.init();
+
+
+            //Run function when browser resizes
+            $(window).resize(respondCanvas);
+
+        });
+
+        $('.nav-key')
+            .click(
+                function () {
+                    //$('.collapse').collapse();
+                    var isHidden = $("#sitekey").is(":hidden");
+                    console.log($(isHidden));
+
+                    if (isHidden) {
+                        $('#main').width('80%');
+                        $('#sitekey').width('20%');
+                        $('#sitekey').show();
+                        respondCanvas();
+                    } else {
+                        $('#main').width('100%');
+                        $('#sitekey').width('0%');
+                        $('#sitekey').hide();
+                        respondCanvas();
+                    }
+
+
+
+                }
+            )
+            .hover(
+                function () {
+                    $(this).css('background', '#F79F81');
+                },
+                function () {
+                    $(this).css('background', '');
+                }
+            );
+
+
+        $('.nav-views')
+            .hover(
+                function () {
+                    $(this).css('background', '#F79F81');
+                },
+                function () {
+                    $(this).css('background', '');
+                }
+            );
+
+        $('.nav-editview')
+            .hover(
+                function () {
+                    $(this).css('background', '#F79F81');
+                },
+                function () {
+                    $(this).css('background', '');
+                }
+            );
+
+    </script>
+    <!-- END INITIALIZATION-->
+</body>
+
+</html>

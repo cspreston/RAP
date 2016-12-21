@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Ready Action Plan - Site Plan</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- BEGIN CORE CSS -->
+    <link rel="stylesheet" href="Content/pleasure/css/style.css">
+    <link rel="stylesheet" href="Content/pleasure/css/elements.css">
+    <!-- END CORE CSS -->
+    <!-- FIX PLUGINS -->
+    <link rel="stylesheet" href="Content/pleasure/css/plugins.css">
+    <!-- END FIX PLUGINS -->
+    <!-- BEGIN SHORTCUT AND TOUCH ICONS -->
+    <link rel="shortcut icon" href="Content/pleasure/images/favicon.ico">
+    <link rel="apple-touch-icon" href="Content/pleasure/images/apple-touch-icon.png">
+    <!-- END SHORTCUT AND TOUCH ICONS -->
+    <!-- Angular Material CSS now available via Google CDN; version 0.11.2 used here -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+
+    <!-- Add the sliders css-->
+    <link rel="stylesheet" href="Content/pleasure/plugins/jquery.nouislider.min.css">
+    <link rel="stylesheet" href="Content/pleasure/plugins/jquery.nouislider.pips.min.css">
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Ready Action Plan - Site Plan</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- BEGIN CORE CSS -->
+    <link rel="stylesheet" href="Content/pleasure/css/style.css">
+    <link rel="stylesheet" href="Content/pleasure/css/elements.css">
+    <!-- END CORE CSS -->
+    <!-- FIX PLUGINS -->
+    <link rel="stylesheet" href="Content/pleasure/css/plugins.css">
+    <!-- END FIX PLUGINS -->
+    <!-- BEGIN SHORTCUT AND TOUCH ICONS -->
+    <link rel="shortcut icon" href="Content/pleasure/images/favicon.ico">
+    <link rel="apple-touch-icon" href="Content/pleasure/images/apple-touch-icon.png">
+    <!-- END SHORTCUT AND TOUCH ICONS -->
+    <!-- Angular Material CSS now available via Google CDN; version 0.11.2 used here -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
+
+
+    <!--Add Fabric JS-->
+    <script src="scripts/fabric.js"></script>
+    <!--Add Fabric JS-->
+    <!--Add jQuery-->
+    <script src="scripts/jquery-2.1.1.js"></script>
+    <script src="scripts/jqueryui-1.11.1.min.js"></script>
+    <script src="scripts/jquery.ui.touch-punch.min.js"></script>
+    <script src="scripts/jqueryui-1.11.1.js"></script>
+    <script src="Content/pleasure/js/global-vendors.js"></script>
+    <script src="Content/pleasure/js/user-pages.js"></script>
+    <script src="Content/pleasure/js/pleasure.js"></script>
+    <script src="Content/pleasure/js/layout.js"></script>
+    <script src="Content/pleasure/js/modernizr.min.js"></script>
+
+    <!--Add Angular js-->
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-ng-map.js"></script>
+    <script src="scripts/angular-dragdrop.min.js"></script>
+    <script src="scripts/sortable.js"></script>
+    <!--Add common application services-->
+    <script src="scripts/TKWApp/common.js"></script>
+    <script src="scripts/TKWApp/config/configuration.js"></script>
+    <script src="scripts/TKWApp/hard-routing/application-routes.js"></script>
+    <script src="scripts/TKWApp/data/data-filters.js"></script>
+    <script src="scripts/TKWApp/data/data-store.js"></script>
+    <script src="scripts/TKWApp/data/authentication.js"></script>
+    <script src="scripts/TKWApp/services/file-uploader.js"></script>
+
+    <!--Add angular files-->
+    <!--Add Utils-->
+    <script src="scripts/app/utils/rap-file-utils.js"></script>
+    <script src="scripts/app/utils/image-utils.js"></script>
+    <!--Add Models-->
+    <script src="scripts/app/models/base-model.js"></script>
+    <script src="scripts/app/models/file-upload-model.js"></script>
+    <script src="scripts/app/models/building.js"></script>
+    <script src="scripts/app/models/pricing-info.js"></script>
+    <script src="scripts/app/models/contact-info.js"></script>
+    <script src="scripts/app/models/plan-model.js"></script>
+    <script src="scripts/app/models/hotspots.js"></script>
+
+    <!--Add Controllers-->
+    <script src="scripts/app/controllers/base-controller.js"></script>
+    <script src="scripts/app/controllers/building-controller.js"></script>
+    <script src="scripts/app/controllers/pricing-info-controller.js"></script>
+    <script src="scripts/app/controllers/contact-info-controller.js"></script>
+    <script src="scripts/app/controllers/plan-controller.js"></script>
+    <script src="scripts/app/controllers/search-controller.js"></script>
+    <script src="scripts/app/controllers/plan-bulk-insert-controller.js"></script>
+
+    <!--Add Angular app configuration-->
+    <script src="scripts/app/angular-app-configuration.js"></script>
+    <script src="Content/kendo/kendo.all.min.js"></script>
+
+    <style>
+        .imported-item {
+            cursor: pointer;
+        }
+
+            .imported-item:hover {
+                background-color: aquamarine !important;
+            }
+
+            .imported-item.selected {
+                background-color: darkgray !important;
+            }
+    </style>
+</head>
+<body ng-app="RAPApp" ng-cloak ng-controller="PlanBulkInsertController">
+    <div class="nav-bar-container">
+
+        <!-- BEGIN ICONS -->
+        <div class="nav-menu">
+            <div class="hamburger">
+                <span class="patty"></span>
+                <span class="patty"></span>
+                <span class="patty"></span>
+                <span class="patty"></span>
+                <span class="patty"></span>
+                <span class="patty"></span>
+            </div><!--.hamburger-->
+        </div><!--.nav-menu-->
+
+        <div class="nav-search">
+            <span class="search"></span>
+        </div><!--.nav-search-->
+
+
+        <div class="nav-user">
+            <div class="user">
+                <img src="/Content/Images/default-profile.png" alt="">
+                <span class="badge"></span>
+            </div><!--.user-->
+            <div class="cross">
+                <span class="line"></span>
+                <span class="line"></span>
+            </div><!--.cross-->
+        </div><!--.nav-user-->
+        <!-- END OF ICONS -->
+
+        <div class="nav-bar-border"></div><!--.nav-bar-border-->
+        <!-- BEGIN OVERLAY HELPERS -->
+        <div class="overlay">
+            <div class="starting-point">
+                <span></span>
+            </div><!--.starting-point-->
+            <div class="logo">RAP</div><!--.logo-->
+        </div><!--.overlay-->
+
+        <div class="overlay-secondary"></div><!--.overlay-secondary-->
+        <!-- END OF OVERLAY HELPERS -->
+
+    </div><!--.nav-bar-container-->
+
+    <div class="content" style="margin-left: 81px;">
+        <div id="site-header" class="page-header full-content bg-blue parallax" style="overflow: hidden;">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1>Please select the PDF file</h1>
+                </div>
+                <!--.col-->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+
+                        <li>
+                            <a ng-href="{{getUrl('Dashboard')}}">Dashboard</a>
+                        </li>
+                        <li>
+                            <a ng-href="{{getUrl('Site')+'?id='+BuildingId}}">Site Profile</a>
+                        </li>
+                        <li>
+                            <a href="#" class="active">Import from pdf</a>
+                        </li>
+                    </ol>
+                </div>
+                <!--.col-->
+            </div>
+            <!--.col-->
+        </div>
+        <!--.row-->
+        <div id="fullcontainer">
+            <div id="main" role="main" style="overflow:visible;">
+                <div style="width:100%;display:inline-block;padding-bottom:5px; border-bottom:1px #bec4db dotted">
+                    <div class="row-no-padding" style="width:100%;">
+                        <input type="file" id="pdfFileUpload" accept=".pdf" class="pull-left" />
+                        <label class="pull-left" ng-show="IsSaving"> Uploading. Please wait...</label>
+                        <button class="btn btn-green btn-ripple pull-left" ng-click="uploadPdf()" ng-show="!IsSaving">
+                            Upload Plans PDF
+                        </button>
+                    </div>
+
+                </div>
+                <loading></loading>
+                <div style="width:100%;display:inline-block;padding-bottom:5px;" ng-show="InsertItems.length>0">
+                    <div class="row-no-padding">
+                        <strong>Select the pages to import and provide any details</strong>
+                        <button class="btn btn-blue btn-ripple pull-right" ng-click="saveAndReturn()" ng-disabled="IsSaving">
+                            Save
+                        </button>
+                    </div>
+                    <div class="row-no-padding">
+                        <div class="checkboxer">
+                            <input id="chkAll" type="checkbox" ng-click="checkAll()">
+                            <label for="chkAll">Select all</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div style="background-color:white;">
+                        <div ng-repeat="item in InsertItems">
+                            <div class="row" style="border-bottom:1px #6382fb dotted; padding:5px;">
+                                <div class="col-md-2" background-src="{{item.PlanImageSrc}}" class="imported-item;" ng-class="{'selected' : SelectedInsertItem.Id==item.Id}"
+                                     src="{{item.PlanImageSrc}}"
+                                     background-fallback-src="{{DefaultPlanImage}}" style="min-height: 200px;max-width:400px; width: 90%; vertical-align: middle; margin: 0 auto; border-radius: 4px;
+                                 background-color: rgb(238, 238, 238); background-size: contain; background-position: 50% 50%; background-repeat: no-repeat; margin:15px;">
+                                    <input type="checkbox" ng-model="item.Import" style="margin-top:40%;margin-left:10px;height:25px;width:25px;" disabled />
+                                </div>
+                                <div class="col-md-8" style="padding:10px;">
+                                    <div class="row">
+                                        <div class="col-md-3">Name</div>
+                                        <div class="col-md-9">
+                                            <div class="inputer">
+                                                <div class="input-wrapper">
+                                                    <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter plan name"
+                                                              style="height: 38px !important;" ng-model="item.Name" ng-attr-name="{{item.Name}}" ng-required="true" type="text"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">Description</div>
+                                        <div class="col-md-9">
+                                            <div class="inputer">
+                                                <div class="input-wrapper">
+                                                    <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter description"
+                                                              style="height: 38px !important;" ng-model="item.Description" ng-attr-name="{{item.Description}}" type="text"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!--<div class="inputer">
+                                                <div class="input-wrapper">
+                                                    <input type="checkbox" ng-model="item.Import" style="height:25px;width:25px;" />
+                                                </div>
+                                            </div>-->
+                                            <div class="checkboxer">
+                                                <input id="chk{{item.Id}}" type="checkbox" ng-click="checkItem(item)" ng-model="item.Import">
+                                                <label for="chk{{item.Id}}">Import to Building</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--.content-->
+
+    <div class="layer-container">
+        <!-- BEGIN MENU LAYER -->
+        <div class="menu-layer" ng-include="getUrl('AppMenu')">
+        </div>
+        <!--.menu-layer-->
+        <!-- END OF MENU LAYER -->
+
+    </div>
+
+    <!-- BEGIN SEARCH LAYER -->
+    <div class="modal fade full-height in" id="search-modal" tabindex="-1" role="dialog" aria-hidden="false" ng-include="getUrl('Search')" ng-controller="SearchController">
+    </div>
+    <script>
+        $(document).ready(function () {
+            console.log("!!!");
+            Pleasure.init();
+            Layout.init();
+        });
+    </script>
+</body>
+</html>

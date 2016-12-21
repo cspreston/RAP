@@ -1,0 +1,47 @@
+<!--SEARCH MODAL-->
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="form-group" style="display: flex;">
+                <input type="search" id="input-search" class="form-control" placeholder="search RAP" ng-model="SearchText" ng-keypress="searchKeyPressed($event)" style="color:black">
+                <button type="button" class="btn btn-default" ng-click="performSearch()">
+                    <i class="ion-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="results" ng-show="SearchResult!=null">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="result result-posts">
+                            <h4>
+                                SITES
+                            </h4>
+                            <ul class="list-material">
+                                <li class="has-action-left" ng-repeat="b in SearchResult.Buildings">
+                                    <div href="#" class="visible">
+                                        <div class="list-action-left">
+                                            <img ng-src="{{getFeaturedImage(b)}}" ng-href="{{getUrl('Site')+'?id='+b.Id}}" fallback-src="{{DefaultBuildingImage}}" class="img-radius" alt="">
+                                        </div>
+                                        <div class="list-content">
+                                            <a ng-href="{{getUrl('Site')+'?id='+b.Id}}" class="title">{{b.Name}}</a>
+                                            <span>{{b.Description}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <!--.results-posts-->
+                    </div>
+                    <!--.col-->
+                </div>
+                <!--.row-->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal">Cancel</button>
+
+        </div>
+    </div>
+</div>

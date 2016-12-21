@@ -1,0 +1,48 @@
+<ul>
+    <li>
+        <a href="javascript:;" onclick="goToDashboard();">Dashboard</a>
+        <span class="hover-bg"></span>
+    </li>
+    <!--<li>
+        <a href="javascript:;">Settings</a>
+        <span class="hover-bg"></span>
+    </li>
+    <li>
+        <a href="javascript:;">Notifications</a>
+        <span class="hover-bg"></span>
+    </li>-->
+    <!--<li class="admin-item">
+        <a href="/Root/index">Admin </a>
+        <span class="hover-bg"></span>
+    </li>-->
+    <li>
+        <a href="javascript:;" onclick="doLogOff();">Log Off</a>
+        <span class="hover-bg"></span>
+    </li>
+</ul>
+
+<script type="text/javascript">
+    function doLogOff() {
+        if (TKWApp.Configuration.ConfigurationManager.WorkMode == TKWApp.Configuration.WorkMode.ONLINE) {
+            TKWApp.Data.AuthenticationManager.logOff();
+        }
+        else {
+            window.location.href = "login.html"
+        }
+    }
+    function goToDashboard() {
+        if (TKWApp.Configuration.ConfigurationManager.WorkMode == TKWApp.Configuration.WorkMode.OFFLINE) {
+            window.location.href = "dashboard-offline.html"
+        }
+        else {
+            window.location.href = "dashboard.html"
+        }
+    }
+    $(document).ready(function () {
+        if (!TKWApp.Data.AuthenticationManager.isInRole("Root") &&
+            !TKWApp.Data.AuthenticationManager.isInRole("Company Admin") &&
+            !TKWApp.Data.AuthenticationManager.isInRole("Client Admin")) {
+            $('.admin-item').hide();
+        }
+    });
+</script>

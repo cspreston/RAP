@@ -1,0 +1,29 @@
+﻿@model List<BusinessObjects.RoleDto>
+@{
+    ViewBag.Title = "Roles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="page-header full-content bg-blue">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>
+                RAP
+                <small>Roles Administration</small>
+            </h1>
+        </div><!--.col-->
+        <div class="col-sm-6">
+            <ol class="breadcrumb"></ol>
+        </div><!--.col-->
+    </div><!--.row-->
+</div>
+<div class="content" ng-controller="RoleController">
+    <div class="row" style="padding-bottom:5px;">
+        <loading></loading>
+        <div id="grid"></div>
+        <script>
+            var myKendoGrid = $("#grid").kendoGrid;
+        </script>
+    </div>
+</div>

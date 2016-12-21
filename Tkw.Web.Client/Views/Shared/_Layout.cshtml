@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Ready Action Plan - Admin Section - @ViewBag.Title</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- BEGIN CORE CSS -->
+    <link rel="stylesheet" href="~/Content/pleasure/css/style.css">
+    <link rel="stylesheet" href="~/Content/pleasure/css/elements.css">
+    <link rel="stylesheet" href="~/Content/pleasure/css/dashboard.css" />
+    <!-- END CORE CSS -->
+    <!-- BEGIN PLUGINS CSS -->
+
+    <link rel="stylesheet" href="~/Content/pleasure/css/social.css">
+    <!-- END PLUGINS CSS -->
+    <!-- FIX PLUGINS -->
+    <link rel="stylesheet" href="~/Content/pleasure/css/plugins.css">
+    <!-- END FIX PLUGINS -->
+    <!-- BEGIN SHORTCUT AND TOUCH ICONS -->
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <!-- END SHORTCUT AND TOUCH ICONS -->
+    <!--Kendo styles-->
+    <link rel="stylesheet" href="~/Content/kendo/kendo.common-material.min.css">
+    <link rel="stylesheet" href="~/Content/kendo/kendo.rtl.min.css">
+    <link rel="stylesheet" href="~/Content/kendo/kendo.dataviz.min.css">
+    <link rel="stylesheet" href="~/Content/kendo/kendo.dataviz.default.min.css">
+    <link rel="stylesheet" href="~/Content/kendo/kendo.material.mobile.min.css">
+    <link rel="stylesheet" href="~/Content/kendo/kendo.material.min.css">
+
+
+    <!--Add jQuery-->
+    <script src="~/Scripts/jquery-2.1.1.js"></script>
+    <script src="~/Scripts/jqueryui-1.11.1.js"></script>
+    <script src="~/Content/pleasure/js/global-vendors.js"></script>
+  
+    <!--Add Angular js-->
+    <script src="~/Scripts/angular.js"></script>
+
+    <!--Add Kendo Grid-->
+    <script src="~/Content/kendo/kendo.all.min.js"></script>
+
+
+    <!--Add common application services-->
+    <script src="~/Scripts/TKWApp/config/configuration.js"></script>
+    <script src="~/Scripts/TKWApp/hard-routing/application-routes.js"></script>
+    <script src="~/Scripts/TKWApp/data/data-filters.js"></script>
+    <script src="~/Scripts/TKWApp/data/data-store.js"></script>
+    <script src="~/Scripts/TKWApp/data/authentication.js"></script>
+
+    <!--Add angular files-->
+    <!--Add Utils-->
+    <!--Add Models-->
+    <!--Add Controllers-->
+    <script src="~/Scripts/app/controllers/base-controller.js"></script>
+    <script src="~/Scripts/app-admin/controllers/tenant-controller.js"></script>
+    <script src="~/Scripts/app-admin/controllers/role-controller.js"></script>
+    <script src="~/Scripts/app-admin/controllers/tenantclient-controller.js"></script>
+    <script src="~/Scripts/app-admin/controllers/tenant-user-controller.js"></script>
+    <!--Add Angular app configuration-->
+    <script src="~/Scripts/app-admin/angular-app-configuration.js"></script>
+    <script src="~/Scripts/app-admin/data-manager-config.js"></script>
+    <style scoped>
+        .k-grid td {
+            padding: .4em .6em !important;
+        }
+    </style>
+</head>
+<body ng-app="RAPAdminApp" ng-cloak>
+    <div class="nav-bar-container">
+
+        <!-- BEGIN ICONS -->
+        <div class="nav-menu">
+            <div class="hamburger">
+                <span class="patty"></span>
+                <span class="patty"></span>
+                <span class="patty"></span>
+                <span class="patty"></span>
+                <span class="patty"></span>
+                <span class="patty"></span>
+            </div><!--.hamburger-->
+        </div><!--.nav-menu-->
+        <!-- END OF ICONS -->
+
+        <div class="nav-bar-border"></div><!--.nav-bar-border-->
+        <!-- BEGIN OVERLAY HELPERS -->
+        <div class="overlay">
+            <div class="starting-point">
+                <span></span>
+            </div><!--.starting-point-->
+            <div class="logo">RAP</div><!--.logo-->
+        </div><!--.overlay-->
+
+        <div class="overlay-secondary"></div><!--.overlay-secondary-->
+        <!-- END OF OVERLAY HELPERS -->
+
+    </div><!--.nav-bar-container-->
+
+    <div class="content">
+
+        <!--.page-header-->
+        <!--Buildings list-->
+        <div>
+            @RenderBody()
+        </div>
+
+    </div><!--.content-->
+
+    <div class="layer-container">
+
+        <!-- BEGIN MENU LAYER -->
+        <div class="menu-layer">
+            <ul>
+                <li>
+                    <a href="/dashboard">Dashboard</a>
+                    <span class="hover-bg"></span>
+                </li>
+                <li class="has-child admin">
+                    <a href="javascript:;">Admin </a>
+                    <ul class="child-menu">
+                        <li class="admin-companies">
+                            <a href="/Root/Customers">Companies </a>
+                            <span class="hover-bg"></span>
+                        </li>
+                        <li class="admin-client">
+                            <a href="/Root/Clients">Clients </a>
+                            <span class="hover-bg"></span>
+                        </li>
+                        <li class="admin-site">
+                            <a href="/Root/Users">Users </a>
+                            <span class="hover-bg"></span>
+                        </li>
+                    </ul>
+                    <span class="hover-bg"></span>
+                </li>
+                <li>
+                    <a href="javascript:;" onclick="doLogOff();">Log Off</a>
+                    <span class="hover-bg"></span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+
+    <!-- BEGIN GLOBAL AND THEME VENDORS-->
+
+    <script src="~/Content/pleasure/js/user-pages.js"></script>
+    <script src="~/Content/pleasure/js/pleasure.js"></script>
+    <script src="~/Content/pleasure/js/layout.js"></script>
+    <script src="~/Content/pleasure/js/modernizr.min.js"></script>
+
+
+    <!-- BEGIN INITIALIZATION-->
+    <script>
+        $(document).ready(function () {
+            console.log("!!!");
+            Pleasure.init();
+            Layout.init();
+        });
+    </script>
+    <!-- END INITIALIZATION-->
+
+</body>
+</html>
+
+<script type="text/javascript">
+    function doLogOff() {
+        TKWApp.Data.AuthenticationManager.logOff();
+    }
+
+    $(document).ready(function () {
+
+        /*
+        if (!TKWApp.Data.AuthenticationManager.isInRole('@Tools.DefaultValues.ROLE_ROOT')) {
+            $('.admin-root').hide();
+        }
+        if (!TKWApp.Data.AuthenticationManager.isInRole('@Tools.DefaultValues.ROLE_ROOT') &&
+            !TKWApp.Data.AuthenticationManager.isInRole('@Tools.DefaultValues.TENANT')) {
+            $('.admin-companies').hide();
+        }
+        if (!TKWApp.Data.AuthenticationManager.isInRole('@Tools.DefaultValues.ROLE_ROOT') &&
+            !TKWApp.Data.AuthenticationManager.isInRole('@Tools.DefaultValues.TENANT') &&
+            !TKWApp.Data.AuthenticationManager.isInRole('@Tools.DefaultValues.CLIENT_ADMIN')) {
+            $('.admin-site').hide();
+        }
+        if (TKWApp.Data.AuthenticationManager.isInRole('@Tools.DefaultValues.ROLE_ROOT')) {
+            $('.remove-admin').hide();
+        }
+        */
+
+        if (!TKWApp.Data.AuthenticationManager.isInRole("Root") &&
+            !TKWApp.Data.AuthenticationManager.isInRole("Company Admin") &&
+            !TKWApp.Data.AuthenticationManager.isInRole("Client Admin")) {
+            adminItems.hide();
+        }
+        else {
+            adminItems.on('click', function () {
+                adminItems.toggleClass('open animate');
+            });
+        }
+    });
+</script>

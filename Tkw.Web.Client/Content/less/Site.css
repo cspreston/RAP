@@ -1,0 +1,2929 @@
+﻿a {
+  color: #686868 !important;
+  text-decoration: none;
+}
+html {
+  height: 100%;
+}
+body {
+  max-width: 1024px;
+  min-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#header {
+  max-width: 1024px;
+  min-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.header-content {
+  min-height: 90px;
+  padding-top: 20px;
+}
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #b4dbd9;
+  color: #fff;
+}
+#footer-simple {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+#content {
+  display: table;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.content-middle {
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+.float-left {
+  float: left;
+}
+.input {
+  margin-left: 10px;
+}
+.input-label {
+  width: 80px;
+  text-align: left;
+}
+.float-right {
+  float: right;
+}
+.float-none {
+  clear: both;
+}
+.center {
+  text-align: center;
+}
+.logo {
+  text-align: center;
+  padding-top: 10px;
+  background-image: url("../Images/logo-small.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 60px;
+  background-color: #ffffff;
+}
+.welcome-logo {
+  text-align: center;
+  padding-top: 10px;
+  background-image: url("../Images/logoHome.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 200px;
+}
+.your-matches {
+  text-align: center;
+  background-image: url("../Images/your-matches.png");
+  background-size: 150px 143px;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 150px;
+  margin-top: auto;
+  vertical-align: middle;
+}
+.home-graph {
+  text-align: center;
+  background-image: url("../Images/graph.png");
+  background-size: 150px 133px;
+  background-repeat: no-repeat;
+  background-position: center;
+  min-height: 150px;
+  vertical-align: middle;
+}
+.welcome-people {
+  text-align: center;
+  background-image: url("../Images/homepeople.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  padding-top: 50px;
+  height: 252px;
+}
+.welcome-dots {
+  text-align: center;
+  background-image: url("../Images/dots.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  padding-top: 70px;
+  height: 14px;
+}
+.home-footer-text {
+  font: 1.5em Verdana;
+  color: #9c9c9c;
+}
+.welcome-header-text {
+  font: 1.5em Verdana;
+  color: #cccccc;
+  text-align: center;
+}
+.welcome-green-gray-text {
+  margin-top: 50px;
+  font: 600 9.5pt arial;
+  color: #a8b6be;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  text-align: left;
+}
+.welcome-details-text {
+  margin-top: 50px;
+  font: 1.1em arial;
+  color: #58575c;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  text-align: left;
+}
+.welcome-links {
+  font: 1.2em arial;
+  color: #6ab2ac;
+}
+.dark-gray-text {
+  color: #7b7a7f;
+}
+hr {
+  background-color: #ebebeb;
+  height: 1px;
+  border: 0;
+}
+.hr-footer {
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 40px;
+}
+.hr-green {
+  background-color: #6ab2ac;
+  height: 1px;
+  border: 0;
+}
+.header-center {
+  text-align: center;
+  margin-left: 30px;
+  margin-right: 30px;
+  width: 90%;
+}
+.title-green {
+  color: #a9ddda;
+  font: 1.5em Verdana;
+}
+.title-white {
+  color: #ffffff;
+  font: 100 38pt arial;
+}
+.help-image-desc {
+  font: 1.5em Verdana;
+  color: #7b7a7f;
+}
+.help-image {
+  height: 3.5em;
+}
+.title-green-bold {
+  color: #6ab2ac;
+  font: 600 1.3em arial;
+}
+.your-matches-details {
+  width: 100%;
+  display: inline-block;
+  min-width: 350px;
+}
+.label {
+  color: #686868;
+  font: 1.5em Verdana;
+  text-align: left;
+  min-width: 150px;
+  width: 35%;
+}
+.value {
+  color: #686868;
+  font: 1.5em Verdana;
+  text-align: left;
+  width: 60%;
+}
+.appButtonWhite {
+  background-color: #ffffff;
+  border: 1px solid #e1e1e1;
+  display: inline-block;
+  cursor: pointer;
+  color: #343434;
+  font: 600 9.5pt arial;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  width: 200px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.appButtonWhite:hover {
+  background-color: #e1e1e1;
+  text-decoration: none;
+  color: #343434;
+}
+.appButtonWhite:active {
+  position: relative;
+  top: 1px;
+}
+.appButtonWhiteNoBorder {
+  background-color: #ffffff;
+  border: 0px;
+  display: inline-block;
+  cursor: pointer;
+  color: #6ab2ac;
+  font: 1.1em arial;
+  text-decoration: none;
+}
+.appButtonWhiteNoBorder:hover {
+  text-decoration: none;
+  color: #6ab2ac;
+}
+button[disabled=disabled] {
+  background-color: #a8b6be;
+}
+button[disabled=disabled]:hover {
+  text-decoration: none;
+  background-color: #a8b6be;
+}
+.appButtonWhiteNoBorder:active {
+  position: relative;
+  top: 1px;
+}
+.your-matches-count {
+  color: #7b7a7f;
+  font: 1.5em Verdana;
+  margin-bottom: 5px;
+}
+.matches-title {
+  font: 600 1.3em arial;
+  color: #ff8200 !important;
+}
+.white-title {
+  font: 600 1.3em arial;
+  color: white !important;
+}
+.your-matches-count-small {
+  color: #7b7a7f;
+  font: 1.1em arial;
+  margin-bottom: 5px;
+  text-align: left;
+}
+.your-matches-value {
+  color: #7b7a7f !important;
+  font: 600 1.3em arial !important;
+  margin-bottom: 5px;
+  text-align: left;
+}
+.mymatches-icons-bar {
+  width: 100%;
+  background-color: #fafafa;
+}
+.list-details-label {
+  width: 150px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+.list-details-label-large {
+  width: 180px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+.circular {
+  height: 90px;
+  width: 90px;
+  border-radius: 90px;
+  border: 0 solid white;
+  overflow: hidden;
+}
+.circular-image {
+  /*height: 90px;
+    width: 90px;*/
+}
+.circular-large {
+  height: 150px;
+  width: 150px;
+  border-radius: 150px;
+  border: 0 solid white;
+  overflow: hidden;
+}
+.circular-large-image {
+  height: 150px;
+  width: 150px;
+}
+.peper {
+  text-align: center;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  height: 25px;
+  width: 25px;
+}
+.hr-ligth-gray-color {
+  margin-top: 1px;
+  background-color: #58575c;
+  height: 1px;
+  border: 0;
+}
+.hr-ligth-detailViewSpace-color {
+  background-color: #c6d9de;
+  height: 10px;
+  border: 0px;
+  margin: 0px;
+}
+input[type=text],
+input[type=password],
+input[type=email],
+textarea,
+select {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  outline: none;
+  border-radius: 5px;
+  padding: 3px;
+  border: 1px solid #6ab2ac;
+  font: 1.1em arial;
+  color: #dfeaed;
+}
+::-webkit-input-placeholder {
+  color: #dfeaed;
+}
+:-moz-placeholder {
+  color: #dfeaed;
+}
+::-moz-placeholder {
+  color: #dfeaed;
+}
+:-ms-input-placeholder {
+  color: #dfeaed;
+}
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #6ab2ac;
+}
+.ng-invalid {
+  border: 2px solid #e1e1e1;
+}
+form.ng-invalid {
+  border: none;
+  box-shadow: none;
+}
+.dots {
+  margin-top: -40px;
+  margin-left: 350px;
+}
+.login-description {
+  color: #6ab2ac;
+  font: 1.1em arial;
+  width: 80%;
+  min-width: 300px;
+  max-width: 700px;
+  display: inline-block;
+  letter-spacing: 3px;
+}
+.login-footer {
+  color: #6ab2ac;
+  font: 1.1em arial;
+  letter-spacing: 1px;
+}
+.login-footer a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #6ab2ac !important;
+}
+#map {
+  height: 420px;
+  width: 600px;
+}
+.infoWindowContent {
+  font-size: 14px !important;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+h2 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.fixed_position {
+  position: fixed;
+  bottom: 0;
+  right: 5px;
+}
+.helpButton {
+  background-color: #a8b6be;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  color: #343434;
+  font: 600 9.5pt arial;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100px;
+}
+.helpButton:hover {
+  text-decoration: none;
+  color: #343434;
+}
+.loginPH {
+  background-color: #87b0bc !important;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.login-user-pass {
+  max-width: 500px;
+  min-width: 100px;
+  margin: 0;
+  background-color: transparent;
+  color: #dfeaed !important;
+  border: none !important;
+  text-align: center;
+  font: 1.5em Verdana !important;
+}
+.loginPH div a {
+  font: 1.2em arial;
+  cursor: pointer;
+  text-decoration: none;
+}
+a #btnSubcribe {
+  color: #6ab2ac;
+}
+.howDoesThisWork {
+  color: #6ab2ac;
+  font: 1.1em arial;
+  cursor: pointer;
+  text-decoration: none;
+}
+.login-logo {
+  min-width: 200px;
+  max-width: 500px;
+  margin-top: 50px;
+}
+.imgScores {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+}
+#header {
+  background-color: #b4dbd9;
+  width: 100%;
+  font-family: verdana, 'franklin gothic medium', 'Arial Narrow', arial, sans-serif;
+  color: #fff;
+  font-weight: normal;
+}
+#header a {
+  color: #fff;
+}
+#header a:hover {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+.header-left {
+  padding-top: 10px;
+  padding-left: 10px;
+  font-size: 2em;
+  font-weight: lighter;
+  float: left;
+}
+.header-right {
+  float: right;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+.header-title-h2 {
+  font-size: 1.5em;
+}
+.header-title-h1 {
+  font-size: 2.5em;
+}
+li {
+  margin-left: -40px;
+}
+.header-title {
+  padding-top: 2em;
+  margin-left: 65px;
+}
+.help-header {
+  background-color: #b4dbd9;
+  vertical-align: central;
+}
+.footer-title {
+  font-size: 1.5em;
+}
+.circular-gren {
+  /*height: 90px;
+    width: 90px;*/
+  border-radius: 90px;
+  border: 1px solid #fafafa;
+  overflow: hidden;
+  width: 84px;
+  height: 84px;
+  padding: 15px;
+}
+.header-logo {
+  float: left;
+  margin-left: 0 !important;
+  position: absolute;
+}
+.header-logo-right {
+  float: right;
+}
+.vspacer {
+  height: 10px;
+}
+.s128x128 {
+  width: 128px;
+  height: 128px;
+}
+.s96x96 {
+  width: 96px;
+  height: 96px;
+}
+.s64x64 {
+  width: 64px;
+  height: 64px;
+}
+.s48x48 {
+  width: 48px;
+  height: 48px;
+}
+.s32x32 {
+  width: 32px;
+  height: 32px;
+}
+.s128 {
+  width: 100%;
+  height: 128px;
+}
+.s96 {
+  width: 100%;
+  height: 96px;
+}
+.s64 {
+  width: 100%;
+  height: 64px;
+}
+.s48 {
+  width: 100%;
+  height: 48px;
+}
+.s32 {
+  width: 100%;
+  height: 32px;
+}
+.mymatches-list-item {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/btn_arrow2 2x.png");
+  width: 50px;
+}
+.floppy-green {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/Floppy Green 64x64px.png");
+  width: 64px;
+  height: 64px;
+}
+.floppy-grey {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/Floppy Grey 64x64px.png");
+  width: 64px;
+  height: 64px;
+}
+.web-green {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_globe2 2x.png");
+  width: 100%;
+  height: 64px;
+}
+.web-grey {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_globe 2x.png");
+  width: 100%;
+  height: 64px;
+}
+.env-green {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_mail2 2x.png");
+  width: 100%;
+  height: 64px;
+}
+.env-grey {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_mail 2x.png");
+  width: 100%;
+  height: 64px;
+}
+.clock-green {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_clock2 2x.png");
+  width: 100%;
+  height: 64px;
+}
+.clock-grey {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_clock 2x.png");
+  width: 100%;
+  height: 64px;
+}
+.poi-green {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_mappin2 2x.png");
+  width: 100%;
+  height: 64px;
+}
+.poi-grey {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_mappin 2x.png");
+  width: 100%;
+  height: 64px;
+}
+.sector-green {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_target2 2x.png");
+  width: 100%;
+  height: 64px;
+}
+.sector-grey {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_target 2x.png");
+  width: 100%;
+  height: 64px;
+}
+.icon-reports {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_graph 96x96px.png");
+  width: 64px;
+  height: 64px;
+}
+.icon-logo {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_MMM 96x96px.png");
+  width: 96px;
+  height: 96px;
+}
+.my-matches-white {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/my-matches-white-64x64px.png");
+  width: 64px;
+  height: 64px;
+}
+.settingMenu {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/Wheel Grey 96x96px.png");
+  width: 96px;
+  height: 96px;
+}
+.distance-match {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/ic_distance.png");
+  width: 64px;
+  height: 64px;
+  background-size: 64px 64px;
+}
+.call-match {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/btn_call.png");
+  width: 128px;
+  height: 128px;
+  background-size: 128px 128px;
+}
+.mail-match {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  background-image: url("../Images/btn_mail.png");
+  width: 128px;
+  height: 128px;
+  background-size: 128px 128px;
+}
+.your-matches-new {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  width: 96px;
+  height: 96px;
+  background-image: url("../Images/your matches 96x96px.png");
+}
+.home-graph-new {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  width: 96px;
+  height: 96px;
+  background-image: url('../Images/graph 96x96px.png');
+}
+.block-ui-message {
+  text-align: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+  border: none !important;
+  display: inline-block;
+  text-indent: -9999px;
+  /* hides the link text */
+  content: "";
+  margin: 5px;
+  width: 144px;
+  height: 144px;
+  background-image: url("../Images/ic_loading icon 144x144px.png");
+}
+.home-icons {
+  margin-bottom: -64px;
+}
+.header-fix {
+  top: 0;
+  position: fixed;
+}
+.margin-icn {
+  margin-right: 3% !important;
+}
+@media only screen and (max-height: 640px) {
+  #footer {
+    position: relative;
+  }
+  #footer-simple {
+    position: relative;
+  }
+}
+@media only screen and (max-width: 640px) {
+  .loginPH {
+    background-color: #87b0bc !important;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+  .loginPH div a {
+    font: 1.1em arial;
+  }
+  .welcome-links {
+    font: 1.1em arial;
+  }
+  .header-title-h2 {
+    font-size: 1.4em;
+  }
+  .header-title-h1 {
+    font-size: 1.9em;
+  }
+  #footer-simple {
+    position: relative;
+  }
+  .header-logo {
+    width: 20%;
+  }
+  .header-logo-right {
+    width: 20%;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 319px) {
+  .margin-icn {
+    margin-right: 3% !important;
+  }
+  .home-icons {
+    margin-bottom: -16px;
+  }
+  .floppy-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Floppy Green 32x32px.png");
+    width: 32px;
+    height: 32px;
+  }
+  .floppy-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Floppy Grey 32x32px.png");
+    width: 32px;
+    height: 32px;
+  }
+  .web-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_globe2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .mymatches-list-item {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/btn_arrow2.png");
+    width: 30px;
+    height: 55px;
+  }
+  .web-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_globe.png");
+    width: 100%;
+    height: 32px;
+  }
+  .env-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mail2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .env-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mail.png");
+    width: 100%;
+    height: 32px;
+  }
+  .clock-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_clock2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .clock-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_clock.png");
+    width: 100%;
+    height: 32px;
+  }
+  .poi-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mappin2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .poi-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mappin.png");
+    width: 100%;
+    height: 32px;
+  }
+  .sector-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_target2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .sector-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_target.png");
+    width: 100%;
+    height: 32px;
+  }
+  .icon-reports {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_graph 32x32px.png");
+    width: 32px;
+    height: 32px;
+  }
+  .icon-logo {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_MMM 32x32px.png");
+    width: 32px;
+    height: 32px;
+  }
+  .my-matches-white {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/my-matches-white-32x32px.png");
+    width: 32px;
+    height: 32px;
+  }
+  .settingMenu {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Wheel Grey 32x32px.png");
+    width: 32px;
+    height: 32px;
+  }
+  /*.call-match {
+        .imgScores();
+        background-image: url("../Images/btn_call.png");
+        .s32x32();
+        background-size:32px 32px;
+    }
+
+    .mail-match {
+        .imgScores();
+        background-image: url("../Images/btn_mail.png");
+         .s32x32();
+        background-size:32px 32px;
+    }*/
+  .your-matches-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/my-matches-white-96x96px.png");
+  }
+  .home-graph-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/graph 96x96px.png");
+  }
+  .block-ui-message {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 72px;
+    height: 72px;
+    background-image: url("../Images/ic_loading icon 72x72px.png");
+  }
+  .header-title {
+    margin-left: 32px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .margin-icn {
+    margin-right: 3% !important;
+  }
+  .mymatches-list-item {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/btn_arrow2.png");
+    width: 30px;
+    height: 55px;
+  }
+  .floppy-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Floppy Green 32x32px.png");
+    width: 100%;
+    height: 32px;
+  }
+  .floppy-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Floppy Grey 32x32px.png");
+    width: 100%;
+    height: 32px;
+  }
+  .web-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_globe2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .web-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_globe.png");
+    width: 100%;
+    height: 32px;
+  }
+  .env-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mail2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .env-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mail.png");
+    width: 100%;
+    height: 32px;
+  }
+  .clock-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_clock2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .clock-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_clock.png");
+    width: 100%;
+    height: 32px;
+  }
+  .poi-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mappin2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .poi-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mappin.png");
+    width: 100%;
+    height: 32px;
+  }
+  .sector-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_target2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .sector-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_target.png");
+    width: 32px;
+    height: 32px;
+  }
+  .icon-reports {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_graph 32x32px.png");
+    width: 32px;
+    height: 32px;
+  }
+  .icon-logo {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_MMM 32x32px.png");
+    width: 32px;
+    height: 32px;
+  }
+  .my-matches-white {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/my-matches-white-32x32px.png");
+    width: 32px;
+    height: 32px;
+  }
+  .settingMenu {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Wheel Grey 32x32px.png");
+    width: 32px;
+    height: 32px;
+  }
+  /*.call-match {
+        .imgScores();
+        background-image: url("../Images/btn_call.png");
+        .s32x32();
+        background-size:32px 32px;
+    }
+
+    .mail-match {
+        .imgScores();
+        background-image: url("../Images/btn_mail.png");
+         .s32x32();
+        background-size:32px 32px;
+    }*/
+  .your-matches-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/my-matches-white-96x96px.png");
+  }
+  .home-graph-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/graph 96x96px.png");
+  }
+  .header-title {
+    margin-left: 32px;
+  }
+  .block-ui-message {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/ic_loading icon 96x96px.png");
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 594px) {
+  .margin-icn {
+    margin-right: 4% !important;
+  }
+  .mymatches-list-item {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/btn_arrow2.png");
+    width: 30px;
+    height: 55px;
+  }
+  .floppy-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Floppy Green 32x32px.png");
+    width: 100%;
+    height: 32px;
+  }
+  .floppy-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Floppy Grey 32x32px.png");
+    width: 100%;
+    height: 32px;
+  }
+  .web-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_globe2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .web-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_globe.png");
+    width: 100%;
+    height: 32px;
+  }
+  .env-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mail2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .env-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mail.png");
+    width: 100%;
+    height: 32px;
+  }
+  .clock-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_clock2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .clock-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_clock.png");
+    width: 100%;
+    height: 32px;
+  }
+  .poi-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mappin2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .poi-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mappin.png");
+    width: 100%;
+    height: 32px;
+  }
+  .sector-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_target2.png");
+    width: 100%;
+    height: 32px;
+  }
+  .sector-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_target.png");
+    width: 100%;
+    height: 32px;
+  }
+  .icon-reports {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_graph 48x48px.png");
+    width: 48px;
+    height: 48px;
+  }
+  .icon-logo {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_MMM 48x48px.png");
+    width: 48px;
+    height: 48px;
+  }
+  .my-matches-white {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/my-matches-white-48x48px.png");
+    width: 48px;
+    height: 48px;
+  }
+  .settingMenu {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Wheel Grey 48x48px.png");
+    width: 48px;
+    height: 48px;
+  }
+  /*.call-match {
+        .imgScores();
+        background-image: url("../Images/btn_call.png");
+        .s48x48();
+        background-size:48px 48px;
+    }
+
+    .mail-match {
+        .imgScores();
+        background-image: url("../Images/btn_mail.png");
+         .s48x48();
+        background-size:48px 48px;
+    }*/
+  .your-matches-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/my-matches-white-96x96px.png");
+  }
+  .home-graph-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/graph 96x96px.png");
+  }
+  .block-ui-message {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/ic_loading icon 96x96px.png");
+  }
+  .header-title {
+    margin-left: 48px;
+  }
+}
+@media only screen and (min-width: 595px) and (max-width: 689px) {
+  .margin-icn {
+    margin-right: 4% !important;
+  }
+  .mymatches-list-item {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/btn_arrow2 2x.png");
+    width: 57px;
+    height: 105px;
+  }
+  .floppy-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Floppy Green 48x48px.png");
+    width: 100%;
+    height: 48px;
+  }
+  .floppy-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Floppy Grey 48x48px.png");
+    width: 100%;
+    height: 48px;
+  }
+  .web-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_globe2 2x.png");
+    width: 100%;
+    height: 48px;
+  }
+  .web-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_globe 2x.png");
+    width: 100%;
+    height: 48px;
+  }
+  .env-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mail2 2x.png");
+    width: 100%;
+    height: 48px;
+  }
+  .env-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mail 2x.png");
+    width: 100%;
+    height: 48px;
+  }
+  .clock-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_clock2 2x.png");
+    width: 100%;
+    height: 48px;
+  }
+  .clock-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_clock 2x.png");
+    width: 100%;
+    height: 48px;
+  }
+  .poi-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mappin2 2x.png");
+    width: 100%;
+    height: 48px;
+  }
+  .poi-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mappin 2x.png");
+    width: 100%;
+    height: 48px;
+  }
+  .sector-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_target2 2x.png");
+    width: 100%;
+    height: 48px;
+  }
+  .sector-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_target 2x.png");
+    width: 100%;
+    height: 48px;
+  }
+  .icon-reports {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_graph 48x48px.png");
+    width: 48px;
+    height: 48px;
+  }
+  .icon-logo {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_MMM 48x48px.png");
+    width: 48px;
+    height: 48px;
+  }
+  .my-matches-white {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/my-matches-white-48x48px.png");
+    width: 48px;
+    height: 48px;
+  }
+  .settingMenu {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Wheel Grey 48x48px.png");
+    width: 48px;
+    height: 48px;
+  }
+  /*.call-match {
+        .imgScores();
+        background-image: url("../Images/btn_call.png");
+        .s48x48();
+        background-size:48px 48px;
+    }
+
+    .mail-match {
+        .imgScores();
+        background-image: url("../Images/btn_mail.png");
+         .s48x48();
+        background-size:48px 48px;
+    }*/
+  .your-matches-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/my-matches-white-96x96px.png");
+  }
+  .home-graph-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/graph 96x96px.png");
+  }
+  .block-ui-message {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/ic_loading icon 96x96px.png");
+  }
+  .header-title {
+    margin-left: 48px;
+  }
+}
+@media only screen and (min-width: 690px) and (max-width: 799px) {
+  .margin-icn {
+    margin-right: 5% !important;
+  }
+  .mymatches-list-item {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/btn_arrow2 2x.png");
+    width: 57px;
+    height: 105px;
+  }
+  .floppy-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Floppy Green 64x64px.png");
+    height: 64px;
+  }
+  .floppy-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Floppy Grey 64x64px.png");
+    height: 64px;
+  }
+  .web-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_globe2 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .web-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_globe 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .env-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mail2 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .env-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mail 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .clock-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_clock2 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .clock-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_clock 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .poi-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mappin2 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .poi-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_mappin 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .sector-green {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_target2 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .sector-grey {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_target 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .icon-reports {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_graph 64x64px.png");
+    width: 64px;
+    height: 64px;
+  }
+  .icon-logo {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_MMM 64x64px.png");
+    width: 64px;
+    height: 64px;
+  }
+  .my-matches-white {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/my-matches-white-64x64px.png");
+    width: 64px;
+    height: 64px;
+  }
+  .settingMenu {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Wheel Grey 64x64px.png");
+    width: 64px;
+    height: 64px;
+  }
+  /*.call-match {
+        .imgScores();
+        background-image: url("../Images/btn_call.png");
+       .s64x64();
+        background-size:64px 64px;
+    }
+
+    .mail-match {
+        .imgScores();
+        background-image: url("../Images/btn_mail.png");
+        .s64x64();
+        background-size:64px 64px;
+    }*/
+  .your-matches-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/my-matches-white-96x96px.png");
+  }
+  .home-graph-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/graph 96x96px.png");
+  }
+  .block-ui-message {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 96px;
+    height: 96px;
+    background-image: url("../Images/ic_loading icon 96x96px.png");
+  }
+  .header-title {
+    margin-left: 64px;
+  }
+}
+@media only screen and (min-width: 800px) and (max-width: 1023px) {
+  .margin-icn {
+    margin-right: 6% !important;
+  }
+  .floppy-green {
+    background-image: url("../Images/Floppy Green 64x64px.png");
+    width: 100%;
+    height: 64px;
+  }
+  .floppy-grey {
+    background-image: url("../Images/Floppy Grey 64x64px.png");
+    width: 100%;
+    height: 64px;
+  }
+  .web-green {
+    background-image: url("../Images/ic_globe2 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .web-grey {
+    background-image: url("../Images/ic_globe 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .env-green {
+    background-image: url("../Images/ic_mail2 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .env-grey {
+    background-image: url("../Images/ic_mail 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .clock-green {
+    background-image: url("../Images/ic_clock2 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .clock-grey {
+    background-image: url("../Images/ic_clock 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .poi-green {
+    background-image: url("../Images/ic_mappin2 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .poi-grey {
+    background-image: url("../Images/ic_mappin 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .sector-green {
+    background-image: url("../Images/ic_target2 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .sector-grey {
+    background-image: url("../Images/ic_target 2x.png");
+    width: 100%;
+    height: 64px;
+  }
+  .icon-reports {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_graph 64x64px.png");
+    width: 64px;
+    height: 64px;
+  }
+  .icon-logo {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_MMM 64x64px.png");
+    width: 64px;
+    height: 64px;
+  }
+  .my-matches-white {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/my-matches-white-64x64px.png");
+    width: 64px;
+    height: 64px;
+  }
+  .settingMenu {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Wheel Grey 64x64px.png");
+    width: 64px;
+    height: 64px;
+  }
+  /*.call-match {
+        .imgScores();
+        background-image: url("../Images/btn_call.png");
+        .s64x64();
+        background-size:64px 64px;
+    }
+
+    .mail-match {
+        .imgScores();
+        background-image: url("../Images/btn_mail.png");
+        .s64x64();
+        background-size:64px 64px;
+    }*/
+  .your-matches-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 64px;
+    height: 64px;
+    background-image: url("../Images/my-matches-white-64x64px.png");
+  }
+  .home-graph-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 64px;
+    height: 64px;
+    background-image: url("../Images/graph 64x64px.png");
+  }
+  .block-ui-message {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 192px;
+    height: 192px;
+    background-image: url("../Images/ic_loading icon 192x192px.png");
+  }
+  .header-title {
+    margin-left: 64px;
+  }
+}
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+  .margin-icn {
+    margin-right: 7% !important;
+  }
+  icon-reports {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_graph 64x64px.png");
+    width: 64px;
+    height: 64px;
+  }
+  .icon-logo {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/ic_MMM 64x64px.png");
+    width: 64px;
+    height: 64px;
+  }
+  .my-matches-white {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/my-matches-white-64x64px.png");
+    width: 64px;
+    height: 64px;
+  }
+  .settingMenu {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    background-image: url("../Images/Wheel Grey 64x64px.png");
+    width: 64px;
+    height: 64px;
+  }
+  /*.call-match {
+        .imgScores();
+        background-image: url("../Images/btn_call.png");
+        .s64x64();
+        background-size:64px 64px;
+    }
+
+    .mail-match {
+        .imgScores();
+        background-image: url("../Images/btn_mail.png");
+        .s64x64();
+        background-size:64px 64px;
+    }*/
+  .your-matches-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 64px;
+    height: 64px;
+    background-image: url("../Images/my-matches-white-64x64px.png");
+  }
+  .home-graph-new {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 64px;
+    height: 64px;
+    background-image: url("../Images/graph 64x64px.png");
+  }
+  .block-ui-message {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+    border: none !important;
+    display: inline-block;
+    text-indent: -9999px;
+    /* hides the link text */
+    content: "";
+    margin: 5px;
+    width: 192px;
+    height: 192px;
+    background-image: url("../Images/ic_loading icon 192x192px.png");
+  }
+}
+.login-buttons {
+  text-align: center;
+  font: 1.5em Verdana !important;
+  padding-top: 20px;
+  color: #dfeaed !important;
+}
+.login-button {
+  background-color: #ec3e86;
+}
+.pink-color {
+  background-color: #ec3e86;
+}
+.register-button {
+  background-color: #ff8200;
+}
+.header-fix {
+  top: 0;
+  position: fixed;
+}
+/*# sourceMappingURL=Site.css.map */

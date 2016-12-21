@@ -1,0 +1,279 @@
+﻿/* Set padding to keep content from hitting the edges */
+
+.input-group-addon {
+    min-width: 140px;
+    width: 140px;
+    text-align: left;
+}
+
+.input-group, input-group-sm {
+    min-width: 300px;
+    width: 100%;
+}
+
+.row {
+    margin: 3px;
+}
+
+a.dunningemailtemplate {
+    background: url(Images/btn_dunning.png) no-repeat top left;
+    display: block;
+    width: 26px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.edit {
+    background: url(Images/ic_editUser.png) no-repeat top left;
+    display: block;
+    margin: 3px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.preview {
+    background: url(Images/ic_view.png) no-repeat top left;
+    display: block;
+    margin: 3px;
+    text-indent: -9999px; /* hides the link text */
+    cursor: pointer;
+}
+
+a.delete {
+    background: url(Images/ic_delete.png) no-repeat top left;
+    display: block;
+    background-size: 16px 16px;
+    width: 16px;
+    height: 16px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.download {
+    background: url(Images/ic_download.png) no-repeat top left;
+    display: block;
+    background-size: 18px 18px;
+    width: 18px;
+    height: 18px;
+    margin: -4px 3px 3px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.detail {
+    background: url(Images/iDetail.png) no-repeat top left;
+    background-size: 22px 22px;
+    display: block;
+    width: 22px;
+    height: 22px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.authorization {
+    background: url(Images/ic_authorization.png) no-repeat top left;
+    display: block;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.resetpassword {
+    background: url(Images/ic_resetPassword.png) no-repeat top left;
+    display: block;
+    text-indent: -9999px; /* hides the link text */
+}
+
+a.k-grid-CheckMaster {
+    background-image: url("../Content/Images/ic_checkbox.png") !important;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    min-width: 15px !important;
+    text-indent: -9999px; /* hides the link text */
+    background-repeat: no-repeat;
+}
+
+a.k-grid-CheckMaster-selected {
+    background-image: url("../Content/Images/ic_checkbox_selected.png") !important;
+}
+
+a.k-grid-Check {
+    background-image: url("../Content/Images/ic_checkbox.png") !important;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    min-width: 15px !important;
+    text-indent: -9999px; /* hides the link text */
+    background-repeat: no-repeat;
+}
+
+a.k-grid-Check-selected {
+    background-image: url("../Content/Images/ic_checkbox_selected.png") !important;
+}
+
+a.k-grid-Approve {
+    background-image: url("../Content/Images/ic_approve.png") !important;
+    display: inline-block;
+    height: 22px;
+    width: 22px;
+    min-width: 22px !important;
+    text-indent: -9999px; /* hides the link text */
+    background-repeat: no-repeat;
+}
+
+a.k-grid-DezApprove {
+    background-image: url("../Content/Images/ic_approve_inactive.png") !important;
+    display: inline-block;
+    height: 22px;
+    width: 22px;
+    min-width: 22px !important;
+    text-indent: -9999px; /* hides the link text */
+    background-repeat: no-repeat;
+}
+
+a.k-grid-RemoveRow {
+    background-image: url("../Content/Images/ic_close_window.png") !important;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    min-width: 15px !important;
+    text-indent: -9999px; /* hides the link text */
+    background-repeat: no-repeat;
+}
+
+
+/* Kendo Controls **/
+
+.k-grid tbody tr {
+    height: 3em !important;
+}
+
+.k-grid thead th {
+    height: 2em !important;
+}
+
+.k-grid td {
+    white-space: nowrap;
+}
+
+.kendo-controls-text-default {
+    width: 120px;
+    text-indent: 6px;
+}
+
+.k-loading-image {
+    background-image: url("Images/ajax-loader.gif") !important;
+}
+
+/* End Kendo Controls **/
+.btn-delete-icon {
+    background: url(Images/ic_delete.png) no-repeat top left;
+    background-size: 20px 20px;
+    display: block;
+    width: 0;
+    height: 25px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+.btn-add-icon {
+    background: url(Images/ic_create_new.png) no-repeat top left;
+    background-size: 20px 20px;
+    display: block;
+    width: 30px;
+    height: 30px;
+    text-indent: -9999px; /* hides the link text */
+}
+
+.move {
+    cursor: move;
+}
+
+div.container {
+    border: 2px solid #ccc;
+    width: 300px;
+    height: 100px;
+    overflow-y: scroll;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: 200px;
+}
+
+.v-spacer {
+    height: 4px;
+}
+
+
+.defaultCmb {
+    font-size: 14px !important;
+    font-weight: normal !important;
+    color: #777 !important;
+}
+
+#cmbCompany span.k-widget.k-dropdown.k-header span.k-icon.k-i-arrow-s {
+    background-image: url(Images/ic_dropdown_gray.png);
+    background-size: 7px 5px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.view-container{
+    margin-top:50px;
+}
+
+div.k-grid .k-grid-edit,
+div.k-grid .k-grid-Tracker{
+     display: inline-block; 
+    width: 25px; 
+    height: 25px; 
+    min-width: 25px !important; 
+    text-align: center; 
+    text-indent: -444px; 
+    border: 0; 
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    margin: 0px 2px 0px 2px; 
+}
+
+div.k-grid .k-grid-edit {
+      background: url("/Content/images/iedit.png");
+}
+
+div.k-grid .k-grid-Tracker {
+    background: url("/Content/images/iDownload.png");
+}
+
+
+.blueFieldSet { 
+    background-color: white;
+    border: 1px solid #94c0d2;
+    padding: 10px;
+    margin: 5px;
+}
+.displayTempGroup { 
+    width:100%;
+    margin: 0px 0px 5px 0px;
+    display: table;
+}
+.displayTempField { 
+    display:block;
+    float: left;
+    margin: 5px;
+    min-width: 250px;
+    min-height: 50px;
+}
+.displaySmallField { 
+    display: block;
+    float: left;
+    height: 40px;
+    margin: 0px 5px 10px 0px;
+    width: 250px;
+    height: 40px;
+    padding-right: 20px;
+}
+.displayTempName { 
+    font-weight: bold;
+    font-size: 1.1em;
+}
+.displayTempControl { 
+    margin-top: 5px;
+    width: 100%; 
+    min-height: 25px;
+}

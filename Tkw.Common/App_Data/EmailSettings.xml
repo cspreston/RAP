@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <EmailTemplates>
+    <ContactUs>
+      <emailCredentials name="Credentials" SMTPUsername="" SMTPPassword="" SMTPServer="" SMTPPort="" EnableSsl="" UseSMTPAuthentication="False">
+      </emailCredentials>
+      <senderUserName>Contact</senderUserName>
+      <bccRecipientAddress>Contact</bccRecipientAddress>
+      <subject>Reporting Email</subject>
+      <message>Hi,
+                 &lt;br/&gt; &lt;span style="padding-left:25px;"&gt; Please view the attached report generated for today. &lt;/span&gt;
+                 &lt;br/&gt;
+                 &lt;br/&gt;Best regards&lt;br/&gt;</message>
+    </ContactUs>
+    <ConfirmRegister>
+      <emailCredentials name="Credentials" SMTPUsername="SMTPUsername@ Register.com" SMTPPassword="SMTPPassword Register" SMTPServer="smtp. Register.com" SMTPPort="60" EnableSsl="True" UseSMTPAuthentication="True">
+      </emailCredentials>
+      <senderUserName>Register</senderUserName>
+      <bccRecipientAddress>Register</bccRecipientAddress>
+      <subject>Subject Register</subject>
+      <message>Hi,
+                 &lt;br/&gt; &lt;span style="padding-left:25px;"&gt; Please view the attached report generated for today. &lt;/span&gt;
+                 &lt;br/&gt;
+                 &lt;br/&gt;Best regards&lt;br/&gt;</message>
+    </ConfirmRegister>
+  </EmailTemplates>
+</settings>
