@@ -10,7 +10,7 @@ var RapApp;
         var TenantUserController = (function (_super) {
             __extends(TenantUserController, _super);
             function TenantUserController($scope) {
-                _super.call(this);
+                _super.call(this, $scope);
                 this.$scope = $scope;
                 var itemTenant;
                 $scope.selectedClients = [];

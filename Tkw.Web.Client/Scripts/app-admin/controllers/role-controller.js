@@ -10,7 +10,7 @@ var RapApp;
         var RoleController = (function (_super) {
             __extends(RoleController, _super);
             function RoleController($scope) {
-                _super.call(this);
+                _super.call(this, $scope);
                 this.$scope = $scope;
                 $scope.loadRoles = function () {
                     $scope.IsLoading = true;

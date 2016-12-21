@@ -11,7 +11,7 @@ var RapApp;
             __extends(TenantController, _super);
             // initializes the controller
             function TenantController($scope) {
-                _super.call(this);
+                _super.call(this, $scope);
                 this.$scope = $scope;
                 $scope.isInRole = false;
                 $scope.pageIndex = 1;
