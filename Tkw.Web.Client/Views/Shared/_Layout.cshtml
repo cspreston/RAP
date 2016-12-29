@@ -129,18 +129,18 @@
                     <a href="/dashboard">Dashboard</a>
                     <span class="hover-bg"></span>
                 </li>
-                <li class="has-child admin">
+                <li id="layout-admin" class="has-child">
                     <a href="javascript:;">Admin </a>
                     <ul class="child-menu">
-                        <li class="admin-companies">
+                        <li>
                             <a href="/Root/Customers">Companies </a>
                             <span class="hover-bg"></span>
                         </li>
-                        <li class="admin-client">
+                        <li>
                             <a href="/Root/Clients">Clients </a>
                             <span class="hover-bg"></span>
                         </li>
-                        <li class="admin-site">
+                        <li>
                             <a href="/Root/Users">Users </a>
                             <span class="hover-bg"></span>
                         </li>
@@ -186,7 +186,7 @@
 
     $(document).ready(function () {
 
-        var adminItems = $('.admin-item');
+        var layoutAdmin = $('#layout-admin');
 
         /*
         if (!TKWApp.Data.AuthenticationManager.isInRole('@Tools.DefaultValues.ROLE_ROOT')) {
@@ -209,11 +209,12 @@
         if (!TKWApp.Data.AuthenticationManager.isInRole("Root") &&
             !TKWApp.Data.AuthenticationManager.isInRole("Company Admin") &&
             !TKWApp.Data.AuthenticationManager.isInRole("Client Admin")) {
-            adminItems.hide();
+            layoutAdmin.hide();
         }
         else {
-            adminItems.on('click', function () {
-                adminItems.toggleClass('open animate');
+            layoutAdmin.on('click', function () {
+                //$(this).toggleClass('open');
+                //console.log($(this).attr('class'));
             });
         }
     });

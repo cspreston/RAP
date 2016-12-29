@@ -11,7 +11,7 @@
         <a href="javascript:;">Notifications</a>
         <span class="hover-bg"></span>
     </li>-->
-    <li class="has-child admin-item">
+    <li id="menu-admin" class="has-child">
         <a href="javascript:;">Admin </a>
         <ul class="child-menu">
             <li>
@@ -41,16 +41,17 @@
     }
 
     $(document).ready(function () {
-        var adminItems = $('.admin-item');
+
+        var menuAdmin = $('#menu-admin');
 
         if (!TKWApp.Data.AuthenticationManager.isInRole("Root") &&
             !TKWApp.Data.AuthenticationManager.isInRole("Company Admin") &&
             !TKWApp.Data.AuthenticationManager.isInRole("Client Admin")) {
-            adminItems.hide();
+            menuAdmin.hide();
         }
         else {
-            adminItems.on('click', function () {
-                adminItems.toggleClass('open animate');
+            menuAdmin.on('click', function () {
+                $(this).toggleClass('open animate');
             });
         }
     });

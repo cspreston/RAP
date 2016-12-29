@@ -15904,12 +15904,12 @@ h6 {
             top: 18px;
             font-family: Ionicons;
             font-size: 14px;
-            content: '\f125';
+            content: '\f123';
             color: #fff;
         }
 
         .menu-layer li.has-child.open:before {
-            content: '\f123';
+            content: '\f126';
             right: 28px;
         }
 
