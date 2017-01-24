@@ -317,6 +317,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AngularPartials\app-menu.html" />
+    <Content Include="AngularPartials\aws\planEditor.html" />
+    <Content Include="AngularPartials\aws\planUploader.html" />
     <Content Include="AngularPartials\index.html" />
     <Content Include="AngularPartials\left-menu.html" />
     <Content Include="AngularPartials\search.html" />
@@ -1479,6 +1481,9 @@
     <Content Include="Content\fontawesome\bordered-pulled.less" />
     <Content Include="Content\fontawesome\animated.less" />
     <Content Include="Scripts\app\utils\image-utils.js" />
+    <Content Include="Scripts\aws\app.js" />
+    <Content Include="Scripts\aws\planEditor.js" />
+    <Content Include="Scripts\aws\planUploader.js" />
     <Content Include="Scripts\fabric.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Content\pleasure\fonts\fontawesome-webfont.eot" />
@@ -2147,8 +2152,10 @@
     <Content Include="Scripts\kendo\lang\kendo.sv-SE.js" />
     <Content Include="Scripts\kendo\lang\kendo.tr-TR.js" />
     <Content Include="Scripts\kendo\lang\kendo.zh-CN.js" />
+    <Content Include="Scripts\ng-file-upload.min.js" />
     <Content Include="Scripts\ng-infinite-scroll.js" />
     <Content Include="Scripts\ng-map.min.js" />
+    <Content Include="Scripts\openseadragon.min.js" />
     <Content Include="Scripts\r.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\scroll.js" />
@@ -2279,6 +2286,7 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\stringify.js" />
     <Content Include="Scripts\UIHelpers.js" />
+    <Content Include="site-old.html" />
     <Content Include="site.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -2749,6 +2757,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Root\Roles.cshtml" />
     <Content Include="Views\Root\Clients.cshtml" />
+    <Content Include="Scripts\openseadragon.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Readme\" />

@@ -11,7 +11,7 @@
             }
 
             // configure angular app
-            this.App = angular.module("RAPApp", ['ngMap', 'ngDragDrop', "kendo.directives", 'ui.sortable']);
+            this.App = angular.module("RAPApp", ['ngMap', 'ngDragDrop', "kendo.directives", 'ui.sortable', 'CTR-RAP-AWS']);
             // register app directives
             this.registerDirectives();
             // register app services - for directives that need services - stupid directives

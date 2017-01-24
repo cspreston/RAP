@@ -56,14 +56,8 @@
     <script src="Content/pleasure/js/form-tools.js"></script>
     <script src="Content/pleasure/js/layout.js"></script>
     <script src="Content/pleasure/js/modernizr.min.js"></script>
-    
-    <!--Add Angular AWS js-->
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.6.10.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-rc.1/angular-ui-router.min.js"></script>
-    <script src="Scripts/ng-file-upload.min.js"></script>
-    <script src="Scripts/openseadragon.min.js"></script>
-    
+    <!--Add Angular js-->
+    <script src="Scripts/angular.js"></script>
     <script src="Scripts/angular-ng-map.js"></script>
     <script src="Scripts/angular-dragdrop.min.js"></script>
     <script src="Scripts/angular-material.min.js"></script>
@@ -109,11 +103,6 @@
     <!--Add Angular app configuration-->
     <script src="Scripts/app/angular-app-configuration.js"></script>
     <script src="Content/kendo/kendo.all.min.js"></script>
-    
-    <!--Add AWS js-->
-    <script src="Scripts/aws/app.js"></script>
-    <script src="Scripts/aws/planEditor.js"></script>
-    <script src="Scripts/aws/planUploader.js"></script>
 
 </head>
 
@@ -866,20 +855,19 @@
                             <label for="addPlanAspectRatioCheckBox">Keep aspect ratio</label>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                <plan-uploader></plan-uploader>
-
-                                <div class="inputer" style="display: none;">
+                            <div class="col-md-3">Select File</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
                                     <div class="input-wrapper k-content">
-                                        <input type="file" accept="image/*" id="fuPlanImage" multiple/>
-                                        <div class="logger well well-sm" style="margin-top: 10px">
+                                        <input type="file" accept="image/*" id="fuPlanImage" multiple />
+                                        <div class="logger well well-sm" style="margin-top:10px">
                                             Preview:
-                                            <br/>
-                                            <img id="fuPlanImagePreview" class="preview-image"/>
+                                            <br />
+                                            <img id="fuPlanImagePreview" class="preview-image" />
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                             <!--.col-md-9-->
                         </div>
