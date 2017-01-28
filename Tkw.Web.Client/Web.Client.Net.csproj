@@ -343,6 +343,7 @@
     <Compile Include="Areas\Auth\Models\AccountViewModels.cs" />
     <Compile Include="Areas\Auth\Models\Signature.cs" />
     <Compile Include="Areas\Auth\Models\TokenResponseModel.cs" />
+    <Compile Include="Areas\Conf\Api\AwsFileController.cs" />
     <Compile Include="Areas\Conf\Api\FileManagerController.cs" />
     <Compile Include="Areas\Conf\Api\HotspotController.cs" />
     <Compile Include="Areas\Conf\Api\HotspotActionTypeController.cs" />
@@ -1413,6 +1414,7 @@
     <Content Include="dashboard.html" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="plan-old.html" />
     <Content Include="reset-password.html" />
     <Content Include="login.html" />
     <Content Include="filemanager.html" />
