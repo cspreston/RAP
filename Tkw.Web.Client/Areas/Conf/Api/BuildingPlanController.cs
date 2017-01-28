@@ -31,7 +31,11 @@ namespace Web.Client.Net.Areas.Conf.Api
         {
             using (var buildingPlanService = new Service(DataBaseId, UserId).GetService<IBuildingPlanService>())
             {
-                var result = buildingPlanService.GetAll().Include("PlanFile.FileBucket").Include("PlanThumbnailFile.FileBucket").OrderBy(x=>x.Order).
+                var result = buildingPlanService.GetAll()
+                    .Include("PlanFile.FileBucket")
+                    .Include("PlanThumbnailFile.FileBucket")
+                    .Include("PlanZoomFile.FileBucket")
+                    .OrderBy(x=>x.Order).
                     ThenBy(x=>x.Name).ThenBy(x=>x.CreateDate)
                     .Where(a => a.IsActive)
                     .Select(a => new BuildingPlanDto()
@@ -78,7 +82,9 @@ namespace Web.Client.Net.Areas.Conf.Api
 
                     var buildingPlanService = serviceManager.GetService<IBuildingPlanService>();
                     var item = await buildingPlanService.GetAll().Where(a => a.IsActive)
-                                    .Include("PlanFile.FileBucket").Include("PlanThumbnailFile.FileBucket")
+                                    .Include("PlanFile.FileBucket")
+                                    .Include("PlanThumbnailFile.FileBucket")
+                                    .Include("PlanZoomFile.FileBucket")
                                     .Include(x => x.Building)
                                     .Include("Hotspots.HotspotDisplayType")
                                     .Include("Hotspots.HotspotActionType")
@@ -252,7 +258,9 @@ namespace Web.Client.Net.Areas.Conf.Api
                 Building building = serviceManager.GetService<IBuildingService>().GetAll()
                     .Include(a => a.Actor)
                     .Include("BuildingPlans.PlanFile")
-                    .Include("BuildingPlans.PlanThumbnailFile").FirstOrDefault(a => a.Id == buildingId);
+                    .Include("BuildingPlans.PlanThumbnailFile")
+                    .Include("PlanZoomFile.FileBucket")
+                    .FirstOrDefault(a => a.Id == buildingId);
                 if (building == null) throw new HttpResponseException(HttpStatusCode.Conflict);
 
                 Actor actor = building.Actor;
@@ -396,7 +404,9 @@ namespace Web.Client.Net.Areas.Conf.Api
 
                     var buildingPlanService = serviceManager.GetService<IBuildingPlanService>();
                     var plan = await buildingPlanService.GetAll().Where(a => a.IsActive)
-                                .Include("PlanFile.FileBucket").Include("PlanThumbnailFile.FileBucket")
+                                .Include("PlanFile.FileBucket")
+                                .Include("PlanThumbnailFile.FileBucket")
+                                .Include("PlanZoomFile.FileBucket")
                                 .Include(x => x.Building)
                                 .Include(x => x.Hotspots)
                                 .Include("Hotspots.Files.FileBucket").FirstOrDefaultAsync(x => x.Id == data.Id);

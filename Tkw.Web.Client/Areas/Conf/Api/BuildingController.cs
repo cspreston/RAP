@@ -338,6 +338,7 @@ namespace Web.Client.Net.Areas.Conf.Api
                     var buildings = await buildingService.GetAll().Where(a => a.IsActive).Include(x => x.Actor.ActorPermissions)
                                         .Include("BuildingImages.File.FileBucket")
                                         .Include("BuildingPlans.PlanThumbnailFile.FileBucket")
+                                        .Include("BuildingPlans.PlanZoomFile.FileBucket")
                                         .Include("BuildingPlans.Hotspots.HotspotDisplayType")
                                         .Include("BuildingPlans.Hotspots.Files.FileBucket")
                                         .Include("BuildingDisasterInfos.File.FileBucket")
@@ -437,6 +438,14 @@ namespace Web.Client.Net.Areas.Conf.Api
                                     BucketPath = buildingPlan.PlanThumbnailFile.FileBucket.PhysicalPath,
                                     FileName = buildingPlan.PlanThumbnailFile.Name,
                                     FileDescription = buildingPlan.PlanThumbnailFile.Description,
+                                };
+                                buildingPlanDto.PlanZoomFile = new FileWithButcketDTO
+                                {
+                                    Id = buildingPlan.PlanZoomFile.Id,
+                                    BucketName = buildingPlan.PlanZoomFile.FileBucket.Name,
+                                    BucketPath = buildingPlan.PlanZoomFile.FileBucket.PhysicalPath,
+                                    FileName = buildingPlan.PlanZoomFile.Name,
+                                    FileDescription = buildingPlan.PlanZoomFile.Description,
                                 };
                                 buildingPlanDto.PlanFile = new FileWithButcketDTO
                                 {

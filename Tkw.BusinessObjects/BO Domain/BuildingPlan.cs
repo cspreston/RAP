@@ -20,6 +20,7 @@ namespace BusinessObjects
         public virtual string PlanFileId { get; set; }
         public virtual string PlanThumbnailFileId { get; set; }
         public virtual string Description { get; set; }
+        public virtual string PlanZoomFileId { get; set; }
 
         public virtual int Order { get; set; }
 
@@ -45,6 +46,7 @@ namespace BusinessObjects
 
         public virtual Files PlanFile { get; set; }
         public virtual Files PlanThumbnailFile { get; set; }
+        public virtual Files PlanZoomFile { get; set; }
         #endregion
     }
 }

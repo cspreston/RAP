@@ -19,6 +19,8 @@
         [DataMember]
         public virtual string PlanThumbnailFileId { get; set; }
         [DataMember]
+        public virtual string PlanZoomFileId { get; set; }
+        [DataMember]
         public virtual string PlanFileId { get; set; }
         [DataMember]
         public virtual string Description { get; set; }
@@ -32,6 +34,8 @@
         public FileWithButcketDTO PlanFile { get; set; }
         [DataMember]
         public FileWithButcketDTO PlanThumbnailFile { get; set; }
+        [DataMember]
+        public FileWithButcketDTO PlanZoomFile { get; set; }
 
         [DataMember]
         public int HotspotsCount { get; set; }
