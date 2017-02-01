@@ -793,31 +793,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="legend">Details</div>
-                        <div class="row">
-                            <div class="col-md-3">Name</div>
-                            <!--.col-md-3-->
-                            <div class="col-md-9">
-                                <div class="inputer">
-                                    <div class="input-wrapper">
-                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-model="AddPlanModel.PlanName" ng-attr-name="{{AddPlanModel.PlanName}}" ng-required="true"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.col-md-9-->
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-3">Description</div>
-                            <!--.col-md-3-->
-                            <div class="col-md-9">
-                                <div class="inputer">
-                                    <div class="input-wrapper">
-                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;" ng-model="AddPlanModel.PlanDescription" ng-attr-name="{{AddPlanModel.PlanDescription}}"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.col-md-9-->
-                        </div>
+                        <!--
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="checkboxer">
@@ -833,7 +809,7 @@
                                 <div ng-show="CustomSize">
                                     <div class="row">
                                         <div class="col-md-3">Width</div>
-                                        <!--.col-md-3-->
+
                                         <div class="col-md-9">
                                             <div class="inputer">
                                                 <div class="input-wrapper">
@@ -842,11 +818,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--.col-md-9-->
+
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">Height</div>
-                                        <!--.col-md-3-->
+
                                         <div class="col-md-9">
                                             <div class="inputer">
                                                 <div class="input-wrapper">
@@ -855,7 +831,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--.col-md-9-->
+
                                     </div>
                                 </div>
                             </div>
@@ -865,10 +841,12 @@
                             <input id="addPlanAspectRatioCheckBox" type="checkbox" ng-true-value="true" ng-model="AddPlanModel.KeepAspectRatio" ng-false-value="false" />
                             <label for="addPlanAspectRatioCheckBox">Keep aspect ratio</label>
                         </div>
+                        -->
                         <div class="row">
                             <div class="col-md-12">
-                                <plan-uploader></plan-uploader>
-
+                                <plan-uploader building="CurrentBuilding"></plan-uploader>
+                                
+                                <!--
                                 <div class="inputer" style="display: none;">
                                     <div class="input-wrapper k-content">
                                         <input type="file" accept="image/*" id="fuPlanImage" multiple/>
@@ -879,7 +857,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                -->
                             </div>
                             <!--.col-md-9-->
                         </div>

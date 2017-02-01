@@ -1,3 +1,29 @@
+<div class="row">
+    <div class="col-md-3">Name</div>
+    <!--.col-md-3-->
+    <div class="col-md-9">
+        <div class="inputer">
+            <div class="input-wrapper">
+                <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-model="uc.planName" ng-attr-name="{{uc.planName}}" ng-required="true"></textarea>
+            </div>
+        </div>
+    </div>
+    <!--.col-md-9-->
+</div>
+
+<div class="row">
+    <div class="col-md-3">Description</div>
+    <!--.col-md-3-->
+    <div class="col-md-9">
+        <div class="inputer">
+            <div class="input-wrapper">
+                <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;" ng-model="uc.planDescription" ng-attr-name="{{uc.planDescription}}"></textarea>
+            </div>
+        </div>
+    </div>
+    <!--.col-md-9-->
+</div>
+
 <div class="well">
 	<form name="form">
 		<div ng-show="!uc.file" class="button" ngf-select ngf-change="uc.change()" ng-model="uc.file" id="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">

@@ -5,7 +5,10 @@
 	app.component('planUploader', {
 		controller: PlanUploader,
 		controllerAs: 'uc',
-		templateUrl: '/AngularPartials/aws/planUploader.html'
+		templateUrl: '/AngularPartials/aws/planUploader.html',
+        binding: {
+            building: '<'
+        }
 	});
 
 	PlanUploader.$inject = ['$timeout', '$http', '$state', 'Upload'];
@@ -22,6 +25,9 @@
 		uc.thumb = false;
 		uc.zoom = false;
 		uc.finished = false;
+		uc.planName = '';
+	    uc.planDescription = '';
+	    uc.fileUrl = '';
 		uc.thumbUrl = '';
 		uc.dziUrl = '';
 
@@ -89,7 +95,9 @@
 			createThumbnail(fileName)
 				.then(function(response) {
 					console.log('Thumb Response: ', response.data);
+
 					uc.thumbUrl = response.data.Location;
+
 					return createDeepZoom(fileName);
 				})
 				.then(function(response) {
@@ -100,9 +108,13 @@
 					});
 
 					uc.dziUrl = dziImage.Location;
-					uc.zoom = false;
+
+			        return saveFileInfo();
+			    })
+                .then(function(response) {
+			        
 					uc.finished = true;
-				})
+			    })
 				.catch(function(error) {
 					console.log('Error: ', error);
 				});
@@ -131,6 +143,20 @@
 				targetFolder: 'zoom'
 			});
 		}
+
+        function saveFileInfo() {
+
+            uc.zoom = false;
+            uc.save = true;
+
+            return $http.post('/api/niv/AwsPlan/AddPlan', {
+                buildingId: uc.building.Id,
+                name: uc.planName,
+                description: uc.planDescription,
+                thumbUrl: uc.thumbUrl,
+                dziUrl: uc.dziUrl
+            });
+        }
 
 	}
 })();
