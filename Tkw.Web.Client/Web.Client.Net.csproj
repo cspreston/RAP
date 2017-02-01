@@ -343,7 +343,7 @@
     <Compile Include="Areas\Auth\Models\AccountViewModels.cs" />
     <Compile Include="Areas\Auth\Models\Signature.cs" />
     <Compile Include="Areas\Auth\Models\TokenResponseModel.cs" />
-    <Compile Include="Areas\Conf\Api\AwsFileController.cs" />
+    <Compile Include="Areas\Conf\Api\AwsPlanController.cs" />
     <Compile Include="Areas\Conf\Api\FileManagerController.cs" />
     <Compile Include="Areas\Conf\Api\HotspotController.cs" />
     <Compile Include="Areas\Conf\Api\HotspotActionTypeController.cs" />

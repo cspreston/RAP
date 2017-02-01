@@ -9,10 +9,11 @@ using System.Web.Http;
 
 namespace Web.Client.Net.Areas.Conf.Api
 {
-    public class AwsFileController : BaseApiController
+    [AllowAnonymous]
+    public class AwsPlanController : BaseApiController
     {
         [HttpPost]
-        public async Task<HttpResponseMessage> Post()
+        public async Task<HttpResponseMessage> AddPlan(dynamic fileInfo)
         {
             return Request.CreateResponse(HttpStatusCode.OK);
         }
