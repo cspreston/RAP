@@ -10,6 +10,21 @@ namespace CTR.RAP.Migrations.Extensions
 {
     public static class ColumnExtensions
     {
+        public static ICreateTableWithColumnSyntax RapTable(this ICreateExpressionRoot root, string schema, string name)
+        {
+            return root.Table(name).InSchema(schema).WithBaseEntityId(name, "Id");
+        }
+
+        public static ICreateTableWithColumnSyntax RapTable(this ICreateExpressionRoot root, string name)
+        {
+            return root.Table(name).WithBaseEntityId(name, "Id");
+        }
+
+        public static ICreateTableWithColumnSyntax WithBaseEntityId(this ICreateTableWithColumnSyntax column, string tableName, string primaryIdName)
+        {
+            return column.WithColumn(primaryIdName).AsGuid().PrimaryKey("PK_" + tableName);
+        }
+
         public static ICreateTableWithColumnSyntax WithAuditColumns(this ICreateTableWithColumnSyntax column)
         {
             return column
