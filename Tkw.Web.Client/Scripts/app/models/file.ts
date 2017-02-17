@@ -6,5 +6,8 @@
         FileDescription: string;
         BucketName: string;
         BucketPath: string;
+        Url: string;
+        ThumbUrl: string;
+        ZoomUrl: string;
     }
 }
