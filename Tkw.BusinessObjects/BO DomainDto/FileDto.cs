@@ -16,14 +16,22 @@ namespace BusinessObjects
         public virtual string Description { get; set; }
         [DataMember]
         public virtual string FileBucketId { get; set; }
-
+        [DataMember]
+        public virtual string Url { get; set; }
+        [DataMember]
+        public virtual string ThumbUrl { get; set; }
+        [DataMember]
+        public virtual string ZoomUrl { get; set; }
         public static FileDto Create(Files e) {
             return new FileDto()
             {
                 Description = e.Description,
                 FileBucketId = e.FileBucketId,
                 Id = e.Id,
-                Name = e.Name
+                Name = e.Name,
+                Url = e.Url,
+                ThumbUrl = e.ThumbUrl,
+                ZoomUrl = e.ZoomUrl
             };
         }
     }

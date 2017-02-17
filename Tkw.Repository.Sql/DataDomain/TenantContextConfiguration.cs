@@ -16,7 +16,7 @@
         {
 
             AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationDataLossAllowed = false;
 
             //AutomaticMigrationsEnabled = true;
             //AutomaticMigrationDataLossAllowed = false;

@@ -50,6 +50,13 @@
         public string FileName { get; set; }
         [DataMember]
         public string FileDescription { get; set; }
+        [DataMember]
+        public string FileUrl { get; set; }
+        [DataMember]
+        public string ThumbUrl { get; set; }
+        [DataMember]
+        public string ZoomUrl { get; set; }
+
 
         public static FileWithButcketDTO Create(BuildingImage a)
         {
@@ -59,7 +66,10 @@
                 BucketName = a.File.FileBucket.Name,
                 BucketPath = a.File.FileBucket.PhysicalPath,
                 FileName = a.File.Name,
-                FileDescription = a.File.Description
+                FileDescription = a.File.Description,
+                FileUrl = a.File.Url,
+                ThumbUrl = a.File.ThumbUrl,
+                ZoomUrl = a.File.ZoomUrl
             };
         }
     }

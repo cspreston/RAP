@@ -19,6 +19,10 @@ namespace BusinessObjects
         public virtual string Name { get; set; }
         public virtual string Description { get; set; }
         public virtual string FileBucketId { get; set; }
+        public virtual string Url { get; set; }
+        public virtual string ThumbUrl { get; set; }
+        public virtual string ZoomUrl { get; set; }
+
 
         #endregion
 
