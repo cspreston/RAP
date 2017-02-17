@@ -52,6 +52,7 @@
     <Compile Include="Extensions\DataReaderExtensions.cs" />
     <Compile Include="Extensions\MigrationExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Migration_201701251730_RemoveDeepZoomImageId.cs" />
     <Compile Include="Migration_201702011700_AddFileUrls.cs" />
     <Compile Include="Migration_201701251700_AddDeepZoomImageId.cs" />
     <Compile Include="Migration_201702061500_FileMigrationToS3.cs" />
