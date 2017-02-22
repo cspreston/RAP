@@ -8,11 +8,24 @@ namespace CTR.RAP.Migrations
     {
         public override void Up()
         {
-            Delete.ForeignKey("FK_BuildingPlan_Files_ZoomFileId")
-                .OnTable("BuildingPlan");
+            if (Schema.Table("BuildingPlan").Index("IX_PlanZoomFileId").Exists())
+            {
+                Delete.Index("IX_PlanZoomFileId")
+                    .OnTable("BuildingPlan");
+            }
 
-            Delete.Column("PlanZoomFileId")
-                .FromTable("BuildingPlan");
+
+            if (Schema.Table("BuildingPlan").Constraint("FK_dbo.BuildingPlan_dbo.Files_PlanZoomFileId").Exists())
+            {
+                Delete.ForeignKey("FK_dbo.BuildingPlan_dbo.Files_PlanZoomFileId")
+                    .OnTable("BuildingPlan");
+            }
+
+            if (Schema.Table("BuildingPlan").Column("PlanZoomFileId").Exists())
+            {
+                Delete.Column("PlanZoomFileId")
+                    .FromTable("BuildingPlan");
+            }
         }
 
         public override void Down()

@@ -172,6 +172,10 @@
     <Compile Include="Migrations\201702171000068_FileUrls.Designer.cs">
       <DependentUpon>201702171000068_FileUrls.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702192349493_FileDimensions.cs" />
+    <Compile Include="Migrations\201702192349493_FileDimensions.Designer.cs">
+      <DependentUpon>201702192349493_FileDimensions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
   </ItemGroup>
@@ -196,6 +200,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702171000068_FileUrls.resx">
       <DependentUpon>201702171000068_FileUrls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702192349493_FileDimensions.resx">
+      <DependentUpon>201702192349493_FileDimensions.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
