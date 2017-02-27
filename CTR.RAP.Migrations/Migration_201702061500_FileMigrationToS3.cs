@@ -36,7 +36,7 @@ namespace CTR.RAP.Migrations
             switch ((string)ApplicationContext)
             {
                 case "Test":
-                    rootPath = "C:/inetpub/wwwroot/RAP/";
+                    rootPath = "C:/inetpub/wwwroot/RAPTEST/";
                     break;
 
                 case "Prod":
