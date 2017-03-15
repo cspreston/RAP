@@ -55,6 +55,7 @@
     <Compile Include="Migration_201701251730_RemoveDeepZoomImageId.cs" />
     <Compile Include="Migration_201702011700_AddFileUrls.cs" />
     <Compile Include="Migration_201701251700_AddDeepZoomImageId.cs" />
+    <Compile Include="Migration_201703011500_FileMigrationToS3_2.cs" />
     <Compile Include="Migration_201702061500_FileMigrationToS3.cs" />
     <Compile Include="Migration_201702181320_FileDimensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,6 +72,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="sql\FileMigrationToS3_BuildingPlans.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="sql\FileMigrationToS3_2_AllFiles.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -11,7 +11,7 @@ for %%a in (%*) do (
 IF "%--env%"=="" (SET --env=Debug)
 IF "%--task%"=="" (SET --task=migrate)
 IF "%--context%"=="" (SET --context=Test)
-IF "%--tag%"=="" (SET --tag=S3FileMigration)
+IF "%--tag%"=="" (SET --tag=S3FileMigration2)
 
 SET migrator="%parent%..\packages\FluentMigrator.1.6.2\tools\migrate.exe"
 SET target="%parent%bin\%--env%\CTR.RAP.Migrations.dll"

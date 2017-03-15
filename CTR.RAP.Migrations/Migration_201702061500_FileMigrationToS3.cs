@@ -55,10 +55,10 @@ namespace CTR.RAP.Migrations
                 .WithColumn("Details").AsString(int.MaxValue).NotNullable()
                 .WithAuditColumns();
 
-            Execute.WithConnection(migrateBuildingFiles);
-            Execute.WithConnection(migrateBuildingImages);
-            Execute.WithConnection(migrateBuildingDisasterInfos);
-            Execute.WithConnection(migrateBuildingPlans);
+            //Execute.WithConnection(migrateBuildingFiles);
+            //Execute.WithConnection(migrateBuildingImages);
+            //Execute.WithConnection(migrateBuildingDisasterInfos);
+            //Execute.WithConnection(migrateBuildingPlans);
         }
 
         public override void Down()
