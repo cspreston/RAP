@@ -142,6 +142,9 @@
                 BucketPath = b.File.FileBucket.PhysicalPath,
                 FileName = b.File.Name,
                 FileDescription = b.File.Description,
+                Url = b.File.Url,
+                ThumbUrl = b.File.ThumbUrl,
+                ZoomUrl = b.File.ZoomUrl
             }).ToList();
 
             return dto;

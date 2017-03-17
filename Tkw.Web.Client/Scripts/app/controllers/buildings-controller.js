@@ -261,14 +261,14 @@ var RapApp;
                 var url = null;
                 for (var i = 0; i < b.BuildingImages.length; i++) {
                     if (b.BuildingImages[i].Id === featured) {
-                        url = RapApp.FileUtils.getImageUrl(b.BuildingImages[i].BucketPath, b.BuildingImages[i].BucketName, b.BuildingImages[i].FileName);
+                        url = b.BuildingImages[i].Url;
                     }
                 }
                 if (!url && b.BuildingImages.length > 0) {
                     // featured image is not in the list
                     // normally this should never happen, but just in case
                     // we consider the first image as featured
-                    url = RapApp.FileUtils.getImageUrl(b.BuildingImages[0].BucketPath, b.BuildingImages[0].BucketName, b.BuildingImages[0].FileName);
+                    url = b.BuildingImages[0].Url;
                 }
                 return url;
             }; // returns the url for the building's featured image
@@ -281,8 +281,7 @@ var RapApp;
                 return url;
             };
             return BuildingsController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.BuildingsController = BuildingsController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=buildings-controller.js.map

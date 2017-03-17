@@ -22,6 +22,12 @@
         public string FileName { set; get; }
         [DataMember]
         public string FileDescription { get; set; }
+        [DataMember]
+        public string Url { get; set; }
+        [DataMember]
+        public string ThumbUrl { get; set; }
+        [DataMember]
+        public string ZoomUrl { get; set; }
 
         public static BuildingImageDto Create(BuildingImage b)
         {
@@ -33,6 +39,9 @@
                 FileName = b.File.Name,
                 FileDescription = b.File.Description,
                 BuildingId = b.BuildingId,
+                Url = b.File.Url,
+                ThumbUrl = b.File.ThumbUrl,
+                ZoomUrl = b.File.ZoomUrl
             };
         }
     }
