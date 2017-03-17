@@ -176,6 +176,10 @@
     <Compile Include="Migrations\201702192349493_FileDimensions.Designer.cs">
       <DependentUpon>201702192349493_FileDimensions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703170903451_RemoveDeepZoomInageId.cs" />
+    <Compile Include="Migrations\201703170903451_RemoveDeepZoomInageId.Designer.cs">
+      <DependentUpon>201703170903451_RemoveDeepZoomInageId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
   </ItemGroup>
@@ -203,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702192349493_FileDimensions.resx">
       <DependentUpon>201702192349493_FileDimensions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703170903451_RemoveDeepZoomInageId.resx">
+      <DependentUpon>201703170903451_RemoveDeepZoomInageId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
