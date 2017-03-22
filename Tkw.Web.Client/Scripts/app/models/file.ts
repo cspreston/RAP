@@ -9,5 +9,6 @@
         Url: string;
         ThumbUrl: string;
         ZoomUrl: string;
+        Dimensions: string;
     }
 }

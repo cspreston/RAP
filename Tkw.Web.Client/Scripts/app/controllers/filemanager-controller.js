@@ -391,7 +391,7 @@ var RapApp;
                 }
             };
             return FileManagerController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.FileManagerController = FileManagerController;
         function getFolder(item, id) {
             if (item.type != 2) {
@@ -442,4 +442,3 @@ var RapApp;
         }
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=filemanager-controller.js.map

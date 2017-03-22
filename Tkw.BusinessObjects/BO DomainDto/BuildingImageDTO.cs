@@ -65,6 +65,8 @@
         public string ThumbUrl { get; set; }
         [DataMember]
         public string ZoomUrl { get; set; }
+        [DataMember]
+        public string Dimensions { get; set; }
 
 
         public static FileWithButcketDTO Create(BuildingImage a)
@@ -78,7 +80,8 @@
                 FileDescription = a.File.Description,
                 FileUrl = a.File.Url,
                 ThumbUrl = a.File.ThumbUrl,
-                ZoomUrl = a.File.ZoomUrl
+                ZoomUrl = a.File.ZoomUrl,
+                Dimensions = a.File.Dimensions
             };
         }
     }

@@ -273,7 +273,8 @@ var RapApp;
                 return url;
             }; // returns the url for the building's featured image
             BuildingsController.prototype.getBuildingImage = function (bi) {
-                return RapApp.FileUtils.getImageUrl(bi.BucketPath, bi.BucketName, bi.FileName);
+                return bi.Url;
+                //return  RapApp.FileUtils.getImageUrl(bi.BucketPath, bi.BucketName, bi.FileName);
             };
             BuildingsController.prototype.getBuildingUrl = function (buildingId) {
                 var url = TKWApp.HardRouting.ApplicationRoutes.Routes["Site"];

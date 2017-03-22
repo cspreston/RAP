@@ -24,6 +24,7 @@
             this.CanvasScale = 1;
             this.ScaleFactor = 1.2;
 
+            this.$scope.showZoom = true;
             this.$scope.HotspotActionTypes = [];
             this.$scope.HotspotDisplayTypes = [];
             this.$scope.CurrentPlanHotspots = [];
@@ -67,6 +68,7 @@
             (<any>this.$scope).deleteSelectedSpot = this.deleteSelectedSpot;
             (<any>this.$scope).editSelectedHotspot = this.editSelectedHotspot;
             (<any>this.$scope).updateSelectedHotspot = this.updateSelectedHotspot;
+            (<any>this.$scope).updateHotspot = this.updateHotspot;
             (<any>this.$scope).getSpotFileUrl = this.getSpotFileUrl;
             (<any>this.$scope).getSpotFileType = this.getSpotFileType;
             (<any>this.$scope).isSpotFileType = this.isSpotFileType;
@@ -961,6 +963,20 @@
             });
         }
 
+        updateHotspot(hotspot) {
+
+            var scope: RapApp.Models.ISinglePlan = <RapApp.Models.ISinglePlan><any>this;
+            scope.IsSaving = true;
+
+            TKWApp.Data.DataManager.Collections["Hotspots"].update(hotspot)
+                .then(function (data) {
+                    scope.IsSaving = false;
+                },
+                function (error) {
+                    alert(JSON.stringify(error));
+                });
+        }
+
         editSelectedHotspot() {
             var scope: Models.ISinglePlan = <Models.ISinglePlan><any>this;
             var self = <PlanController>scope.Controller;
@@ -1225,7 +1241,7 @@
 
             this.initialCanvasLeft = document.getElementById("respondCanvas").getBoundingClientRect().left;        
             // set background image
-            fabric.Image.fromURL(this.getPlanImage(this.$scope.CurrentPlan), (img: fabric.IImage) => {
+            fabric.Image.fromURL(this.$scope.CurrentPlan.PlanFile.FileUrl, (img: fabric.IImage) => {
                 // compute the width and height of the background
                 // recompote canvas size
                 var width = img.width;

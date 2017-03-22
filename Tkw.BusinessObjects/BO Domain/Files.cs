@@ -22,6 +22,7 @@ namespace BusinessObjects
         public virtual string Url { get; set; }
         public virtual string ThumbUrl { get; set; }
         public virtual string ZoomUrl { get; set; }
+        public virtual string Dimensions { get; set; }
 
 
         #endregion

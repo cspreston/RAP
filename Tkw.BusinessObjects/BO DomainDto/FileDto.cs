@@ -22,6 +22,9 @@ namespace BusinessObjects
         public virtual string ThumbUrl { get; set; }
         [DataMember]
         public virtual string ZoomUrl { get; set; }
+        [DataMember]
+        public virtual string Dimensions { get; set; }
+
         public static FileDto Create(Files e) {
             return new FileDto()
             {
@@ -31,7 +34,8 @@ namespace BusinessObjects
                 Name = e.Name,
                 Url = e.Url,
                 ThumbUrl = e.ThumbUrl,
-                ZoomUrl = e.ZoomUrl
+                ZoomUrl = e.ZoomUrl,
+                Dimensions = e.Dimensions
             };
         }
     }

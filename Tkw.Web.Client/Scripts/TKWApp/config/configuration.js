@@ -49,10 +49,9 @@ var TKWApp;
                 }
             }
             return ConfigurationManagerClass;
-        })();
+        }());
         Configuration.ConfigurationManagerClass = ConfigurationManagerClass;
         /// Singleton for configuration manager, to be used accross the website
         Configuration.ConfigurationManager = new TKWApp.Configuration.ConfigurationManagerClass();
     })(Configuration = TKWApp.Configuration || (TKWApp.Configuration = {}));
 })(TKWApp || (TKWApp = {}));
-//# sourceMappingURL=configuration.js.map

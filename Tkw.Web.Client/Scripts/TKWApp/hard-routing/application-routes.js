@@ -11,7 +11,7 @@ var TKWApp;
                     this.UriParameters[decode(match[1])] = decode(match[2]);
             }
             return UriUtils;
-        })();
+        }());
         var ApplicationRoutesClass = (function () {
             function ApplicationRoutesClass() {
                 this.Routes = null;
@@ -59,8 +59,7 @@ var TKWApp;
                     window.location.href = this.Routes[routeName] + "?id=" + id;
             };
             return ApplicationRoutesClass;
-        })();
+        }());
         HardRouting.ApplicationRoutes = new ApplicationRoutesClass();
     })(HardRouting = TKWApp.HardRouting || (TKWApp.HardRouting = {}));
 })(TKWApp || (TKWApp = {}));
-//# sourceMappingURL=application-routes.js.map

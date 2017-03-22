@@ -295,7 +295,8 @@
             return url;
         }    // returns the url for the building's featured image
         getBuildingImage(bi: any) {
-            return  RapApp.FileUtils.getImageUrl(bi.BucketPath, bi.BucketName, bi.FileName);
+            return bi.Url;
+            //return  RapApp.FileUtils.getImageUrl(bi.BucketPath, bi.BucketName, bi.FileName);
         }
 
         getBuildingUrl(buildingId:string) {

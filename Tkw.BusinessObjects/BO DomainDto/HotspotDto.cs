@@ -55,7 +55,11 @@
                     BucketPath = file.FileBucket.PhysicalPath,
                     FileDescription = file.Description,
                     FileName  = file.Name,
-                    Id = file.Id
+                    Id = file.Id,
+                    FileUrl = file.Url,
+                    ThumbUrl = file.ThumbUrl,
+                    ZoomUrl = file.ZoomUrl,
+                    Dimensions = file.Dimensions
                 };
                 dto.Files.Add(fdto);
             }

@@ -17,6 +17,7 @@ var RapApp;
                 this.ZoomLevel = 1;
                 this.CanvasScale = 1;
                 this.ScaleFactor = 1.2;
+                this.$scope.showZoom = true;
                 this.$scope.HotspotActionTypes = [];
                 this.$scope.HotspotDisplayTypes = [];
                 this.$scope.CurrentPlanHotspots = [];
@@ -58,6 +59,7 @@ var RapApp;
                 this.$scope.deleteSelectedSpot = this.deleteSelectedSpot;
                 this.$scope.editSelectedHotspot = this.editSelectedHotspot;
                 this.$scope.updateSelectedHotspot = this.updateSelectedHotspot;
+                this.$scope.updateHotspot = this.updateHotspot;
                 this.$scope.getSpotFileUrl = this.getSpotFileUrl;
                 this.$scope.getSpotFileType = this.getSpotFileType;
                 this.$scope.isSpotFileType = this.isSpotFileType;
@@ -883,6 +885,16 @@ var RapApp;
                     jQuery("#saveHotSpotFailure").click();
                 });
             };
+            PlanController.prototype.updateHotspot = function (hotspot) {
+                var scope = this;
+                scope.IsSaving = true;
+                TKWApp.Data.DataManager.Collections["Hotspots"].update(hotspot)
+                    .then(function (data) {
+                    scope.IsSaving = false;
+                }, function (error) {
+                    alert(JSON.stringify(error));
+                });
+            };
             PlanController.prototype.editSelectedHotspot = function () {
                 var scope = this;
                 var self = scope.Controller;
@@ -1079,7 +1091,7 @@ var RapApp;
                 this.canvas.setHeight(ht);
                 this.initialCanvasLeft = document.getElementById("respondCanvas").getBoundingClientRect().left;
                 // set background image
-                fabric.Image.fromURL(this.getPlanImage(this.$scope.CurrentPlan), function (img) {
+                fabric.Image.fromURL(this.$scope.CurrentPlan.PlanFile.FileUrl, function (img) {
                     // compute the width and height of the background
                     // recompote canvas size
                     var width = img.width;
@@ -1598,7 +1610,7 @@ var RapApp;
                 }
             };
             return PlanController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.PlanController = PlanController;
         function normalizeCanvas(canvas, hp) {
             if (canvas.getWidth() < hp.DisplayDetails.Position.x) {
@@ -1618,4 +1630,3 @@ var RapApp;
         }
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=plan-controller.js.map

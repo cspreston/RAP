@@ -109,7 +109,11 @@ namespace Web.Client.Net.Areas.Conf.Api
                             BucketName = item.PlanThumbnailFile.FileBucket.Name,
                             BucketPath = item.PlanThumbnailFile.FileBucket.PhysicalPath,
                             FileName = item.PlanThumbnailFile.Name,
-                            FileDescription = item.PlanThumbnailFile.Description
+                            FileDescription = item.PlanThumbnailFile.Description,
+                            FileUrl = item.PlanThumbnailFile.Url,
+                            ThumbUrl = item.PlanThumbnailFile.ThumbUrl,
+                            ZoomUrl = item.PlanThumbnailFile.ZoomUrl,
+                            Dimensions = item.PlanThumbnailFile.Dimensions
                         },
                         PlanFile = new FileWithButcketDTO
                         {
@@ -120,7 +124,8 @@ namespace Web.Client.Net.Areas.Conf.Api
                             FileDescription = item.PlanFile.Description,
                             FileUrl = item.PlanFile.Url,
                             ThumbUrl = item.PlanFile.ThumbUrl,
-                            ZoomUrl = item.PlanFile.ZoomUrl
+                            ZoomUrl = item.PlanFile.ZoomUrl,
+                            Dimensions = item.PlanFile.Dimensions
                         },
                         Hotspots = item.Hotspots.Where(b => b.IsActive).OrderBy(x => x.CreateDate).Select(b => new HotspotDto()
                         {
@@ -157,7 +162,11 @@ namespace Web.Client.Net.Areas.Conf.Api
                                 BucketName = z.FileBucket.Name,
                                 BucketPath = z.FileBucket.PhysicalPath,
                                 FileName = z.Name,
-                                FileDescription = z.Description
+                                FileDescription = z.Description,
+                                FileUrl = z.Url,
+                                ThumbUrl = z.ThumbUrl,
+                                ZoomUrl = z.ZoomUrl,
+                                Dimensions = z.Dimensions
                             }).ToList()
                         }).ToList()
                     };
