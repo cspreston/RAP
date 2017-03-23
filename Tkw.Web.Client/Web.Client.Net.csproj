@@ -410,6 +410,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\AppSettings.Prod.xml" />
+    <Content Include="App_Data\AppSettings.Test.xml" />
     <Content Include="App_Data\AppSettings.xml">
       <SubType>Designer</SubType>
     </Content>
