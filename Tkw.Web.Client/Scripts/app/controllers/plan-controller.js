@@ -1114,6 +1114,9 @@ var RapApp;
                     if (successFunction)
                         successFunction();
                 });
+                $("#zoom-container plan-viewer").on('click', function (args) {
+                    console.log('Hotspot: ', args);
+                });
                 // set up canvas events
                 this.canvas.on("mouse:down", function (ev) {
                     // if the plan is in edit mode, we need to disregard this

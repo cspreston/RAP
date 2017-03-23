@@ -1265,6 +1265,10 @@
                 if (successFunction) successFunction();
             });
 
+            $("#zoom-container plan-viewer").on('click', (args: any) => {
+                console.log('Hotspot: ', args);
+            });
+
             // set up canvas events
             this.canvas.on("mouse:down", (ev: any) => {
                 // if the plan is in edit mode, we need to disregard this

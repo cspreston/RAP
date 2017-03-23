@@ -14,9 +14,9 @@
         }
     });
 
-    PlanViewer.$inject = ['$scope', '$state', '$stateParams'];
+    PlanViewer.$inject = ['$scope', '$element', '$state', '$stateParams'];
 
-    function PlanViewer($scope, $state, $stateParams) {
+    function PlanViewer($scope, $element, $state, $stateParams) {
 
         let vc = this;
         
@@ -28,6 +28,7 @@
             console.log('Fallback Image: ', vc.fallbackImage);
             console.log('Edit Mode: ', vc.editMode);
             console.log('Update Hotspot: ', vc.updateHotspot);
+            console.log('$element: ', $element);
 
             $scope.$watch('vc.editMode',
                 function(newValue, oldValue) {
@@ -125,6 +126,10 @@
                         event.dataTransfer.setData('text', JSON.stringify(overlay));
                     }
                 });
+
+            img.addEventListener('click', function () {
+                $element.triggerHandler('click', overlay);
+            });
 
             var mouseTracker = new OpenSeadragon.MouseTracker({
                 element: img
