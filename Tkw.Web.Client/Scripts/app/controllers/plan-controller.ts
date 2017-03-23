@@ -24,7 +24,6 @@
             this.CanvasScale = 1;
             this.ScaleFactor = 1.2;
 
-            this.$scope.showZoom = true;
             this.$scope.HotspotActionTypes = [];
             this.$scope.HotspotDisplayTypes = [];
             this.$scope.CurrentPlanHotspots = [];
@@ -644,7 +643,8 @@
 
         getSpotFileUrl(spotFile: any) {
             if (!spotFile) return "";
-            var fileLink = RapApp.FileUtils.getImageUrl(spotFile.BucketPath, spotFile.BucketName, spotFile.FileName);
+            //var fileLink = RapApp.FileUtils.getImageUrl(spotFile.BucketPath, spotFile.BucketName, spotFile.FileName);
+            var fileLink = spotFile.ThumbUrl;
             return fileLink;
         }
 

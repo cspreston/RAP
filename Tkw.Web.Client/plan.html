@@ -743,7 +743,6 @@
                                 <button class="btn btn-success btn-ripple pull-right btn-xs" ng-show="EditMode" ng-click="refreshPlan()" title="Normalize Plan">
                                     <i class="fa fa fa-check"></i>
                                 </button>
-                                <button class="btn btn-success btn-ripple btn-xs" ng-click="showZoom = !showZoom">Toggle Zoom</button>
                             </div>
                         </div>
 
@@ -790,7 +789,7 @@
 
                 </div>
                 
-                <div class="row" id="zoom-container" ng-show="showZoom">
+                <div class="row" id="zoom-container">
                     <plan-viewer plan="CurrentPlan" fallback-image="getPlanImage(CurrentPlan)" edit-mode="EditMode" update-hotspot="updateHotspot(hotspot)"></plan-viewer>
                 </div>
                 
