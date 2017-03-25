@@ -739,10 +739,12 @@
                                 <button class="btn btn-success btn-ripple btn-xs" ng-click="loadOtherPlans()">Switch</button>
                                 <button class="btn btn-success btn-ripple add-icons btn-xs" ng-show="!EditMode && isInRole && !Filter" ng-class="{'selected':EditMode}" ng-click="toggleEditMode()" ng-attr-title="{{EditMode?'View is in edit mode':'View is in display mode'}}">Edit Mode</button>
                                 <button class="btn btn-success btn-ripple btn-xs add-icons" ng-show="EditMode && isInRole && !Filter" ng-class="{'selected':EditMode}" ng-click="toggleEditMode()" ng-attr-title="{{EditMode?'View is in edit mode':'View is in display mode'}}">View Mode</button>
-                                <button class="btn btn-xs" ng-click="!EditMode &&  editPlan(CurrentPlan.Id)" ng-show="isInRole && !EditMode" ng-attr-disabled="{'disabled':!EditMode}" ng-class="{'btn-success btn-ripple':!EditMode}">Edit Image</button>
+                                <!--<button class="btn btn-xs" ng-click="!EditMode &&  editPlan(CurrentPlan.Id)" ng-show="isInRole && !EditMode" ng-attr-disabled="{'disabled':!EditMode}" ng-class="{'btn-success btn-ripple':!EditMode}">Edit Image</button>-->
+                                <!--
                                 <button class="btn btn-success btn-ripple pull-right btn-xs" ng-show="EditMode" ng-click="refreshPlan()" title="Normalize Plan">
                                     <i class="fa fa fa-check"></i>
                                 </button>
+
                             </div>
                         </div>
 
@@ -769,12 +771,14 @@
                             <button class="btn btn-success btn-ripple pull-right btn-xs" ng-show="HasSelectedSpot && EditMode && IsPinAction" ng-click="setPin()" title="Pin">
                                 <i class="fa fa-arrow-down"></i>
                             </button>
+                            <!--
                             <button class="btn btn-red btn-ripple pull-right btn-xs" ng-show="HasSelectedSpot && EditMode" data-toggle="modal" data-target="#delete-spot-modal">
                                 <i class="fa fa-remove"></i>
                             </button>
                             <button class="btn btn-success btn-ripple pull-right btn-xs" ng-show="HasSelectedSpot && EditMode && !HideEditSpot" data-toggle="modal" ng-click="editSelectedHotspot()" title="Edit Spot">
                                 <i class="fa fa-edit"></i>
                             </button>
+                            -->
                             <!--
                             <button class="btn btn-success btn-ripple pull-right btn-xs" data-toggle="modal" ng-click="shrinkCanvas()">
                                 -
@@ -790,7 +794,7 @@
                 </div>
                 
                 <div class="row" id="zoom-container">
-                    <plan-viewer plan="CurrentPlan" fallback-image="getPlanImage(CurrentPlan)" edit-mode="EditMode" update-hotspot="updateHotspot(hotspot)"></plan-viewer>
+                    <plan-viewer></plan-viewer>
                 </div>
                 
 

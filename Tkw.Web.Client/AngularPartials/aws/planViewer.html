@@ -1,3 +1,150 @@
-﻿<div class="well" style="height: 650px;">
-    <div id="zoomViewer" style="width: 800px; height: 600px;"></div>
+﻿<div id="zoomViewerContainer" class="well" style="height: 650px;">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-xs-12">
+            <button class="btn btn-success btn-ripple btn-xs" ng-show="vc.SelectedHotspot" data-toggle="modal" ng-click="vc.editSelectedHotspot()" title="Edit Spot">
+                <i class="fa fa-edit"></i>
+            </button>
+            <button class="btn btn-red btn-ripple btn-xs" ng-show="vc.SelectedHotspot" data-toggle="modal" ng-click="vc.confirmDelete()" title="Delete Spot">
+                <i class="fa fa-remove"></i>
+            </button>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-xs-8">
+            <div id="zoomViewer" style="width: 800px; height: 600px;"></div>
+        </div>
+        <div class="col-xs-4">
+            <div class="row" ng-show="vc.parent.EditMode" style="height: 600px; overflow-y: auto;">
+                <div ng-repeat="spotDisplayType in vc.parent.HotspotDisplayTypes" style="width: 75px; display: inline-block;">
+                    <img id="{{ spotDisplayType.Id }}" class="zoom-hotspot-source" title="{{ spotDisplayType.Name }}" data-type="{{ spotDisplayType.Type }}" data-file-name="{{ spotDisplayType.FileName }}" ng-src="{{ vc.parent.getHotspotDisplayTypeImage(spotDisplayType) }}" width="64" draggable="true" style="margin: 3px;"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Hotspot Modal -->
+<div class="modal fade full-height from-left in" id="editHotspotModal" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+    <div class="modal-dialog">
+        <ng-form name="hotspot">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Hotspot</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="legend">Hotspot Details</div>
+
+                    <div class="row">
+                        <div class="col-md-3">Name</div>
+                        <!--.col-md-3-->
+                        <div class="col-md-9">
+                            <div class="inputer">
+                                <div class="input-wrapper">
+                                    <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-model="vc.SelectedHotspot.Dto.Name" ng-attr-name="{{SelectedHotspot.Dto.Name}}" ng-required="true"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!--.col-md-9-->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">Description</div>
+                        <!--.col-md-3-->
+                        <div class="col-md-9">
+                            <div class="inputer">
+                                <div class="input-wrapper">
+                                    <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px;" ng-model="vc.SelectedHotspot.Dto.Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!--.col-md-9-->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">Type</div>
+                        <div class="col-md-9">
+                            <select id="hotspotTypeSelect" ng-model="vc.SelectedHotspot.Dto.HotspotActionTypeId">
+                                <option style="display:none" value="">select a type</option>
+                                <option ng-repeat="hotAction in vc.parent.HotspotActionTypes" ng-value="{{hotAction.Id}}" ng-selected="vc.SelectedHotspot.Dto.HotspotActionTypeId === hotAction.Id">
+                                    {{hotAction.Name}}
+                                </option>
+                            </select>
+                        </div>
+                        <!--.col-md-9-->
+                    </div>
+                    <div class="legend" ng-hide="vc.hotspotActionTypeAllowsAttachment()">This hotspot type does not allow file attachments.</div>
+                    <div class="legend" ng-show="vc.hotspotActionTypeAllowsAttachment()">Hotspot Attachments</div>
+                    <div class="row" ng-show="vc.hotspotActionTypeAllowsAttachment()">
+                        <table class="table" style="table-layout: auto;">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Delete</th>
+                                </tr>
+                                <tr ng-repeat="spotFile in vc.SelectedHotspot.Dto.Files">
+                                    <td>{{spotFile.FileName}}</td>
+                                    <td>
+                                        <div class="delete-tab-table" data-toggle="modal" ng-attr-data-target="{{'#delete-file-' + $index}}">
+                                            <i class="fa fa-trash" style="cursor:pointer; margin:10px"></i>
+                                        </div>
+                                        <div class="modal scale fade in" ng-attr-id="{{'delete-file-' + $index}}" tabindex="-1" role="dialog" aria-hidden="false" style="padding-right: 17px; z-index:9999">
+                                            <div class="modal-dialog" style="z-index:9999">
+                                                <div class="modal-content" style="z-index:9999">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title">Confirmation</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete this file?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">No<span class="ripple _13 animate" style="height: 57px; width: 57px; top: -1.17798px; left: 5.34375px;"></span></button>
+                                                        <button type="button" class="btn btn-flat btn-primary btn-ripple" data-dismiss="modal" ng-click="removeHotspotFile(spotFile)">Yes</button>
+                                                    </div>
+                                                </div><!--.modal-content-->
+                                            </div><!--.modal-dialog-->
+                                        </div>
+                                    </td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <div class="row" ng-show="vc.hotspotActionTypeAllowsAttachment()">
+                        <div class="col-md-12">Select new Attachments</div>
+                        <div class="col-md-12">
+                            Add Plan Uploader
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--File uploader stuff-->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                    <button class="btn btn-default" data-dismiss="modal" ng-click="vc.updateSelectedHotspot()">SAVE</button>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+</div>
+
+
+<!-- Delete Hotspot Modal -->
+<div class="modal scale fade" id="deleteHotspotModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this hotspot?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-flat btn-primary" ng-click="vc.deleteSelectedSpot()">Yes</button>
+            </div>
+        </div>
+    </div>
 </div>

@@ -84,7 +84,14 @@
         
         public virtual async Task AddAsync(T item)
         {
-            await this._repository.AddAsync(item);
+            try
+            {
+                await this._repository.AddAsync(item);
+            }
+            catch (Exception ex)
+            {
+                var msg = ex.Message;
+            }
         }
 
         public virtual void Update(T item)

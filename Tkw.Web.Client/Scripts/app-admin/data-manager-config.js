@@ -14,3 +14,4 @@ else {
     DataManager.RegisterCollection("TenantClients", new TKWApp.Data.LocalStorageAdapter("TenantClients", "Id"));
     DataManager.RegisterCollection("TenantUsers", new TKWApp.Data.LocalStorageAdapter("UserClients", "Id"));
 }
+//# sourceMappingURL=data-manager-config.js.map

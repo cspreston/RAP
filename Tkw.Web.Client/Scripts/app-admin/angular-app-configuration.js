@@ -80,7 +80,8 @@ var RapApp;
                 }]);
         };
         return AngularAdminApp;
-    }());
+    })();
     RapApp.AngularAdminApp = AngularAdminApp;
     RapApp.RAPAdminApp = new AngularAdminApp();
 })(RapApp || (RapApp = {}));
+//# sourceMappingURL=angular-app-configuration.js.map

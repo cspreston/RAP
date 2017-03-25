@@ -1114,9 +1114,6 @@ var RapApp;
                     if (successFunction)
                         successFunction();
                 });
-                $("#zoom-container plan-viewer").on('click', function (args) {
-                    console.log('Hotspot: ', args);
-                });
                 // set up canvas events
                 this.canvas.on("mouse:down", function (ev) {
                     // if the plan is in edit mode, we need to disregard this
@@ -1613,7 +1610,7 @@ var RapApp;
                 }
             };
             return PlanController;
-        }(Controllers.BaseController));
+        })(Controllers.BaseController);
         Controllers.PlanController = PlanController;
         function normalizeCanvas(canvas, hp) {
             if (canvas.getWidth() < hp.DisplayDetails.Position.x) {
@@ -1633,3 +1630,4 @@ var RapApp;
         }
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
+//# sourceMappingURL=plan-controller.js.map
