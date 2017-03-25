@@ -29,6 +29,13 @@
 
             console.log('Parent: ', vc.parent);
 
+            $scope.$watch('vc.parent.CurrentPlan',
+                function (newValue, oldValue) {
+                    if (newValue) {
+                        initCurrentPlan();
+                    }
+                });
+
             $scope.$watch('vc.parent.EditMode',
                 function (newValue, oldValue) {
                     if (!newValue) {
@@ -40,93 +47,6 @@
                 function (newValue, oldValue) {
                     console.log('Selected Hotpsot: ', newValue);
                 });
-
-            var zoomSource = vc.parent.CurrentPlan.PlanFile.ZoomUrl ||
-            {
-                type: 'image',
-                url: vc.parent.CurrentPlan.PlanFile.FileUrl || vc.parent.getPlanImage(vc.parent.CurrentPlan)
-            };
-
-            vc.viewer = OpenSeadragon({
-                id: 'zoomViewer',
-                prefixUrl: '/Content/Images/OpenSeaDragon/',
-                tileSources: zoomSource,
-                defaultZoomLevel: 1
-            });
-
-            var zoom = document.getElementById('zoomViewer');
-
-            zoom.addEventListener('dragover',
-                function (event) {
-                    event.preventDefault();
-                });
-
-            zoom.addEventListener('drop',
-                function (event) {
-
-                    event.preventDefault();
-
-                    var overlay = JSON.parse(event.dataTransfer.getData('text'));
-
-                    if (overlay.New) {
-                        createIconOverlay(overlay, event);
-                    }
-                    else {
-                        switch (overlay.HotspotDisplayType.Type) {
-                            case 0:
-                                moveIconOverlay(overlay, event);
-                                break;
-
-                            case 1:
-                                movePinOverlay(overlay, event);
-                                break;
-
-                            default:
-                                break;
-                        }
-                    }
-
-                });
-
-            var dimensions = JSON.parse(vc.parent.CurrentPlan.PlanFile.Dimensions || '{"height":0, "width":0}');
-
-            vc.parent.CurrentPlan.Hotspots.forEach(overlay => {
-
-                switch (overlay.HotspotDisplayType.Type) {
-                    case 0:
-                        addIconOverlay(overlay);
-                        break;
-
-                    case 1:
-                        addPinOverlay(overlay);
-
-                    default:
-                        break;
-                }
-
-            });
-
-            $('#zoomViewerContainer').on('dragstart', '.zoom-hotspot-source', function (event) {
-
-                var id = $(this).attr('id');
-                var title = $(this).attr('title');
-                var dataType = $(this).attr('data-type');
-                var dataFileName = $(this).attr('data-file-name');
-
-                var data = {
-                    New: true,
-                    Name: title,
-                    Description: '',
-                    HotspotDisplayType: {
-                        Id: parseInt(id),
-                        Type: parseInt(dataType),
-                        FileName: dataFileName
-                    },
-                    DisplayDetails: "{}"
-                };
-
-                event.originalEvent.dataTransfer.setData('text', JSON.stringify(data));
-            });
         };
 
         vc.editSelectedHotspot = function () {
@@ -257,6 +177,96 @@
                 return false;
             else
                 return true;
+        }
+
+        function initCurrentPlan() {
+            
+            var zoomSource = vc.parent.CurrentPlan.PlanFile.ZoomUrl ||
+            {
+                type: 'image',
+                url: vc.parent.CurrentPlan.PlanFile.FileUrl || vc.parent.getPlanImage(vc.parent.CurrentPlan)
+            };
+
+            vc.viewer = OpenSeadragon({
+                id: 'zoomViewer',
+                prefixUrl: '/Content/Images/OpenSeaDragon/',
+                tileSources: zoomSource,
+                defaultZoomLevel: 1
+            });
+
+            var zoom = document.getElementById('zoomViewer');
+
+            zoom.addEventListener('dragover',
+                function (event) {
+                    event.preventDefault();
+                });
+
+            zoom.addEventListener('drop',
+                function (event) {
+
+                    event.preventDefault();
+
+                    var overlay = JSON.parse(event.dataTransfer.getData('text'));
+
+                    if (overlay.New) {
+                        createIconOverlay(overlay, event);
+                    }
+                    else {
+                        switch (overlay.HotspotDisplayType.Type) {
+                            case 0:
+                                moveIconOverlay(overlay, event);
+                                break;
+
+                            case 1:
+                                movePinOverlay(overlay, event);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+
+                });
+
+            var dimensions = JSON.parse(vc.parent.CurrentPlan.PlanFile.Dimensions || '{"height":0, "width":0}');
+
+            vc.parent.CurrentPlan.Hotspots.forEach(overlay => {
+
+                switch (overlay.HotspotDisplayType.Type) {
+                    case 0:
+                        addIconOverlay(overlay);
+                        break;
+
+                    case 1:
+                        addPinOverlay(overlay);
+
+                    default:
+                        break;
+                }
+
+            });
+
+            $('#zoomViewerContainer').on('dragstart', '.zoom-hotspot-source', function (event) {
+
+                var id = $(this).attr('id');
+                var title = $(this).attr('title');
+                var dataType = $(this).attr('data-type');
+                var dataFileName = $(this).attr('data-file-name');
+
+                var data = {
+                    New: true,
+                    Name: title,
+                    Description: '',
+                    HotspotDisplayType: {
+                        Id: parseInt(id),
+                        Type: parseInt(dataType),
+                        FileName: dataFileName
+                    },
+                    DisplayDetails: "{}"
+                };
+
+                event.originalEvent.dataTransfer.setData('text', JSON.stringify(data));
+            });
         }
 
         function createIconOverlay(overlay, event) {
