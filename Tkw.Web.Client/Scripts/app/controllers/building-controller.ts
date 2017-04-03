@@ -1028,23 +1028,23 @@ module RapApp.Controllers {
         }
 
         createNewPlan() {
-            var scope: RapApp.Models.ISingleBuilding = <RapApp.Models.ISingleBuilding><any>this;
+            //var scope: RapApp.Models.ISingleBuilding = <RapApp.Models.ISingleBuilding><any>this;
 
-            scope.AddPlanModel = new RapApp.Models.BuildimgPlanUploadModel(
-                <HTMLInputElement>document.getElementById("fuPlanImage"),
-                <HTMLImageElement>document.getElementById("fuPlanImagePreview")
-            );
-            scope.AddPlanModel.Description = "Floor plan";
-            scope.AddPlanModel.BuildingId = scope.CurrentBuilding.Id;
-            scope.AddPlanModel.PlanName = "";
-            scope.AddPlanModel.Height = 600;
-            scope.AddPlanModel.Width = 900;
-            scope.AddPlanModel.PlanDescription = "";
-            scope.AddPlanModel.KeepAspectRatio = false;
+            //scope.AddPlanModel = new RapApp.Models.BuildimgPlanUploadModel(
+            //    <HTMLInputElement>document.getElementById("fuPlanImage"),
+            //    <HTMLImageElement>document.getElementById("fuPlanImagePreview")
+            //);
+            //scope.AddPlanModel.Description = "Floor plan";
+            //scope.AddPlanModel.BuildingId = scope.CurrentBuilding.Id;
+            //scope.AddPlanModel.PlanName = "";
+            //scope.AddPlanModel.Height = 600;
+            //scope.AddPlanModel.Width = 900;
+            //scope.AddPlanModel.PlanDescription = "";
+            //scope.AddPlanModel.KeepAspectRatio = false;
 
-            scope.AddPlanModel.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuPlanImage"),
-                <HTMLImageElement>document.getElementById("fuPlanImagePreview")
-            );
+            //scope.AddPlanModel.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuPlanImage"),
+            //    <HTMLImageElement>document.getElementById("fuPlanImagePreview")
+            //);
         }
 
         saveNewPlan() {

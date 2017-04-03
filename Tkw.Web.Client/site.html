@@ -112,7 +112,7 @@
     
     <!--Add AWS js-->
     <script src="Scripts/aws/app.js"></script>
-    <script src="Scripts/aws/planEditor.js"></script>
+    <script src="Scripts/aws/awsUploader.js"></script>
     <script src="Scripts/aws/planUploader.js"></script>
 
 </head>
@@ -785,90 +785,7 @@
     <!--building image info modal-->
     <!--Add building plan modal -->
     <div class="modal fade full-height from-left in" id="add_building_plan" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
-        <ng-form name="addPlan">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Add Building Plan</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="legend">Details</div>
-                        <!--
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="checkboxer">
-                                    <input id="NativeSizeCheckBox" type="checkbox" ng-true-value="true" ng-change="selectPlanSize(true)" ng-model="OriginalSize" checked="checked" ng-false-value="false" />
-                                    <label for="NativeSizeCheckBox">Original size</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="checkboxer">
-                                    <input id="CustomSizeCheckBox" type="checkbox" ng-true-value="true" ng-change="selectPlanSize(false)" ng-model="CustomSize" ng-false-value="false" />
-                                    <label for="CustomSizeCheckBox">Custom size</label>
-                                </div>
-                                <div ng-show="CustomSize">
-                                    <div class="row">
-                                        <div class="col-md-3">Width</div>
-
-                                        <div class="col-md-9">
-                                            <div class="inputer">
-                                                <div class="input-wrapper">
-                                                    <input type="number" class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Width" style="height: 38px !important;"
-                                                           ng-model="AddPlanModel.Width" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3">Height</div>
-
-                                        <div class="col-md-9">
-                                            <div class="inputer">
-                                                <div class="input-wrapper">
-                                                    <input type="number" class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Height" style="height: 38px !important;"
-                                                           ng-model="AddPlanModel.Height" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="checkboxer" ng-show="false">
-                            <input id="addPlanAspectRatioCheckBox" type="checkbox" ng-true-value="true" ng-model="AddPlanModel.KeepAspectRatio" ng-false-value="false" />
-                            <label for="addPlanAspectRatioCheckBox">Keep aspect ratio</label>
-                        </div>
-                        -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <plan-uploader building="CurrentBuilding"></plan-uploader>
-                                
-                                <!--
-                                <div class="inputer" style="display: none;">
-                                    <div class="input-wrapper k-content">
-                                        <input type="file" accept="image/*" id="fuPlanImage" multiple/>
-                                        <div class="logger well well-sm" style="margin-top: 10px">
-                                            Preview:
-                                            <br/>
-                                            <img id="fuPlanImagePreview" class="preview-image"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                -->
-                            </div>
-                            <!--.col-md-9-->
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
-                        <button type="button" class="btn btn-flat-primary btn-ripple" ng-click="saveNewPlan()" ng-disabled="addPlan.$invalid || IsSaving">SAVE</button>
-                    </div>
-                </div>
-            </div>
-        </ng-form>
+        <plan-uploader></plan-uploader>
     </div>
     <!--building plan info modal-->
     <!--Edit building plan modal -->

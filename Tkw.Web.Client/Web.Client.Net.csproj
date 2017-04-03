@@ -320,9 +320,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AngularPartials\app-menu.html" />
-    <Content Include="AngularPartials\aws\planEditor.html" />
     <Content Include="AngularPartials\aws\planUploader.html" />
     <Content Include="AngularPartials\aws\planViewer.html" />
+    <Content Include="AngularPartials\aws\awsUploader.html" />
     <Content Include="AngularPartials\index.html" />
     <Content Include="AngularPartials\left-menu.html" />
     <Content Include="AngularPartials\search.html" />
@@ -347,7 +347,7 @@
     <Compile Include="Areas\Auth\Models\AccountViewModels.cs" />
     <Compile Include="Areas\Auth\Models\Signature.cs" />
     <Compile Include="Areas\Auth\Models\TokenResponseModel.cs" />
-    <Compile Include="Areas\Conf\Api\AwsPlanController.cs" />
+    <Compile Include="Areas\Conf\Api\AwsBuildingPlanController.cs" />
     <Compile Include="Areas\Conf\Api\FileManagerController.cs" />
     <Compile Include="Areas\Conf\Api\HotspotController.cs" />
     <Compile Include="Areas\Conf\Api\HotspotActionTypeController.cs" />
@@ -1522,9 +1522,9 @@
     <Content Include="Content\fontawesome\animated.less" />
     <Content Include="Scripts\app\utils\image-utils.js" />
     <Content Include="Scripts\aws\app.js" />
-    <Content Include="Scripts\aws\planEditor.js" />
     <Content Include="Scripts\aws\planUploader.js" />
     <Content Include="Scripts\aws\planViewer.js" />
+    <Content Include="Scripts\aws\awsUploader.js" />
     <Content Include="Scripts\fabric.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Content\pleasure\fonts\fontawesome-webfont.eot" />

@@ -1,56 +1,47 @@
-<div class="row">
-    <div class="col-md-3">Name</div>
-    <!--.col-md-3-->
-    <div class="col-md-9">
-        <div class="inputer">
-            <div class="input-wrapper">
-                <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-model="uc.planName" ng-attr-name="{{uc.planName}}" ng-required="true"></textarea>
+<ng-form name="addPlan">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Building Plan</h4>
+            </div>
+            <div class="modal-body">
+                <div class="legend">Details</div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">Name</div>
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-model="uc.planName" ng-attr-name="{{uc.planName}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Description</div>
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;" ng-model="uc.planDescription" ng-attr-name="{{uc.planDescription}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" ng-model="uc.fileUrl" ng-attr-name="{{uc.fileUrl}}" ng-required="true" />
+                        <input type="hidden" ng-model="uc.thumbUrl" ng-attr-name="{{uc.thumbUrl}}" ng-required="true" />
+                        <input type="hidden" ng-model="uc.zoomUrl" ng-attr-name="{{uc.zoomUrl}}" ng-required="true" />
+
+                        <aws-uploader building="uc.parent.CurrentBuilding" accept="image/*" folder="plans" thumb="true" zoom="true" done="uc.urlsCallback(value)"></aws-uploader>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                <button type="button" class="btn btn-flat-primary btn-ripple" ng-show="addPlan.$valid" ng-click="uc.saveNewPlan()">SAVE</button>
             </div>
         </div>
     </div>
-    <!--.col-md-9-->
-</div>
-
-<div class="row">
-    <div class="col-md-3">Description</div>
-    <!--.col-md-3-->
-    <div class="col-md-9">
-        <div class="inputer">
-            <div class="input-wrapper">
-                <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;" ng-model="uc.planDescription" ng-attr-name="{{uc.planDescription}}"></textarea>
-            </div>
-        </div>
-    </div>
-    <!--.col-md-9-->
-</div>
-
-<div class="well">
-	<form name="form">
-		<div ng-show="!uc.file" class="button" ngf-select ngf-change="uc.change()" ng-model="uc.file" id="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">
-			<span class="btn btn-primary">Select File</span>
-		</div>
-		<div ng-if="uc.file && !uc.progress">
-			<span ng-if="uc.file"> {{ uc.file.name }}<span>
-			<span ng-if="uc.file"> ({{ (uc.file.size/1000000).toFixed(1) }} MB) <span>
-			<button ng-if="uc.file" class="btn btn-link" ng-click="uc.upload(uc.file)" title="Upload"><i class="fa fa-upload"></i></button>
-			<button ng-if="uc.file" class="btn btn-link" ng-click="uc.remove()" title="Remove"><i class="fa fa-times text-danger"></i></button>
-		</div>
-		<div ng-if="uc.progress && !uc.processing">
-			<h3 ng-if="uc.file">Uploading {{ uc.file.name }}<h3>
-			<div class="progress">
-				<div class="progress-bar" role="progressbar" ng-attr-style="text-align: left; padding-left: 1em; min-width: 3em; width: {{ uc.progress }}%;">
-					{{ uc.progress }}%
-				</div>
-			</div>
-		</div>
-		<div ng-if="uc.thumb">
-			<h3>Creating thumbnail... <i class="fa fa-spin fa-spinner"></i></h3>
-		</div>
-		<div ng-if="uc.zoom">
-			<h3>Creating deep zoom image... <i class="fa fa-spin fa-spinner"></i></h3>
-		</div>
-		<div ng-if="uc.finished">
-			<a href="" ng-click="uc.editPlan()"><img ng-src="{{ uc.thumbUrl }}"></a>
-		</div>
-	</form>
-</div>
+</ng-form>
