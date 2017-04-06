@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <settings>
   <connections>
-    <connection Name="Common.Core" Server="WIN8\MSSQLSERVER2016" InitialCatalog="RAP#Core" UserId="sa" Password="RapSecret"></connection>
-    <connection Name="Common.Tenant" Server="WIN8\MSSQLSERVER2016" InitialCatalog="{0}" UserId="sa" Password="RapSecret"></connection>
+    <connection Name="Common.Core" Server="WIN-NFM7D4IUVM4" InitialCatalog="RAP#Core" UserId="sa" Password="RapSecret"></connection>
+    <connection Name="Common.Tenant" Server="WIN-NFM7D4IUVM4" InitialCatalog="{0}" UserId="sa" Password="RapSecret"></connection>
   </connections>
 </settings>
