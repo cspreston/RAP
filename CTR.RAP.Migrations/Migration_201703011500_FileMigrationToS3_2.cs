@@ -62,8 +62,6 @@ namespace CTR.RAP.Migrations
 
         public override void Down()
         {
-            Execute.WithConnection(rollbackDataChanges);
-
             Delete.Table("FileMigrationErrors");
         }
 
