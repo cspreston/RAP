@@ -104,16 +104,16 @@
                                     HotspotId: scope.SelectedHotspot.Dto.Id,
                                     HotspotActionTypeId: scope.SelectedHotspot.Dto.HotspotActionTypeId
                                 });
-                            progress.progress((args) => {
+                            progress.progress(function (args) {
                             });
-                            progress.finished((data) => {
+                            progress.finished(function(data) {
                                 if (i == files.length) {
                                     scope.IsSaving = false;
                                     vc.parent.reloadHotspot(vc.SelectedHotspot);
                                     $("#editHotspotModal").modal("hide");
                                 }
                             });
-                            progress.error((err) => {
+                            progress.error(function(err) {
                                 scope.IsSaving = false;
                                 $("#editHotspotModal").modal("hide");
                             });
@@ -230,7 +230,7 @@
 
             var dimensions = JSON.parse(vc.parent.CurrentPlan.PlanFile.Dimensions || '{"height":0, "width":0}');
 
-            vc.parent.CurrentPlan.Hotspots.forEach(overlay => {
+            vc.parent.CurrentPlan.Hotspots.forEach(function(overlay) {
 
                 switch (overlay.HotspotDisplayType.Type) {
                     case 0:
