@@ -490,52 +490,57 @@ module RapApp.Controllers {
         
         // returns the url for the building's featured image
         getFeaturedImage(b: any) {
-            
+
             // find featured image
             var featured = b.FeaturedImageId;
             // find featured image
             var url = null;
             for (var i = 0; i < b.BuildingImages.length; i++) {
                 if (b.BuildingImages[i].Id === featured) {
-                    url = RapApp.FileUtils.getImageUrl(b.BuildingImages[i].BucketPath, b.BuildingImages[i].BucketName, b.BuildingImages[i].FileName);
+                    url = b.BuildingImages[i].Url;
+                    //url = RapApp.FileUtils.getImageUrl(b.BuildingImages[i].BucketPath, b.BuildingImages[i].BucketName, b.BuildingImages[i].FileName);
                 }
             }
             if (!url && b.BuildingImages.length > 0) {
                 // featured image is not in the list
                 // normally this should never happen, but just in case
                 // we consider the first image as featured
-                url = RapApp.FileUtils.getImageUrl(b.BuildingImages[0].BucketPath, b.BuildingImages[0].BucketName, b.BuildingImages[0].FileName);
+                url = b.BuildingImages[0].Url;
+                //url = RapApp.FileUtils.getImageUrl(b.BuildingImages[0].BucketPath, b.BuildingImages[0].BucketName, b.BuildingImages[0].FileName);
             }
             return url;
         }    // returns the url for the building's featured image
 
         getBuildingImage(bi: any) {
-            return RapApp.FileUtils.getImageUrl(bi.BucketPath, bi.BucketName, bi.FileName);
+            return bi.Url;
+            //return RapApp.FileUtils.getImageUrl(bi.BucketPath, bi.BucketName, bi.FileName);
         }
 
         getFileLink(fi: any) {
-            var fileLink = RapApp.FileUtils.getImageUrl(fi.File.BucketPath, fi.File.BucketName, fi.File.FileName);
+            //var fileLink = RapApp.FileUtils.getImageUrl(fi.File.BucketPath, fi.File.BucketName, fi.File.FileName);
+            var fileLink = fi.File.Url;
             return fileLink;
         }
 
         getPlanThumbnail(plan: any) {
-            var fileLink = RapApp.FileUtils.getImageUrl(plan.PlanThumbnailFile.BucketPath, plan.PlanThumbnailFile.BucketName, plan.PlanThumbnailFile.FileName);
+            //var fileLink = RapApp.FileUtils.getImageUrl(plan.PlanThumbnailFile.BucketPath, plan.PlanThumbnailFile.BucketName, plan.PlanThumbnailFile.FileName);
+            var fileLink = plan.PlanFile.ThumbUrl;
             return fileLink;
         }
 
         createNewBuildingImage() {
-            var scope: RapApp.Models.ISingleBuilding = <RapApp.Models.ISingleBuilding><any>this;
-            scope.AddBuildingImageModel = new RapApp.Models.BuildimgImageUploadModel(
-                <HTMLInputElement>document.getElementById("fuBuildingImage"),
-                <HTMLImageElement>document.getElementById("fuBuildingImagePreview")
-            );
-            scope.AddBuildingImageModel.Height = 300;
-            scope.AddBuildingImageModel.Width = 300;
-            scope.AddBuildingImageModel.Description = "Building image";
-            scope.AddBuildingImageModel.BuildingId = scope.CurrentBuilding.Id;
-            scope.AddBuildingImageModel.KeepAspectRatio = false;
+            //var scope: RapApp.Models.ISingleBuilding = <RapApp.Models.ISingleBuilding><any>this;
+            //scope.AddBuildingImageModel = new RapApp.Models.BuildimgImageUploadModel(
+            //    <HTMLInputElement>document.getElementById("fuBuildingImage"),
+            //    <HTMLImageElement>document.getElementById("fuBuildingImagePreview")
+            //);
+            //scope.AddBuildingImageModel.Height = 300;
+            //scope.AddBuildingImageModel.Width = 300;
+            //scope.AddBuildingImageModel.Description = "Building image";
+            //scope.AddBuildingImageModel.BuildingId = scope.CurrentBuilding.Id;
+            //scope.AddBuildingImageModel.KeepAspectRatio = false;
 
-            scope.AddBuildingImageModel.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuBuildingImage"), <HTMLImageElement>document.getElementById("fuBuildingImagePreview"));
+            //scope.AddBuildingImageModel.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuBuildingImage"), <HTMLImageElement>document.getElementById("fuBuildingImagePreview"));
         }
 
         saveNewBuildingImage() {
@@ -1417,11 +1422,11 @@ module RapApp.Controllers {
         }
 
         foldActAddFile() {
-            var self: any = <any>this;
-            self.Controller.Uploader = new TKWApp.Services.FileUploader();
-            self.Controller.Uploader.registerUploader(<HTMLInputElement>document.getElementById("fuFolderFile"));
-            self.Controller.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuFolderFile"), <HTMLImageElement>document.getElementById("fuFolderFile"));
-            (<any>jQuery("#tree_info_add_file")).modal("show");
+            //var self: any = <any>this;
+            //self.Controller.Uploader = new TKWApp.Services.FileUploader();
+            //self.Controller.Uploader.registerUploader(<HTMLInputElement>document.getElementById("fuFolderFile"));
+            //self.Controller.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuFolderFile"), <HTMLImageElement>document.getElementById("fuFolderFile"));
+            //(<any>jQuery("#tree_info_add_file")).modal("show");
         }
 
         createFile() {

@@ -1228,6 +1228,9 @@ namespace Web.Client.Net.Areas.Conf.Api
                     BucketPath = b.File.FileBucket.PhysicalPath,
                     FileName = b.File.Name,
                     FileDescription = b.File.Description,
+                    Url = b.File.Url,
+                    ThumbUrl = b.File.ThumbUrl,
+                    ZoomUrl = b.File.ZoomUrl
                 }).ToList(),
                 BuildingDisasterInfos = item.BuildingDisasterInfos != null ? item.BuildingDisasterInfos.Where(z => z.IsActive).Select(b => new BuildingDisasterInfoDto()
                 {
@@ -1242,7 +1245,10 @@ namespace Web.Client.Net.Areas.Conf.Api
                         BucketName = b.File.FileBucket.Name,
                         BucketPath = b.File.FileBucket.PhysicalPath,
                         FileName = b.File.Name,
-                        FileDescription = b.File.Description
+                        FileDescription = b.File.Description,
+                        FileUrl = b.File.Url,
+                        ThumbUrl = b.File.ThumbUrl,
+                        ZoomUrl = b.File.ZoomUrl
                     }
                 }).ToList().OrderBy(di => di.File.FileName).ToList() : new List<BuildingDisasterInfoDto>(),
                 BuildingFiles = item.BuildingFiles.Where(z => z.IsActive).Select(b => new BuildingFileDto()
@@ -1259,7 +1265,10 @@ namespace Web.Client.Net.Areas.Conf.Api
                         BucketName = b.File.FileBucket.Name,
                         BucketPath = b.File.FileBucket.PhysicalPath,
                         FileName = b.File.Name,
-                        FileDescription = b.File.Description
+                        FileDescription = b.File.Description,
+                        FileUrl = b.File.Url,
+                        ThumbUrl = b.File.ThumbUrl,
+                        ZoomUrl = b.File.ZoomUrl
                     }
                 }).ToList(),
                 BuildingPlans = item.BuildingPlans.Where(z => z.IsActive).OrderBy(x => x.Order).ThenBy(x => x.Name).ThenBy(x => x.CreateDate).Select(c => new BuildingPlanDto()
@@ -1277,7 +1286,10 @@ namespace Web.Client.Net.Areas.Conf.Api
                         BucketName = c.PlanThumbnailFile.FileBucket.Name,
                         BucketPath = c.PlanThumbnailFile.FileBucket.PhysicalPath,
                         FileName = c.PlanThumbnailFile.Name,
-                        FileDescription = c.PlanThumbnailFile.Description
+                        FileDescription = c.PlanThumbnailFile.Description,
+                        FileUrl = c.PlanThumbnailFile.Url,
+                        ThumbUrl = c.PlanThumbnailFile.ThumbUrl,
+                        ZoomUrl = c.PlanThumbnailFile.ZoomUrl
                     },
                     PlanFile = new FileWithButcketDTO
                     {
@@ -1285,7 +1297,10 @@ namespace Web.Client.Net.Areas.Conf.Api
                         BucketName = c.PlanFile.FileBucket.Name,
                         BucketPath = c.PlanFile.FileBucket.PhysicalPath,
                         FileName = c.PlanFile.Name,
-                        FileDescription = c.PlanFile.Description
+                        FileDescription = c.PlanFile.Description,
+                        FileUrl = c.PlanFile.Url,
+                        ThumbUrl = c.PlanFile.ThumbUrl,
+                        ZoomUrl = c.PlanFile.ZoomUrl
                     }
                 }).ToList(),
                 // Convert list of PrincingInfo to PrincingInfoDto

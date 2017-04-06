@@ -26,6 +26,7 @@
 		au.progress = 0;
 		au.processing = false;
 		au.finished = false;
+        au.fileName = '';
 	    au.fileUrl = '';
         au.awsUrl = '';
 		au.thumbUrl = '';
@@ -46,6 +47,8 @@
 		    let path = au.fileUrl.replace(newName, '');
 
 		    file = Upload.rename(file, newName);
+
+		    au.fileName = newName;
 
 		    $http.post('http://localhost:3000/s3/presign', {
 		        path: path,
@@ -115,6 +118,7 @@
 
                         au.done({
                             value: {
+                                fileName: au.fileName,
                                 fileUrl: au.awsUrl,
                                 thumbUrl: au.thumbUrl,
                                 zoomUrl: au.zoomUrl
