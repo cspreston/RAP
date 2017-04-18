@@ -88,12 +88,13 @@
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="CameraUsesGeolocation" value="false" />
+    <preference name="Fullscreen" value="True" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="SplashScreen" value="screen" />
     <preference name="windows-target-version" value="8.1" />
     <preference name="KeepRunning" value="true" />
     <preference name="ShowTitle" value="True" />
     <preference name="InAppBrowserStorageEnabled" value="True" />
     <preference name="deployment-target" value="8.1" />
-    <preference name="Fullscreen" value="True" />
     <preference name="Orientation" value="all" />
 </widget>
