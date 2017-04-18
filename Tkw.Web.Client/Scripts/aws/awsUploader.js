@@ -24,7 +24,7 @@
 
         init();
 
-        $scope.$on('aws-uploader-clear', function(event, data) {
+        $scope.$on('aws-uploader-init', function(event, data) {
             init();
         });
 

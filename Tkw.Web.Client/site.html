@@ -116,6 +116,7 @@
     <script src="Scripts/aws/planUploader.js"></script>
     <script src="Scripts/aws/imageUploader.js"></script>
     <script src="Scripts/aws/fileUploader.js"></script>
+    <script src="Scripts/aws/disasterInfoUploader.js"></script>
 
 </head>
 
@@ -814,68 +815,7 @@
     <!--file modal-->
     <!--Add disaster info modal-->
     <div class="modal fade full-height from-left in" id="add_building_disaster_info" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
-        <div class="modal-dialog">
-            <ng-form name="disasterInfo">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Add Disaster Info File</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="legend">Details</div>
-
-                        <div class="row">
-                            <div class="col-md-3">Name</div>
-                            <!--.col-md-3-->
-                            <div class="col-md-9">
-                                <div class="inputer">
-                                    <div class="input-wrapper">
-                                        <textarea class="form-control js-auto-size" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-attr-name="{{AddDisasterInfoModel.DisasterInfoName}}"
-                                                  ng-model="AddDisasterInfoModel.DisasterInfoName" ng-required="true"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.col-md-9-->
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-3">Description</div>
-                            <!--.col-md-3-->
-                            <div class="col-md-9">
-                                <div class="inputer validation">
-                                    <div class="input-wrapper">
-                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;"
-                                                  ng-model="AddDisasterInfoModel.DisasterInfoDescription" ng-attr-name="{{AddDisasterInfoModel.DisasterInfoDescription}}"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.col-md-9-->
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-3">Select File</div>
-                            <!--.col-md-3-->
-                            <div class="col-md-9">
-                                <div class="inputer">
-                                    <div class="input-wrapper k-content">
-                                        <input type="file" id="fuDisasterInfo" multiple />
-                                        <div class="logger well well-sm" style="margin-top:10px; display:none">
-                                            Preview:
-                                            <br />
-                                            <img id="fuDisasterInfoPreview" class="preview-image" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.col-md-9-->
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
-                        <button type="button" ng-disabled="disasterInfo.$invalid || IsSaving" class="btn btn-flat-primary btn-ripple" ng-click="saveNewDisasterInfo()">SAVE</button>
-                    </div>
-                </div>
-            </ng-form>
-        </div>
+        <disaster-info-uploader></disaster-info-uploader>
     </div>
     <!--file modal-->
     <!--Edit disaster info modal-->

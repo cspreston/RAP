@@ -66,7 +66,7 @@
 
                     $('#add_building_file').modal('hide');
 
-                    $scope.$broadcast('aws-uploader-clear');
+                    $scope.$broadcast('aws-uploader-init');
                 },
                 function (error) {
                     console.log(error);

@@ -322,6 +322,7 @@
     <Content Include="AngularPartials\app-menu.html" />
     <Content Include="AngularPartials\aws\fileUploader.html" />
     <Content Include="AngularPartials\aws\imageUploader.html" />
+    <Content Include="AngularPartials\aws\disasterInfoUploader.html" />
     <Content Include="AngularPartials\aws\planUploader.html" />
     <Content Include="AngularPartials\aws\planViewer.html" />
     <Content Include="AngularPartials\aws\awsUploader.html" />
@@ -349,6 +350,7 @@
     <Compile Include="Areas\Auth\Models\AccountViewModels.cs" />
     <Compile Include="Areas\Auth\Models\Signature.cs" />
     <Compile Include="Areas\Auth\Models\TokenResponseModel.cs" />
+    <Compile Include="Areas\Conf\Api\AwsBuildingDisasterInfoController.cs" />
     <Compile Include="Areas\Conf\Api\AwsBuildingFileController.cs" />
     <Compile Include="Areas\Conf\Api\AwsBuildingImageController.cs" />
     <Compile Include="Areas\Conf\Api\AwsBuildingPlanController.cs" />
@@ -1528,6 +1530,7 @@
     <Content Include="Scripts\aws\app.js" />
     <Content Include="Scripts\aws\fileUploader.js" />
     <Content Include="Scripts\aws\imageUploader.js" />
+    <Content Include="Scripts\aws\disasterInfoUploader.js" />
     <Content Include="Scripts\aws\planUploader.js" />
     <Content Include="Scripts\aws\planViewer.js" />
     <Content Include="Scripts\aws\awsUploader.js" />
