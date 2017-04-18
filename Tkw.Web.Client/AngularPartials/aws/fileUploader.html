@@ -1,0 +1,44 @@
+﻿<ng-form name="addFile">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Building File</h4>
+            </div>
+            <div class="modal-body">
+                <div class="legend">File Details</div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">Name</div>
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-model="fu.fileTitle" ng-attr-name="{{fu.fileTitle}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">Description</div>
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;" ng-model="fu.fileDescription" ng-attr-name="{{fu.fileDescription}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" ng-model="fu.fileUrl" ng-attr-name="{{fu.fileUrl}}" ng-required="true" />
+
+                        <aws-uploader building="fu.parent.CurrentBuilding" accept="application/*" folder="files" thumb="false" zoom="false" done="fu.urlsCallback(value)"></aws-uploader>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                <button type="button" class="btn btn-flat-primary btn-ripple" ng-show="addFile.$valid" ng-click="fu.saveNewFile()">SAVE</button>
+            </div>
+        </div>
+    </div>
+</ng-form>

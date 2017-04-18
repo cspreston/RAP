@@ -27,7 +27,17 @@
             <h3>Processing uploaded file... <i class="fa fa-spin fa-spinner"></i></h3>
         </div>
         <div ng-if="au.finished">
-            <img ng-src="{{ au.thumbUrl }}">
+            <img ng-if="au.thumb" ng-src="{{ au.thumbUrl }}">
+            <div ng-if="!au.thumb">
+                <div>
+                    {{ au.fileName }}
+                </div>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" ng-attr-style="text-align: left; padding-left: 1em; min-width: 3em; width: {{ au.progress }}%;">
+                        {{ au.progress }}%
+                    </div>
+                </div>
+            </div>
         </div>
     </form>
 </div>
