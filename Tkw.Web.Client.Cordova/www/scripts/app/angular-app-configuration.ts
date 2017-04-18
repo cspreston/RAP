@@ -11,9 +11,7 @@
             }
 
             // configure angular app
-            this.App = angular.module("RAPApp", ['ngDragDrop', "kendo.directives", 'ui.sortable']).config(function ($sceDelegateProvider) {
-                $sceDelegateProvider.resourceUrlWhitelist(['**']);
-            });
+            this.App = angular.module("RAPApp", ['ngMap', 'ngDragDrop', "kendo.directives", 'ui.sortable', 'CTR-RAP-AWS']);
             // register app directives
             this.registerDirectives();
             // register app services - for directives that need services - stupid directives
@@ -21,6 +19,7 @@
             // register app controllers
             this.registerControllers();
         }
+
         registerDirectives() {
             // register angular directive for image fallback source
             this.App.directive('fallbackSrc', () => {
@@ -112,8 +111,7 @@
                 return {
                     restrict: 'E',
                     replace: true,
-                    //template: '<div class="loading-bar indeterminate margin-top-10"></div>',
-                    template: '<div style="position: fixed; left: 45%; top: 50%; display: none;z-index:999999999"><img src="Content/loaders/spinningwheel.gif"></img></div>',
+                    template: '<div class="loading-bar indeterminate margin-top-10"></div>',
                     link: function (scope, element, attr) {
                         scope.$watch('IsLoading', function (val) {
                             if (val)
@@ -212,10 +210,7 @@
                                     // apply the function given in on the element's on-long-press attribute
                                     $((<any>$attrs).$$element[0]).find('img').addClass("spot-touched");
                                     (<any>scope).$apply(function () {
-                                        (<any>scope).$eval((<any>$attrs).onLongPress);
-                                        $("#sitekey").hide();
-                                        $("#sitekeyPoint").hide();
-                                        $('#main').show();
+                                        (<any>scope).$eval((<any>$attrs).onLongPress)
                                     });
                                 }
                             }, 600);
@@ -310,17 +305,7 @@
             // register controllers used in the app
             this.App.controller("BuildingsController", ["$scope", ($scope) =>
                 new RapApp.Controllers.BuildingsController($scope)]);
-
-            this.App.controller("OfflineBuildingsController", ["$scope", ($scope) =>
-                new RapApp.Controllers.OfflineBuildingController($scope)]);
-
-
-            this.App.controller("BuildingController", ["$scope", ($scope) => new RapApp.Controllers.BuildingController($scope)]);
-
-            this.App.controller("OfflinePlanController", ["$scope", ($scope) =>
-                new RapApp.Controllers.OfflinePlanController($scope)]);
-
-            this.App.controller("OfflineBuildingController", ["$scope", ($scope) => new RapApp.Controllers.OfflineBuildingController($scope)]);
+            this.App.controller("BuildingController", ["$scope", ($scope) =>new RapApp.Controllers.BuildingController($scope)]);
 
             this.App.controller("PricingInfosController", ["$scope", ($scope) =>
                 new RapApp.Controllers.PricingInfoController($scope, true, false)]);

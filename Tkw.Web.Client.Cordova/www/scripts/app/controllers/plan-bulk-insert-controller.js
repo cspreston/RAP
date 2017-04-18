@@ -12,8 +12,8 @@ var RapApp;
             // initializes the controller
             function PlanBulkInsertController($scope) {
                 var _this = this;
+                _super.call(this, $scope);
                 this.$scope = $scope;
-                _super.call(this);
                 // get the current plan id
                 this.BuildingId = TKWApp.HardRouting.ApplicationRoutes.UriUtils.UriParameters["id"];
                 this.$scope.BuildingId = this.BuildingId;

@@ -1,25 +1,3 @@
-//document.addEventListener("deviceready", getStorageSettings, false);
-//function getStorageSettings() {
-
-//    window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
-//    window.storageInfo = window.storageInfo || window.webkitStorageInfo;
-
-//    var LocalFileSystem = null         // DOMFileSystem instance
-//           , fsType = PERSISTENT       // PERSISTENT vs. TEMPORARY storage
-//           , fsSize = 10 * 1024 * 1024 // size (bytes) of needed space
-//    ;
-//    function errorHandler(err) {
-//        console.log(JSON.stringify(err));
-//    }
-
-//    window.requestFileSystem(PERSISTENT, 10 * 1024 * 1024 /*5MB*/, function (fs) {
-//        LocalFileSystem = fs;
-//        TKWApp.Configuration.ConfigurationManager.LocalUri = fs.root.toURL();
-//        console.log("Root file: " + TKWApp.Configuration.ConfigurationManager.LocalUri);
-//    }, errorHandler);
-//}
-
-
 var TKWApp;
 (function (TKWApp) {
     var Configuration;
@@ -61,21 +39,13 @@ var TKWApp;
         /// Configuration manager class - used to store all configuration options
         var ConfigurationManagerClass = (function () {
             function ConfigurationManagerClass() {
+                //if (window.location.href.indexOf("52.21.240.181") >= 0) this.ServerUri = "http://52.21.240.181:8888";
                 this.WorkMode = WorkMode.ONLINE;
-                this.AppType = ApplicationType.MOBILE;
-                this.ServerUri = "http://www.readyactionplan.com/";
-                this.LocalUri = "";
-                if (this.LocalUri == "") {
-                    console.log("set in ctr");
-                    this.LocalUri = window.localStorage.getItem("LocalUri");
-                }
-
-                if (Configuration.IsMobile.Android()) {
-                    // debugger    file:///data/user/0/com.readyactionplan.rap/files/files/
-                    // //this.LocalUri = 'file:///data/user/0/com.readyactionplan.rap/files/files/';
-                }
-                if (Configuration.IsMobile.iOS()) {
-                    this.ServerUri = "https://www.readyactionplan.com/";
+                this.AppType = ApplicationType.WEB;
+                this.ServerUri = "http://readyactionplan.com/api/niv";
+                if (Configuration.IsMobile.any()) {
+                    // this is a mobile device - return the mobile workmode
+                    this.AppType = ApplicationType.MOBILE;
                 }
             }
             return ConfigurationManagerClass;
@@ -85,3 +55,4 @@ var TKWApp;
         Configuration.ConfigurationManager = new TKWApp.Configuration.ConfigurationManagerClass();
     })(Configuration = TKWApp.Configuration || (TKWApp.Configuration = {}));
 })(TKWApp || (TKWApp = {}));
+//# sourceMappingURL=configuration.js.map

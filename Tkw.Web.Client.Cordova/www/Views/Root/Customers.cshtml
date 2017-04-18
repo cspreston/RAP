@@ -1,0 +1,376 @@
+﻿@model List<BusinessObjects.CompanyDto>
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div id="saveCompanyFailure" class="toastr-notify btn-ripple" data-toastr-title="Error" data-toastr-notification="A company with the same data already exists."
+     data-toastr-position="toast-bottom-right"
+     data-toastr-type="error">
+</div>
+<div class="page-header full-content bg-blue">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>
+                RAP
+                <small>Companies Administration</small>
+            </h1>
+        </div><!--.col-->
+        <div class="col-sm-6">
+            <ol class="breadcrumb"></ol>
+        </div><!--.col-->
+    </div><!--.row-->
+</div>
+<div class="content" ng-controller="TenantController">
+
+    <div class="row">
+        <button class="btn btn-success btn-ripple pull-right" data-toggle="modal" ng-show="isInRole" data-target="#add-tenant-modal" ng-click="addNewTenant()">
+            Add Company
+        </button>
+        <br /><br />
+        <loading></loading>
+    </div>
+    <div class="row" style="padding-bottom:5px;overflow-x:scroll;height: 533px;">  
+        <div id="grid"></div>
+        <script>
+            var myKendoGrid = $("#grid").kendoGrid;
+        </script>
+    </div>
+
+    <div class="modal fade full-height from-left" id="add-tenant-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" style="padding:0;">
+                    <ng-form name="company">
+                        <div class="modal-body">
+                            <div class="legend">Please type in the new company's details.</div>
+                            <div class="row">
+                                <div class="col-md-3">Name</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Company name"
+                                                      style="height: 38px !important;" ng-model="EditTenant.Name" ng-attr-name="{{EditTenant.Name}}" ng-required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Username</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Company Username" style="height: 38px !important;"
+                                                      ng-model="EditTenant.UserName" ng-attr-name="{{EditTenant.UserName}}" ng-required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Phone</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Company phone" style="height: 38px !important;"
+                                                      ng-model="EditTenant.Phone" ng-attr-name="{{EditTenant.Phone}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Address</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Company address" style="height: 38px !important;" ng-model="EditTenant.Address"
+                                                      ng-attr-name="{{EditTenant.Address}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">City</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Company city" style="height: 38px !important;" ng-model="EditTenant.City"
+                                                      ng-attr-name="{{EditTenant.City}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">State</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Company state" style="height: 38px !important;" ng-model="EditTenant.State"
+                                                      ng-attr-name="{{EditTenant.State}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">ZIP</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Company ZIP" style="height: 38px !important;" ng-model="EditTenant.ZIP"
+                                                      ng-attr-name="{{EditTenant.ZIP}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Email</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Company email address" style="height: 38px !important;"
+                                                      ng-model="EditTenant.Email" ng-attr-name="{{EditTenant.Email}}" ng-required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-3">Website</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Company website" style="height: 38px !important;" ng-model="EditTenant.Website"
+                                                      ng-attr-name="{{EditTenant.Website}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                        </div>
+                    </ng-form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-flat-primary" ng-disabled="company.$invalid" ng-click="insertTenant()">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade full-height from-left" id="edit-tenant-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" style="padding:0;">
+                    <ng-form name="companyUpdate">
+                        <div class="modal-body">
+                            <div class="legend">Update details for the company <b>{{EditTenant.Name}}</b> </div>
+                            <div class="row">
+                                <div class="col-md-3">Name</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Company name"
+                                                      style="height: 38px !important;" ng-model="EditTenant.Name" ng-attr-name="{{EditTenant.Name}}" ng-required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">UserName</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Company Username" style="height: 38px !important;"
+                                                      ng-model="EditTenant.UserName" ng-attr-name="{{EditTenant.UserName}}" ng-required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row" >
+                                <div class="col-md-3">Password</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea id="rawPass" class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Password" style="height: 38px !important;"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Phone</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client phone" style="height: 38px !important;" ng-model="EditTenant.Phone"
+                                                      ng-attr-name="{{EditTenant.Phone}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Address</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client address" style="height: 38px !important;" ng-model="EditTenant.Address"
+                                                      ng-attr-name="{{EditTenant.Address}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Email</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter email" style="height: 38px !important;" ng-model="EditTenant.Email"
+                                                      ng-attr-name="{{EditTenant.Email}}" ng-required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">City</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client city" style="height: 38px !important;" ng-model="EditTenant.City"
+                                                      ng-attr-name="{{EditTenant.City}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">State</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client ZIP" style="height: 38px !important;" ng-model="EditTenant.State"
+                                                      ng-attr-name="{{EditTenant.State}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">ZIP</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client ZIP" style="height: 38px !important;" ng-model="EditTenant.ZIP"
+                                                      ng-attr-name="{{EditTenant.ZIP}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Website</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client website" style="height: 38px !important;" ng-model="EditTenant.Website"
+                                                      ng-attr-name="{{EditTenant.Website}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                        </div>
+                    </ng-form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-flat-primary" ng-disabled="companyUpdate.$invalid" ng-click="updateTenant()">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal scale fade" id="delete-tenant-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirm action</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to remove <span style="text-transform:uppercase;font-weight:bold">{{EditTenant.Name}}</span> from RAP context?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-flat btn-primary" ng-click="deleteTenant()">Ok</button>
+                </div>
+            </div><!--.modal-content-->
+        </div><!--.modal-dialog-->
+    </div>
+</div>
+<div class="modal scale fade" id="error-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Error on saving</h4>
+            </div>
+            <div id="error-body" class="modal-body">
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">Ok</button>
+            </div>
+        </div><!--.modal-content-->
+    </div><!--.modal-dialog-->
+</div>
+<script>
+    function errorHandler(err) {
+        alert(JSON.stringify(err));
+    }
+    $(document).ready(function () {
+        window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+        window.storageInfo = window.storageInfo || window.webkitStorageInfo;
+
+        // Request access to the file system
+        var fileSystem = null         // DOMFileSystem instance
+            , fsType = PERSISTENT       // PERSISTENT vs. TEMPORARY storage
+            , fsSize = 10 * 1024 * 1024 // size (bytes) of needed space
+        ;
+
+        window.storageInfo.requestQuota(fsType, fsSize, function (gb) {
+            window.requestFileSystem(fsType, gb, function (fs) {
+                fileSystem = fs;
+            }, errorHandler);
+        }, errorHandler);
+    });
+</script>
+
+

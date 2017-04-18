@@ -47,7 +47,7 @@
 
     export interface IStoreFunction {
         execute(data: any): IPromiss;
-        executeMethod(method: string, urlParm: string, data: any): IPromiss;
+        executeMethod(method: string, urlParm: string,  data: any): IPromiss;
     }
     export interface IDataCollection<T> {
         Name: string;
@@ -151,7 +151,7 @@
         public static defaultOptions: any = {
             dataType: "json",
             headers: {
-                // "content-type": "application/json",
+               // "content-type": "application/json",
                 "content-type": "application/x-www-form-urlencoded; charset=utf-8",
             }
         }
@@ -165,11 +165,11 @@
         }
         public suffixes: any = {
         }
-        constructor(public resourceUri, public IdProp: string = "Id") {
+        constructor(public resourceUri,public IdProp: string = "Id") {
         }
         public get(query: Query): IPromiss {
             var options: any = Object.create(JQueryAjaxODATAAdater.defaultOptions);
-
+            
             if (query) {
                 options.data = "call=1"
                 if (query.hasFilters())
@@ -184,7 +184,7 @@
                 if (JQueryAjaxODATAAdater.defaultSuffixes && JQueryAjaxODATAAdater.defaultSuffixes.get)
                     url += "/" + JQueryAjaxODATAAdater.defaultSuffixes.get;
             }
-
+            
             var ajaxResult = jQuery.ajax(url, options);
             //var ajaxResult = jQuery.get(this.resourceUri, options);
             return new DataStorePromissForJquery(ajaxResult);
@@ -207,7 +207,7 @@
                 if (JQueryAjaxODATAAdater.defaultSuffixes && JQueryAjaxODATAAdater.defaultSuffixes.put)
                     url += "/" + JQueryAjaxODATAAdater.defaultSuffixes.put;
             }
-            url += "/" + obj[this.IdProp];
+            url +=  "/" + obj[this.IdProp];
             if (!options) {
                 options = Object.create(JQueryAjaxODATAAdater.defaultOptions);
             }
@@ -218,7 +218,7 @@
             return new DataStorePromissForJquery(ajaxResult);
         }
         public edit(obj: Object, endPoint: string, options: any = null): IPromiss {
-            var url = this.resourceUri + "/" + endPoint;
+            var url = this.resourceUri + "/" +endPoint;
             if (!options) {
                 options = Object.create(JQueryAjaxODATAAdater.defaultOptions);
             }
@@ -291,8 +291,8 @@
     }
     /// Local storage based adapter - at this point this is fully implemented
     export class LocalStorageAdapter<T> implements IAdapter {
-
-        constructor(public Name: string, public IdProp: string = "Id") {
+        
+        constructor(public Name: string, public IdProp:string="Id") {
         }
         public initialize(data: any) {
             this.saveData(data);
@@ -356,12 +356,8 @@
         public post(obj: Object): IPromiss {
             if (obj) {
                 var data = this.getData(null);
-                if ((<any>obj).Id)
-                    (<any>obj)[this.IdProp] = (<any>obj).Id;
-                else {
-                    // set an offline id!?
-                    (<any>obj)[this.IdProp] = this.Name + "-" + new Date().getTime();
-                }
+                // set an offline id!?
+                (<any>obj)[this.IdProp] = this.Name + "-" + new Date().getTime();
                 data.push(obj);
                 // save changes
                 this.saveData(data);
@@ -636,10 +632,6 @@
             DataManager.RegisterCollection("Buildings",
                 new JQueryAjaxODATAAdater(TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/Building", "Id"));
 
-            DataManager.RegisterCollection("OfflineBuildings", new LocalStorageAdapter("Buildings", "Id"));
-            DataManager.RegisterCollection("OfflineHotspotDisplayTypes", new LocalStorageAdapter("HotspotDisplayTypes", "Id"));
-            DataManager.RegisterCollection("OfflineHotspotActionTypes", new LocalStorageAdapter("HotspotActionTypes", "Id"));
-
             DataManager.RegisterCollection("PricingInfos",
                 new JQueryAjaxODATAAdater(TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/PricingInfo", "Id"));
 
@@ -696,18 +688,11 @@
                 TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/FileManager", "POST"));
         }
         else {
-            DataManager.RegisterCollection("OfflineBuildings", new LocalStorageAdapter("Buildings", "Id"));
-            DataManager.RegisterCollection("OfflineHotspotDisplayTypes", new LocalStorageAdapter("HotspotDisplayTypes", "Id"));
-            DataManager.RegisterCollection("OfflineHotspotActionTypes", new LocalStorageAdapter("HotspotActionTypes", "Id"));
-
             // register building collection
             DataManager.RegisterCollection("Clients",
                 new LocalStorageAdapter("Clients", "Id"));
 
             DataManager.RegisterCollection("Buildings",
-                new LocalStorageAdapter("Buildings", "Id"));
-
-            DataManager.RegisterCollection("OfflineBuildings",
                 new LocalStorageAdapter("Buildings", "Id"));
 
             DataManager.RegisterCollection("PricingInfos",

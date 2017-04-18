@@ -11,12 +11,10 @@ var RapApp;
             __extends(BuildingsController, _super);
             // initializes the controller
             function BuildingsController($scope) {
+                _super.call(this, $scope);
                 this.$scope = $scope;
-                _super.call(this);
-                TKWApp.Configuration.ConfigurationManager.WorkMode = TKWApp.Configuration.WorkMode.ONLINE;
                 // initialize scope
                 $scope.Controller = this;
-                $scope.GoOffline = false;
                 $scope.UserName = TKWApp.Data.AuthenticationManager.AuthenticationToken.getUserName();
                 $scope.Tenant = "";
                 if (TKWApp.Data.AuthenticationManager.AuthenticationToken.getUserType() === "Root") {
@@ -47,7 +45,6 @@ var RapApp;
                 $scope.insertNewSite = this.insertNewSite;
                 $scope.loadMore = this.loadMore;
                 $scope.getBuildingUrl = this.getBuildingUrl;
-                $scope.goOfflineClick = this.goOfflineClick;
                 $scope.loadUsers = function (value) {
                     var dropdownlist = $("#select-clients").data("kendoDropDownList");
                     value = dropdownlist.value();
@@ -90,114 +87,6 @@ var RapApp;
                 $scope.createFileInfo = this.createFileInfo;
                 $scope.insertPricingInfo = this.insertPricingInfo;
             }
-            BuildingsController.prototype.goOfflineClick = function () {
-                var self = this;
-                self.IsLoading = true;
-                var results = [];
-                for (var i = 0; i < window.localStorage.length; i++) {
-                    var key = window.localStorage.key(i);
-                    if (key.slice(0, 3) === "OB_") {
-                        results.push(window.localStorage.getItem(key));
-                    }
-                }
-                window.localStorage.removeItem("HotspotDisplayTypes");
-                TKWApp.Data.DataManager.Collections["HotspotDisplayTypes"].search(null).then(function (data) {
-                    $.each(data, function (i, item) {
-                        TKWApp.Data.DataManager.Collections["OfflineHotspotDisplayTypes"].create(item).then(function (v) { }, function (success) { });
-                    });
-                }, function (error) {
-                    alert(JSON.stringify(error));
-                });
-
-                window.localStorage.removeItem("HotspotActionTypes");
-                TKWApp.Data.DataManager.Collections["HotspotActionTypes"].search(null).then(function (data) {
-                    $.each(data, function (i, item) {
-                        TKWApp.Data.DataManager.Collections["OfflineHotspotActionTypes"].create(item).then(function (v) { }, function (success) { });
-                    });
-                }, function (error) {
-                    alert(JSON.stringify(error));
-                })
-                debugger
-                TKWApp.Data.DataManager.Collections["Buildings"].edit({ "": JSON.stringify(results) }, "TakeOffLine").then(function (data) {
-                    var sec = 0;
-                    var fileA = new FileManager();
-                    for (var i = 0; i < data.length; i++) {
-                        sec = sec + 100;
-                        TKWApp.Data.DataManager.Collections["OfflineBuildings"].delete(data[i].Id).then(function (v) {
-                            TKWApp.Data.DataManager.Collections["OfflineBuildings"].create(data[i]).then(function (v) {
-                                for (var t = 0; t < data[i].BuildingImages.length; t++) {
-                                    var image = data[i].BuildingImages[t];
-                                    fileA.download_file(RapApp.FileUtils.getImageUrl(image.BucketPath, image.BucketName, image.FileName), image.BucketPath + "/" + image.BucketName, image.FileName, function (theFile) { });
-                                    sec = sec + 500;
-                                }
-                                for (var t = 0; t < data[i].BuildingPlans.length; t++) {
-                                    var plan = data[i].BuildingPlans[t].PlanFile;
-                                    sec = sec + 500;
-                                    fileA.download_file(RapApp.FileUtils.getImageUrl(plan.BucketPath, plan.BucketName, plan.FileName), plan.BucketPath + "/" + plan.BucketName, plan.FileName, function (theFile) { });
-                                    for (var j = 0; j < data[i].BuildingPlans[t].Hotspots.length; j++) {
-                                        var hp = data[i].BuildingPlans[t].Hotspots[j];
-                                        if (hp && data[i].BuildingPlans[t].Hotspots[j].Files.length > 0) {
-                                            for (var f = 0; f < hp.Files.length; f++) {
-                                                var hpFile = hp.Files[f];
-                                                fileA.download_file(RapApp.FileUtils.getImageUrl(hpFile.BucketPath, hpFile.BucketName, hpFile.FileName), hpFile.BucketPath + "/" + hpFile.BucketName + "", hpFile.FileName, function (theFile) { });
-                                                sec = sec + 500;
-                                            }
-                                        }
-                                    }
-                                }
-                            }, function (success) {
-                                
-                            });
-                        },
-                        function (success) {
-                            if (success.Code == 180) {
-                                TKWApp.Data.DataManager.Collections["OfflineBuildings"].create(data[i]).then(function (v) {
-                                    for (var t = 0; t < data[i].BuildingImages.length; t++) {
-                                        var image = data[i].BuildingImages[t];
-                                        fileA.download_file(RapApp.FileUtils.getImageUrl(image.BucketPath, image.BucketName, image.FileName), image.BucketPath + "/" + image.BucketName, image.FileName, function (theFile) { });
-                                        sec = sec + 500;
-                                    }
-                                    for (var t = 0; t < data[i].BuildingPlans.length; t++) {
-                                        var plan = data[i].BuildingPlans[t].PlanFile;
-                                        fileA.download_file(RapApp.FileUtils.getImageUrl(plan.BucketPath, plan.BucketName, plan.FileName), plan.BucketPath + "/" + plan.BucketName, plan.FileName, function (theFile) { });
-                                        sec = sec + 500;
-                                        for (var j = 0; j < data[i].BuildingPlans[t].Hotspots.length; j++) {
-                                            var hp = data[i].BuildingPlans[t].Hotspots[j];
-                                            if (hp && data[i].BuildingPlans[t].Hotspots[j].Files.length > 0) {
-                                                for (var f = 0; f < hp.Files.length; f++) {
-                                                    var hpFile = hp.Files[f];
-                                                    fileA.download_file(RapApp.FileUtils.getImageUrl(hpFile.BucketPath, hpFile.BucketName, hpFile.FileName), hpFile.BucketPath + "/" + hpFile.BucketName, hpFile.FileName, function (theFile) { });
-                                                    sec = sec + 500;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }, function (success) {
-                                    debugger
-                                });
-                            }
-                        });
-                    }
-                    self.IsLoading = false;
-                    setTimeout(function () { self.navigateUrl("OfflineDashboard", "") }, 5000);
-                }, function (success) {
-                    debugger
-                    //self.navigateUrl("OfflineDashboard", "")
-                    // on success we reload from server
-                    // this can be done in this method, but we want to keep as simple as possible
-                    if (success.status == 200) {
-                        self.IsLoading = false;
-                    }
-                    else {
-                        self.IsLoading = false;
-                    }
-                }, function (error) {
-                    self.IsLoading = false;
-                    // show bootstrap modal error
-                    // for now we show a simple alert
-                });
-            };
-            //bulk insert file info
             BuildingsController.prototype.selectBuilding = function (bld) {
                 var scope = this;
                 if ($("#" + bld).is(":checked")) {
@@ -249,7 +138,6 @@ var RapApp;
                     alert("You must select a file.");
                 }
             };
-
             //add building
             BuildingsController.prototype.createNewSite = function () {
                 var scope = this;
@@ -331,12 +219,6 @@ var RapApp;
                     self.$scope.Buildings = data.Items;
                     self.$scope.IsLoading = false;
                     self.$scope.TotalCount = data.Count;
-                    for (var i = 0; i < self.$scope.Buildings.length; i++) {
-                        if (window.localStorage.getItem("OB_" + self.$scope.Buildings[i].Id)) {
-                            self.$scope.GoOffline = true;
-                            self.$scope.Buildings[i].IsOffline = true;
-                        }
-                    }
                     // after a jquery async ajax call, sometimes angular does not know to refresh the html
                     // this forces it to do so
                     self.$scope.$apply();
@@ -379,19 +261,20 @@ var RapApp;
                 var url = null;
                 for (var i = 0; i < b.BuildingImages.length; i++) {
                     if (b.BuildingImages[i].Id === featured) {
-                        url = RapApp.FileUtils.getImageUrl(b.BuildingImages[i].BucketPath, b.BuildingImages[i].BucketName, b.BuildingImages[i].FileName);
+                        url = b.BuildingImages[i].Url;
                     }
                 }
                 if (!url && b.BuildingImages.length > 0) {
                     // featured image is not in the list
                     // normally this should never happen, but just in case
                     // we consider the first image as featured
-                    url = RapApp.FileUtils.getImageUrl(b.BuildingImages[0].BucketPath, b.BuildingImages[0].BucketName, b.BuildingImages[0].FileName);
+                    url = b.BuildingImages[0].Url;
                 }
                 return url;
             }; // returns the url for the building's featured image
             BuildingsController.prototype.getBuildingImage = function (bi) {
-                return RapApp.FileUtils.getImageUrl(bi.BucketPath, bi.BucketName, bi.FileName);
+                return bi.Url;
+                //return  RapApp.FileUtils.getImageUrl(bi.BucketPath, bi.BucketName, bi.FileName);
             };
             BuildingsController.prototype.getBuildingUrl = function (buildingId) {
                 var url = TKWApp.HardRouting.ApplicationRoutes.Routes["Site"];
@@ -401,46 +284,6 @@ var RapApp;
             return BuildingsController;
         })(Controllers.BaseController);
         Controllers.BuildingsController = BuildingsController;
-
-        function onSave(data) {
-            var deferred = $.Deferred();
-            var fileA = new FileManager();
-            for (var i = 0; i < data.length; i++) {
-                TKWApp.Data.DataManager.Collections["OfflineBuildings"].delete(data[i].Id).then(function (v) {
-                    TKWApp.Data.DataManager.Collections["OfflineBuildings"].create(data[i]).then(function (v) {
-                        for (var t = 0; t < data[i].BuildingImages.length; t++) {
-                            var image = data[i].BuildingImages[t];
-                            fileA.download_file(RapApp.FileUtils.getImageUrl(image.BucketPath, image.BucketName, image.FileName), image.BucketPath + "/" + image.BucketName, image.FileName, function (theFile) { });
-                        }
-                        for (var t = 0; t < data[i].BuildingPlans.length; t++) {
-                            var plan = data[i].BuildingPlans[t].PlanFile;
-
-                            fileA.download_file(RapApp.FileUtils.getImageUrl(plan.BucketPath, plan.BucketName, plan.FileName), plan.BucketPath + "/" + plan.BucketName, plan.FileName, function (theFile) { });
-
-                        }
-                    }, function (success) { }).done(function (d) {
-                        window.location.href = "dashboard-offline.html"
-                    });
-                }, function (success) {
-                    if (success.Code == 180) {
-                        TKWApp.Data.DataManager.Collections["OfflineBuildings"].create(data[i]).then(function (v) {
-                            for (var t = 0; t < data[i].BuildingImages.length; t++) {
-                                var image = data[i].BuildingImages[t];
-                                fileA.download_file(RapApp.FileUtils.getImageUrl(image.BucketPath, image.BucketName, image.FileName), image.BucketPath + "/" + image.BucketName, image.FileName, function (theFile) { });
-                            }
-                            for (var t = 0; t < data[i].BuildingPlans.length; t++) {
-                                var plan = data[i].BuildingPlans[t].PlanFile;
-                                fileA.download_file(RapApp.FileUtils.getImageUrl(plan.BucketPath, plan.BucketName, plan.FileName), plan.BucketPath + "/" + plan.BucketName, plan.FileName, function (theFile) { });
-                            }
-                        }, function (success) { });
-                    }
-                });
-            }
-            deferred.resolve();
-            return deferred.promise();
-        }
-        function redirect() {
-            window.location.href = "dashboard-offline.html"
-        }
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
+//# sourceMappingURL=buildings-controller.js.map

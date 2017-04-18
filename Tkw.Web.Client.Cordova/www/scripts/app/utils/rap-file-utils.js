@@ -9,29 +9,21 @@ var RapApp;
             //"FileName": "thumb4.png",
             if (TKWApp.Configuration.ConfigurationManager.WorkMode === TKWApp.Configuration.WorkMode.ONLINE) {
                 // get file from server
-                return TKWApp.Configuration.ConfigurationManager.ServerUri + "/" + bucketPath + "/" + this.escapeHtml(bucketName) + "/" + this.escapeHtml(fileName);
+                return bucketPath + "/" + this.escapeHtml(bucketName) + "/" + this.escapeHtml(fileName);
             }
             else {
-                return (TKWApp.Configuration.ConfigurationManager.LocalUri.replace("\"", '\'') + bucketPath + '/' + this.escapeHtml(bucketName) + '/' + this.escapeHtml(fileName)).replace(" ", "");
+                if (TKWApp.Configuration.ConfigurationManager.AppType == TKWApp.Configuration.ApplicationType.MOBILE) {
+                }
+                else {
+                }
             }
         };
         FileUtils.getOnlineHotspotDisplayImage = function (path) {
-            if (TKWApp.Configuration.ConfigurationManager.WorkMode === TKWApp.Configuration.WorkMode.ONLINE) {
-                // get file from server
-                return TKWApp.Configuration.ConfigurationManager.ServerUri + "/Content/Images/Hotspots/" + path;
-            }
-            else {
-                return "Content/Images/Hotspots/" + path;
-            }
+            return TKWApp.Configuration.ConfigurationManager.ServerUri + "/Content/Images/Hotspots/" + path;
         };
         FileUtils.getOfflineHotspotDisplayImage = function (path) {
-            if (TKWApp.Configuration.ConfigurationManager.WorkMode === TKWApp.Configuration.WorkMode.ONLINE) {
-                // get file from server
-                return TKWApp.Configuration.ConfigurationManager.ServerUri + "/Content/Images/Hotspots/" + path;
-            }
-            else {
-                return "Content/Images/Hotspots/" + path;
-            }
+            alert("get offline hotspot display image path not implemented");
+            return null;
         };
         FileUtils.getHotspotDisplayImage = function (path) {
             if (TKWApp.Configuration.ConfigurationManager.WorkMode == TKWApp.Configuration.WorkMode.ONLINE)
@@ -41,7 +33,6 @@ var RapApp;
         };
         FileUtils.getFileType = function (path) {
             path = path.toLowerCase();
-
             if ((new RegExp(".(jpg|png|gif|bmp|jpeg)")).test(path)) {
                 return "image";
             }
@@ -64,7 +55,7 @@ var RapApp;
             return "html";
         };
         FileUtils.escapeHtml = function (string) {
-            return string.replace("'", "%27").replace("&", "&").replace("<", "%3C").replace(">", "%3E").replace("\"", "%22").replace("?", "%3F");
+            return string.replace("'", "%27").replace("&", "&").replace("<", "%3C").replace(">", "%3E").replace("\"", "% 22");
         };
         return FileUtils;
     })();
@@ -166,3 +157,4 @@ var RapApp;
     })();
     RapApp.CanvasUtils = CanvasUtils;
 })(RapApp || (RapApp = {}));
+//# sourceMappingURL=rap-file-utils.js.map

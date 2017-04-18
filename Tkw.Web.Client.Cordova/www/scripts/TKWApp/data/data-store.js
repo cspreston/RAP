@@ -285,7 +285,6 @@ var TKWApp;
                 return data;
             };
             LocalStorageAdapter.prototype.saveData = function (data) {
-                //debugger;
                 window.localStorage.setItem(this.Name, JSON.stringify(data));
             };
             LocalStorageAdapter.prototype.get = function (query) {
@@ -293,7 +292,6 @@ var TKWApp;
                 return new DataStorePromissForStoredData(data);
             };
             LocalStorageAdapter.prototype.find = function (id) {
-                //debugger;
                 var data = this.getData(null);
                 for (var i = 0; i < data.length; i++) {
                     // check if offline ids match
@@ -326,12 +324,8 @@ var TKWApp;
             LocalStorageAdapter.prototype.post = function (obj) {
                 if (obj) {
                     var data = this.getData(null);
-                    if (obj.Id)
-                        obj[this.IdProp] = obj.Id;
-                    else {
-                        // set an offline id!?
-                        obj[this.IdProp] = this.Name + "-" + new Date().getTime();
-                    }
+                    // set an offline id!?
+                    obj[this.IdProp] = this.Name + "-" + new Date().getTime();
                     data.push(obj);
                     // save changes
                     this.saveData(data);
@@ -604,10 +598,6 @@ var TKWApp;
                 // register building collection
                 Data.DataManager.RegisterCollection("Clients", new JQueryAjaxODATAAdater(TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/Client", "Id"));
                 Data.DataManager.RegisterCollection("Buildings", new JQueryAjaxODATAAdater(TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/Building", "Id"));
-                Data.DataManager.RegisterCollection("OfflineBuildings", new LocalStorageAdapter("Buildings", "Id"));
-                Data.DataManager.RegisterCollection("OfflineHotspotDisplayTypes", new LocalStorageAdapter("HotspotDisplayTypes", "Id"));
-                Data.DataManager.RegisterCollection("OfflineHotspotActionTypes", new LocalStorageAdapter("HotspotActionTypes", "Id"));
-                Data.DataManager.RegisterCollection("OfflineBuildingPlans", new LocalStorageAdapter("BuildingPlans", "Id"));
                 Data.DataManager.RegisterCollection("PricingInfos", new JQueryAjaxODATAAdater(TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/PricingInfo", "Id"));
                 Data.DataManager.RegisterCollection("BuildingDisasterInfos", new JQueryAjaxODATAAdater(TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/BuildingDisasterInfo", "Id"));
                 Data.DataManager.RegisterCollection("ContactInfos", new JQueryAjaxODATAAdater(TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/ContactInfo", "Id"));
@@ -630,15 +620,9 @@ var TKWApp;
                 Data.DataManager.RegisterStoreFunction("FileManager", new JQueryStoreFunction(TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/FileManager", "POST"));
             }
             else {
-                Data.DataManager.RegisterCollection("OfflineBuildings", new LocalStorageAdapter("Buildings", "Id"));
-                Data.DataManager.RegisterCollection("OfflinePlans", new LocalStorageAdapter("OfflinePlans", "Id"));
-                Data.DataManager.RegisterCollection("OfflineHotspotDisplayTypes", new LocalStorageAdapter("HotspotDisplayTypes", "Id"));
-                Data.DataManager.RegisterCollection("OfflineHotspotActionTypes", new LocalStorageAdapter("HotspotActionTypes", "Id"));
-                Data.DataManager.RegisterCollection("OfflineBuildingPlans", new LocalStorageAdapter("BuildingPlans", "Id"));
                 // register building collection
                 Data.DataManager.RegisterCollection("Clients", new LocalStorageAdapter("Clients", "Id"));
                 Data.DataManager.RegisterCollection("Buildings", new LocalStorageAdapter("Buildings", "Id"));
-                Data.DataManager.RegisterCollection("OfflineBuildings", new LocalStorageAdapter("Buildings", "Id"));
                 Data.DataManager.RegisterCollection("PricingInfos", new LocalStorageAdapter("PricingInfos", "Id"));
                 Data.DataManager.RegisterCollection("BuildingDisasterInfos", new LocalStorageAdapter("BuildingDisasterInfos", "Id"));
                 Data.DataManager.RegisterCollection("ContactInfos", new LocalStorageAdapter("ContactInfos", "Id"));
@@ -659,3 +643,4 @@ var TKWApp;
         };
     })(Data = TKWApp.Data || (TKWApp.Data = {}));
 })(TKWApp || (TKWApp = {}));
+//# sourceMappingURL=data-store.js.map

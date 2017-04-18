@@ -2,8 +2,8 @@
     export class TenantClientController extends BaseController {
 
         constructor($scope: Models.ITenantClientModel) {
+            super($scope);
             this.$scope = $scope;
-            super();
             var itemTenant: RapApp.Models.ITenant;
             $scope.Tenants = new Array<Models.ITenant>();
 
@@ -147,7 +147,6 @@
             
             (<any>$scope).deleteClient = () => {
                 $scope.IsLoading = true;
-                $scope.$apply();
                 TKWApp.Data.DataManager.Collections["TenantClients"].delete($scope.EditClient.Id).then((data) => {
                 }, (success) => {
                     if (success.status === 200) {
@@ -158,10 +157,10 @@
                     }
                 }, (error) => {
                     alert(JSON.stringify(error));
-                    $scope.IsLoading = false;
-                    $scope.$apply();
+                   
                 });
                 (<any>jQuery("#delete-client-modal")).modal("hide");
+                $scope.IsLoading = false;
             }      
 
             (<any>$scope).loadTenants = () => {

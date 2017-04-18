@@ -1,0 +1,2272 @@
+﻿<!DOCTYPE html>
+
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Ready Action Plan - Site</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- BEGIN CORE CSS -->
+    <link rel="stylesheet" href="Content/pleasure/css/style.css">
+    <link rel="stylesheet" href="Content/pleasure/css/elements.css">
+    <!-- END CORE CSS -->
+
+    <link rel="stylesheet" href="Content/pleasure/css/blueimp-gallery.css">
+    <link rel="stylesheet" href="Content/pleasure/css/bootstrap-image-gallery.css">
+
+    <!-- BEGIN PLUGINS CSS -->
+    <link rel="stylesheet" href="Content/pleasure/css/social.css">
+    <!-- END PLUGINS CSS -->
+    <!-- FIX PLUGINS -->
+    <link rel="stylesheet" href="Content/pleasure/css/plugins.css">
+    <!-- END FIX PLUGINS -->
+    <!-- BEGIN SHORTCUT AND TOUCH ICONS -->
+    <link rel="shortcut icon" href="Content/pleasure/images/favicon.ico">
+    <link rel="apple-touch-icon" href="Content/pleasure/images/apple-touch-icon.png">
+    <!-- END SHORTCUT AND TOUCH ICONS -->
+    <!--Kendo styles-->
+    <link rel="stylesheet" href="Content/kendo/kendo.common-material.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.rtl.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.dataviz.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.dataviz.default.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.material.mobile.min.css">
+    <link rel="stylesheet" href="Content/kendo/kendo.material.min.css">
+    <!-- Angular Material CSS now available via Google CDN; version 0.11.2 used here -->
+    <link rel="stylesheet" href="Scripts/angular-material.css">
+
+    <!--Add jQuery-->
+    <script src="Scripts/jquery-2.1.1.js"></script>
+    <script src="Scripts/jqueryui-1.11.1.js"></script>
+    <script src="Content/pleasure/js/global-vendors.js"></script>
+    <script src="Content/pleasure/js/masonry.pkgd.min.js"></script>
+    <script src="Content/pleasure/js/jquery.blueimp-gallery.js"></script>
+    <script src="Content/pleasure/js/bootstrap-image-gallery.js"></script>
+    <script src="Content/pleasure/js/user-pages.js"></script>
+    <script src="Content/pleasure/js/maps-google.js"></script>
+    <script src="Content/pleasure/js/pleasure.js"></script>
+    <script src="Content/pleasure/js/form-tools.js"></script>
+    <script src="Content/pleasure/js/layout.js"></script>
+    <script src="Content/pleasure/js/modernizr.min.js"></script>
+    <!--Add Angular js-->
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-ng-map.js"></script>
+    <script src="Scripts/angular-dragdrop.min.js"></script>
+    <script src="Scripts/angular-material.min.js"></script>
+    <script src="Scripts/angular-animate.min.js"></script>
+    <script src="Scripts/angular-aria.min.js"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCcpxaEYveLwTHqdLM3-5FIUdBiqkOf5iI&libraries=weather,traffic,places"></script>
+    <script src="Content/pleasure/js/gmaps.js"></script>
+    <script src="Content/pleasure/js/jquery.geocomplete.min.js"></script>
+    <script src="Scripts/sortable.js"></script>
+
+    <!-- Angular Material Javascript now available via Goo  gle CDN; version 0.11.2 used here -->
+    <!-- BEGIN GLOBAL AND THEME VENDORS-->
+    <!-- BEGIN PLUGINS AREA -->
+    <!-- END PLUGINS AREA -->
+    <!-- PLUGINS INITIALIZATION AND SETTINGS -->
+    <!--Add common application services-->
+    <script src="Scripts/TKWApp/common.js"></script>
+    <script src="Scripts/TKWApp/config/configuration.js"></script>
+    <script src="Scripts/TKWApp/hard-routing/application-routes.js"></script>
+    <script src="Scripts/TKWApp/data/data-filters.js"></script>
+    <script src="Scripts/TKWApp/data/data-store.js"></script>
+    <script src="Scripts/TKWApp/data/authentication.js"></script>
+    <script src="Scripts/TKWApp/services/file-uploader.js"></script>
+
+    <!--Add angular files-->
+    <!--Add Utils-->
+    <script src="Scripts/app/utils/rap-file-utils.js"></script>
+    <script src="Scripts/app/utils/image-utils.js"></script>
+    <!--Add Models-->
+    <script src="Scripts/app/models/base-model.js"></script>
+    <script src="Scripts/app/models/file-upload-model.js"></script>
+    <script src="Scripts/app/models/building.js"></script>
+    <script src="Scripts/app/models/pricing-info.js"></script>
+    <script src="Scripts/app/models/contact-info.js"></script>
+
+    <!--Add Controllers-->
+    <script src="Scripts/app/controllers/base-controller.js"></script>
+    <script src="Scripts/app/controllers/building-controller.js"></script>
+    <script src="Scripts/app/controllers/pricing-info-controller.js"></script>
+    <script src="Scripts/app/controllers/contact-info-controller.js"></script>
+    <script src="Scripts/app/controllers/search-controller.js"></script>
+
+    <!--Add Angular app configuration-->
+    <script src="Scripts/app/angular-app-configuration.js"></script>
+    <script src="Content/kendo/kendo.all.min.js"></script>
+
+</head>
+
+<body class="site-page" ng-app="RAPApp" ng-cloak ng-controller="BuildingController">
+    <div class="nav-bar-container">
+        <!--<div ng-include="getUrl('LeftMenu')"></div>-->
+
+        <div ng-include="getUrl('LeftMenu')"></div>
+
+    </div><!--.nav-bar-container-->
+    <!--Pricing info modal for creating new pricing infos-->
+    <div class="modal fade full-height from-left in" id="add_pricing_info" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <div class="modal-dialog">
+            <ng-form name="pricing">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Pricing Info</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="legend">
+                            <span>Pricing Information</span>
+                        </div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Name</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-model="EditPricingInfo.Name" ng-attr-name="{{EditPricingInfo.Name}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Description</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px;" ng-model="EditPricingInfo.Description" ng-attr-name="{{EditPricingInfo.Description}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Unit Price</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Unit Price" style="height: 38px !important;" ng-model="EditPricingInfo.UnitPrice" ng-attr-name="{{EditPricingInfo.UnitPrice}}" ng-required="true" type="number"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Quantity</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Quantity" style="height: 38px !important;" ng-model="EditPricingInfo.Quantity" ng-attr-name="{{EditPricingInfo.Quantity}}" ng-required="true" type="number"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Units</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Units" style="height: 38px !important;" ng-model="EditPricingInfo.Units" ng-attr-name="{{EditPricingInfo.Units}}" ng-required="true" type="text"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="checkboxer">
+                            <input id="fileCheckBox" type="checkbox" ng-click="checkFileBox()" ng-checked="isFileCheckBoxSelected()">
+                            <label for="fileCheckBox">Load from file</label>
+                        </div>
+                        <div class="row" ng-show="isFileCheckBoxSelected()">
+                            <div class="col-md-3">Select File</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper k-content">
+                                        <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" id="fuPricingInfo" />
+                                        <div style="display:none;">
+                                            <img id="fuPricingInfoPreview" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                        <button type="button" class="btn btn-flat-primary btn-ripple" ng-click="insertPricingInfo()" ng-show="!isFileCheckBoxSelected()" ng-disabled="pricing.$invalid || IsSaving">SAVE</button>
+                        <button type="button" class="btn btn-flat-primary btn-ripple" ng-click="insertPricingInfo()" ng-show="isFileCheckBoxSelected()" ng-disabled="IsSaving">SAVE</button>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+    </div>
+
+    <!--Edit Pricing info modal for editing pricing infos-->
+    <div class="modal fade full-height from-left in" id="edit-pricing" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <div class="modal-dialog">
+            <ng-form name="edit-pricing">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Pricing Info</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="legend">Pricing Information</div>
+
+                        <div class="row">
+                            <div class="col-md-3">Name</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;"
+                                                  ng-model="EditPricingInfo.Name" ng-attr-name="{{EditPricingInfo.Name}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Description</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px;" ng-model="EditPricingInfo.Description" ng-attr-name="{{EditPricingInfo.Description}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Unit Price</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Unit Price" style="height: 38px !important;" ng-model="EditPricingInfo.UnitPrice" ng-attr-name="{{EditPricingInfo.UnitPrice}}" ng-required="true" type="number"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Quantity</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Quantity" style="height: 38px !important;"
+                                                  ng-model="EditPricingInfo.Quantity" ng-attr-name="{{EditPricingInfo.Quantity}}" ng-required="true" type="number"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">Units</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1"
+                                                  placeholder="Enter Units" style="height: 38px !important;" ng-model="EditPricingInfo.Units" ng-attr-name="{{EditPricingInfo.Units}}" ng-required="true" type="text"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                        <button type="button" class="btn btn-flat-primary btn-ripple" ng-click="savePricingInfo()" ng-disabled="edit-pricing.$invalid || IsSaving">SAVE</button>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+    </div>
+
+    <!--Contact info modal for creating new contact infos-->
+    <div class="modal fade full-height from-left in" id="add_contact_info" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <div class="modal-dialog">
+            <ng-form name="contact">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Contact Info</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="legend">Contact Information</div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Title</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Title" style="height: 38px !important;" ng-model="EditContactInfo.Title"
+                                                  ng-attr-name="{{EditContactInfo.Title}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">First Name</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter First Name" style="height: 38px;" ng-model="EditContactInfo.FirstName"
+                                                  ng-attr-name="{{EditContactInfo.FirstName}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Last Name</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Last Name" style="height: 38px;" ng-model="EditContactInfo.LastName"
+                                                  ng-attr-name="{{EditContactInfo.LastName}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Address</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Address" style="height: 38px;" ng-model="EditContactInfo.Address"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Address 2</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Address 2" style="height: 38px;" ng-model="EditContactInfo.SecondAddress"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">City</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter City" style="height: 38px;" ng-model="EditContactInfo.City"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">State</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter State" style="height: 38px;" ng-model="EditContactInfo.State"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">ZIP</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter ZIP" style="height: 38px;" ng-model="EditContactInfo.ZIP"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Role</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Role" style="height: 38px;" ng-model="EditContactInfo.Role"
+                                                  ng-attr-name="{{EditContactInfo.Role}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Email Address</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Email Address" style="height: 38px;" ng-model="EditContactInfo.EmailAddress"
+                                                  ng-attr-name="email" type="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"></textarea>
+                                    </div>
+                                    <span style="color:red" ng-show="contact.email.$error.email && contact.email.$touched">Invalid email address.</span>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Phone</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Phone" style="height: 38px;" ng-model="EditContactInfo.Phone"
+                                                  ng-attr-name="{{EditContactInfo.Phone}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row" ng-show="!isFileCheckBoxSelected()">
+                            <div class="col-md-3">Mobile Phone</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Mobile Phone" style="height: 38px;" ng-model="EditContactInfo.MobilePhone"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="checkboxer">
+                            <input id="ciFileCheckBox" type="checkbox" ng-click="checkFileBox()" ng-checked="isFileCheckBoxSelected()">
+                            <label for="ciFileCheckBox">Load from file</label>
+                        </div>
+                        <div class="row" ng-show="isFileCheckBoxSelected()">
+                            <div class="col-md-3">Select File</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper k-content">
+                                        <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" id="ciPricingInfo" />
+                                        <div style="display:none;">
+                                            <img id="ciPricingInfoPreview" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                        <button type="button" class="btn btn-flat-primary btn-ripple" ng-click="insertContactInfo()" ng-show="!isFileCheckBoxSelected()" ng-disabled="contact.$invalid || IsSaving">SAVE</button>
+                        <button type="button" class="btn btn-flat-primary btn-ripple" ng-click="insertContactInfo()" ng-show="isFileCheckBoxSelected()" ng-disabled="IsSaving">SAVE</button>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+    </div>
+
+    <!--Edit Contact info modal for editing contact infos-->
+    <div class="modal fade full-height from-left in" id="edit_contact_info" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <div class="modal-dialog">
+            <ng-form name="edit-contact">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Contact Info</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="legend">Contact Information</div>
+
+                        <div class="row">
+                            <div class="col-md-3">Title</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Title" style="height: 38px !important;" ng-model="EditContactInfo.Title" ng-attr-name="{{EditContactInfo.Title}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">First Name</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter First Name" style="height: 38px;" ng-model="EditContactInfo.FirstName" ng-attr-name="{{EditContactInfo.FirstName}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Last Name</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Last Name" style="height: 38px;" ng-model="EditContactInfo.LastName" ng-attr-name="{{EditContactInfo.LastName}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Address</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Address" style="height: 38px;" ng-model="EditContactInfo.Address"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">Address 2</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Address 2" style="height: 38px;" ng-model="EditContactInfo.SecondAddress"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">City</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter City" style="height: 38px;" ng-model="EditContactInfo.City"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">State</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter State" style="height: 38px;" ng-model="EditContactInfo.State"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-3">ZIP</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter ZIP" style="height: 38px;" ng-model="EditContactInfo.ZIP"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Role</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Role" style="height: 38px;" ng-model="EditContactInfo.Role" ng-attr-name="{{EditContactInfo.Role}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Email Address</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Email Address" style="height: 38px;" ng-model="EditContactInfo.EmailAddress" ng-attr-name="email" ng-required="true" type="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/"></textarea>
+                                    </div>
+                                    <span style="color:red" ng-show="contact.email.$error.email && contact.email.$touched">Invalid email address.</span>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Phone</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Phone" style="height: 38px;" ng-model="EditContactInfo.Phone" ng-attr-name="{{EditContactInfo.Phone}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Mobile Phone</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Mobile Phone" style="height: 38px;" ng-model="EditContactInfo.MobilePhone"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                        <button type="button" class="btn btn-flat-primary btn-ripple" ng-click="saveContactInfo()" ng-disabled="edit-contact.$invalid || IsSaving">SAVE</button>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+    </div>
+    <!--contact info modal-->
+    <!--Add building image modal -->
+    <div class="modal fade full-height from-left in" id="add_building_image" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Building Image</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="legend">Image Details</div>
+
+                    <div class="row">
+                        <div class="col-md-3">Description</div>
+                        <!--.col-md-3-->
+                        <div class="col-md-9">
+                            <div class="inputer">
+                                <div class="input-wrapper">
+                                    <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;" ng-model="AddBuildingImageModel.Description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!--.col-md-9-->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">Width</div>
+                        <!--.col-md-3-->
+                        <div class="col-md-9">
+                            <div class="inputer">
+                                <div class="input-wrapper">
+                                    <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Width" style="height: 38px !important;"
+                                              ng-model="AddBuildingImageModel.Width"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!--.col-md-9-->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">Height</div>
+                        <!--.col-md-3-->
+                        <div class="col-md-9">
+                            <div class="inputer">
+                                <div class="input-wrapper">
+                                    <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Height" style="height: 38px !important;"
+                                              ng-model="AddBuildingImageModel.Height"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!--.col-md-9-->
+                    </div>
+
+                    <div class="checkboxer" ng-show="false">
+                        <input id="aspectRatioCheckBox" type="checkbox" ng-true-value="true" ng-model="AddBuildingImageModel.KeepAspectRatio" ng-false-value="false">
+                        <label for="aspectRatioCheckBox">Keep aspect ratio</label>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">Select File</div>
+                        <!--.col-md-3-->
+                        <div class="col-md-9">
+                            <div class="inputer">
+                                <div class="input-wrapper k-content">
+                                    <input type="file" accept="image/*" id="fuBuildingImage" multiple title="Use CTRL for select multiple files" />
+                                    <div class="logger well well-sm" style="margin-top:10px">
+                                        Preview:
+                                        <br />
+                                        <img id="fuBuildingImagePreview" class="preview-image" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--.col-md-9-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                    <button type="button" class="btn btn-flat-primary btn-ripple" ng-click="saveNewBuildingImage()" ng-disabled="IsSaving">SAVE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--building image info modal-->
+    <!--Add building plan modal -->
+    <div class="modal fade full-height from-left in" id="add_building_plan" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <ng-form name="addPlan">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Building Plan</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="legend">Details</div>
+                        <div class="row">
+                            <div class="col-md-3">Name</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-model="AddPlanModel.PlanName" ng-attr-name="{{AddPlanModel.PlanName}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Description</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;" ng-model="AddPlanModel.PlanDescription" ng-attr-name="{{AddPlanModel.PlanDescription}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="checkboxer">
+                                    <input id="NativeSizeCheckBox" type="checkbox" ng-true-value="true" ng-change="selectPlanSize(true)" ng-model="OriginalSize" checked="checked" ng-false-value="false" />
+                                    <label for="NativeSizeCheckBox">Original size</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="checkboxer">
+                                    <input id="CustomSizeCheckBox" type="checkbox" ng-true-value="true" ng-change="selectPlanSize(false)" ng-model="CustomSize" ng-false-value="false" />
+                                    <label for="CustomSizeCheckBox">Custom size</label>
+                                </div>
+                                <div ng-show="CustomSize">
+                                    <div class="row">
+                                        <div class="col-md-3">Width</div>
+                                        <!--.col-md-3-->
+                                        <div class="col-md-9">
+                                            <div class="inputer">
+                                                <div class="input-wrapper">
+                                                    <input type="number" class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Width" style="height: 38px !important;"
+                                                           ng-model="AddPlanModel.Width" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--.col-md-9-->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">Height</div>
+                                        <!--.col-md-3-->
+                                        <div class="col-md-9">
+                                            <div class="inputer">
+                                                <div class="input-wrapper">
+                                                    <input type="number" class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Height" style="height: 38px !important;"
+                                                           ng-model="AddPlanModel.Height" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--.col-md-9-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="checkboxer" ng-show="false">
+                            <input id="addPlanAspectRatioCheckBox" type="checkbox" ng-true-value="true" ng-model="AddPlanModel.KeepAspectRatio" ng-false-value="false" />
+                            <label for="addPlanAspectRatioCheckBox">Keep aspect ratio</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">Select File</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper k-content">
+                                        <input type="file" accept="image/*" id="fuPlanImage" multiple />
+                                        <div class="logger well well-sm" style="margin-top:10px">
+                                            Preview:
+                                            <br />
+                                            <img id="fuPlanImagePreview" class="preview-image" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                        <button type="button" class="btn btn-flat-primary btn-ripple" ng-click="saveNewPlan()" ng-disabled="addPlan.$invalid || IsSaving">SAVE</button>
+                    </div>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+    <!--building plan info modal-->
+    <!--Edit building plan modal -->
+    <div class="modal fade full-height from-left in" id="edit-plan-info" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <ng-form name="editPlanDetailInfo">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Building Plan Details</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-3">Name</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;"
+                                                  ng-model="updatePlanInfo.Name" ng-attr-name="{{updatePlanInfo.Name}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Description</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;"
+                                                  ng-model="updatePlanInfo.Description" ng-attr-name="{{updatePlanInfo.Description}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                        <button type="button" class="btn btn-flat-primary btn-ripple" ng-click="editPlanDetail($event)" ng-disabled="editPlanDetailInfo.$invalid || IsSaving">SAVE</button>
+                    </div>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+    <!--building plan modal -->
+    <!--Add file modal-->
+    <div class="modal fade full-height from-left in" id="add_building_file" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add Building File</h4>
+                </div>
+                <ng-form name="addFile">
+                    <div class="modal-body">
+                        <div class="legend">Details</div>
+
+                        <div class="row">
+                            <div class="col-md-3">Name</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;"
+                                                  ng-model="AddFileModel.FileName" ng-attr-name="{{AddFileModel.FileName}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Description</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;" ng-model="AddFileModel.FileDescription" ng-attr-name="{{AddFileModel.FileDescription}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Select File</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper k-content">
+                                        <input type="file" id="fuFile" multiple />
+                                        <div class="logger well well-sm" style="margin-top:10px; display:none">
+                                            Preview:
+                                            <br />
+                                            <img id="fuFilePreview" class="preview-image" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                        <button type="button" ng-disabled="addFile.$invalid || IsSaving" class="btn btn-flat-primary btn-ripple" ng-click="saveNewFile()">SAVE</button>
+                    </div>
+                </ng-form>
+            </div>
+        </div>
+    </div>
+    <!--file modal-->
+    <!--Edit file modal-->
+    <div class="modal fade full-height from-left in" id="edit_building_file" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Building File</h4>
+                </div>
+                <ng-form name="editFile">
+                    <div class="modal-body">
+                        <div class="legend">Details</div>
+
+                        <div class="row">
+                            <div class="col-md-3">Name</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;"
+                                                  ng-model="EditMetaDataFile.Title" ng-attr-name="{{EditMetaDataFile.Title}}" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Description</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;"
+                                                  ng-model="EditMetaDataFile.Description" ng-attr-name="{{EditMetaDataFile.Description}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                        <button type="button" ng-disabled="editFile.$invalid || IsSaving" class="btn btn-flat-primary btn-ripple" ng-click="editBuildingFile()">SAVE</button>
+                    </div>
+                </ng-form>
+            </div>
+        </div>
+    </div>
+    <!--file modal-->
+    <!--Add disaster info modal-->
+    <div class="modal fade full-height from-left in" id="add_building_disaster_info" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <div class="modal-dialog">
+            <ng-form name="disasterInfo">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Disaster Info File</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="legend">Details</div>
+
+                        <div class="row">
+                            <div class="col-md-3">Name</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-attr-name="{{AddDisasterInfoModel.DisasterInfoName}}"
+                                                  ng-model="AddDisasterInfoModel.DisasterInfoName" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Description</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer validation">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;"
+                                                  ng-model="AddDisasterInfoModel.DisasterInfoDescription" ng-attr-name="{{AddDisasterInfoModel.DisasterInfoDescription}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">Select File</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper k-content">
+                                        <input type="file" id="fuDisasterInfo" multiple />
+                                        <div class="logger well well-sm" style="margin-top:10px; display:none">
+                                            Preview:
+                                            <br />
+                                            <img id="fuDisasterInfoPreview" class="preview-image" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                        <button type="button" ng-disabled="disasterInfo.$invalid || IsSaving" class="btn btn-flat-primary btn-ripple" ng-click="saveNewDisasterInfo()">SAVE</button>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+    </div>
+    <!--file modal-->
+    <!--Edit disaster info modal-->
+    <div class="modal fade full-height from-left in" id="edit_building_disaster_info" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <div class="modal-dialog">
+            <ng-form name="editDisasterInfoForm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Disaster Info File</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-3">Name</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-attr-name="{{EditMetaDataFile.Title}}"
+                                                  ng-model="EditMetaDataFile.Title" ng-required="true"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">Description</div>
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="inputer validation">
+                                    <div class="input-wrapper">
+                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;"
+                                                  ng-attr-name="{{EditMetaDataFile.Description}}" ng-model="EditMetaDataFile.Description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                        <button type="button" ng-disabled="editDisasterInfoForm.$invalid || IsSaving" class="btn btn-flat-primary btn-ripple" ng-click="editDisasterInfo()">SAVE</button>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+    </div>
+    <!--file modal-->
+    <div class="content" style="margin-left: 81px;">
+
+        <div id="site-header" class="page-header full-content bg-blue parallax">
+            <div class="parallax-bg">
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div id="saveSiteSuccess" class="toastr-notify btn-ripple" data-toastr-title="Info" data-toastr-notification="Successfully saved"
+                         data-toastr-position="toast-bottom-right"
+                         data-toastr-type="success">
+                    </div>
+                    <div id="deleteSiteSuccess" class="toastr-notify btn-ripple" data-toastr-title="Info" data-toastr-notification="Deleted"
+                         data-toastr-position="toast-bottom-right"
+                         data-toastr-type="success">
+                    </div>
+                    <div id="saveSiteFailure" class="toastr-notify btn-ripple" data-toastr-title="Info" data-toastr-notification="Failure while executing action"
+                         data-toastr-position="toast-bottom-right"
+                         data-toastr-type="error">
+                    </div>
+                    <h1>
+                        Site Profile</h1>
+                    <small>- {{CurrentBuilding.Name}}</small>
+                </div>
+                <!--.col-->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="./"><i class="ion-home"></i></a>
+                        </li>
+                        <li>
+                            <a ng-href="{{getUrl('Dashboard')}}">Dashboard</a>
+                        </li>
+                        <li class="active">
+                            <a ng-href="{{getUrl('Site')+'?id='+CurrentBuilding.Id}}">Site Profile</a>
+                        </li>
+                    </ol>
+                </div>
+                <!--.col-->
+            </div>
+            <!--.row-->
+
+            <div class="header-tabs scrollable-tabs sticky">
+                <ul class="nav nav-tabs tabs-active-text-white tabs-active-border-yellow">
+                    <li>
+                        <a class="active btn-ripple" href="#about" data-toggle="tab">About</a>
+                    </li>
+                    <li>
+                        <a href="#photos" data-toggle="tab" class="btn-ripple">Photos</a>
+                    </li>
+                    <li>
+                        <a href="#views" data-toggle="tab" class="btn-ripple">Views</a>
+                    </li>
+                    <li>
+                        <a href="#maps" ng-click="showMap()" data-toggle="tab" class="btn-ripple">Map</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <!--.page-header-->
+        <!--MODALS-->
+        <div class="modal fade full-height from-left" id="edit-site-modal" tabindex="-1" role="dialog" aria-hidden="true">
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Site</h4>
+                    </div>
+                    <ng-form name="editSite">
+                        <div class="modal-body">
+                            <div class="legend">Building Information</div>
+                            <div class="row">
+                                <div class="col-md-3">Client</div>
+                                <div class="col-md-9">
+                                    <select id="select-clients" kendo-drop-down-list k-data-source="Clients" ng-show="isInRole"
+                                            style="width: 100%;" k-data-text-field="'FirstName'" k-option-label="'Select client'"
+                                            k-data-value-field="'Id'" ng-model="EditBuilding.ActorId" k-change="onChangeClient" k-ng-model="EditBuilding.Actor"
+                                            k-value-primitive="false"></select>
+
+                                    <textarea class="form-control js-auto-size valid" rows="1" ng-show="!isInRole" placeholder="Enter Property Name" style="height: 38px;"
+                                              ng-model="EditBuilding.ActorName" disabled></textarea>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Users</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <select kendo-multi-select k-options="selectOptions" k-ng-model="EditBuilding.UserIds" k-rebind="selectOptions" ng-disabled="!isInRole"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Description</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size valid" rows="1" placeholder="Enter description" style="height: 38px;" ng-model="EditBuilding.Description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Property Name</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <input type="text" class="form-control" placeholder="Enter building" ng-model="EditBuilding.Name" ng-attr-name="{{EditBuilding.Name}}" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Address</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <input type="text" id="Autocomplete" class="form-control" ng-model="EditBuilding.Address"
+                                                   ng-autocomplete="EditBuilding.Address"
+                                                   details="details" ng-required="true"
+                                                   options="options" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <map name="modalMap" id="map_canvas" zoom="17" maptype="TERRAIN" geopoints="{{EditBuilding.Geopoints}}" style="display:block;height:300px;width:100%;"></map>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">ZIP</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Building ZIP" style="height: 38px !important;" ng-model="EditBuilding.ZIP"
+                                                      ng-attr-name="{{EditBuilding.ZIP}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <!--.row-->
+                            <div class="row example-row">
+                                <div class="col-md-3">Emergency Phone</div><!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <input type="text" class="form-control inputmask inputmask-phone " ng-model="EditBuilding.EmergencyPhone" placeholder="Emergency Phone" ng-attr-name="{{EditBuilding.EmergencyPhone}}">
+                                        </div>
+                                    </div>
+                                </div><!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Email Contact</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <input type="text" class="form-control inputmask inputmask-email" ng-model="EditBuilding.EmergencyEmail"  placeholder="Emergency Email" ng-attr-name="{{EditBuilding.EmergencyEmail}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--.row-->
+                            <div class="legend">Building Details</div>
+                            <div class="row">
+                                <div class="col-md-3">Type of Building</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <input type="text" class="form-control" placeholder="Enter building type" ng-model="EditBuilding.BuildingType" ng-attr-name="{{EditBuilding.BuildingType}}" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <!--.row-->
+                            <div class="row">
+                                <div class="col-md-3">Type of Construction</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <input type="text" class="form-control" placeholder="Enter construction type" ng-model="EditBuilding.ConstructionType" ng-attr-name="{{EditBuilding.ConstructionType}}" ng-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <!--.row-->
+                            <div class="row">
+                                <div class="col-md-3"># of buildings</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <input class="form-control" placeholder="Enter # of buildings" ng-model="EditBuilding.BuildingsNo" ng-attr-name="{{EditBuilding.BuildingsNo}}" ng-required="true" type="number">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <!--.row-->
+                            <div class="row">
+                                <div class="col-md-3"># of units</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <input class="form-control" placeholder="Enter # of units" ng-model="EditBuilding.UnitsNo" ng-attr-name="{{EditBuilding.UnitsNo}}" ng-required="true" type="number">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="legend">Building Configuration</div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="checkboxer">
+                                        <input type="checkbox" ng-model="EditBuilding.ShowPricing" id="123">
+                                        <label for="123">Pricing Information</label>
+                                    </div>
+                                </div>
+                                <!--.col-md-12-->
+                            </div>
+                            <!--.row-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="checkboxer">
+                                        <input type="checkbox" ng-model="EditBuilding.ShowContact" id="124">
+                                        <label for="124">Contact Information</label>
+                                    </div>
+                                </div>
+                                <!--.col-md-12-->
+                            </div>
+                            <!--.row-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="checkboxer">
+                                        <input type="checkbox" ng-model="EditBuilding.ShowFiles" id="125">
+                                        <label for="125">Files</label>
+                                    </div>
+                                </div>
+                                <!--.col-md-12-->
+                            </div>
+                            <!--.row-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="checkboxer">
+                                        <input type="checkbox" ng-model="EditBuilding.ShowDisaster" id="126">
+                                        <label for="126">Disaster Information</label>
+                                    </div>
+                                </div>
+                                <!--.col-md-12-->
+                            </div>
+                            <!--.row-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="checkboxer">
+                                        <input type="checkbox" ng-model="EditBuilding.ShowFolders" id="127">
+                                        <label for="127">Folder</label>
+                                    </div>
+                                </div>
+                                <!--.col-md-12-->
+                            </div>
+                            <!--.row-->
+                        </div>
+                    </ng-form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-flat-primary" ng-click="update()" ng-disabled="editSite.$invalid">SAVE</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal scale fade in" id="send-emergency-email" tabindex="-1" data-backdrop="static"
+             data-keyboard="false" role="dialog" aria-hidden="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Send emergency email</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-12">
+                            <div class="inputer">
+                                <div class="input-wrapper">
+                                    <textarea class="form-control" id="emergency-email" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">Cancel<span class="ripple _4 animate" style="height: 80px; width: 80px; top: -15.736px; left: -3.875px;"></span></button>
+                        <button type="button" class="btn btn-flat btn-primary btn-ripple" ng-click="sendEmergencyEmail()">Send email</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal scale fade" id="delete-site-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirmation</h4>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this site?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-flat btn-primary" ng-click="deleteCurrentSite()">Yes</button>
+                    </div>
+                </div><!--.modal-content-->
+            </div><!--.modal-dialog-->
+        </div><!--.modal-->
+        <!--.modal-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tab-content without-border">
+                    <loading></loading>
+                    <div id="about" class="tab-pane active">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <ul class="nav nav-tabs borderless vertical">
+                                    <li class="active">
+                                        <a href="#about_overview" data-toggle="tab" aria-expanded="true">Overview</a>
+                                    </li>
+                                    <li>
+                                        <a href="#about_pricing" ng-show="CurrentBuilding.ShowPricing" data-toggle="tab">Pricing Information</a>
+                                    </li>
+                                    <li>
+                                        <a href="#about_contact" ng-show="CurrentBuilding.ShowContact" data-toggle="tab">Contact Info</a>
+                                    </li>
+                                    <li>
+                                        <a href="#about_files" ng-show="CurrentBuilding.ShowFiles" data-toggle="tab">Files</a>
+                                    </li>
+                                    <li>
+                                        <a href="#about_disaster" ng-show="CurrentBuilding.ShowDisaster" data-toggle="tab">Disaster Information</a>
+                                    </li>
+                                    <li>
+                                        <a href="#about_folders" ng-show="CurrentBuilding.ShowFolders" data-toggle="tab">Folders</a>
+                                    </li>
+
+                                </ul>
+                                <div class="featured-image" background-fallback-src="{{DefaultBuildingImage}}"
+                                     style="background-size: contain;background-repeat: no-repeat;background-position: center center;width: 80%;height: 200px;" id="FeaturedImage"></div>
+
+                            </div>
+                            <!--<div class="clickable-button" style="height: 196px;">
+                                <div class="layer bg-blue-grey"></div>
+                                <a href="#" class="btn btn-floating btn-red initial-position"><i class="fa fa-bell"></i></a>
+                            </div>-->
+                            <!--.col-md-3-->
+                            <div class="col-md-9">
+                                <div class="tab-content">
+                                    <div class="row" style="margin-bottom:10px">
+                                        <div class="col-xs-12">
+                                            <button ng-show="isInRole" class="btn btn-red btn-ripple pull-right" data-toggle="modal" data-target="#delete-site-modal">
+                                                <i class="fa fa-remove"></i>
+                                            </button>
+                                            <button ng-show="isInRole" class="btn btn-success btn-ripple pull-right" ng-click="edit()">
+                                                <i class="fa fa-edit"></i>
+                                            </button>
+                                            <a ng-show="isInRole" class="btn btn-success btn-ripple pull-right" ng-href="{{getUrl('CopySite')+'?id='+CurrentBuilding.Id}}"><i class="fa fa-copy"></i></a>
+                                            <button class="btn btn-success pull-right" data-toggle="modal" ng-click="openSendEmergencyEmail()">
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                            </button>
+                                            <button ng-show="isClientAdmin || isCompanyAdmin" class="btn btn-success btn-ripple pull-right" ng-click="zipSite()">
+                                                <i class="fa fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane active" id="about_overview">
+                                        <div class="legend">
+                                            Building Information
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">Description</div>
+                                            <!--.col-md-3-->
+                                            <div class="col-md-9">{{CurrentBuilding.Description}}</div>
+                                            <!--.col-md-9-->
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">Property Name</div>
+                                            <!--.col-md-3-->
+                                            <div class="col-md-9">{{CurrentBuilding.Name}}</div>
+                                            <!--.col-md-9-->
+                                        </div>
+                                        <!--.row-->
+                                        <div class="row">
+                                            <div class="col-md-3">Address</div>
+                                            <!--.col-md-3-->
+                                            <div class="col-md-9">{{CurrentBuilding.Address}}</div>
+                                            <!--.col-md-9-->
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">ZIP</div>
+                                            <!--.col-md-3-->
+                                            <div class="col-md-9">{{CurrentBuilding.ZIP}}</div>
+                                            <!--.col-md-9-->
+                                        </div>
+                                        <!--.row-->
+                                        <div class="row">
+                                            <div class="col-md-3">Emergency Phone</div>
+                                            <!--.col-md-3-->
+                                            <div class="col-md-9">{{CurrentBuilding.EmergencyPhone}}</div>
+                                            <!--.col-md-9-->
+                                        </div>
+                                        <!--.row-->
+                                        <div class="row">
+                                            <div class="col-md-3">Email Contact</div>
+                                            <!--.col-md-3-->
+                                            <rgendiv class="col-md-9">{{CurrentBuilding.EmergencyEmail}}</rgendiv>
+                                            <!--.col-md-9-->
+                                        </div>
+                                        <!--.row-->
+
+                                        <div class="legend">Building Details</div>
+                                        <div class="row">
+                                            <div class="col-md-3">Type of Building</div>
+                                            <!--.col-md-3-->
+                                            <div class="col-md-9">{{CurrentBuilding.BuildingType}}</div>
+                                            <!--.col-md-9-->
+                                        </div>
+                                        <!--.row-->
+                                        <div class="row">
+                                            <div class="col-md-3">Type of Construction</div>
+                                            <!--.col-md-3-->
+                                            <div class="col-md-9">{{CurrentBuilding.ConstructionType}}</div>
+                                            <!--.col-md-9-->
+                                        </div>
+                                        <!--.row-->
+                                        <div class="row">
+                                            <div class="col-md-3"># of Buildings</div>
+                                            <!--.col-md-3-->
+                                            <div class="col-md-9">{{CurrentBuilding.BuildingsNo}}</div>
+                                            <!--.col-md-9-->
+
+                                        </div>
+                                        <!--.row-->
+                                        <div class="row">
+                                            <div class="col-md-3"># of Units</div>
+                                            <!--.col-md-3-->
+                                            <div class="col-md-9">{{CurrentBuilding.UnitsNo}}</div>
+                                            <!--.col-md-9-->
+
+                                        </div>
+                                        <!--.row-->
+                                        
+
+                                    </div>
+                                    <!--#about_overview.tab-pane-->
+
+                                    <div class="tab-pane" id="about_pricing" ng-show="CurrentBuilding.ShowPricing">
+                                        <div class="legend">
+                                            <span>Pricing Information</span>
+                                            <small class="pull-right text-red" style="font-size:small">
+                                                Use this template for importing pricing
+                                                <a href="Content/Files/Templates/PricingInfo.xls" download title="Pricing Info">
+                                                    <img src="Content/Images/FileIcons/excel.png" width="32" height="32" />
+                                                </a>
+                                            </small>
+                                        </div>
+                                        <div>
+                                            <div class="row p-b-20">
+                                                <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#add_building_file" ng-click="createNewFile('PricingFile')">
+                                                    Add Pricing Info Files
+                                                </button>
+                                                <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#add_pricing_info" ng-click="createNewPricingInfo()">
+                                                    Add Pricing Info
+                                                </button>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6 info-tab" ng-repeat="pi in CurrentBuilding.PricingInfos">
+                                                    <div class="edit-tab" ng-click="updatePricingInfo(pi)">
+                                                        <i class="fa fa-pencil-square-o"></i>
+                                                    </div>
+                                                    <div class="delete-tab" data-toggle="modal" ng-attr-data-target="{{'#delete-pricing-' + $index}}">
+                                                        <i class="fa fa-trash"></i>
+                                                    </div>
+
+                                                    <h4>{{pi.Name}}</h4>
+                                                    <p>{{pi.Description}}</p>
+                                                    <p>Price per Unit: {{pi.UnitPrice | currency:"$"}}</p>
+                                                    <p>Quantity: {{pi.Quantity}}</p>
+                                                    <p>Units: {{pi.Units}}</p>
+                                                    <p>Total: {{pi.UnitPrice * pi.Quantity| currency:"$"}}</p>
+
+                                                    <div class="modal scale fade in" ng-attr-id="{{'delete-pricing-' + $index}}" tabindex="-1" role="dialog" aria-hidden="false" style="padding-right: 17px; z-index:9999">
+                                                        <div class="modal-dialog" style="z-index:9999">
+                                                            <div class="modal-content" style="z-index:9999">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Confirmation</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure you want to delete this pricing info?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">No<span class="ripple _13 animate" style="height: 57px; width: 57px; top: -1.17798px; left: 5.34375px;"></span></button>
+                                                                    <button type="button" class="btn btn-flat btn-primary btn-ripple" data-dismiss="modal" ng-click="removePricingInfo(pi)">Yes</button>
+                                                                </div>
+                                                            </div><!--.modal-content-->
+                                                        </div><!--.modal-dialog-->
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row" ng-show="hasPricingFiles">
+                                                <div class="legend">
+                                                    <span> Pricing Info files</span>
+                                                </div>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>&nbsp;</th>
+                                                        </tr>
+                                                        <tr ng-repeat="fi in CurrentBuilding.BuildingFiles | filter:{ Type: 1 }">
+                                                            <td ng-show="fi.Type==1">{{fi.Title}}</td>
+                                                            <td ng-show="fi.Type==1">{{fi.Description}}</td>
+                                                            <td ng-show="fi.Type==1">
+                                                                <a ng-href="{{getFileLink(fi)}}" download>
+                                                                    <i class="fa fa-download" style="cursor:pointer;"></i>
+                                                                </a>
+                                                                <div class="edit-tab" ng-click="updateBuildingFile(fi)">
+                                                                    <i class="fa fa-pencil-square-o" style="cursor:pointer;"></i>
+                                                                </div>
+                                                                <div class="delete-tab-table" data-toggle="modal" ng-attr-data-target="{{'#delete-file-p' + $index}}">
+                                                                    <i class="fa fa-trash" style="cursor:pointer"></i>
+                                                                </div>
+                                                                <div class="modal scale fade in" ng-attr-id="{{'delete-file-p' + $index}}" tabindex="-1" role="dialog" aria-hidden="false" style="padding-right: 17px; z-index:9999">
+                                                                    <div class="modal-dialog" style="z-index:9999">
+                                                                        <div class="modal-content" style="z-index:9999">
+                                                                            <div class="modal-header">
+                                                                                <h4 class="modal-title">Confirmation</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                Are you sure you want to delete this file?
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">No<span class="ripple _13 animate" style="height: 57px; width: 57px; top: -1.17798px; left: 5.34375px;"></span></button>
+                                                                                <button type="button" class="btn btn-flat btn-primary btn-ripple" data-dismiss="modal" ng-click="removeFile(fi)">Yes</button>
+                                                                            </div>
+                                                                        </div><!--.modal-content-->
+                                                                    </div><!--.modal-dialog-->
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--#about_pricing.tab-pane-->
+                                    <div class="tab-pane" id="about_contact" ng-show="CurrentBuilding.ShowContact">
+                                        <div class="legend">
+                                            <span> Contact Information</span>
+                                            <small class="pull-right text-red" style="font-size:small">
+                                                Use this template for importing contacts
+                                                <a href="Content/Files/Templates/ContactInfo.xls" download title="Contact Info">
+                                                    <img src="Content/Images/FileIcons/excel.png" width="32" height="32" />
+                                                </a>
+                                            </small>
+                                        </div>
+                                        <div>
+                                            <div class="row p-b-20">
+                                                <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#add_building_file" ng-click="createNewFile('ContactFile')">
+                                                    Add Contact Info Files
+                                                </button>
+                                                <button class="btn btn-success btn-ripple pull-right" data-toggle="modal" data-target="#add_contact_info"
+                                                        ng-show="isInRole" ng-click="createNewContactInfo()">
+                                                    Add Contact Info
+                                                </button>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 info-tab" ng-repeat="ci in CurrentBuilding.ContactInfos">
+                                                    <div class="edit-tab" ng-click="updateContactInfo(ci)">
+                                                        <i class="fa fa-pencil-square-o" style="cursor:pointer;"></i>
+                                                    </div>
+                                                    <div class="delete-tab" data-toggle="modal" ng-attr-data-target="{{'#delete-contact-' + $index}}">
+                                                        <i class="fa fa-trash" style="cursor:pointer;"></i>
+                                                    </div>
+                                                    <p>Title: {{ci.Title}}</p>
+                                                    <p>Name: {{ci.FirstName}} {{ci.LastName }}</p>
+                                                    <p>Phone: {{ci.Phone}}</p>
+                                                    <p>Mobile Phone: {{ci.MobilePhone}}</p>
+                                                    <div class="modal scale fade in" ng-attr-id="{{'delete-contact-'+$index}}" tabindex="-1" role="dialog" aria-hidden="false" style="padding-right: 17px; z-index:9999999999999">
+                                                        <div class="modal-dialog" style="z-index:9999999999999">
+                                                            <div class="modal-content" style="z-index:9999999999999">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Confirmation</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure you want to delete this contact info?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">No<span class="ripple _13 animate" style="height: 57px; width: 57px; top: -1.17798px; left: 5.34375px;"></span></button>
+                                                                    <button type="button" class="btn btn-flat btn-primary btn-ripple" data-dismiss="modal" ng-click="removeContactInfo(ci)">Yes</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row" ng-show="hasContactFiles">
+                                                <div class="legend">
+                                                    <span> Contact Info files</span>
+                                                </div>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Description</th>
+                                                            <th>&nbsp;</th>
+                                                        </tr>
+                                                        <tr ng-repeat="fi in CurrentBuilding.BuildingFiles| filter:{ Type: 2 }">
+                                                            <td>{{fi.Title}}</td>
+                                                            <td>{{fi.Description}}</td>
+                                                            <td>
+                                                                <a ng-href="{{getFileLink(fi)}}" download class="pull-right">
+                                                                    <i class="fa fa-download" style="cursor:pointer;"></i>
+                                                                </a>
+                                                                <div class="edit-tab pull-right" ng-click="updateBuildingFile(fi)">
+                                                                    <i class="fa fa-pencil-square-o" style="cursor:pointer;"></i>
+                                                                </div>
+                                                                <div class="delete-tab-table pull-right" data-toggle="modal" ng-attr-data-target="{{'#delete-file-c' + $index}}">
+                                                                    <i class="fa fa-trash" style="cursor:pointer"></i>
+                                                                </div>
+                                                                <div class="modal scale fade in" ng-attr-id="{{'delete-file-c' + $index}}" tabindex="-1" role="dialog" aria-hidden="false" style="padding-right: 17px; z-index:9999">
+                                                                    <div class="modal-dialog" style="z-index:9999">
+                                                                        <div class="modal-content" style="z-index:9999">
+                                                                            <div class="modal-header">
+                                                                                <h4 class="modal-title">Confirmation</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                Are you sure you want to delete this file?
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">No<span class="ripple _13 animate" style="height: 57px; width: 57px; top: -1.17798px; left: 5.34375px;"></span></button>
+                                                                                <button type="button" class="btn btn-flat btn-primary btn-ripple" data-dismiss="modal" ng-click="removeFile(fi)">Yes</button>
+                                                                            </div>
+                                                                        </div><!--.modal-content-->
+                                                                    </div><!--.modal-dialog-->
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!--#about_contact.tab-pane-->
+                                    <div class="tab-pane" id="about_files" ng-show="CurrentBuilding.ShowFiles">
+                                        <div class="legend">
+                                            Files
+                                        </div>
+                                        <button class="btn btn-success btn-ripple pull-right p-b-20" data-toggle="modal" ng-show="isCompanyAdmin" data-target="#add_building_file" ng-click="createNewFile()">
+                                            Add File
+                                        </button>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
+                                                    <th>&nbsp;</th>
+                                                </tr>
+                                                <tr ng-repeat="fi in CurrentBuilding.BuildingFiles| filter:{ Type: 0 }">
+                                                    <td>{{fi.Title}}</td>
+                                                    <td>{{fi.Description}}</td>
+                                                    <td>
+                                                        <a ng-href="{{getFileLink(fi)}}" download class="pull-right">
+                                                            <i class="fa fa-download" style="cursor:pointer;"></i>
+                                                        </a>
+                                                        <div class="edit-tab pull-right" ng-click="updateBuildingFile(fi)">
+                                                            <i class="fa fa-pencil-square-o" style="cursor:pointer;"></i>
+                                                        </div>
+                                                        <div class="delete-tab-table pull-right" data-toggle="modal" ng-show="isCompanyAdmin" ng-attr-data-target="{{'#delete-file-' + $index}}">
+                                                            <i class="fa fa-trash" style="cursor:pointer"></i>
+                                                        </div>
+                                                        <div class="modal scale fade in" ng-attr-id="{{'delete-file-' + $index}}" tabindex="-1" role="dialog" aria-hidden="false" style="padding-right: 17px; z-index:9999">
+                                                            <div class="modal-dialog" style="z-index:9999">
+                                                                <div class="modal-content" style="z-index:9999">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Confirmation</h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Are you sure you want to delete this file?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">No<span class="ripple _13 animate" style="height: 57px; width: 57px; top: -1.17798px; left: 5.34375px;"></span></button>
+                                                                        <button type="button" class="btn btn-flat btn-primary btn-ripple" data-dismiss="modal" ng-click="removeFile(fi)">Yes</button>
+                                                                    </div>
+                                                                </div><!--.modal-content-->
+                                                            </div><!--.modal-dialog-->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <!--#about_overview.tab-pane-->
+                                    <div class="tab-pane" id="about_disaster" ng-show="CurrentBuilding.ShowDisaster">
+                                        <div class="legend">
+                                            Disaster Information
+                                        </div>
+                                        <button class="btn btn-success btn-ripple pull-right p-b-20" ng-show="isInRole"
+                                                data-toggle="modal" data-target="#add_building_disaster_info" ng-click="createNewDisasterInfo()">
+                                            Add Disaster Information
+                                        </button>
+
+
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Description</th>
+                                                    <th>&nbsp;</th>
+                                                </tr>
+                                                <tr ng-repeat="di in CurrentBuilding.BuildingDisasterInfos">
+                                                    <td>{{di.Title}}</td>
+                                                    <td>{{di.Description}}</td>
+                                                    <td>
+                                                        <a ng-href="{{getFileLink(di)}}" download class="pull-right">
+                                                            <i class="fa fa-download" style="cursor:pointer;"></i>
+                                                        </a>
+                                                        <div class="edit-tab pull-right" ng-click="updateBuildingDisasterInfo(di)">
+                                                            <i class="fa fa-pencil-square-o" style="cursor:pointer;"></i>
+                                                        </div>
+                                                        <div class="delete-tab-table pull-right" data-toggle="modal" ng-attr-data-target="{{'#delete-disaster-info-' + $index}}">
+                                                            <i class="fa fa-trash" style="cursor:pointer"></i>
+                                                        </div>
+                                                        <div class="modal scale fade in" ng-attr-id="{{'delete-disaster-info-' + $index}}" tabindex="-1" role="dialog" aria-hidden="false" style="padding-right: 17px; z-index:9999">
+                                                            <div class="modal-dialog" style="z-index:9999">
+                                                                <div class="modal-content" style="z-index:9999">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Confirmation</h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Are you sure you want to delete this disaster information?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">No<span class="ripple _13 animate" style="height: 57px; width: 57px; top: -1.17798px; left: 5.34375px;"></span></button>
+                                                                        <button type="button" class="btn btn-flat btn-primary btn-ripple" data-dismiss="modal" ng-click="removeDisasterInfo(di)">Yes</button>
+                                                                    </div>
+                                                                </div><!--.modal-content-->
+                                                            </div><!--.modal-dialog-->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <!--#about_disaster.tab-pane-->
+                                    <!--#about_overview.tab-pane-->
+                                    <div class="tab-pane" id="about_folders" ng-show="CurrentBuilding.ShowFolders">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <div id="treeview-sprites" kendo-tree-view="tree"
+                                                     k-data-source="treeData">
+                                                    <span k-template class="rootfolder">
+                                                        <button class="btn-flat" ng-click='clickFile(dataItem)'>{{dataItem.Name}} </button>
+                                                        <div id="file_act_{{dataItem.id}}" style="float:right;display:none">
+                                                            <a class="btn tool-btn" ng-href="{{getFileFolderLink(dataItem)}}" download ng-show="dataItem.Read">
+                                                                <i class="fa fa-cloud-download"></i>
+                                                            </a>
+                                                            <button class="btn tool-btn" title="Remove file" ng-click="removeFileFolder(dataItem)" ng-show="dataItem.Delete">
+                                                                <i class="fa fa-remove"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div id="fold_act_{{dataItem.id}}" style="float:right;display:none;" ng-show="!dataItem.IsBucket ">
+                                                            <button class="btn tool-btn" title="Create new folder" ng-click="foldActAdd()" ng-show="dataItem.Create">
+                                                                <i class="fa fa-folder"></i>
+                                                            </button>
+                                                            <button class="btn tool-btn" title="Add new file" ng-click="foldActAddFile()" ng-show="(dataItem.id!='root' && dataItem.Create)">
+                                                                <i class="fa fa-file"></i>
+                                                            </button>
+                                                            <button class="btn tool-btn" title="Remove folder" ng-click="removeFolder(dataItem)" ng-show="(dataItem.id!='root' && dataItem.Delete)">
+                                                                <i class="fa fa-remove"></i>
+                                                            </button>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a class="btn btn-success btn-ripple pull-right" ng-show="isInRole" ng-href="{{getUrl('FileManager')+'?id='+CurrentBuilding.Id}}">
+                                                    File Manager
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--#about_disaster.tab-pane-->
+                                </div>
+                                <!--.tab-content-->
+
+                            </div>
+                            <!--.col-md-9-->
+                        </div>
+                        <!--.row-->
+                    </div>
+                    <!--#about.tab-pane-->
+                    <div id="photos" class="tab-pane">
+                        <div class="row" style="padding-bottom:5px;">
+                            <button style="z-index:6000;" class="btn btn-success btn-ripple pull-right" data-toggle="modal"
+                                    ng-show="isInRole" data-target="#add_building_image" ng-click="createNewBuildingImage()">
+                                Add new image
+                            </button>
+                        </div>
+                        <div class="row" ui-sortable="sortableImages" ng-model="CurrentBuilding.BuildingImages">
+                            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" style="border:1px #6382fb dotted" ng-repeat="bi in CurrentBuilding.BuildingImages">
+                                <center style="width:100%;height:60px; text-overflow:ellipsis; padding:10px;" ng-show="isInRole">
+                                    <span style="float:left;">
+                                        <i class="fa fa-align-justify" style="cursor:pointer;"></i>
+                                    </span>
+                                    <div class="checkboxer">
+                                        <input type="checkbox" value="{{bi.Id}}" id="{{bi.Id}}"
+                                               ng-checked="bi.Id==CurrentBuilding.FeaturedImageId" ng-click="setMainBuildingImage(bi)">
+                                        <label for="{{bi.Id}}">main page</label>
+                                    </div>
+                                </center>
+                                <div class="delete-tab-table" data-toggle="modal" ng-show="isInRole" ng-attr-data-target="{{'#delete-photo-' + $index}}">
+                                    <i class="fa fa-times" style="cursor:pointer"></i>
+                                </div>
+                                <div ng-attr-data-number="{{$index}}" background-src="{{getBuildingImage(bi)}}"
+                                     src="{{getBuildingImage(bi)}}" background-fallback-src="{{DefaultBuildingImage}}"
+                                     onclick="highlightImage(this)"
+                                     style="height:200px;width:80%; background-color:#fff;vertical-align: middle;margin:0 auto;
+                                background-size:contain;background-repeat:no-repeat; background-position:center center;
+                                background-color:#eee; border-radius:4px;">
+                                </div>
+                                <center style="width:100%;height:60px; text-overflow:ellipsis; padding:10px;">
+                                    <input type="text" class="form-control js-auto-size ng-pristine ng-untouched ng-valid" name="fileDescription" ng-model="bi.FileDescription"
+                                           ng-keyup="updateImageNameOnEnter($event,bi)"
+                                           ng-blur="updateImageName($event,bi)"
+                                           ng-required="true">
+                                </center>
+
+                                <div class="modal scale fade in" ng-attr-id="{{'delete-photo-' + $index}}" tabindex="-1" role="dialog" aria-hidden="false" style="padding-right: 17px; z-index:9999">
+                                    <div class="modal-dialog" style="z-index:9999">
+                                        <div class="modal-content" style="z-index:9999">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Confirmation</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this photo?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">No<span class="ripple _13 animate" style="height: 57px; width: 57px; top: -1.17798px; left: 5.34375px;"></span></button>
+                                                <button type="button" class="btn btn-flat btn-primary btn-ripple" data-dismiss="modal" ng-click="removeBuildingImage(bi)">Yes</button>
+                                            </div>
+                                        </div><!--.modal-content-->
+                                    </div><!--.modal-dialog-->
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!--.row-->
+                    </div>
+                    <!--#views.tab-pane-->
+                    <div id="views" class="tab-pane" style="position:relative;">
+
+                        <div class="row">
+                            <button style="z-index:63000;" ng-show="isInRole" class="btn btn-success btn-ripple pull-right" data-toggle="modal" data-target="#add_building_plan" ng-click="createNewPlan()">
+                                Add new plan
+                            </button>
+                            <button style="z-index:63000;" class="btn btn-success btn-ripple pull-right" ng-show="isInRole" ng-click="importPlansFromPDF()">
+                                Import From PDF
+                            </button>
+                        </div>
+
+                        <div class="row" style="position:absolute;width:100%; margin-top:10px;" ui-sortable="sortableViews" ng-model="CurrentBuilding.BuildingPlans">
+                            <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2" style="border:1px #6382fb dotted" ng-repeat="plan in CurrentBuilding.BuildingPlans track by $index">
+                                <div class="edit-tab" ng-click="updatePlanDetail(plan)" ng-show="isInRole">
+                                    <i class="fa fa-pencil-square-o" style="cursor:pointer"></i>
+                                </div>
+                                <div class="delete-tab-table" data-toggle="modal" ng-show="isInRole" ng-attr-data-target="{{'#delete-plan-' + $index}}">
+                                    <i class="fa fa-times" style="cursor:pointer"></i>
+                                </div>
+                                <div>
+                                    <input type="text" class="form-control js-auto-size ng-pristine ng-untouched ng-valid" name="planName" ng-model="plan.Name"
+                                           ng-keyup="updatePlanNameOnEnter($event,plan)"
+                                           ng-blur="updatePlanName($event,plan)"
+                                           ng-required="true">
+                                </div>
+                                <span class="form-control js-auto-size ng-pristine ng-untouched ng-valid">{{plan.Description}}</span>
+                                <div class="card tile card-friend">
+                                    <a  href="{{getPlanUrl(plan.Id)}}">
+                                        <img ng-src="{{getPlanThumbnail(plan)}}" fallback-src="{{DefaultPlanImage}}" alt="No image" class="user-photo">
+                                    </a>
+                                    <!--.friend-content-->
+                                </div>
+                                <div class="friend-content">
+                                    <center style="width:100%;height:60px; text-overflow:ellipsis; padding:10px;">
+                                        <a href="{{getPlanUrl(plan.Id)}}">{{plan.HotspotsCount}} hot spots</a>
+                                    </center>
+                                </div>
+                                <!--.card-->
+                                <div class="modal scale fade in" ng-attr-id="{{'delete-plan-' + $index}}" tabindex="-1" role="dialog" aria-hidden="false" style="padding-right: 17px; z-index:9999">
+                                    <div class="modal-dialog" style="z-index:9999">
+                                        <div class="modal-content" style="z-index:9999">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Confirmation</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this plan?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-flat btn-default btn-ripple" data-dismiss="modal">No<span class="ripple _13 animate" style="height: 57px; width: 57px; top: -1.17798px; left: 5.34375px;"></span></button>
+                                                <button type="button" class="btn btn-flat btn-primary btn-ripple" data-dismiss="modal" ng-click="removePlan(plan)">Yes</button>
+                                            </div>
+                                        </div><!--.modal-content-->
+                                    </div><!--.modal-dialog-->
+                                </div>
+                            </div>
+                            <!--.col-md-6-->
+                        </div>
+                        <!--.row-->
+                    </div>
+                    <!--#views.tab-pane-->
+                    <div id="maps" class="tab-pane">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel">
+                                    <div class="panel-heading">
+                                        <div class="panel-title">
+                                            <h4>{{CurrentBuilding.Name}} - {{CurrentBuilding.Address}}</h4>
+                                        </div>
+                                    </div><!--.panel-heading-->
+                                    <div class="panel-body">
+                                        <map name="fullMap" id="full_canvas" zoom="18" maptype="SATELLITE" geopoints="{{CurrentBuilding.Geopoints}}" style="display:block;height:400px;width:100%;"></map>
+                                    </div><!--.panel-body-->
+                                </div><!--.panel-->
+                            </div><!--.col-md-6-->
+                        </div><!--.row-->
+                        <!--.row-->
+                    </div>
+
+                </div>
+                <!--.tab-content-->
+            </div>
+            <!--.col-->
+        </div>
+        <!--.row-->
+
+        <div class="footer-links margin">
+            <!--.footer-links-->
+            <!-- Bootstrap Image Gallery lightbox -->
+            <!-- To use original bootstrap modal window erase data-use-boostrap-model attr -->
+            <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-use-bootstrap-modal="false">
+                <div class="slides"></div>
+                <h3 class="title">Gallery</h3>
+                <a class="prev">&lt;</a>
+                <a class="next">&gt;</a>
+                <a class="close">×</a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
+                <div class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Gallery</h4>
+                            </div>
+                            <div class="modal-body next"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left prev">
+                                    <i class="glyphicon glyphicon-chevron-left"></i> Previous
+                                </button>
+                                <button type="button" class="btn btn-primary next">
+                                    Next
+                                    <i class="glyphicon glyphicon-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Bootstrap Image Gallery lightbox -->
+
+        </div>
+        <!--.content-->
+
+        <div class="modal scale fade in" id="tree_info_add_folder" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;z-index:999999;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Create new folder</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="inputer">
+                            <div class="input-wrapper">
+                                <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1"
+                                          placeholder="Enter folder name" style="height: 38px;" ng-model="FolderName"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-blue btn-ripple" ng-click="createFolder()" data-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal scale fade in" id="tree_info_add_file" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;z-index:999999;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add new file</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="inputer">
+                            <div class="input-wrapper">
+                                <input type="file" id="fuFolderFile" />
+                                <div class="logger well well-sm" style="margin-top:10px;display:none;">
+                                    <img id="fuFolderFilePrev" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-blue btn-ripple" ng-click="createFile()" data-dismiss="modal">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layer-container">
+
+            <!-- BEGIN MENU LAYER -->
+            <div class="menu-layer" ng-include="getUrl('AppMenu')">
+            </div>
+            <!--.menu-layer-->
+            <!-- END OF MENU LAYER -->
+
+        </div>
+
+        <!-- BEGIN SEARCH LAYER -->
+        <div class="modal fade full-height in" id="search-modal" ng-include="getUrl('Search')" ng-controller="SearchController">
+
+
+        </div>
+        <!--.search-->
+        <!--.col-->
+        <!--.col-->
+        <!--.search-layer-->
+        <!-- END OF SEARCH LAYER -->
+
+    </div>
+    <!-- BEGIN INITIALIZATION-->
+    <script>
+        $(document).ready(function () {
+            console.log("!!!");
+            Pleasure.init();
+            Layout.init();
+            // this call breaks so i commented it (bogdan)
+            //FormTools.init();
+            //MapsGoogle.init();
+            //scroll jitter fix for IE
+            $('body').on("mousewheel", function () {
+                event.preventDefault();
+
+                var wheelDelta = event.wheelDelta;
+
+                var currentScrollPosition = window.pageYOffset;
+                window.scrollTo(0, currentScrollPosition - wheelDelta);
+            });
+        });
+
+        window.onload = function () {
+
+            var headerTab = $(".header-tabs.scrollable-tabs.sticky");
+            var userIcon = $(".nav-user");
+            var userIconA = $(".modal-dialog");
+            $(".fa-trash, div[class*='delete'][style*='display: block'],div[class*='delete'][data-target], .fa-times").on("click", function () {
+                headerTab.css('zIndex', '0');
+                userIcon.css('zIndex', '0');
+                userIconA.css('zIndex', '0');
+            })
+
+            $("button, .modal").on("click", function () {
+                headerTab.css('zIndex', '1');
+                userIcon.css('zIndex', '1');
+                userIconA.css('zIndex', '1');
+            })
+        }
+    </script>
+    <!-- END INITIALIZATION-->
+</body>
+</html>

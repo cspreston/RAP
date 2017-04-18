@@ -1,0 +1,334 @@
+﻿@model List<BusinessObjects.CompanyDto>
+@{
+    ViewBag.Title = "Clients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="page-header full-content bg-blue">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1>
+                RAP
+                <small>Clients Administration</small>
+            </h1>
+        </div><!--.col-->
+        <div class="col-sm-6">
+            <ol class="breadcrumb"></ol>
+        </div><!--.col-->
+    </div><!--.row-->
+</div>
+
+<div class="content" ng-controller="TenantClientController">
+    <div class="row">
+        <button class="btn btn-success btn-ripple pull-right" data-toggle="modal" ng-show="isInRole" data-target="#add-client-modal" ng-click="addNewClient()">
+            Add Client
+        </button>
+        <br /><br />
+        <loading></loading>
+    </div>
+    <div class="row" style="padding-bottom:5px;overflow-x:scroll;height: 533px;">
+        <div id="grid"></div>
+        <script>
+            var myKendoGrid = $("#grid").kendoGrid;
+        </script>
+    </div>
+
+    <div class="modal fade full-height from-left" id="add-client-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <ng-form name="clients">
+                <div class="modal-content">
+                   
+                        <div class="modal-body">
+                            <div class="legend">Please type in the new client's details.</div>
+
+                            <div class="row">
+                                <div class="col-md-3">Company</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <select id="tenantCmb" kendo-drop-down-list k-data-source="Tenants"
+                                                    name="tenantCmb" ng-required="true"
+                                                    style="width: 100%;" k-data-text-field="'Name'" k-option-label="'Select company'"
+                                                    k-data-value-field="'Id'" k-ng-model="itemTenant" k-value-primitive="false"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">Name</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client name"
+                                                      style="height: 38px !important;" ng-model="EditClient.Name" ng-attr-name="{{EditClient.Name}}" ng-required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Phone</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client phone" style="height: 38px !important;" ng-model="EditClient.Phone"
+                                                      ng-attr-name="{{EditClient.Phone}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Address</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client address" style="height: 38px !important;" ng-model="EditClient.Address"
+                                                      ng-attr-name="{{EditClient.Address}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">City</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client city" style="height: 38px !important;" ng-model="EditClient.City"
+                                                      ng-attr-name="{{EditClient.City}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">State</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client state" style="height: 38px !important;" ng-model="EditClient.State"
+                                                      ng-attr-name="{{EditClient.State}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">ZIP</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client ZIP" style="height: 38px !important;" ng-model="EditClient.ZIP"
+                                                      ng-attr-name="{{EditClient.ZIP}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Email</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter email" style="height: 38px !important;" ng-model="EditClient.Email"
+                                                      ng-attr-name="{{EditClient.Email}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">Website</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client website" style="height: 38px !important;" ng-model="EditClient.Website"
+                                                      ng-attr-name="{{EditClient.Website}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-flat-primary" data-dismiss="modal">CANCEL</button>
+                            <button type="button" class="btn btn-flat-primary" ng-disabled="clients.$invalid" ng-click="insertClient()">OK</button>
+                        </div>
+                    
+                </div>
+            </ng-form>
+        </div>
+    </div>
+
+    <div class="modal fade full-height from-left" id="edit-client-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                
+                    <ng-form name="clientsUpdate">
+                        <div class="modal-body">
+                            <div class="legend">Please type in the new client's details.</div>
+
+                            <div class="row">
+                                <div class="col-md-3">Company</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client name"
+                                                      style="height: 38px !important;" ng-model="EditClient.DataBase" ng-attr-name="{{EditClient.DataBase}}" ng-disabled="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3">Name</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client name"
+                                                      style="height: 38px !important;" ng-model="EditClient.Name" ng-attr-name="{{EditClient.Name}}" ng-required="true"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Phone</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client phone" style="height: 38px !important;" ng-model="EditClient.Phone"
+                                                       ng-attr-name="{{EditClient.Phone}}" ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Address</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client address" style="height: 38px !important;" ng-model="EditClient.Address" 
+                                                      ng-attr-name="{{EditClient.Address}}" ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">City</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client city" style="height: 38px !important;" ng-model="EditClient.City"
+                                                      ng-attr-name="{{EditClient.City}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">State</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client State" style="height: 38px !important;" 
+                                                      ng-model="EditClient.State"
+                                                      ng-attr-name="{{EditClient.State}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">ZIP</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client ZIP" style="height: 38px !important;" ng-model="EditClient.ZIP"
+                                                      ng-attr-name="{{EditClient.ZIP}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Email</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter email" style="height: 38px !important;" ng-model="EditClient.Email" 
+                                                      ng-attr-name="{{EditClient.Email}}" ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-3">Website</div>
+                                <!--.col-md-3-->
+                                <div class="col-md-9">
+                                    <div class="inputer">
+                                        <div class="input-wrapper">
+                                            <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Client website" style="height: 38px !important;" ng-model="EditClient.Website"
+                                                      ng-attr-name="{{EditClient.Website}}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--.col-md-9-->
+                            </div>
+                        </div>
+                    </ng-form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat-primary" data-dismiss="modal">CANCEL</button>
+                        <button type="button" class="btn btn-flat-primary" ng-disabled="clientsUpdate.$invalid" ng-click="updateClient()">OK</button>
+                    </div>
+               
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal scale fade" id="delete-client-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Confirm action</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to remove <span style="text-transform:uppercase;font-weight:bold">{{EditClient.Name}}</span> from RAP context?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-flat btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-flat btn-primary" ng-click="deleteClient()">Ok</button>
+                </div>
+            </div><!--.modal-content-->
+        </div><!--.modal-dialog-->
+    </div>
+</div>
+

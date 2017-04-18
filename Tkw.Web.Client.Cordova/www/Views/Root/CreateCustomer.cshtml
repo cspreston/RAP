@@ -1,0 +1,16 @@
+﻿@model Web.Client.Net.Models.TenantModel
+
+@{
+    ViewBag.Title = "CreateCustomer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="legend">RAP Customers - Administration Panel</div>
+
+<div class="content" ng-controller="TenantController">
+    <div class="row" style="padding-bottom:5px;">
+        <button class="btn btn-success btn-ripple pull-right" data-toggle="modal" data-target="#add_new_site" ng-click="createNewSite()">
+            Add new site
+        </button>
+    </div>
+</div>

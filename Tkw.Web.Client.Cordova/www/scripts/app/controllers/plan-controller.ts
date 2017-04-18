@@ -5,7 +5,9 @@
         public ZoomLevel: number;
         private drawedObject: fabric.IObject;
         private hashPinedHashTable: {};
+        //keep circle
         private hashPinedLineTable: {};
+        //keep drwaw line
         private hashPinedLineTable2: {};
         public canvas: fabric.ICanvas;
         private initialCanvasLeft: number;
@@ -15,8 +17,8 @@
 
         // initializes the controller
         constructor($scope: RapApp.Models.ISinglePlan) {
+            super($scope);
             this.$scope = $scope;
-            super();
             this.ZoomLevel = 1;
 
             this.CanvasScale = 1;
@@ -25,6 +27,7 @@
             this.$scope.HotspotActionTypes = [];
             this.$scope.HotspotDisplayTypes = [];
             this.$scope.CurrentPlanHotspots = [];
+            (<any>this.$scope).FilteredPlanHotspots = [];
             (<any>this.$scope).PinnedLineColor = "#000000";
             (<any>this.$scope).PinnedLineSize = 3;
             (<any>this.$scope).Colors = [
@@ -64,12 +67,14 @@
             (<any>this.$scope).deleteSelectedSpot = this.deleteSelectedSpot;
             (<any>this.$scope).editSelectedHotspot = this.editSelectedHotspot;
             (<any>this.$scope).updateSelectedHotspot = this.updateSelectedHotspot;
+            (<any>this.$scope).updateHotspot = this.updateHotspot;
             (<any>this.$scope).getSpotFileUrl = this.getSpotFileUrl;
             (<any>this.$scope).getSpotFileType = this.getSpotFileType;
             (<any>this.$scope).isSpotFileType = this.isSpotFileType;
             (<any>this.$scope).removeHotspotFile = this.removeHotspotFile;
             (<any>this.$scope).loadOtherPlans = this.loadOtherPlans;
-
+            (<any>this.$scope).loadDetails = this.loadDetails;
+            (<any>this.$scope).editPlanDetails = this.editPlanDetails;
             (<any>this.$scope).getSelectedHotspot = this.getSelectedHotspot;
             (<any>this.$scope).getLastPinHotspot = this.getLastPinHotspot;
 
@@ -80,6 +85,7 @@
             (<any>this.$scope).undoPin = this.undoPin;
             (<any>this.$scope).getPlanImage = this.getPlanImage;
             (<any>this.$scope).reloadPlan = this.reloadPlan;
+            (<any>this.$scope).refreshPlan = this.refreshPlan;
             (<any>this.$scope).hotspotActionTypeAllowsAttachment = this.hotspotActionTypeAllowsAttachment;
 
             (<any>this.$scope).growCanvas = () => {
@@ -199,7 +205,103 @@
 
             (<any>this.$scope).customizeObject = this.customizeObject;
             (<any>this.$scope).updateCustomizeObject = this.updateCustomizeObject;
-            
+            (<any>$scope).Filter = false;
+            //filter icon
+            (<any>this.$scope).filter = () => {
+                if ((<any>$scope).Filter) {
+                    (<any>$scope).Filter = false;
+                    fabric.Object.prototype.selectable = true;
+                    (<any>this.$scope).FilteredPlanHotspots = [];
+                    this.canvas.forEachObject((element: fabric.IObject, index: number, arr: fabric.IObject[]) => {
+                        element.visible = true;
+                    });
+                    this.canvas.forEachObject((element: fabric.IObject, index: number, arr: fabric.IObject[]) => {
+                        element.selectable = false;
+                    });
+                    this.canvas.renderAll();
+                    var selected = $(".spot-touched");
+                    for (var j = 0; j < selected.length; j++) {
+                        (<any>jQuery(selected[j])).removeClass("spot-touched");
+                    }
+                }
+                else {
+                    (<any>jQuery("#filter-icons")).modal("show");
+                    (<any>$scope).Filter = true;
+                }
+            };
+            (<any>this.$scope).filterIcon = this.filterIcon;
+        }
+
+        filterIcon($event, spotDisplayType) {
+            var scope: Models.ISinglePlan = <Models.ISinglePlan><any>this;
+            var self = <PlanController>scope.Controller;
+            var hp = null;
+            var ids = [];
+            var beaconuuIds = [];
+            var elem = document.getElementById(spotDisplayType.Id);
+
+            if ((<any>jQuery(elem)).hasClass("spot-touched")) {
+                for (var k = 0; k < $(".spot-touched").length; k++) {
+                    for (var j = 0; j < (<any>self.$scope).FilteredPlanHotspots.length; j++) {
+                        hp = (<any>self.$scope).FilteredPlanHotspots[j].Dto;
+                        if (hp.HotspotDisplayTypeId == spotDisplayType.Id) {                           
+                            ids.push(hp.Id);
+                            (<any>self.$scope).FilteredPlanHotspots.splice(j, 1);
+                        }
+                    }
+                }
+                for (var k = 0; k < ids.length; k++) {
+                    for (var v = 0; v < (<any>self.$scope).FilteredPlanHotspots.length; v++) {
+                        if ((<any>self.$scope).FilteredPlanHotspots[v].Dto.BeaconuuId == ids[k]) {
+                            beaconuuIds.push((<any>self.$scope).FilteredPlanHotspots[v].Dto.BeaconuuId);
+                        }
+                    }
+                }
+                for (var k = 0; k < beaconuuIds.length; k++) {
+                    for (var v = 0; v < (<any>self.$scope).FilteredPlanHotspots.length; v++) {
+                        if ((<any>self.$scope).FilteredPlanHotspots[v].Dto.BeaconuuId == beaconuuIds[k]) {
+                           (<any>self.$scope).FilteredPlanHotspots.splice(v, 1);
+                        }
+                    }
+                }
+                (<any>jQuery(elem)).removeClass("spot-touched");
+            }
+            else {
+                (<any>jQuery(elem)).addClass("spot-touched");
+                for (var t = 0; t < self.$scope.CurrentPlanHotspots.length; t++) {
+                    if (self.$scope.CurrentPlanHotspots[t].Dto.HotspotDisplayTypeId == spotDisplayType.Id) {
+                        hp = self.$scope.CurrentPlanHotspots[t].Dto;
+                        (<any>self.$scope).FilteredPlanHotspots.push(self.$scope.CurrentPlanHotspots[t]);
+                        for (var j = 0; j < self.$scope.CurrentPlanHotspots.length; j++) {
+                            if (self.$scope.CurrentPlanHotspots[j].Dto.Id != hp.Id && self.$scope.CurrentPlanHotspots[j].Dto.BeaconuuId == hp.Id) {
+                                (<any>self.$scope).FilteredPlanHotspots.push(self.$scope.CurrentPlanHotspots[j]);
+                            }
+                        }
+                    }
+                }
+            }
+
+            fabric.Object.prototype.selectable = true;
+            self.canvas.forEachObject((element: fabric.IObject, index: number, arr: fabric.IObject[]) => {
+                element.visible = false;
+            });
+            var obj = self.canvas.getObjects();
+            for (var t = 0; t < obj.length; t++) {
+                for (var j = 0; j < (<any>self.$scope).FilteredPlanHotspots.length; j++) {
+                    if (obj[t] == (<any>self.$scope).FilteredPlanHotspots[j].FabricJSObject) {
+                        obj[t].visible = true;
+                    }
+                }
+            }      
+            if ((<any>jQuery('.spot-touched')).length == 0) {
+                self.canvas.forEachObject((element: fabric.IObject, index: number, arr: fabric.IObject[]) => {
+                    element.visible = true;
+                });
+            }
+            self.canvas.forEachObject((element: fabric.IObject, index: number, arr: fabric.IObject[]) => {
+                element.selectable = false;
+            });
+            self.canvas.renderAll();
         }
 
         customizeObject() {
@@ -219,6 +321,7 @@
         }
 
         updateCustomizeObject() {
+            debugger
             var scope: Models.ISinglePlan = <Models.ISinglePlan><any>this;
             var self = <PlanController>scope.Controller;
             var obj: Models.Hotspot = self.getSelectedHotspot();
@@ -301,8 +404,8 @@
                 if (data && data.length > 0) {
                     scope.IsLoading = true;
                     scope.$apply();
-                    localStorage.setItem("Reload", "true");
-                    window.location.href = "plan.html?id=" + scope.CurrentPlan.Id;
+                    //localStorage.setItem("Reload", "true");
+                    window.location.href = "/plan?id=" + scope.CurrentPlan.Id;
                     return;
                 }
             }, (response) => {
@@ -346,35 +449,34 @@
                             }
                         }
                     }
+                    if (self.CanvasScale != 1) {
+                        var fac = self.ZoomLevel;
+                        self.ZoomLevel = 1;
+                        var objects = self.canvas.getObjects();
+                        for (var t in objects) {
+                            var scaleX = objects[t].scaleX;
+                            var scaleY = objects[t].scaleY;
+                            var left = objects[t].left;
+                            var top = objects[t].top;
+                            var tempScaleX = scaleX * fac;
+                            var tempScaleY = scaleY * fac;
+                            var tempLeft = left * fac;
+                            var tempTop = top * fac;
+                            objects[t].scaleX = tempScaleX;
+                            objects[t].scaleY = tempScaleY;
+                            objects[t].left = tempLeft;
+                            objects[t].top = tempTop;
 
-                    //if (self.CanvasScale != 1) {
-                    //    var fac = self.ZoomLevel;
-                    //    self.ZoomLevel = 1;
-                    //    var objects = self.canvas.getObjects();
-                    //    for (var t in objects) {
-                    //        var scaleX = objects[t].scaleX;
-                    //        var scaleY = objects[t].scaleY;
-                    //        var left = objects[t].left;
-                    //        var top = objects[t].top;
-                    //        var tempScaleX = scaleX * fac;
-                    //        var tempScaleY = scaleY * fac;
-                    //        var tempLeft = left * fac;
-                    //        var tempTop = top * fac;
-                    //        objects[t].scaleX = tempScaleX;
-                    //        objects[t].scaleY = tempScaleY;
-                    //        objects[t].left = tempLeft;
-                    //        objects[t].top = tempTop;
-
-                    //        objects[t].setCoords();
-                    //    }
-                    //    var orgImg = self.canvas.backgroundImage;
-                    //    (<any>orgImg).width = (<any>orgImg).width * fac;
-                    //    (<any>orgImg).height = (<any>orgImg).height * fac;
-                    //    self.canvas.setBackgroundImage(orgImg, null);
-                    //    self.canvas.setWidth((<any>orgImg).width);
-                    //    self.canvas.setHeight((<any>orgImg).height);
-                    //    self.canvas.renderAll();
-                    //}
+                            objects[t].setCoords();
+                        }
+                        var orgImg = self.canvas.backgroundImage;
+                        (<any>orgImg).width = (<any>orgImg).width * fac;
+                        (<any>orgImg).height = (<any>orgImg).height * fac;
+                        self.canvas.setBackgroundImage(orgImg, null);
+                        self.canvas.setWidth((<any>orgImg).width);
+                        self.canvas.setHeight((<any>orgImg).height);
+                        self.canvas.renderAll();
+                    }
                 }
                 (<any>scope).IsUnPinAction = false;
                 (<any>scope).PinAct = false;
@@ -447,7 +549,11 @@
         reloadPlan() {
             var self = this;
             localStorage.setItem("Reload", "true");
-            window.location.href = "plan.html?id=" + (<any>self).Controller.PlanId;
+            window.location.href = "/plan?id=" + (<any>self).Controller.PlanId;
+        }
+        refreshPlan() {
+            var self = this;
+            window.location.href = "/plan?id=" + (<any>self).Controller.PlanId;
         }
 
         loadOtherPlans() {
@@ -466,7 +572,35 @@
                 alert(JSON.stringify(error));
             });
         }
-                                                                                
+        loadDetails() {
+            var scope = this;
+            (<any>scope).updatePlanInfo = jQuery.extend(true, {},(<any>scope).CurrentPlan);
+            (<any>jQuery("#edit-plan-info")).modal("show");
+        }  
+        editPlanDetails() {
+            var scope: RapApp.Models.ISingleBuilding = <RapApp.Models.ISingleBuilding><any>this;
+            (<any>scope).IsSaving = true;
+            TKWApp.Data.DataManager.Collections["BuildingPlans"].edit((<any>scope).updatePlanInfo, "EditDetails").then(function (data) {
+            }, function (success) {
+                if (success.status == 200) {
+                    (<any>scope).CurrentPlan.Name = (<any>scope).updatePlanInfo.Name;
+                    (<any>scope).CurrentPlan.Description = (<any>scope).updatePlanInfo.Description;
+                    (<any>scope).IsSaving = false;
+                    (<any>jQuery("#edit-plan-info")).modal("hide");
+                    (<any>scope).$apply();
+                }
+                else {
+                    (<any>scope).IsSaving = false;
+                    (<any>jQuery("#edit-plan-info")).modal("hide");
+                    (<any>jQuery("#saveSiteFailure")).click();
+                }
+            }, function (error) {
+                (<any>scope).IsSaving = false;
+                alert(JSON.stringify(error));
+                (<any>jQuery("#saveSiteFailure")).click();
+            });
+        }                                                                    
+
         loadHotspotTypes() {
             var self = this;
             (<any>self.$scope).HotspotDisplayTypes = [];
@@ -509,7 +643,8 @@
 
         getSpotFileUrl(spotFile: any) {
             if (!spotFile) return "";
-            var fileLink = RapApp.FileUtils.getImageUrl(spotFile.BucketPath, spotFile.BucketName, spotFile.FileName);
+            //var fileLink = RapApp.FileUtils.getImageUrl(spotFile.BucketPath, spotFile.BucketName, spotFile.FileName);
+            var fileLink = spotFile.ThumbUrl;
             return fileLink;
         }
 
@@ -527,7 +662,8 @@
         getHotspotDisplayTypeImage(displayType: RapApp.Models.IHotspotDisplayType): string {
             return RapApp.FileUtils.getHotspotDisplayImage(displayType.FileName);
         }
-        // Manage hotspots
+       
+         // Manage hotspots
         createHotspot(displayType: RapApp.Models.IHotspotDisplayType, posX: number, posY: number, width: number, height: number, color: string = null, posX1: number = null, posY1: number = null,
             posX2: number = null, posY2: number = null, bId: string = null, isPin: boolean = true) {
             // create a new hotspot with default values
@@ -539,7 +675,6 @@
             if (posY > 1) {
                 posY = posY / this.canvas.getHeight();
             }
-
             if (posX1 > 1) {
                 posX1 = posX1 / this.canvas.getWidth();
             }
@@ -589,7 +724,6 @@
             var self = this;
             //self.initFabricHotspot(spot);
             //return;
-            
             TKWApp.Data.DataManager.Collections["Hotspots"].create(hotspotDTO).then((data) => {
                 // hotspot created
                 // we need to add it to the plan as plan
@@ -599,6 +733,7 @@
                 var spot = new Models.Hotspot(data);
                 // for now just add it to the list
                 self.$scope.CurrentPlanHotspots.push(spot);
+                debugger
                 // add the spot to fabric
                 if (isPin) {
                     if (spot.Dto.HotspotDisplayType.Type == 3) {
@@ -618,7 +753,6 @@
                     obj.sendToBack();
                     obj.moveTo(0);
                 }
-
             }, (error) => {
                 alert(JSON.stringify(error));
             });
@@ -829,6 +963,20 @@
             });
         }
 
+        updateHotspot(hotspot) {
+
+            var scope: RapApp.Models.ISinglePlan = <RapApp.Models.ISinglePlan><any>this;
+            scope.IsSaving = true;
+
+            TKWApp.Data.DataManager.Collections["Hotspots"].update(hotspot)
+                .then(function (data) {
+                    scope.IsSaving = false;
+                },
+                function (error) {
+                    alert(JSON.stringify(error));
+                });
+        }
+
         editSelectedHotspot() {
             var scope: Models.ISinglePlan = <Models.ISinglePlan><any>this;
             var self = <PlanController>scope.Controller;
@@ -915,7 +1063,7 @@
                 if ((<any>self).$scope.CurrentPlanHotspots[t - 1].Dto.HotspotDisplayType.Type == 2 ||
                     (<any>self).$scope.CurrentPlanHotspots[t - 1].Dto.HotspotDisplayType.Type == 3) {
                     return (<any>self).$scope.CurrentPlanHotspots[t - 1];
-                    break;
+                    //break;
                 }
                 t--;
             }
@@ -934,6 +1082,7 @@
                             scope.$apply();
                             (<any>scope).reloadPlan();
                             return;
+                            /*
                             obj.Dto.BeaconuuId = null;
                             for (var c = 0; c < scope.CurrentPlanHotspots.length; c++) {
                                 if (scope.CurrentPlanHotspots[c].Dto.BeaconuuId == obj.Dto.Id) {
@@ -981,6 +1130,7 @@
                                 }
                             }
                             scope.$apply();
+                            */
                         }
                     }, (error) => {
                         alert(JSON.stringify(error));
@@ -1019,7 +1169,20 @@
             }
             (<any>self).createHotspot(hotSpCircle, centerX, centerY, size, size, color, null, null, null, null, sel.Dto.Id, true);
             sel.Dto.BeaconuuId = sel.Dto.Id;
-            TKWApp.Data.DataManager.Collections["Hotspots"].update(sel.Dto);
+            TKWApp.Data.DataManager.Collections["Hotspots"].update(sel.Dto).then(function (data) {
+                // we need to reload the current building
+                //scope.SelectedHotspot = data;
+                scope.$apply();
+                // close the modal dialog
+            }, function (sucess) {
+                // show bootstrap modal error
+                // for now we show a simple alert
+                alert(JSON.stringify(sucess));
+            }, function (error) {
+                // show bootstrap modal error
+                // for now we show a simple alert
+                alert(JSON.stringify(error));
+            });
         }
 
         reloadSetPin() {
@@ -1060,8 +1223,8 @@
             (<any>self).createHotspot(hotSpCircle, centerX, centerY, 0, 0, color, null, null, null, null, sel.Dto.Id, doPin);
         }
       
+
         // CANVAS UTILS
-     
         initFabric(successFunction: Function) {
             var self = this;
             // initialize canvas 
@@ -1070,7 +1233,6 @@
             g.addEventListener("touchstart", (<any>this).dropHp, false);
             var wd: number = 0.8 * $(window).width();
             var ht: number = wd * 9 / 16;
-            var g = document.getElementById("canv-container");
             var wd = g.clientWidth;
             var ht = g.clientHeight;
             this.canvas.setWidth(wd);
@@ -1079,7 +1241,7 @@
 
             this.initialCanvasLeft = document.getElementById("respondCanvas").getBoundingClientRect().left;        
             // set background image
-            fabric.Image.fromURL(this.getPlanImage(this.$scope.CurrentPlan), (img: fabric.IImage) => {
+            fabric.Image.fromURL(this.$scope.CurrentPlan.PlanFile.FileUrl, (img: fabric.IImage) => {
                 // compute the width and height of the background
                 // recompote canvas size
                 var width = img.width;
@@ -1105,13 +1267,11 @@
 
             // set up canvas events
             this.canvas.on("mouse:down", (ev: any) => {
-               
                 // if the plan is in edit mode, we need to disregard this
                 if (self.$scope.EditMode && !(<any>self).$scope.PinAct)
                     return;
                 else if (self.$scope.EditMode && (<any>self).$scope.PinAct) {
                     var sel: Models.Hotspot = (<any>self).getSelectedHotspot();
-
                     if (sel) {
                         if (!self.hashPinedHashTable[sel.Dto.Id] &&
                             !self.hashPinedLineTable[sel.Dto.Id] &&
@@ -1127,9 +1287,9 @@
                             if (!color)
                                 color = "#000000";
                             if (sel.Dto.HotspotDisplayType.Type == 0) {
-                                    color = (<any>this.$scope).PinnedLineColor;
-                            } 
-                            if (sel.Dto.HotspotDisplayType.Type == 1 && (<any>this.$scope).PinnedLineColor !="#000000") {
+                                color = (<any>this.$scope).PinnedLineColor;
+                            }
+                            if (sel.Dto.HotspotDisplayType.Type == 1 && (<any>this.$scope).PinnedLineColor != "#000000") {
                                 color = (<any>this.$scope).PinnedLineColor;
                             }
                             var c = origPin.FabricJSObject.getCenterPoint();
@@ -1191,6 +1351,8 @@
                 }
                 else {
                     var object = self.canvas.findTarget(ev.e, true);
+                    if (!object)
+                        return;
                     //TODO: we should probably move this into a function like the create
                     // find hotspot with this object
                     for (var i = 0; i < self.$scope.CurrentPlanHotspots.length; i++) {
@@ -1281,7 +1443,8 @@
                         return;
                     }
                     var sel = (<any>self).getSelectedHotspot();
-                    if (sel) {
+                    if (sel)
+                    {
                         (<any>self).$scope.IsUnPinAction = true;
                         if (self.hashPinedHashTable[sel.Dto.Id]) {
                             var pointer = self.canvas.getPointer(e.e);
@@ -1292,7 +1455,7 @@
                             self.canvas.renderAll()
                         }
                     }
-                }
+                } 
             });
             this.canvas.on('object:selected', (ev) => {
                 (<any>this.$scope).HideEditSpot = false;
@@ -1367,6 +1530,8 @@
                 if (!self.$scope.EditMode)
                     return;
                 var object = self.canvas.getActiveObject();
+                if (!object)
+                    return;
                 var normWidth = object.getWidth() / self.canvas.getWidth();
                 var normHeight = object.getHeight() / self.canvas.getHeight();
                 var normX = object.getLeft() / self.canvas.getWidth();
@@ -1379,22 +1544,29 @@
                     if (self.$scope.CurrentPlanHotspots[i].FabricJSObject == object) {
                         // found the hotspot
                         // set its attributes
-                        self.$scope.CurrentPlanHotspots[i].DisplayDetails.Position.x = normX;    
-                        self.$scope.CurrentPlanHotspots[i].DisplayDetails.Position.y = normY;
-                        self.$scope.CurrentPlanHotspots[i].DisplayDetails.Size.width = normWidth;
-                        self.$scope.CurrentPlanHotspots[i].DisplayDetails.Size.height = normHeight;
-                        self.$scope.CurrentPlanHotspots[i].DisplayDetails.Rotation = rotation;
-                        // stirngify to dto
-                        self.$scope.CurrentPlanHotspots[i].Dto.DisplayDetails = JSON.stringify(self.$scope.CurrentPlanHotspots[i].DisplayDetails);
-
-                        // save to storage
-
-                        TKWApp.Data.DataManager.Collections["Hotspots"].update(self.$scope.CurrentPlanHotspots[i].Dto)
-                            .then((data) => {
-                            }, (error) => {
-                                alert(JSON.stringify(error));
-                            });
-                        break;
+                        if (
+                            self.$scope.CurrentPlanHotspots[i].DisplayDetails.Position.x != normX ||
+                            self.$scope.CurrentPlanHotspots[i].DisplayDetails.Position.y != normY ||
+                            self.$scope.CurrentPlanHotspots[i].DisplayDetails.Size.width != normWidth ||
+                            self.$scope.CurrentPlanHotspots[i].DisplayDetails.Size.height != normHeight ||
+                            self.$scope.CurrentPlanHotspots[i].DisplayDetails.Rotation != rotation
+                        ) {
+                            console.log('object:modified');
+                            self.$scope.CurrentPlanHotspots[i].DisplayDetails.Position.x = normX;
+                            self.$scope.CurrentPlanHotspots[i].DisplayDetails.Position.y = normY;
+                            self.$scope.CurrentPlanHotspots[i].DisplayDetails.Size.width = normWidth;
+                            self.$scope.CurrentPlanHotspots[i].DisplayDetails.Size.height = normHeight;
+                            self.$scope.CurrentPlanHotspots[i].DisplayDetails.Rotation = rotation;
+                            // stirngify to dto
+                            self.$scope.CurrentPlanHotspots[i].Dto.DisplayDetails = JSON.stringify(self.$scope.CurrentPlanHotspots[i].DisplayDetails);
+                            // save to storage
+                            TKWApp.Data.DataManager.Collections["Hotspots"].update(self.$scope.CurrentPlanHotspots[i].Dto)
+                                .then((data) => {
+                                }, (error) => {
+                                    alert(JSON.stringify(error));
+                                });
+                            break;
+                        }
                     }
                 }
             });
@@ -1403,6 +1575,8 @@
         // we need to set it as current
         hotspotDragging(ev: JQueryEventObject, draggable: any, hotspotDisplayType: Models.IHotspotDisplayType) {
             var scope: Models.ISinglePlan = <Models.ISinglePlan>(<any>this).$parent;
+            if (!scope.EditMode)
+                return;
             scope.SelectedHotspotDisplayType = hotspotDisplayType;
 
         }
@@ -1458,9 +1632,6 @@
                     if ($("#sitekeyPoint").is(":hidden")) {
                         obj.width = spot.DisplayDetails.Size.width * this.canvas.getWidth();
                         obj.height = spot.DisplayDetails.Size.height * this.canvas.getHeight();
-                        if (this.canvas.getWidth() < 1024) {
-                            obj.width = obj.height = 8;
-                        }
                     }
                     else {
                         obj.width = obj.width * 2;
@@ -1529,13 +1700,16 @@
                 var y2 = spot.DisplayDetails.Coords.y2;
                 if (y2 < 1)
                     y2 = y2 * self.canvas.getHeight();
-
                 var line = new fabric.Line([x1,y1,x2, y2],
                     {
+                        originX: 'center',
+                        originY: 'center',
+                        name: "line_" + spot.Dto.BeaconuuId,
                         strokeWidth: spot.DisplayDetails.Size.width,
-                        fill: spot.DisplayDetails.Color,
                         stroke: spot.DisplayDetails.Color,
                         selectable: isSelecteable,
+                        hasControls: false,
+                        hasRotatingPoint: false,
                         lockRotation: true,
                         lockMovementX: true,
                         lockScalingFlip: true,
@@ -1543,8 +1717,6 @@
                         lockScalingX: true,
                         lockScalingY: true,
                         lockUniScaling: true,
-                        hasControls: false,
-                        hasRotatingPoint: false,
                     });
                 self.canvas.add(line);
                 line.sendToBack();

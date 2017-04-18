@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<settings>
+  <EmailTemplates>
+    <en-US>
+      <ConfirmRegister>
+        <emailCredentials name="Credentials" SMTPUsername="AKIAIGCJCOLP5YK3CTXQ" SMTPPassword="AlnDj7vMXzn4P5U35tKxQCLbIjKrV7Zr2xkqQLLRU5S5"
+SMTPServer="email-smtp.us-east-1.amazonaws.com" SMTPPort="587" EnableSsl="True" UseSMTPAuthentication="False">
+        </emailCredentials>
+        <senderUserName>mikecarroll@tripointsconsulting.com</senderUserName>
+        <bccRecipientAddress>
+        </bccRecipientAddress>
+        <defaultRecipientAddress>
+        </defaultRecipientAddress>
+        <subject>	Your RAP account is created</subject>
+        <message>
+          <pre>
+            Hi!
+          </pre>
+          <pre>
+            Your details for <strong>RAP</strong> application are as follows:
+          </pre>
+          <pre>
+            Logon email: <strong>userParam</strong>
+            Password:<strong>passParam</strong>
+            Best regards,
+          </pre>
+          <pre>
+            <strong>RAP Administration</strong>
+          </pre>
+        </message>
+      </ConfirmRegister>
+      <ForgotPassword>
+        <emailCredentials name="Credentials"  SMTPUsername="" SMTPPassword=""  SMTPServer="" SMTPPort="25" EnableSsl="True" UseSMTPAuthentication="False">
+        </emailCredentials>
+        <senderUserName>no-reply</senderUserName>
+        <defaultRecipientAddress>
+        </defaultRecipientAddress>
+        <bccRecipientAddress>
+        </bccRecipientAddress>
+        <subject>Reset Password</subject>
+        <message></message>
+      </ForgotPassword>
+      <DefaultTemplate>
+        <emailCredentials name="Credentials" SMTPUsername="" SMTPPassword="" SMTPServer="smtp.gmail.com" SMTPPort="25" EnableSsl="True" UseSMTPAuthentication="False">
+        </emailCredentials>
+        <senderUserName>no-reply</senderUserName>
+        <bccRecipientAddress>
+        </bccRecipientAddress>
+        <defaultRecipientAddress>
+        </defaultRecipientAddress>
+        <subject>DefaultTemplate</subject>
+        <message></message>
+      </DefaultTemplate>
+      <AlertTemplate>
+        <emailCredentials name="Credentials" SMTPUsername="AKIAIGCJCOLP5YK3CTXQ" SMTPPassword="AlnDj7vMXzn4P5U35tKxQCLbIjKrV7Zr2xkqQLLRU5S5"
+SMTPServer="email-smtp.us-east-1.amazonaws.com" SMTPPort="587" EnableSsl="True" UseSMTPAuthentication="False">
+        </emailCredentials>
+        <senderUserName>mikecarroll@tripointsconsulting.com</senderUserName>
+        <bccRecipientAddress>
+        </bccRecipientAddress>
+        <defaultRecipientAddress>
+        </defaultRecipientAddress>
+        <subject>	Emergency email from RAP application</subject>
+        <message>
+          <pre>
+            Hi!
+          </pre>
+          <pre>
+             An emergency email was sent from RAP application. Please view bellow the details:
+          </pre>
+          <br/>
+          <br/>
+          <pre>
+             messageParam
+          </pre>
+          <pre>
+            Best regards,
+          </pre>
+          <pre>
+            <strong>RAP Administration</strong>
+          </pre>
+        </message>
+      </AlertTemplate>
+    </en-US>
+  </EmailTemplates>
+</settings>

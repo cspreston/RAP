@@ -7,7 +7,8 @@
  <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Security-Policy">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <title>Ready Action Plan - User Login</title>
 
     <meta name="description" content="">
@@ -41,8 +42,8 @@
     <link rel="stylesheet" href="Content/kendo/kendo.material.mobile.min.css">
     <link rel="stylesheet" href="Content/kendo/kendo.material.min.css">
 
-    <script src="scripts/jquery-2.1.1.js"></script>
-    <script src="scripts/jquery-2.1.1.min.js"></script>
+    <script src="Scripts/jquery-2.1.1.js"></script>
+    <script src="Scripts/jquery-2.1.1.min.js"></script>
     <script src="Content/pleasure/js/global-vendors.js"></script>
     <script src="Content/pleasure/js/user-pages.js"></script>
     <script src="Content/pleasure/js/pleasure.js"></script>
@@ -51,12 +52,12 @@
     <script src="scripts/less/less-1.5.1.js" type="text/javascript"></script>
 
     <script src="Content/kendo/kendo.all.min.js"></script>
-    <script src="cordova.js"></script>
-    <script src="platformOverrides.js"></script>
-    <script src="scripts/TKWApp/config/configuration.js"></script>
-    <script src="scripts/TKWApp/hard-routing/application-routes.js"></script>
-    <script src="scripts/TKWApp/data/data-store.js"></script>
-    <script src="scripts/TKWApp/data/authentication.js"></script>
+
+    <script src="Scripts/TKWApp/config/configuration.js"></script>
+    <script src="Scripts/TKWApp/hard-routing/application-routes.js"></script>
+    <script src="Scripts/TKWApp/data/data-store.js"></script>
+    <script src="Scripts/TKWApp/data/authentication.js"></script>
+
 </head>
 <body class="bg-login printable">
     <div id="loadDiv" class="loading-bar indeterminate margin-top-10"></div>
@@ -68,7 +69,7 @@
                 <div class="form-group">
                     <div class="inputer">
                         <div class="input-wrapper">
-                            <input type="email" id="tbLoginUsername" class="form-control" placeholder="Enter your username">
+                            <input type="email" id="tbLoginUsername" class="form-control" placeholder="Enter your user name">
 
                         </div>
                     </div>
@@ -209,19 +210,20 @@
         </div><!--.modal-dialog-->
     </div>
 
+    <!-- BEGIN GLOBAL AND THEME VENDORS-->
+    <!-- END GLOBAL AND THEME VENDORS -->
+    <!-- BEGIN PLUGINS AREA -->
+    <!--<script src="Content/pleasure/js/global-vendors.js"></script>-->
+    <!-- END PLUGINS AREA -->
+    <!-- PLUGINS INITIALIZATION AND SETTINGS -->
+    <!--<script src="Content/pleasure/js/user-pages.js"></script>-->
+    <!-- END PLUGINS INITIALIZATION AND SETTINGS -->
+    <!-- PLEASURE Initializer -->
+    <!--<script src="Content/pleasure/js/pleasure.js"></script>-->
+    <!-- ADMIN 1 Layout Functions -->
+    <!--<script src="Content/pleasure/js/layout.js"></script>-->
+    <!-- BEGIN INITIALIZATION-->
     <script>
-        var isOnline = false;
-        document.addEventListener("offline", onOffline, false);
-        document.addEventListener("online", onOnline, false);
-        function onOffline() {
-            console.log("Device is offline");
-            isOnline = false;
-        }
-
-        function onOnline() {
-            console.log("Device is online");
-            isOnline = true;
-        }
         $(document).ready(function () {
             Pleasure.init();
             Layout.init();
@@ -231,44 +233,54 @@
 
         function doLogin() {
             $("#loadDiv").show();
-            //if (TKWApp.Configuration.ConfigurationManager.WorkMode == TKWApp.Configuration.WorkMode.OFFLINE) {
-            //    window.location.href = "dashboard-offline.html"
-            //}
-            if (isOnline) {
-                TKWApp.Data.AuthenticationManager.logOff();
-                var username = $("#tbLoginUsername").val();
-                var password = $("#tbLoginPassword").val();
-                TKWApp.Data.AuthenticationManager.authenticate(username, password, function (token) {
-                    if (TKWApp.Data.AuthenticationManager.isAuthenticated()) {
+            debugger
+            // log off any existing user
+            TKWApp.Data.AuthenticationManager.logOff();
+
+            var username = $("#tbLoginUsername").val();
+            var password = $("#tbLoginPassword").val();
+
+            // try to login the user with username and password
+            TKWApp.Data.AuthenticationManager.authenticate(username, password, function (token) {
+                // user authenticated - redirect to dasboard
+                if (TKWApp.Data.AuthenticationManager.isAuthenticated()) {
+                    if (token.UserType === "Root") {
+                        window.location.href = "/Root/index";
+                        $("#dropdownlist").kendoDropDownList({
+                            dataTextField: "Name",
+                            optionLabel: "Change company...",
+                            dataValueField: "Id",
+                            autoBind: true,
+                            cache: false,
+                            dataSource: {
+                                serverFiltering: true,
+                                transport: {
+                                    read: {
+                                        url: TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/Tenant/GetAll",
+                                        beforeSend: function (req) {
+                                            req.setRequestHeader('Authorization', "Bearer " + TKWApp.Data.AuthenticationManager.AuthenticationToken.Token);
+                                        },
+                                        dataType: "json"
+                                    }
+                                }
+                            }
+                        });
+                        $("#selectedTenant").html(TKWApp.Data.AuthenticationManager.AuthenticationToken.Tenant);
+                        //$("#login-root-modal").modal();
+                    }
+                    else {
                         TKWApp.HardRouting.ApplicationRoutes.redirect("Dashboard");
                     }
-                    else
-                        TKWApp.HardRouting.ApplicationRoutes.redirect("Login");
-                }, function (error) {
-                    $("#loadDiv").hide();
-                    if (error && error.responseJSON && error.responseJSON.error_description) {
-                        $("#login-error-modal-body").html(error.responseJSON.error_description);
-                    }
-                    $("#login-error-modal").modal();
-                });
-            }
-            else {
-                var username = $("#tbLoginUsername").val();
-                var password = $("#tbLoginPassword").val();
-                TKWApp.Data.AuthenticationManager.authenticate(username, password, function (token) {
-                    if (TKWApp.Data.AuthenticationManager.isAuthenticated()) {
-                        window.location.href = "dashboard-offline.html";
-                    }
-                    else
-                        TKWApp.HardRouting.ApplicationRoutes.redirect("Login");
-                }, function (error) {
-                    $("#loadDiv").hide();
-                    if (error && error.responseJSON && error.responseJSON.error_description) {
-                        $("#login-error-modal-body").html(error.responseJSON.error_description);
-                    }
-                    $("#login-error-modal").modal();
-                });
-            }
+                }
+                else
+                    TKWApp.HardRouting.ApplicationRoutes.redirect("Login");
+            }, function (error) {
+                $("#loadDiv").hide();
+                if (error && error.responseJSON && error.responseJSON.error_description) {
+                    $("#login-error-modal-body").html(error.responseJSON.error_description);
+                }
+                $("#login-error-modal").modal();
+            });
         }
 
         function doReset() {
@@ -353,5 +365,6 @@
         });
     </script>
     <!-- END INITIALIZATION-->
+
 </body>
 </html>

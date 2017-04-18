@@ -130,8 +130,6 @@
             this.Adapter.postWithoutSuffixes(data, {
                     headers: {
                         "content-type": "application/x-www-form-urlencoded",
-                        "Access-Control-Allow-Origin": "*",
-                        "Access-Control-Allow-Headers":"Origin, X-Requested-With, Content-Type, Accept"
                     }
             }).then((data) => {
                 self.AuthenticationToken = new AuthenticationToken(data);
@@ -144,6 +142,7 @@
         }
 
         resetPasswordRequest(email: string, onSuccessCallback: any, onErrorCallback: any) {
+            debugger
             var self = this;
             var getTokenUri = TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/Account/RequestResetPassword";
             this.Adapter = new TKWApp.Data.JQueryAjaxODATAAdater(getTokenUri);
@@ -165,6 +164,7 @@
         };
 
         resetPassword(data: any, onSuccessCallback: any, onErrorCallback: any) {
+            debugger
             var self = this;
             var getTokenUri = TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/Account/ResetPassword";
             this.Adapter = new TKWApp.Data.JQueryAjaxODATAAdater(getTokenUri);

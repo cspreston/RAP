@@ -10,9 +10,7 @@ var RapApp;
                 TKWApp.HardRouting.ApplicationRoutes.redirect("Login");
             }
             // configure angular app
-            this.App = angular.module("RAPApp", ['ngDragDrop', "kendo.directives", 'ui.sortable']).config(function ($sceDelegateProvider) {
-                $sceDelegateProvider.resourceUrlWhitelist(['**']);
-            });
+            this.App = angular.module("RAPApp", ['ngMap', 'ngDragDrop', "kendo.directives", 'ui.sortable', 'CTR-RAP-AWS']);
             // register app directives
             this.registerDirectives();
             // register app services - for directives that need services - stupid directives
@@ -102,8 +100,7 @@ var RapApp;
                 return {
                     restrict: 'E',
                     replace: true,
-                    //template: '<div class="loading-bar indeterminate margin-top-10"></div>',
-                    template: '<div style="position: fixed; left: 45%; top: 50%; display:none;z-index:999999999"><img src="Content/loaders/spinningwheel.gif"></img></div>',
+                    template: '<div class="loading-bar indeterminate margin-top-10"></div>',
                     link: function (scope, element, attr) {
                         scope.$watch('IsLoading', function (val) {
                             if (val)
@@ -196,9 +193,6 @@ var RapApp;
                                     $($attrs.$$element[0]).find('img').addClass("spot-touched");
                                     scope.$apply(function () {
                                         scope.$eval($attrs.onLongPress);
-                                        $("#sitekey").hide();
-                                        $("#sitekeyPoint").hide();
-                                        $('#main').show();
                                     });
                                 }
                             }, 600);
@@ -286,23 +280,8 @@ var RapApp;
             // register controllers used in the app
             this.App.controller("BuildingsController", ["$scope", function ($scope) {
                     return new RapApp.Controllers.BuildingsController($scope);
-            }]);
-
-            this.App.controller("OfflineBuildingsController", ["$scope", function ($scope) {
-                 return new RapApp.Controllers.OfflineBuildingsController($scope);
-            }]);
-
-
-            this.App.controller("OfflineBuildingController", ["$scope", function ($scope) {
-                return new RapApp.Controllers.OfflineBuildingController($scope);
-            }]);
-                                                    
-            this.App.controller("OfflinePlanController", ["$scope", function ($scope) {
-                return new RapApp.Controllers.OfflinePlanController($scope);
-            }]);
-
+                }]);
             this.App.controller("BuildingController", ["$scope", function ($scope) { return new RapApp.Controllers.BuildingController($scope); }]);
-
             this.App.controller("PricingInfosController", ["$scope", function ($scope) {
                     return new RapApp.Controllers.PricingInfoController($scope, true, false);
                 }]);

@@ -10,8 +10,8 @@ var RapApp;
         var TenantClientController = (function (_super) {
             __extends(TenantClientController, _super);
             function TenantClientController($scope) {
+                _super.call(this, $scope);
                 this.$scope = $scope;
-                _super.call(this);
                 var itemTenant;
                 $scope.Tenants = new Array();
                 $scope.pageIndex = 1;
@@ -141,7 +141,6 @@ var RapApp;
                 };
                 $scope.deleteClient = function () {
                     $scope.IsLoading = true;
-                    $scope.$apply();
                     TKWApp.Data.DataManager.Collections["TenantClients"].delete($scope.EditClient.Id).then(function (data) {
                     }, function (success) {
                         if (success.status === 200) {
@@ -152,10 +151,9 @@ var RapApp;
                         }
                     }, function (error) {
                         alert(JSON.stringify(error));
-                        $scope.IsLoading = false;
-                        $scope.$apply();
                     });
                     jQuery("#delete-client-modal").modal("hide");
+                    $scope.IsLoading = false;
                 };
                 $scope.loadTenants = function () {
                     TKWApp.Data.DataManager.Collections["Tenants"].search(null).then(function (data) {

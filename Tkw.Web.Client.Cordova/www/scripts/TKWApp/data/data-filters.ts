@@ -126,7 +126,6 @@
             return this.selector.join(",");
         }
     }
-    
 
     export class QueryTranslator {
         static toODATA(query: Query): string {
@@ -136,22 +135,4 @@
             return query.getFilterString(new JSONOperationTranslator());
         }
     }
-
-    //// tests
-    //var q = new Query();
-    //q.and().eq("A", "1").eq("B", "1").filter(new ComposedFilter(null, "or").eq("C", "2").eq("D", "3"));
-
-    //alert(QueryTranslator.toODATA(q));
-    //alert(QueryTranslator.toJSON(q));
-
-    //var a = {
-    //    A: "2", B: "1", C: "2", D: "2"
-    //};
-    //var func = Function("item", "with(item){ return " + QueryTranslator.toJSON(q) + "; }");
-
-
-
-    //var result = func(a);
-    //alert(result);
-   
 }

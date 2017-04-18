@@ -12,8 +12,8 @@ var RapApp;
             // initializes the controller
             function PlanEditController($scope) {
                 var _this = this;
+                _super.call(this, $scope);
                 this.$scope = $scope;
-                _super.call(this);
                 this.ZoomLevel = 1;
                 $scope.ShowSaveCrop = false;
                 // initialize undo list
@@ -82,14 +82,12 @@ var RapApp;
                 });
                 this.$scope.getPlanImage = this.getPlanImage;
                 this.$scope.growCanvas = function () {
-                    this.ZoomLevel *= 1.2;
-                    this.canvas.setZoom(this.ZoomLevel);
-                    this.canvas.renderAll();
+                    _this.ZoomLevel *= 1.2;
+                    $("#respondCanvas").css("zoom", _this.ZoomLevel);
                 };
                 this.$scope.shrinkCanvas = function () {
-                    this.ZoomLevel /= 1.2;
-                    this.canvas.setZoom(this.ZoomLevel);
-                    this.canvas.renderAll();
+                    _this.ZoomLevel /= 1.2;
+                    $("#respondCanvas").css("zoom", _this.ZoomLevel);
                 };
                 // save plan
                 this.$scope.saveAndReturn = function () {
@@ -596,46 +594,30 @@ var RapApp;
                 return fileLink;
             };
             PlanEditController.prototype.initFabric = function (successFunction) {
+                var _this = this;
+                debugger;
                 var self = this;
                 // initialize canvas
                 this.canvas = new fabric.Canvas('respondCanvas');
-                var g = document.getElementById("canv-container");
                 // generate canvas size
-                var wd = $(window).width() - 40;
+                var wd = 0.8 * $(window).width();
                 var ht = wd * 9 / 16;
+                var g = document.getElementById("canv-container");
+                var wd = g.clientWidth;
+                var ht = g.clientHeight;
                 this.canvas.setWidth(wd);
                 this.canvas.setHeight(ht);
                 this.initialCanvasLeft = document.getElementById("respondCanvas").getBoundingClientRect().left;
                 // set background image
                 fabric.Image.fromURL(this.getPlanImage(this.$scope.CurrentPlan), function (img) {
-                    // compute the width and height of the background
-                    // recompote canvas size
                     var width = img.width;
                     var height = img.height;
-
-                    if (TKWApp.Configuration.IsMobile.any()) {
-                        var ratio = wd / width;
-                        width = wd;
-                        var height = ratio * img.height;
-                        self.canvas.setHeight(height);
-                        self.canvas.setWidth(width);
-                        $(g).css("width", width);
-                        $(g).css("height", height);
-                    }
-                    else {
-                        if (_this.$scope.CurrentPlan.CanUseFullCanvas) {
-                            var ratio = (_this.canvas.getWidth()) / width;
-                            width = _this.canvas.getWidth();
-                            height = ratio * img.height;
-                            self.canvas.setHeight(height);
-                            self.canvas.calcOffset();
-                        }
-                        else {
-                            self.canvas.setWidth(width);
-                            self.canvas.setHeight(height);
-                            self.canvas.calcOffset();
-                        }
-                    }
+                    var ratio = (_this.canvas.getWidth()) / width;
+                    width = _this.canvas.getWidth();
+                    height = ratio * img.height;
+                    self.canvas.setHeight(height);
+                    self.canvas.calcOffset();
+                    // set background
                     img.set({ width: width, height: height, originX: 'left', originY: 'top' });
                     self.canvas.setBackgroundImage(img, self.canvas.renderAll.bind(self.canvas));
                     if (successFunction)

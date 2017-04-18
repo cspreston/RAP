@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Welcome Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="legend">RAP - Administration Panel</div>
+
+<div class="row">
+    <p class="col-md-12">
+        <b>Administering the RAP Tool</b>
+    </p>
+    <p class="col-md-12">
+        There are specific steps to take in order to set up clients and users.  Before users can add/edit/delete sites, they need to be correctly set up here.
+        <br><br>
+        Step 1 - Create any clients you need (company admins only)<br>
+        Step 2 - Create your users<br>
+        Step 3 - Assign clients to your users.  This is done by clicking the pencil <i class="fa fa-pencil"></i> icon.<br>
+        Step 4 - Assign a role to your users.  This is done by clicking the magnifying glass <i class="fa fa-search"></i> icon.
+
+    </p>
+
+    <p class="col-md-12">
+        <b>Access to Sites</b>
+    </p>
+    <p class="col-md-12">
+        In order to provide access to sites, users must be assigned to the site.
+        When adding/edting a site there is a users field where you can specify which users have access.
+        Company Admins automatically have access to sites for their clients.
+        Client admins automatically have access to all sites for their specific clients. You will not see these names in the dropdown.<br> <br>
+        <b>* If you do not see users in the dropdown, you have not assigned any to this client</b>
+        <br><br>
+        <img src="../Content/Images/sites.png"></img>
+    </p>
+</div>

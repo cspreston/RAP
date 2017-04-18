@@ -50,8 +50,8 @@ var RapApp;
             __extends(ContactInfoController, _super);
             // initializes the controller
             function ContactInfoController($scope, loadAll, loadById) {
+                _super.call(this, $scope);
                 this.$scope = $scope;
-                _super.call(this);
                 // initialize scope
                 $scope.ContactInfos = null;
                 $scope.createNew = this.createNew;

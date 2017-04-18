@@ -39,19 +39,15 @@
     /// Configuration manager class - used to store all configuration options
     export class ConfigurationManagerClass {
         public WorkMode: WorkMode = WorkMode.ONLINE;
-        public AppType: ApplicationType = ApplicationType.MOBILE;
-        public ServerUri: string = "https://www.readyactionplan.com/";
-        public LocalUri: string = "";
+        public AppType: ApplicationType = ApplicationType.WEB;
+        public ServerUri: string = "";
         constructor() {
-            if (IsMobile.Android()) {
-                this.LocalUri = 'file:///data/user/0/com.readyactionplan.rap/files/files/';
-            }
             //if (window.location.href.indexOf("52.21.240.181") >= 0) this.ServerUri = "http://52.21.240.181:8888";
             
-            //if (IsMobile.any()) {
-            //    // this is a mobile device - return the mobile workmode
-            //    this.AppType = ApplicationType.MOBILE;
-            //}
+            if (IsMobile.any()) {
+                // this is a mobile device - return the mobile workmode
+                this.AppType = ApplicationType.MOBILE;
+            }
         }
     }
 

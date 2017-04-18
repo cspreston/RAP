@@ -1,11 +1,12 @@
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 
-@import url(http://fonts.googleapis.com/css?family=RobotoDraft:300,400,500);
+@import url(https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500);
 
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
+    font-size: small;
 }
 
 body {
@@ -26,9 +27,8 @@ body {
         width: 100%;
     }
 
-
     #site-header {
-        height:160px;
+        height:120px;
         overflow: hidden;
     }
 
@@ -42,7 +42,7 @@ body {
 #site-header h1 {
     display: inline;
     box-sizing: content-box;
-    font-weight: 500;
+        font-weight: 500;
 }
 
 #site-header small {
@@ -66,6 +66,9 @@ body {
     float: right;
     right: 4%;
     top: 5%;
+    float: right;
+    padding: 0 5px;
+
 }
 
 #sitekey .user-image {
@@ -2190,7 +2193,7 @@ pre {
 }
 
 .col-xs-3 {
-    width: 21%;
+    width: 25%;
 }
 
 .col-xs-2 {
@@ -15901,12 +15904,12 @@ h6 {
             top: 18px;
             font-family: Ionicons;
             font-size: 14px;
-            content: '\f125';
+            content: '\f123';
             color: #fff;
         }
 
         .menu-layer li.has-child.open:before {
-            content: '\f123';
+            content: '\f126';
             right: 28px;
         }
 
@@ -16113,7 +16116,10 @@ h6 {
     z-index: 11;
     -webkit-transition: background 500ms cubic-bezier(.35, 0, .25, 1)250ms;
     transition: background 500ms cubic-bezier(.35, 0, .25, 1)250ms;
+    background-color:white;
 }
+
+
 
     .search-layer .search {
         width: 100%;
@@ -16135,16 +16141,16 @@ h6 {
         }
 
             .search-layer .search .form-control::-moz-placeholder {
-                color: rgba(255, 255, 255, .5);
+                color: #999;
                 opacity: 1;
             }
 
             .search-layer .search .form-control:-ms-input-placeholder {
-                color: rgba(255, 255, 255, .5);
+                color: #999;
             }
 
             .search-layer .search .form-control::-webkit-input-placeholder {
-                color: rgba(255, 255, 255, .5);
+                color: #999;
             }
 
         .search-layer .search .btn {
@@ -18685,7 +18691,7 @@ button.toast-close-button {
 
 #sitekey {
     xbackground-color: green;
-    width: 0px;
+    width: 20%;
     margin-left: 0%;
     padding: 1px 1px;
     height: 80vh;
@@ -18853,7 +18859,6 @@ textarea {
 
 body.modal-open {
     padding-right: 0px !important;
-    overflow-y: auto;
 }
 
 .nav-tabs.vertical > li.active > a {
@@ -18901,7 +18906,6 @@ body.site-page table {
 
 body.site-page .info-tab {
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.26);
-    margin: 5px;
     position: relative;
 }
 
@@ -18912,7 +18916,7 @@ body.site-page .edit-tab {
     cursor: pointer;
     position: relative;
     display: inline-block;
-     float: right;
+    float: right;
     padding: 0 5px 0 5px;
 }
 
@@ -19008,7 +19012,6 @@ th .search {
 
 .pac-container {
     z-index: 99999999999 !important;
-  
 }
 
 .modal-body .legend {
@@ -19032,27 +19035,31 @@ th .search {
 }
 
 .spot-touched {
-    border:2.5px solid #005288;
+    border: 2.5px solid #005288;
 }
 
-.header-tabs ul li a {
-    padding: 16px 30% !important; 
+.tab-content {
+    z-index:0;
 }
 
-#views > div.row > button {
-    margin:2px;
+.info-tab p {
+   margin-bottom:5px;
 }
 
-#main .btn {
-    font-size: 0.8em !important;
+.search-layer * {
+    color:black !important;
+
 }
+.search-layer input {
+    color: black;
+}
+.p-b-20 {
+    margin-bottom:20px;
+}
+
 .download-tab {
     float: right;
     padding: 0 5px;
-}
-
-.p-b-20 {
-    margin-bottom:20px;
 }
 
 .tab-content.without-border {
@@ -19062,7 +19069,6 @@ th .search {
 .nav-tabs > li {
     z-index:1 !important;
 }
-
 
 .modal.full-height .modal-content .modal-body {
        height: calc(100% - 150px) !important;
@@ -19089,6 +19095,4 @@ th .search {
     left: 0px;
     top: 0%;
     background-position: 50% 0%;
-    margin: auto;
 }
-

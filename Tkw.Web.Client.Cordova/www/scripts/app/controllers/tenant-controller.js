@@ -23,6 +23,7 @@ var RapApp;
             }
             TenantController.prototype.registerTenant = function () {
                 var scope = this;
+                debugger;
             };
             return TenantController;
         })(Controllers.BaseController);

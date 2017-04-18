@@ -70,6 +70,7 @@ var RapApp;
                 };
                 $scope.loadClients();
                 function showDetails(e) {
+                    debugger;
                     var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
                     $scope.EditClient = {
                         TenantId: 0,

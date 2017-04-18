@@ -121,6 +121,7 @@ var TKWApp;
                     "password": password
                 };
                 var self = this;
+                debugger
                 this.Adapter = new TKWApp.Data.JQueryAjaxODATAAdater(TKWApp.Configuration.ConfigurationManager.ServerUri + "/Token");
                 this.Adapter.postWithoutSuffixes(data, {
                     headers: {
@@ -138,6 +139,7 @@ var TKWApp;
                 });
             };
             AuthenticationManagerClass.prototype.resetPasswordRequest = function (email, onSuccessCallback, onErrorCallback) {
+                debugger;
                 var self = this;
                 var getTokenUri = TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/Account/RequestResetPassword";
                 this.Adapter = new TKWApp.Data.JQueryAjaxODATAAdater(getTokenUri);
@@ -158,6 +160,7 @@ var TKWApp;
             };
             ;
             AuthenticationManagerClass.prototype.resetPassword = function (data, onSuccessCallback, onErrorCallback) {
+                debugger;
                 var self = this;
                 var getTokenUri = TKWApp.Configuration.ConfigurationManager.ServerUri + "/api/niv/Account/ResetPassword";
                 this.Adapter = new TKWApp.Data.JQueryAjaxODATAAdater(getTokenUri);

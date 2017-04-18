@@ -10,8 +10,8 @@ var RapApp;
         var TenantUserController = (function (_super) {
             __extends(TenantUserController, _super);
             function TenantUserController($scope) {
+                _super.call(this, $scope);
                 this.$scope = $scope;
-                _super.call(this);
                 var itemTenant;
                 $scope.selectedClients = [];
                 $scope.isInRole = false;
@@ -43,7 +43,6 @@ var RapApp;
                 };
                 $scope.deleteUser = function () {
                     $scope.IsLoading = true;
-                    $scope.$apply();
                     TKWApp.Data.DataManager.Collections["TenantUsers"].delete($scope.EditUser.Id).then(function (data) {
                     }, function (success) {
                         if (success.status === 200) {
@@ -52,12 +51,10 @@ var RapApp;
                         else {
                             alert(JSON.stringify(success.responseJSON.Message));
                             $scope.IsLoading = false;
-                            $scope.$apply();
                         }
                     }, function (error) {
                         alert(JSON.stringify(error));
                         $scope.IsLoading = false;
-                        $scope.$apply();
                     });
                     jQuery("#delete-user-modal").modal("hide");
                 };

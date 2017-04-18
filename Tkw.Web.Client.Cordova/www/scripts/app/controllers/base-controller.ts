@@ -4,7 +4,8 @@
     }
     export class BaseController {
         protected $scope: RapApp.Models.BaseModel;
-        constructor() {
+        constructor(scope) {
+            this.$scope = scope;
             this.$scope.Message = {
                 Title: null,
                 Text: null,

@@ -11,8 +11,8 @@ var RapApp;
         var FileManagerController = (function (_super) {
             __extends(FileManagerController, _super);
             function FileManagerController($scope) {
+                _super.call(this, $scope);
                 this.$scope = $scope;
-                _super.call(this);
                 this.isLoadingFromFile = false;
                 $scope.Controller = this;
                 this.SelectedFolder = null;

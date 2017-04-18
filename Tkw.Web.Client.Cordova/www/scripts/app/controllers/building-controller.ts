@@ -8,8 +8,23 @@ module RapApp.Controllers {
         public isLoadingFromFile: boolean;
         // initializes the controller
         constructor($scope: RapApp.Models.ISingleBuilding) {
+            super($scope);
             this.$scope = $scope;
-            super();
+            var headerTab = $(".header-tabs.scrollable-tabs.sticky");
+            var userIcon = $(".nav-user");
+            var userIconA = $(".modal-dialog");
+            $(".fa-trash, div[class*='delete'][style*='display: block'],div[class*='delete'][data-target], .fa-times").on("click", function () {
+                headerTab.css('zIndex', '0');
+                userIcon.css('zIndex', '0');
+                userIconA.css('zIndex', '0');
+            })
+
+            $("button, .modal").on("click", function () {
+                headerTab.css('zIndex', '1');
+                userIcon.css('zIndex', '1');
+                userIconA.css('zIndex', '1');
+            })
+
             this.isLoadingFromFile = false;
             // initialize scope
             (<any>$scope).Controller = this;
@@ -40,6 +55,11 @@ module RapApp.Controllers {
             if (TKWApp.Data.AuthenticationManager.isInRole("Root") ||
                 TKWApp.Data.AuthenticationManager.isInRole("Site Admin")) {
                 (<any>$scope).isSiteAdmin = true;
+            }
+            (<any>$scope).isClientAdmin = false;
+            if (TKWApp.Data.AuthenticationManager.isInRole("Root") ||
+                TKWApp.Data.AuthenticationManager.isInRole("Client Admin")) {
+                (<any>$scope).isClientAdmin = true;
             }
             $scope.DefaultBuildingImage = "./Content/Images/default-building.png";
             $scope.DefaultPlanImage = "./Content/Images/default-plan.jpg";
@@ -75,7 +95,7 @@ module RapApp.Controllers {
                 (<any>jQuery("#edit-pricing")).modal("show");
             }
 
-
+           
 
             (<any>$scope).createNewBuildingImage = this.createNewBuildingImage;
             (<any>$scope).saveNewBuildingImage = this.saveNewBuildingImage;
@@ -235,8 +255,44 @@ module RapApp.Controllers {
             this.loadBuilding(this.BuildingId);
 
             (<any>$scope).selectPlanSize = this.selectPlanSize;
-
+            (<any>$scope).openSendEmergencyEmail = () =>
+            {
+                (<any>jQuery("#emergency-email")).val('');
+                (<any>jQuery("#send-emergency-email")).modal("show");
+            }
+            (<any>$scope).sendEmergencyEmail = this.sendEmergencyEmail;
+            (<any>$scope).zipSite = this.zipSite;
         };
+
+        
+        //downlaod all files for selected building
+        zipSite() {
+            var scope: any = <any>this;
+            scope.IsSaving = true;
+            var url = "DownloadBuildingFiles?Id=" + scope.CurrentBuilding.Id;
+            
+            return TKWApp.Data.DataManager.Collections["Buildings"].getFromUrl(url).then((data) => {
+                scope.IsSaving = false;
+                if (data) {
+                    window.open(data, '_blank', '');
+                }
+                else {
+                    alert(JSON.stringify(data.responseText));
+                }
+                (<any>jQuery("#send-emergency-email")).modal("hide");
+            }, function (error) {
+                scope.IsSaving = false;
+                alert(JSON.stringify(error));
+                (<any>jQuery("#saveSiteFailure")).click();
+
+            }, function (error) {
+                // display an error
+                scope.IsSaving = false;
+                alert(JSON.stringify(error));
+                (<any>jQuery("#saveSiteFailure")).click();
+                });
+
+        }
 
         selectPlanSize(value: boolean) {
             var scope: any = <any>this;
@@ -364,6 +420,26 @@ module RapApp.Controllers {
             }
         }
 
+        sendEmergencyEmail() {
+            var scope: any = <any>this;
+            var url = "SendEmergencyEmail?Id=" + scope.CurrentBuilding.Id + "&message=" + (<any>jQuery("#emergency-email")).val();
+            TKWApp.Data.DataManager.Collections["Buildings"].edit(null, url).then(function (data) {
+            }, function (success) {
+                scope.IsSaving = false;
+                if (success.status == 200) {
+                    alert("Notification was sent successfully!");
+                }
+                else {
+                    alert(JSON.stringify(success.responseText));
+                }
+                (<any>jQuery("#send-emergency-email")).modal("hide");
+            }, function (error) {
+                scope.IsSaving = false;
+                alert(JSON.stringify(error));
+                (<any>jQuery("#saveSiteFailure")).click();
+            });
+        }
+
         showMap() {
             var self = this;
             (<any>self).renderMap = !(<any>self).renderMap;
@@ -414,52 +490,57 @@ module RapApp.Controllers {
         
         // returns the url for the building's featured image
         getFeaturedImage(b: any) {
-            
+
             // find featured image
             var featured = b.FeaturedImageId;
             // find featured image
             var url = null;
             for (var i = 0; i < b.BuildingImages.length; i++) {
                 if (b.BuildingImages[i].Id === featured) {
-                    url = RapApp.FileUtils.getImageUrl(b.BuildingImages[i].BucketPath, b.BuildingImages[i].BucketName, b.BuildingImages[i].FileName);
+                    url = b.BuildingImages[i].Url;
+                    //url = RapApp.FileUtils.getImageUrl(b.BuildingImages[i].BucketPath, b.BuildingImages[i].BucketName, b.BuildingImages[i].FileName);
                 }
             }
             if (!url && b.BuildingImages.length > 0) {
                 // featured image is not in the list
                 // normally this should never happen, but just in case
                 // we consider the first image as featured
-                url = RapApp.FileUtils.getImageUrl(b.BuildingImages[0].BucketPath, b.BuildingImages[0].BucketName, b.BuildingImages[0].FileName);
+                url = b.BuildingImages[0].Url;
+                //url = RapApp.FileUtils.getImageUrl(b.BuildingImages[0].BucketPath, b.BuildingImages[0].BucketName, b.BuildingImages[0].FileName);
             }
             return url;
         }    // returns the url for the building's featured image
 
         getBuildingImage(bi: any) {
-            return RapApp.FileUtils.getImageUrl(bi.BucketPath, bi.BucketName, bi.FileName);
+            return bi.Url;
+            //return RapApp.FileUtils.getImageUrl(bi.BucketPath, bi.BucketName, bi.FileName);
         }
 
         getFileLink(fi: any) {
-            var fileLink = RapApp.FileUtils.getImageUrl(fi.File.BucketPath, fi.File.BucketName, fi.File.FileName);
+            //var fileLink = RapApp.FileUtils.getImageUrl(fi.File.BucketPath, fi.File.BucketName, fi.File.FileName);
+            var fileLink = fi.File.Url;
             return fileLink;
         }
 
         getPlanThumbnail(plan: any) {
-            var fileLink = RapApp.FileUtils.getImageUrl(plan.PlanThumbnailFile.BucketPath, plan.PlanThumbnailFile.BucketName, plan.PlanThumbnailFile.FileName);
+            //var fileLink = RapApp.FileUtils.getImageUrl(plan.PlanThumbnailFile.BucketPath, plan.PlanThumbnailFile.BucketName, plan.PlanThumbnailFile.FileName);
+            var fileLink = plan.PlanFile.ThumbUrl;
             return fileLink;
         }
 
         createNewBuildingImage() {
-            var scope: RapApp.Models.ISingleBuilding = <RapApp.Models.ISingleBuilding><any>this;
-            scope.AddBuildingImageModel = new RapApp.Models.BuildimgImageUploadModel(
-                <HTMLInputElement>document.getElementById("fuBuildingImage"),
-                <HTMLImageElement>document.getElementById("fuBuildingImagePreview")
-            );
-            scope.AddBuildingImageModel.Height = 300;
-            scope.AddBuildingImageModel.Width = 300;
-            scope.AddBuildingImageModel.Description = "Building image";
-            scope.AddBuildingImageModel.BuildingId = scope.CurrentBuilding.Id;
-            scope.AddBuildingImageModel.KeepAspectRatio = false;
+            //var scope: RapApp.Models.ISingleBuilding = <RapApp.Models.ISingleBuilding><any>this;
+            //scope.AddBuildingImageModel = new RapApp.Models.BuildimgImageUploadModel(
+            //    <HTMLInputElement>document.getElementById("fuBuildingImage"),
+            //    <HTMLImageElement>document.getElementById("fuBuildingImagePreview")
+            //);
+            //scope.AddBuildingImageModel.Height = 300;
+            //scope.AddBuildingImageModel.Width = 300;
+            //scope.AddBuildingImageModel.Description = "Building image";
+            //scope.AddBuildingImageModel.BuildingId = scope.CurrentBuilding.Id;
+            //scope.AddBuildingImageModel.KeepAspectRatio = false;
 
-            scope.AddBuildingImageModel.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuBuildingImage"), <HTMLImageElement>document.getElementById("fuBuildingImagePreview"));
+            //scope.AddBuildingImageModel.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuBuildingImage"), <HTMLImageElement>document.getElementById("fuBuildingImagePreview"));
         }
 
         saveNewBuildingImage() {
@@ -952,23 +1033,23 @@ module RapApp.Controllers {
         }
 
         createNewPlan() {
-            var scope: RapApp.Models.ISingleBuilding = <RapApp.Models.ISingleBuilding><any>this;
+            //var scope: RapApp.Models.ISingleBuilding = <RapApp.Models.ISingleBuilding><any>this;
 
-            scope.AddPlanModel = new RapApp.Models.BuildimgPlanUploadModel(
-                <HTMLInputElement>document.getElementById("fuPlanImage"),
-                <HTMLImageElement>document.getElementById("fuPlanImagePreview")
-            );
-            scope.AddPlanModel.Description = "Floor plan";
-            scope.AddPlanModel.BuildingId = scope.CurrentBuilding.Id;
-            scope.AddPlanModel.PlanName = "";
-            scope.AddPlanModel.Height = 600;
-            scope.AddPlanModel.Width = 900;
-            scope.AddPlanModel.PlanDescription = "";
-            scope.AddPlanModel.KeepAspectRatio = false;
+            //scope.AddPlanModel = new RapApp.Models.BuildimgPlanUploadModel(
+            //    <HTMLInputElement>document.getElementById("fuPlanImage"),
+            //    <HTMLImageElement>document.getElementById("fuPlanImagePreview")
+            //);
+            //scope.AddPlanModel.Description = "Floor plan";
+            //scope.AddPlanModel.BuildingId = scope.CurrentBuilding.Id;
+            //scope.AddPlanModel.PlanName = "";
+            //scope.AddPlanModel.Height = 600;
+            //scope.AddPlanModel.Width = 900;
+            //scope.AddPlanModel.PlanDescription = "";
+            //scope.AddPlanModel.KeepAspectRatio = false;
 
-            scope.AddPlanModel.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuPlanImage"),
-                <HTMLImageElement>document.getElementById("fuPlanImagePreview")
-            );
+            //scope.AddPlanModel.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuPlanImage"),
+            //    <HTMLImageElement>document.getElementById("fuPlanImagePreview")
+            //);
         }
 
         saveNewPlan() {
@@ -980,7 +1061,6 @@ module RapApp.Controllers {
                 var files = scope.AddPlanModel.Uploader.files;
                 for (var i = 0; i < files.length; i++) {
                     scope.IsSaving = true;
-                    debugger
                     var knt = 0;
                     var progress: TKWApp.Services.OperationProgress = scope.AddPlanModel.Uploader.uploadFile(scope.AddPlanModel.Uploader.files[i],
                         uploadUrl,
@@ -1021,9 +1101,7 @@ module RapApp.Controllers {
                 alert("You must select an image.");
             }
         }
-
-
-
+                                
         removePlan(item) {
             var scope: RapApp.Models.ISingleBuilding = <RapApp.Models.ISingleBuilding><any>this;
 
@@ -1344,11 +1422,11 @@ module RapApp.Controllers {
         }
 
         foldActAddFile() {
-            var self: any = <any>this;
-            self.Controller.Uploader = new TKWApp.Services.FileUploader();
-            self.Controller.Uploader.registerUploader(<HTMLInputElement>document.getElementById("fuFolderFile"));
-            self.Controller.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuFolderFile"), <HTMLImageElement>document.getElementById("fuFolderFile"));
-            (<any>jQuery("#tree_info_add_file")).modal("show");
+            //var self: any = <any>this;
+            //self.Controller.Uploader = new TKWApp.Services.FileUploader();
+            //self.Controller.Uploader.registerUploader(<HTMLInputElement>document.getElementById("fuFolderFile"));
+            //self.Controller.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuFolderFile"), <HTMLImageElement>document.getElementById("fuFolderFile"));
+            //(<any>jQuery("#tree_info_add_file")).modal("show");
         }
 
         createFile() {

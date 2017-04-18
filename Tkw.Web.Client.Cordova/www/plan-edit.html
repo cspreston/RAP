@@ -38,45 +38,45 @@
 
 
     <!--Add Fabric JS-->
-    <script src="scripts/fabric.js"></script>
+    <script src="Scripts/fabric.js"></script>
     <!--Add Fabric JS-->
     <!--Add jQuery-->
-    <script src="scripts/jquery-2.1.1.js"></script>
+    <script src="Scripts/jquery-2.1.1.js"></script>
 
-    <script src="scripts/jqueryui-1.11.1.min.js"></script>
-    <script src="scripts/jquery.ui.touch-punch.min.js"></script>
+    <script src="Scripts/jqueryui-1.11.1.min.js"></script>
+    <script src="Scripts/jquery.ui.touch-punch.min.js"></script>
 
 
 
     <!--Add Angular js-->
-    <script src="scripts/angular.js"></script>
-    <script src="scripts/angular-ng-map.js"></script>
-    <script src="scripts/angular-dragdrop.min.js"></script>
-    <script src="scripts/sortable.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-ng-map.js"></script>
+    <script src="Scripts/angular-dragdrop.min.js"></script>
+    <script src="Scripts/sortable.js"></script>
     <!--Add common application services-->
-    <script src="scripts/TKWApp/common.js"></script>
-    <script src="scripts/TKWApp/config/configuration.js"></script>
-    <script src="scripts/TKWApp/hard-routing/application-routes.js"></script>
-    <script src="scripts/TKWApp/data/data-filters.js"></script>
-    <script src="scripts/TKWApp/data/data-store.js"></script>
-    <script src="scripts/TKWApp/data/authentication.js"></script>
-    <script src="scripts/TKWApp/services/file-uploader.js"></script>
+    <script src="Scripts/TKWApp/common.js"></script>
+    <script src="Scripts/TKWApp/config/configuration.js"></script>
+    <script src="Scripts/TKWApp/hard-routing/application-routes.js"></script>
+    <script src="Scripts/TKWApp/data/data-filters.js"></script>
+    <script src="Scripts/TKWApp/data/data-store.js"></script>
+    <script src="Scripts/TKWApp/data/authentication.js"></script>
+    <script src="Scripts/TKWApp/services/file-uploader.js"></script>
 
     <!--Add angular files-->
     <!--Add Utils-->
-    <script src="scripts/app/utils/rap-file-utils.js"></script>
-    <script src="scripts/app/utils/image-utils.js"></script>
+    <script src="Scripts/app/utils/rap-file-utils.js"></script>
+    <script src="Scripts/app/utils/image-utils.js"></script>
     <!--Add Models-->
-    <script src="scripts/app/models/base-model.js"></script>
-    <script src="scripts/app/models/plan-model.js"></script>
+    <script src="Scripts/app/models/base-model.js"></script>
+    <script src="Scripts/app/models/plan-model.js"></script>
 
     <!--Add Controllers-->
-    <script src="scripts/app/controllers/base-controller.js"></script>
-    <script src="scripts/app/controllers/plan-edit-controller.js"></script>
-    <script src="scripts/app/controllers/search-controller.js"></script>
+    <script src="Scripts/app/controllers/base-controller.js"></script>
+    <script src="Scripts/app/controllers/plan-edit-controller.js"></script>
+    <script src="Scripts/app/controllers/search-controller.js"></script>
 
     <!--Add Angular app configuration-->
-    <script src="scripts/app/angular-app-configuration.js"></script>
+    <script src="Scripts/app/angular-app-configuration.js"></script>
     <script src="Content/kendo/kendo.all.min.js"></script>
     <style>
         .table {
@@ -120,48 +120,7 @@
 </head>
 <body ng-app="RAPApp" ng-cloak ng-controller="PlanEditController">
     <div class="nav-bar-container">
-
-        <!-- BEGIN ICONS -->
-        <div class="nav-menu">
-            <div class="hamburger">
-                <span class="patty"></span>
-                <span class="patty"></span>
-                <span class="patty"></span>
-                <span class="patty"></span>
-                <span class="patty"></span>
-                <span class="patty"></span>
-            </div><!--.hamburger-->
-        </div><!--.nav-menu-->
-
-        <div class="nav-search">
-            <span class="search"></span>
-        </div><!--.nav-search-->
-
-
-        <div class="nav-user">
-            <div class="user">
-                <img src="/Content/Images/default-profile.png" alt="" style="display:none;">
-                <span class="badge"></span>
-            </div><!--.user-->
-            <div class="cross">
-                <span class="line"></span>
-                <span class="line"></span>
-            </div><!--.cross-->
-        </div><!--.nav-user-->
-        <!-- END OF ICONS -->
-
-        <div class="nav-bar-border"></div><!--.nav-bar-border-->
-        <!-- BEGIN OVERLAY HELPERS -->
-        <div class="overlay">
-            <div class="starting-point">
-                <span></span>
-            </div><!--.starting-point-->
-            <div class="logo">RAP</div><!--.logo-->
-        </div><!--.overlay-->
-
-        <div class="overlay-secondary"></div><!--.overlay-secondary-->
-        <!-- END OF OVERLAY HELPERS -->
-
+        <div ng-include="getUrl('LeftMenu')"></div>
     </div><!--.nav-bar-container-->
 
     <div class="content" style="margin-left: 36px;">
@@ -186,8 +145,6 @@
                         <li>
                             <a ng-href="{{getUrl('Site')+'?id='+CurrentPlan.BuildingId}}">Site Profile</a>
                         </li>
-                        </ol>
-                    <ol class="breadcrumb">
                         <li>
                             <a ng-href="{{getUrl('Plan')+'?id='+CurrentPlan.Id}}">Site Plan</a>
                         </li>
@@ -234,15 +191,15 @@
                             </button>
 
                             <button class="btn tool-btn btn-xs" ng-class="{ 'btn-info': LineDrawingSelected }" ng-click="lineDraw()">
-                                <img src="Content/Images/EditPlan/stock_draw-line.png" />
+                                <img src="/Content/Images/EditPlan/stock_draw-line.png" />
                             </button>
 
                             <button class="btn tool-btn btn-xs" ng-class="{ 'btn-info': RectangleDrawingSelected }" ng-click="rectDraw()">
-                                <img src="Content/Images/EditPlan/rect.png" />
+                                <img src="/Content/Images/EditPlan/rect.png" />
                             </button>
 
                             <button class="btn tool-btn btn-xs" ng-class="{ 'btn-info': EllipsisDrawingSelected }" ng-click="ellipsisDraw()">
-                                <img src="Content/Images/EditPlan/circle.png" />
+                                <img src="/Content/Images/EditPlan/circle.png" />
                             </button>
                             <button class="btn tool-btn btn-xs" ng-click="undoLastObject()">
                                 <i class="fa fa-undo"></i>
@@ -262,14 +219,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" id="canv-container" style="overflow:scroll;margin-left:15px; margin-top:15px; margin-bottom:25px; padding:20px; border-left:1px dotted #0b2aa5;background-color:gray; border-top:1px dotted #0b2aa5; ">
-                    <canvas id="respondCanvas" width="100" height="100" data-drop="true" style="padding-right:20px;"
+                <div class="row" id="canv-container" style="overflow:no-display;width:100%;height:100%;border:1px blue dotted"">
+                    <canvas id="respondCanvas" width="100" height="100" data-drop="true" style="margin-bottom:20px;"
                             data-jqyoui-options jqyoui-droppable="{onDrop: 'hotspotDropped'}">
                         Canvas
                     </canvas>
                 </div>
-                <br />
-                <br />
+                <div class="row">
+                    <br />
+                    <br />
+                </div>
             </div>
         </div>
 
@@ -298,7 +257,10 @@
     </div>
 
     <!-- BEGIN SEARCH LAYER -->
-    <div class="modal fade full-height in" id="search-modal" tabindex="-1" role="dialog" aria-hidden="false" ng-include="getUrl('Search')" ng-controller="SearchController">
+    <div class="modal fade full-height in" id="search-modal" ng-include="getUrl('Search')" ng-controller="SearchController">
+
+
+
     </div>
     <!--.search-->
     <!--.results-->
@@ -352,6 +314,9 @@
                         $('#sitekey').hide();
                         respondCanvas();
                     }
+
+
+
                 }
             )
             .hover(

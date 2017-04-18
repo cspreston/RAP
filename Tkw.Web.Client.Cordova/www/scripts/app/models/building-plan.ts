@@ -13,6 +13,7 @@
         PlanFileId: string;
         BuildingId: string;
         BuildingName: string;
+        PlanFile: IFileWithBucket;
         Hotspots: Array<IHotspot>;
     }
 }

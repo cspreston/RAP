@@ -1,8 +1,13 @@
 ﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
 <html class="no-js">
+<!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Security-Policy" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Ready Action Plan - Dashboard</title>
     <meta name="description" content="">
     <meta name="author" content="">
@@ -21,7 +26,7 @@
     <link rel="stylesheet" href="Content/pleasure/css/plugins.css">
     <!-- END FIX PLUGINS -->
     <!-- BEGIN SHORTCUT AND TOUCH ICONS -->
-    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="shortcut icon" href="Content/pleasure/images/favicon.ico">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <!-- END SHORTCUT AND TOUCH ICONS -->
     <!--Kendo styles-->
@@ -37,70 +42,55 @@
 
 
     <!--Add jQuery-->
-    <script src="scripts/jquery-2.1.1.js"></script>
-    <script src="scripts/jqueryui-1.11.1.js"></script>
+    <script src="Scripts/jquery-2.1.1.js"></script>
+    <script src="Scripts/jqueryui-1.11.1.js"></script>
     <script src="Content/pleasure/js/global-vendors.js"></script>
     <script src="Content/pleasure/js/user-pages.js"></script>
     <script src="Content/pleasure/js/pleasure.js"></script>
     <script src="Content/pleasure/js/layout.js"></script>
     <script src="Content/pleasure/js/modernizr.min.js"></script>
-    <script src="scripts/fastclick.js"></script>
+
     <!--Add Angular js-->
-    <script src="scripts/angular.js"></script>
-    <script src="scripts/angular-ng-map.js"></script>
-    <script src="scripts/angular-simple-slider.js"></script>
-    <script src="scripts/angular-dragdrop.min.js"></script>
-    <script src="scripts/sortable.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.6.10.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.0-rc.1/angular-ui-router.min.js"></script>
+    <script src="Scripts/ng-file-upload.min.js"></script>
+    <script src="Scripts/openseadragon.min.js"></script>
+    <script src="Scripts/angular-ng-map.js"></script>
+    <script src="Scripts/angular-simple-slider.js"></script>
+    <script src="Scripts/angular-dragdrop.min.js"></script>
+    <script src="Scripts/sortable.js"></script>
     <!--Add Kendo Grid-->
     <script src="Content/kendo/kendo.all.min.js"></script>
 
     <!--Add common application services-->
-    <script src="scripts/TKWApp/common.js"></script>
-    <script src="scripts/TKWApp/config/configuration.js"></script>
-    <script src="scripts/TKWApp/hard-routing/application-routes.js"></script>
-    <script src="scripts/TKWApp/data/data-filters.js"></script>
-    <script src="scripts/TKWApp/data/data-store.js"></script>
-    <script src="scripts/TKWApp/data/authentication.js"></script>
-    <script src="scripts/TKWApp/services/file-uploader.js"></script>
+    <script src="Scripts/TKWApp/common.js"></script>
+    <script src="Scripts/TKWApp/config/configuration.js"></script>
+    <script src="Scripts/TKWApp/hard-routing/application-routes.js"></script>
+    <script src="Scripts/TKWApp/data/data-filters.js"></script>
+    <script src="Scripts/TKWApp/data/data-store.js"></script>
+    <script src="Scripts/TKWApp/data/authentication.js"></script>
+    <script src="Scripts/TKWApp/services/file-uploader.js"></script>
     <!--Add angular files-->
     <!--Add Utils-->
-    <script src="scripts/app/utils/rap-file-utils.js"></script>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+    <script src="Scripts/app/utils/rap-file-utils.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 
     <!--Add Models-->
-    <script src="scripts/app/models/base-model.js"></script>
-    <script src="scripts/app/models/building.js"></script>
-    <script src="scripts/app/models/search.js"></script>
-    <script src="scripts/app/utils/cordova-file-utils.js"></script>
-    <script src="scripts/app/models/file-upload-model.js"></script>
+    <script src="Scripts/app/models/base-model.js"></script>
+    <script src="Scripts/app/models/building.js"></script>
+    <script src="Scripts/app/models/search.js"></script>
+    <script src="Scripts/app/models/file-upload-model.js"></script>
     <!--Add Controllers-->
-    <script src="scripts/app/controllers/base-controller.js"></script>
-    <script src="scripts/app/controllers/buildings-controller.js"></script>
-    <script src="scripts/app/controllers/search-controller.js"></script>
+    <script src="Scripts/app/controllers/base-controller.js"></script>
+    <script src="Scripts/app/controllers/buildings-controller.js"></script>
+    <script src="Scripts/app/controllers/search-controller.js"></script>
     <!--Add Angular app configuration-->
-    <script src="scripts/app/angular-app-configuration.js"></script>
-    <script type="application/javascript">
-        window.addEventListener('load', function () {
-            FastClick.attach(document.body);
-        }, false);
-    </script>
-    <script type="application/javascript">
-      
-    </script>
-    <script type="application/javascript">
-        document.addEventListener("offline", onOffline, false);
-        document.addEventListener("online", onOnline, false);
+    <script src="Scripts/app/angular-app-configuration.js"></script>
 
-        function onOffline() {
-              console.log("Device is offline");
-              $("#btnGoOffline").hide();
-          }
-
-          function onOnline() {
-              console.log("Device is online");
-              $("#btnGoOffline").show();
-        }
-    </script>
+    <!--Add AWS js-->
+    <script src="Scripts/aws/app.js"></script>
+    <script src="Scripts/aws/planUploader.js"></script>
 </head>
 <body ng-app="RAPApp" ng-cloak ng-controller="BuildingsController">
     <div class="nav-bar-container">
@@ -131,11 +121,11 @@
         </div><!--.page-header-->
         <!--Add new site/building button container-->
         <div class="row" style="margin-bottom:10px;">
-            <button class="btn btn-success btn-ripple pull-right btn-sm" data-toggle="modal" data-target="#add_new_site" ng-show="isInRole" ng-click="createNewSite()">
-                Add new
+            <button class="btn btn-success btn-ripple pull-right" data-toggle="modal" data-target="#add_new_site" ng-show="isInRole" ng-click="createNewSite()">
+                Add new site
             </button>
             <div ng-show="isCompanyAdmin && SelectedBlds.length>0" class="btn-group pull-right">
-                <button type="button" class="btn btn-success dropdown-toggle btn-ripple btn-sm" data-toggle="dropdown" aria-expanded="false">
+                <button type="button" class="btn btn-success dropdown-toggle btn-ripple" data-toggle="dropdown" aria-expanded="false">
                     Action for selected
                     <span class="caret"></span>
                     <span class="ripple _3 animate" style="height: 131px; width: 131px; top: -44.5px; left: 7.9375px;"></span>
@@ -158,9 +148,6 @@
                     </li>
                 </ul>
             </div>
-            <button id="btnGoOffline" class="btn btn-blue btn-ripple pull-right" ng-show="isInRole && GoOffline" ng-click="goOfflineClick()">
-                Go offline
-            </button>
             <div class="modal fade full-height from-left" id="add_new_site" tabindex="-1" role="dialog" aria-hidden="true">
 
                 <div class="modal-dialog">
@@ -415,6 +402,7 @@
                     </div><!--.modal-content-->
                 </div><!--.modal-dialog-->
             </div>
+
             <div class="modal fade full-height from-left in" id="add_pricing_info" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
                 <div class="modal-dialog">
                     <ng-form name="pricing">
@@ -450,9 +438,8 @@
                     </ng-form>
                 </div>
             </div>
-            <div class="col-md-4" ng-repeat="b in Buildings">
+            <div class="col-md-4" ng-repeat="b in Buildings" title="Site">
                 <div class="card card-user card-clickable card-clickable-over-content">
-
                     <div class="layered-content bg-blue-grey">
                         <div class="card card-meal card-meal-indigo card-square card-hover-shadow">
                             <div class="card-heading">
@@ -463,18 +450,7 @@
                                 <!--.card-subhead-->
                             </div>
                             <!--.card-heading-->
-                            <div class="card-body">
-                                <div class="image" style="position:relative">
-                                    <simple-slider style="width:100%;height:375px">
-                                        <div ng-repeat="bi in b.BuildingImages" background-src="{{getBuildingImage(bi)}}" background-fallback-src="{{DefaultBuildingImage}}" style="height:375px;width:100%; background-color:#fff;vertical-align: middle;background-size:contain;background-repeat:no-repeat; background-position:center center;">
-                                        </div>
-                                    </simple-slider>
-                                    <a href="#" class="slide-button prev-button" ng-click="sliderPrev()">&lt;</a>
-                                    <a href="#" class="slide-button next-button" ng-click="sliderNext(this,$event)">&gt;</a>
-                                </div>
-                                <!--.image-->
-                            </div>
-                            <!--.card-body-->
+
                         </div>
                         <!--.card-->
                         <!-- You need to set the height of clickable button
@@ -498,9 +474,7 @@
                         <div class="subhead">{{b.ActorName}}</div>
                         <div class="card-description">
                             <p>{{b.Description}}</p>
-                            <p ng-show="b.IsOffline"><i class="fa fa-download"></i></p>
                         </div>
-
                     </div><!--.card-body-->
                     <div class="card-footer">
 
@@ -544,7 +518,7 @@
             </div>
         </div>-->
         <!-- BEGIN SEARCH LAYER -->
-        <div class="modal fade full-height in" id="search-modal" tabindex="-1" role="dialog" aria-hidden="false" ng-include="getUrl('Search')" ng-controller="SearchController">
+        <div class="modal fade full-height in" id="search-modal" ng-include="getUrl('Search')" ng-controller="SearchController">
 
         </div>
         <!--.search-layer-->
@@ -552,62 +526,12 @@
 
 
     </div>
-    <script src="cordova.js"></script>
-    <script src="platformOverrides.js"></script>
-    <script src="scripts/app/utils/cordova-file-utils.js"></script>
     <script>
-        document.addEventListener("deviceready", getStorageSettings, false);
-
-        function getStorageSettings() {
-            window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
-            window.storageInfo = window.storageInfo || window.webkitStorageInfo;
-            function errorHandler(err) {
-                console.log(JSON.stringify(err));
-            }
-
-            // Request access to the file system
-            var fileSystem = null         // DOMFileSystem instance
-                , fsType = PERSISTENT       // PERSISTENT vs. TEMPORARY storage
-                , fsSize = 100 * 1024 * 1024 // size (bytes) of needed space
-            ;
-
-            if (TKWApp.Configuration.IsMobile.iOS()) {
-                window.requestFileSystem(fsType, 100 * 1024 * 1024, function (fs) {
-                    fileSystem = fs;
-                    TKWApp.Configuration.ConfigurationManager.LocalUri = fs.root.toURL();
-                    localStorage.setItem("LocalUri", fs.root.toURL());
-                    console.log("Set in html: " + fs.root.toURL());
-
-                }, errorHandler);
-            }
-            if (TKWApp.Configuration.IsMobile.Android()) {
-                window.storageInfo.requestQuota(fsType, fsSize, function (gb) {
-                    window.requestFileSystem(fsType, gb, function (fs) {
-                        fileSystem = fs;
-                        TKWApp.Configuration.ConfigurationManager.LocalUri = fs.root.toURL();
-                        localStorage.setItem("LocalUri", fs.root.toURL());
-                        console.log("Set in html: " + fs.root.toURL());
-
-                    }, errorHandler);
-                }, errorHandler);
-            }
-        }
-
-       
-       
         $(document).ready(function () {
+            console.log("!!!");
             Pleasure.init();
             Layout.init();
-            //var url = localStorage.getItem("location");
-            //console.log("Dash url " + url);
-            //if (url != 'undefined' && url != "null" && window.location.pathname.indexOf(url) == -1) {
-            //    window.location.href = url;
-            //    return false;
-            //}
-            //else {
-            //    Pleasure.init();
-            //    Layout.init();
-            //}
+
         });
     </script>
 </body>

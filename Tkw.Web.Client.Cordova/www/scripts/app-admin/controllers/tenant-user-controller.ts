@@ -2,8 +2,8 @@
     export class TenantUserController extends BaseController {
 
         constructor($scope: Models.ITenantUserModel) {
+            super($scope);
             this.$scope = $scope;
-            super();
             var itemTenant: RapApp.Models.ITenant;
 
             (<any>$scope).selectedClients = [];
@@ -39,7 +39,6 @@
 
             (<any>$scope).deleteUser = () => {
                 $scope.IsLoading = true;
-                $scope.$apply();
                 TKWApp.Data.DataManager.Collections["TenantUsers"].delete($scope.EditUser.Id).then((data) => {
                 }, (success) => {
                     if (success.status === 200) {
@@ -48,12 +47,10 @@
                     else {
                         alert(JSON.stringify(success.responseJSON.Message));
                         $scope.IsLoading = false;
-                        $scope.$apply();
                     }
                 }, (error) => {
                     alert(JSON.stringify(error));
                     $scope.IsLoading = false;
-                    $scope.$apply();
                 });
                 (<any>jQuery("#delete-user-modal")).modal("hide");
             }

@@ -36,8 +36,8 @@ var RapApp;
             __extends(PricingInfoController, _super);
             // initializes the controller
             function PricingInfoController($scope, loadAll, loadById) {
+                _super.call(this, $scope);
                 this.$scope = $scope;
-                _super.call(this);
                 // initialize scope
                 $scope.PricingInfos = null;
                 $scope.createNew = this.createNew;

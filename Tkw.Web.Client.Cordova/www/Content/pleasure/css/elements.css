@@ -7855,7 +7855,7 @@ select[data-style="btn-blue-grey"] + .bootstrap-select li.selected a {
     color: #fff;
     opacity: .7;
     border-radius: 0;
-    padding: 16px 7vw !important;
+    padding: 16px 40px;
     top: 0;
     margin-right: 0;
 }
@@ -8196,6 +8196,8 @@ select[data-style="btn-blue-grey"] + .bootstrap-select li.selected a {
 .card-description {
     height: 60px;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .card {
@@ -8844,6 +8846,8 @@ select[data-style="btn-blue-grey"] + .bootstrap-select li.selected a {
     font-size: 24px;
     margin: 0;
     color: rgba(0, 0, 0, 0.87);
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .card.card-user .card-body .card-title a {
     text-decoration: none;
@@ -15404,4 +15408,12 @@ pre .hljs {
     .hide-on-mobile {
         display: none !important;
     }
+}
+@media (min-width: 990px)  {
+   .card.card-user .card-body .card-title {
+		font-size: 1.5vw;
+	} 
+	.card-description {
+		font-size: 1.5vw;
+	}
 }

@@ -11,8 +11,8 @@ var RapApp;
             __extends(TenantController, _super);
             // initializes the controller
             function TenantController($scope) {
+                _super.call(this, $scope);
                 this.$scope = $scope;
-                _super.call(this);
                 $scope.isInRole = false;
                 $scope.pageIndex = 1;
                 $scope.pageSize = 25;
@@ -44,6 +44,8 @@ var RapApp;
                         State: "",
                         ZIP: "",
                     };
+                    $("#rawPass").val('');
+                    $scope.EditTenant.RawPassword = '';
                 };
                 $scope.insertTenant = function () {
                     $scope.IsLoading = true;
@@ -61,6 +63,7 @@ var RapApp;
                 $scope.updateTenant = function () {
                     $scope.IsLoading = true;
                     $scope.ResponseError = "";
+                    $scope.EditTenant.RawPassword = $("#rawPass").val();
                     TKWApp.Data.DataManager.Collections["Tenants"].update($scope.EditTenant).then(function (data) {
                     }, function (success) {
                         $scope.IsLoading = false;
@@ -69,7 +72,7 @@ var RapApp;
                             jQuery("#edit-tenant-modal").modal("hide");
                         }
                         else {
-                            //alert(JSON.stringify(success.responseJSON.Message));
+                            alert(JSON.stringify(success.responseJSON.ExceptionMessage));
                             jQuery("#error-modal").modal("show");
                         }
                     }, function (error) {
@@ -129,6 +132,7 @@ var RapApp;
                                 { field: "City", title: "City" },
                                 { field: "CreateDate", title: "Created At", template: "#= kendo.toString(CreateDate, 'g') #" },
                                 { command: { name: "Edit", text: "", title: "Update", imageClass: "k-icon k-i-pencil", click: showDetails }, title: "", width: "80px" },
+                                { command: { name: "Delete", text: "", title: "Delete", imageClass: "k-icon k-i-close", click: confirmDeleteTenant }, title: "", width: "80px" },
                             ]
                         });
                         jQuery("#add-tenant-modal").modal("hide");
@@ -155,6 +159,42 @@ var RapApp;
                     };
                     jQuery("#edit-tenant-modal").modal("show");
                     $scope.IsLoading = false;
+                    $scope.$apply();
+                }
+                ;
+                $scope.deleteTenant = function () {
+                    $scope.IsLoading = true;
+                    TKWApp.Data.DataManager.Collections["Tenants"].delete($scope.EditTenant.Id).then(function (data) {
+                    }, function (success) {
+                        if (success.status === 200) {
+                            $scope.loadTenants();
+                        }
+                        else {
+                            alert(JSON.stringify(success.responseJSON.Message));
+                        }
+                    }, function (error) {
+                        alert(JSON.stringify(error));
+                    });
+                    jQuery("#delete-tenant-modal").modal("hide");
+                    $scope.IsLoading = false;
+                };
+                function confirmDeleteTenant(e) {
+                    var dataItem = this.dataItem($(e.currentTarget).closest("tr"));
+                    $scope.pageIndex = this.dataSource.page();
+                    $scope.pageSize = this.dataSource.pageSize();
+                    $scope.EditTenant = {
+                        Id: dataItem.Id,
+                        UserName: dataItem.UserName,
+                        Name: dataItem.Name,
+                        Phone: dataItem.Phone,
+                        Address: dataItem.Address,
+                        Website: dataItem.Website,
+                        Email: dataItem.Email,
+                        City: dataItem.City,
+                        State: dataItem.State,
+                        ZIP: dataItem.Zip,
+                    };
+                    jQuery("#delete-tenant-modal").modal("show");
                     $scope.$apply();
                 }
                 ;

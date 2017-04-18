@@ -8,8 +8,8 @@ module RapApp.Controllers {
         public FolderPermissions: any;
         public SelectedPermissionFile: any;
         constructor($scope: Models.ISingleBuilding) {
+            super($scope);
             this.$scope = $scope;
-            super();
             this.isLoadingFromFile = false;
             (<any>$scope).Controller = this;
             this.SelectedFolder = null;

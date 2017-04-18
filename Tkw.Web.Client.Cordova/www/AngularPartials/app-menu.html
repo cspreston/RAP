@@ -1,6 +1,6 @@
 <ul>
     <li>
-        <a href="javascript:;" onclick="goToDashboard();" >Dashboard</a>
+        <a href="/dashboard">Dashboard</a>
         <span class="hover-bg"></span>
     </li>
     <!--<li>
@@ -11,8 +11,22 @@
         <a href="javascript:;">Notifications</a>
         <span class="hover-bg"></span>
     </li>-->
-    <li class="admin-item">
-        <a href="/Root/index">Admin </a>
+    <li id="menu-admin" class="has-child">
+        <a href="javascript:;">Admin </a>
+        <ul class="child-menu">
+            <li>
+                <a href="/Root/Customers">Companies </a>
+                <span class="hover-bg"></span>
+            </li>
+            <li>
+                <a href="/Root/Clients">Clients </a>
+                <span class="hover-bg"></span>
+            </li>
+            <li>
+                <a href="/Root/Users">Users </a>
+                <span class="hover-bg"></span>
+            </li>
+        </ul>
         <span class="hover-bg"></span>
     </li>
     <li>
@@ -25,20 +39,20 @@
     function doLogOff() {
         TKWApp.Data.AuthenticationManager.logOff();
     }
-    function goToDashboard() {
-        if (TKWApp.Configuration.ConfigurationManager.WorkMode == TKWApp.Configuration.WorkMode.OFFLINE) {
-            window.location.href = "/dashboard-offline.html"
-        }
-        else {
-            window.location.href = "/dashboard"
-        }
-    }
 
     $(document).ready(function () {
+
+        var menuAdmin = $('#menu-admin');
+
         if (!TKWApp.Data.AuthenticationManager.isInRole("Root") &&
             !TKWApp.Data.AuthenticationManager.isInRole("Company Admin") &&
             !TKWApp.Data.AuthenticationManager.isInRole("Client Admin")) {
-            $('.admin-item').hide();
+            menuAdmin.hide();
+        }
+        else {
+            menuAdmin.on('click', function () {
+                $(this).toggleClass('open animate');
+            });
         }
     });
 </script>

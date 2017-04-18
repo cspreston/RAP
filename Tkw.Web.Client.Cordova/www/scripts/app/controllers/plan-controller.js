@@ -12,8 +12,8 @@ var RapApp;
             // initializes the controller
             function PlanController($scope) {
                 var _this = this;
+                _super.call(this, $scope);
                 this.$scope = $scope;
-                _super.call(this);
                 this.ZoomLevel = 1;
                 this.CanvasScale = 1;
                 this.ScaleFactor = 1.2;
@@ -58,6 +58,7 @@ var RapApp;
                 this.$scope.deleteSelectedSpot = this.deleteSelectedSpot;
                 this.$scope.editSelectedHotspot = this.editSelectedHotspot;
                 this.$scope.updateSelectedHotspot = this.updateSelectedHotspot;
+                this.$scope.updateHotspot = this.updateHotspot;
                 this.$scope.getSpotFileUrl = this.getSpotFileUrl;
                 this.$scope.getSpotFileType = this.getSpotFileType;
                 this.$scope.isSpotFileType = this.isSpotFileType;
@@ -100,10 +101,7 @@ var RapApp;
                     _this.canvas.setWidth(orgImg.width);
                     _this.canvas.setHeight(orgImg.height);
                     _this.canvas.renderAll();
-                    $("#respondCanvas").css("border", "1px blue dotted");
-                    var widthChild= $("#respondCanvas").width();
-                    var heightChild= $("#respondCanvas").height();
-                    $("canv-container").width(widthChild + 15);
+                    $("#respondCanvas").attr("style", "margin-right:20px");
                 };
                 this.$scope.shrinkCanvas = function () {
                     _this.ZoomLevel *= 1.2;
@@ -131,8 +129,6 @@ var RapApp;
                     _this.canvas.setWidth(orgImg.width);
                     _this.canvas.setHeight(orgImg.height);
                     _this.canvas.renderAll();
-                   
-
                 };
                 this.$scope.reset = function () {
                 };
@@ -177,6 +173,7 @@ var RapApp;
                 this.$scope.customizeObject = this.customizeObject;
                 this.$scope.updateCustomizeObject = this.updateCustomizeObject;
                 $scope.Filter = false;
+                //filter icon
                 this.$scope.filter = function () {
                     if ($scope.Filter) {
                         $scope.Filter = false;
@@ -206,7 +203,7 @@ var RapApp;
                 var self = scope.Controller;
                 var hp = null;
                 var ids = [];
-                var beaconuuIds = []
+                var beaconuuIds = [];
                 var elem = document.getElementById(spotDisplayType.Id);
                 if (jQuery(elem).hasClass("spot-touched")) {
                     for (var k = 0; k < $(".spot-touched").length; k++) {
@@ -286,6 +283,7 @@ var RapApp;
                 }
             };
             PlanController.prototype.updateCustomizeObject = function () {
+                debugger;
                 var scope = this;
                 var self = scope.Controller;
                 var obj = self.getSelectedHotspot();
@@ -364,7 +362,7 @@ var RapApp;
                         scope.IsLoading = true;
                         scope.$apply();
                         //localStorage.setItem("Reload", "true");
-                        window.location.href = "plan.html?id=" + scope.CurrentPlan.Id;
+                        window.location.href = "/plan?id=" + scope.CurrentPlan.Id;
                         return;
                     }
                 }, function (response) {
@@ -496,7 +494,7 @@ var RapApp;
             PlanController.prototype.reloadPlan = function () {
                 var self = this;
                 localStorage.setItem("Reload", "true");
-                window.location.href = "plan.html?id=" + self.Controller.PlanId;
+                window.location.href = "/plan?id=" + self.Controller.PlanId;
             };
             PlanController.prototype.refreshPlan = function () {
                 var self = this;
@@ -582,7 +580,8 @@ var RapApp;
             PlanController.prototype.getSpotFileUrl = function (spotFile) {
                 if (!spotFile)
                     return "";
-                var fileLink = RapApp.FileUtils.getImageUrl(spotFile.BucketPath, spotFile.BucketName, spotFile.FileName);
+                //var fileLink = RapApp.FileUtils.getImageUrl(spotFile.BucketPath, spotFile.BucketName, spotFile.FileName);
+                var fileLink = spotFile.ThumbUrl;
                 return fileLink;
             };
             PlanController.prototype.getSpotFileType = function (spotFile) {
@@ -672,6 +671,7 @@ var RapApp;
                     var spot = new RapApp.Models.Hotspot(data);
                     // for now just add it to the list
                     self.$scope.CurrentPlanHotspots.push(spot);
+                    debugger;
                     // add the spot to fabric
                     if (isPin) {
                         if (spot.Dto.HotspotDisplayType.Type == 3) {
@@ -723,69 +723,69 @@ var RapApp;
                     // delete spot
                     TKWApp.Data.DataManager.Collections["Hotspots"].delete(dto.Id)
                         .then(function (data) {
-                        }, function (success) {
-                            if (dto.BeaconuuId == dto.Id) {
-                                scope.reloadPlan();
-                                return;
-                            }
-                            // the spot was deleted
-                            // so we need to remove the objects from our lists and our canvas
-                            // delete from the current plan
-                            if (dto.HotspotDisplayType.Type > 1) {
-                                for (var g in self.hashPinedHashTable) {
-                                    if (self.hashPinedHashTable[g].Dto.Id = dto.Id) {
-                                        delete self.hashPinedHashTable[g];
-                                        break;
-                                    }
+                    }, function (success) {
+                        if (dto.BeaconuuId == dto.Id) {
+                            scope.reloadPlan();
+                            return;
+                        }
+                        // the spot was deleted
+                        // so we need to remove the objects from our lists and our canvas
+                        // delete from the current plan
+                        if (dto.HotspotDisplayType.Type > 1) {
+                            for (var g in self.hashPinedHashTable) {
+                                if (self.hashPinedHashTable[g].Dto.Id = dto.Id) {
+                                    delete self.hashPinedHashTable[g];
+                                    break;
                                 }
-                                for (var g in self.hashPinedLineTable2) {
-                                    if (self.hashPinedLineTable2[g].Dto.Id = dto.Id) {
-                                        delete self.hashPinedLineTable2[g];
-                                        break;
-                                    }
-                                }
-                                currentObject.opacity = 0;
-                                self.canvas.renderAll();
                             }
-                            self.deleteActiveFabricObject();
-                            for (var c = 0; c < scope.CurrentPlanHotspots.length; c++) {
-                                if (scope.CurrentPlanHotspots[c].Dto.Id == dto.Id) {
+                            for (var g in self.hashPinedLineTable2) {
+                                if (self.hashPinedLineTable2[g].Dto.Id = dto.Id) {
+                                    delete self.hashPinedLineTable2[g];
+                                    break;
+                                }
+                            }
+                            currentObject.opacity = 0;
+                            self.canvas.renderAll();
+                        }
+                        self.deleteActiveFabricObject();
+                        for (var c = 0; c < scope.CurrentPlanHotspots.length; c++) {
+                            if (scope.CurrentPlanHotspots[c].Dto.Id == dto.Id) {
+                                scope.CurrentPlanHotspots.splice(c, 1);
+                            }
+                            else if (scope.CurrentPlanHotspots[c].Dto.BeaconuuId == dto.Id) {
+                                if (scope.CurrentPlanHotspots[c]) {
+                                    self.deleteFabricObject(scope.CurrentPlanHotspots[c].FabricJSObject);
+                                    scope.CurrentPlanHotspots[c].FabricJSObject.opacity = 0;
+                                    self.deleteFabricObject(scope.CurrentPlanHotspots[c].FabricJSObject);
                                     scope.CurrentPlanHotspots.splice(c, 1);
                                 }
-                                else if (scope.CurrentPlanHotspots[c].Dto.BeaconuuId == dto.Id) {
-                                    if (scope.CurrentPlanHotspots[c]) {
-                                        self.deleteFabricObject(scope.CurrentPlanHotspots[c].FabricJSObject);
-                                        scope.CurrentPlanHotspots[c].FabricJSObject.opacity = 0;
-                                        self.deleteFabricObject(scope.CurrentPlanHotspots[c].FabricJSObject);
-                                        scope.CurrentPlanHotspots.splice(c, 1);
-                                    }
-                                }
                             }
-                            for (var c = 0; c < scope.CurrentPlan.Hotspots.length; c++) {
-                                if (scope.CurrentPlan.Hotspots[c].Id == dto.Id) {
-                                    scope.CurrentPlan.Hotspots.splice(c, 1);
-                                }
-                                else if (scope.CurrentPlan.Hotspots[c].BeaconuuId == dto.Id) {
-                                    scope.CurrentPlan.Hotspots.splice(c, 1);
-                                }
+                        }
+                        for (var c = 0; c < scope.CurrentPlan.Hotspots.length; c++) {
+                            if (scope.CurrentPlan.Hotspots[c].Id == dto.Id) {
+                                scope.CurrentPlan.Hotspots.splice(c, 1);
                             }
-                            self.canvas.renderAll();
-                            //var index = scope.CurrentPlan.Hotspots.indexOf(dto);
-                            //if (index >= 0)
-                            //    scope.CurrentPlan.Hotspots.splice(index, 1);
-                            // delete from scope list
-                            scope.CurrentPlanHotspots.splice(i, 1);
-                            // remove object from canvas
-                            // close the modal
-                            jQuery("#delete-spot-modal").modal("hide");
-                            scope.$apply();
-                            // close the modal
-                            jQuery("#saveHotSpotSuccess").click();
-                        }, function (error) {
-                            alert(JSON.stringify(error));
-                            // close the modal
-                            jQuery("#delete-spot-modal").modal("hide");
-                        });
+                            else if (scope.CurrentPlan.Hotspots[c].BeaconuuId == dto.Id) {
+                                scope.CurrentPlan.Hotspots.splice(c, 1);
+                            }
+                        }
+                        self.canvas.renderAll();
+                        //var index = scope.CurrentPlan.Hotspots.indexOf(dto);
+                        //if (index >= 0)
+                        //    scope.CurrentPlan.Hotspots.splice(index, 1);
+                        // delete from scope list
+                        scope.CurrentPlanHotspots.splice(i, 1);
+                        // remove object from canvas
+                        // close the modal
+                        jQuery("#delete-spot-modal").modal("hide");
+                        scope.$apply();
+                        // close the modal
+                        jQuery("#saveHotSpotSuccess").click();
+                    }, function (error) {
+                        alert(JSON.stringify(error));
+                        // close the modal
+                        jQuery("#delete-spot-modal").modal("hide");
+                    });
                 }
                 else {
                     jQuery("#delete-spot-modal").modal("hide");
@@ -885,6 +885,16 @@ var RapApp;
                     jQuery("#saveHotSpotFailure").click();
                 });
             };
+            PlanController.prototype.updateHotspot = function (hotspot) {
+                var scope = this;
+                scope.IsSaving = true;
+                TKWApp.Data.DataManager.Collections["Hotspots"].update(hotspot)
+                    .then(function (data) {
+                    scope.IsSaving = false;
+                }, function (error) {
+                    alert(JSON.stringify(error));
+                });
+            };
             PlanController.prototype.editSelectedHotspot = function () {
                 var scope = this;
                 var self = scope.Controller;
@@ -960,7 +970,6 @@ var RapApp;
                     if (self.$scope.CurrentPlanHotspots[t - 1].Dto.HotspotDisplayType.Type == 2 ||
                         self.$scope.CurrentPlanHotspots[t - 1].Dto.HotspotDisplayType.Type == 3) {
                         return self.$scope.CurrentPlanHotspots[t - 1];
-                        break;
                     }
                     t--;
                 }
@@ -972,63 +981,16 @@ var RapApp;
                 if (obj) {
                     TKWApp.Data.DataManager.Collections["Hotspots"].edit(null, "UnPin?id=" + obj.Dto.BeaconuuId)
                         .then(function (data) {
-                        }, function (success) {
-                            if (success.status == 200) {
-                                scope.IsLoading = true;
-                                scope.$apply();
-                                scope.reloadPlan();
-                                return;
-                                obj.Dto.BeaconuuId = null;
-                                for (var c = 0; c < scope.CurrentPlanHotspots.length; c++) {
-                                    if (scope.CurrentPlanHotspots[c].Dto.BeaconuuId == obj.Dto.Id) {
-                                        scope.CurrentPlanHotspots[c].Dto.BeaconuuId = null;
-                                    }
-                                }
-                                for (var c = 0; c < scope.CurrentPlan.Hotspots.length; c++) {
-                                    if (scope.CurrentPlan.Hotspots[c].BeaconuuId == obj.Dto.Id) {
-                                        scope.CurrentPlanHotspots[c].Dto.BeaconuuId = null;
-                                    }
-                                }
-                                for (var g in self.hashPinedLineTable2) {
-                                    if (self.hashPinedLineTable2[g].Dto.Id == obj.Dto.Id) {
-                                        delete self.hashPinedLineTable2[g];
-                                        break;
-                                    }
-                                }
-                                if (self.hashPinedHashTable[obj.Dto.Id]) {
-                                    delete self.hashPinedHashTable[obj.Dto.Id];
-                                }
-                                if (self.hashPinedLineTable[obj.Dto.Id]) {
-                                    delete self.hashPinedLineTable[obj.Dto.Id];
-                                }
-                                scope.IsUnPinAction = false;
-                                scope.PinAct = false;
-                                // enable canvas object selection
-                                fabric.Object.prototype.selectable = true;
-                                if (self.canvas) {
-                                    self.canvas.forEachObject(function (o) {
-                                        if (o.get('type') != 'line' && o.get('type') != 'circle')
-                                            o.selectable = true;
-                                    });
-                                    if (scope.CurrentPlanHotspots) {
-                                        var fObjs = self.canvas.getObjects();
-                                        for (var i = 0; i < scope.CurrentPlanHotspots.length; i++) {
-                                            if (!scope.CurrentPlanHotspots[i].Dto.BeaconuuId) {
-                                                for (var k = 0; k < fObjs.length; k++) {
-                                                    if (fObjs[k] == scope.CurrentPlanHotspots[i].FabricJSObject) {
-                                                        fObjs[k].selectable = true;
-                                                        break;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                scope.$apply();
-                            }
-                        }, function (error) {
-                            alert(JSON.stringify(error));
-                        });
+                    }, function (success) {
+                        if (success.status == 200) {
+                            scope.IsLoading = true;
+                            scope.$apply();
+                            scope.reloadPlan();
+                            return;
+                        }
+                    }, function (error) {
+                        alert(JSON.stringify(error));
+                    });
                 }
             };
             PlanController.prototype.setPin = function () {
@@ -1062,7 +1024,20 @@ var RapApp;
                 }
                 self.createHotspot(hotSpCircle, centerX, centerY, size, size, color, null, null, null, null, sel.Dto.Id, true);
                 sel.Dto.BeaconuuId = sel.Dto.Id;
-                TKWApp.Data.DataManager.Collections["Hotspots"].update(sel.Dto);
+                TKWApp.Data.DataManager.Collections["Hotspots"].update(sel.Dto).then(function (data) {
+                    // we need to reload the current building
+                    //scope.SelectedHotspot = data;
+                    scope.$apply();
+                    // close the modal dialog
+                }, function (sucess) {
+                    // show bootstrap modal error
+                    // for now we show a simple alert
+                    alert(JSON.stringify(sucess));
+                }, function (error) {
+                    // show bootstrap modal error
+                    // for now we show a simple alert
+                    alert(JSON.stringify(error));
+                });
             };
             PlanController.prototype.reloadSetPin = function () {
                 var scope = this;
@@ -1116,7 +1091,7 @@ var RapApp;
                 this.canvas.setHeight(ht);
                 this.initialCanvasLeft = document.getElementById("respondCanvas").getBoundingClientRect().left;
                 // set background image
-                fabric.Image.fromURL(this.getPlanImage(this.$scope.CurrentPlan), function (img) {
+                fabric.Image.fromURL(this.$scope.CurrentPlan.PlanFile.FileUrl, function (img) {
                     // compute the width and height of the background
                     // recompote canvas size
                     var width = img.width;
@@ -1290,9 +1265,9 @@ var RapApp;
                                     // save to storage
                                     TKWApp.Data.DataManager.Collections["Hotspots"].update(self.$scope.CurrentPlanHotspots[i].Dto)
                                         .then(function (data) {
-                                        }, function (error) {
-                                            alert(JSON.stringify(error));
-                                        });
+                                    }, function (error) {
+                                        alert(JSON.stringify(error));
+                                    });
                                     break;
                                 }
                             }
@@ -1424,18 +1399,21 @@ var RapApp;
                                 // save to storage
                                 TKWApp.Data.DataManager.Collections["Hotspots"].update(self.$scope.CurrentPlanHotspots[i].Dto)
                                     .then(function (data) {
-                                    }, function (error) {
-                                        alert(JSON.stringify(error));
-                                    });
+                                }, function (error) {
+                                    alert(JSON.stringify(error));
+                                });
                                 break;
                             }
                         }
                     }
                 });
             };
-
+            // a new hotspot started dragging
+            // we need to set it as current
             PlanController.prototype.hotspotDragging = function (ev, draggable, hotspotDisplayType) {
                 var scope = this.$parent;
+                if (!scope.EditMode)
+                    return;
                 scope.SelectedHotspotDisplayType = hotspotDisplayType;
             };
             // hotspot was dropped into the canvas...
@@ -1480,15 +1458,8 @@ var RapApp;
                         if (obj.height > 32)
                             obj.height = 32;
                         if (_this.canvas.getWidth() < 1024) {
-                            if (obj.width > 16) {
-                                obj.width = obj.height = 16;
-                            }
+                            obj.width = obj.height = 16;
                         }
-                        //if (_this.canvas.getWidth() < 512) {
-                        //    if (obj.width > 10) {
-                        //        obj.width = obj.height = 8;
-                        //    }
-                        //}
                     }
                     else {
                         // un-normalize size elements and set them
@@ -1555,19 +1526,11 @@ var RapApp;
                     var y2 = spot.DisplayDetails.Coords.y2;
                     if (y2 < 1)
                         y2 = y2 * self.canvas.getHeight();
-
-                    var width = spot.DisplayDetails.Size.width;
-                    if (self.canvas.getWidth() < 1024) {
-                        if (width >= 3) {
-                            width = 2;
-                        }
-                    }
-
                     var line = new fabric.Line([x1, y1, x2, y2], {
                         originX: 'center',
                         originY: 'center',
                         name: "line_" + spot.Dto.BeaconuuId,
-                        strokeWidth: width,
+                        strokeWidth: spot.DisplayDetails.Size.width,
                         stroke: spot.DisplayDetails.Color,
                         selectable: isSelecteable,
                         hasControls: false,
@@ -1598,23 +1561,8 @@ var RapApp;
                     var top = spot.DisplayDetails.Position.y;
                     if (top < 1)
                         top = top * self.canvas.getHeight();
-
-                    var width = spot.DisplayDetails.Size.width;
-                    if (width > 32)
-                        width = 32;
-                    if (self.canvas.getWidth() < 1024) {
-                        if (width >= 8) {
-                            width = 4;
-                        }
-                    }
-                    if (self.canvas.getWidth() < 512) {
-                        if (width >= 4) {
-                            width = 2;
-                        }
-                    }
-
                     var circle = new fabric.Circle({
-                        radius: width,
+                        radius: spot.DisplayDetails.Size.width,
                         fill: spot.DisplayDetails.Color,
                         left: left,
                         top: top,

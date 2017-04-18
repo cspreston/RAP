@@ -13,8 +13,8 @@ var RapApp;
             // initializes the controller
             function BuildingController($scope) {
                 var _this = this;
+                _super.call(this, $scope);
                 this.$scope = $scope;
-                _super.call(this);
                 var headerTab = $(".header-tabs.scrollable-tabs.sticky");
                 var userIcon = $(".nav-user");
                 var userIconA = $(".modal-dialog");
@@ -36,7 +36,6 @@ var RapApp;
                 $scope.CustomSize = true;
                 this.Uploader = new TKWApp.Services.FileUploader();
                 $scope.isInRole = true;
-                $scope.OnlineMode = true;
                 $scope.options1 = null;
                 $scope.details1 = '';
                 $scope.FileType = null;
@@ -67,9 +66,6 @@ var RapApp;
                 $scope.getBuildingImage = this.getBuildingImage;
                 $scope.getPlanThumbnail = this.getPlanThumbnail;
                 $scope.getFileLink = this.getFileLink;
-                $scope.openFileLink = this.openFileLink;
-                $scope.openFile = this.openFile;
-                
                 $scope.removeBuildingImage = this.removeBuildingImage;
                 $scope.setMainBuildingImage = this.setMainBuildingImage;
                 $scope.edit = this.edit;
@@ -229,32 +225,38 @@ var RapApp;
                 $scope.hasContactFiles = false;
                 this.loadBuilding(this.BuildingId);
                 $scope.selectPlanSize = this.selectPlanSize;
-                //offline methods
-                $scope.takeOffLine = this.takeOffLine;
-                $scope.removeFromOffline = this.removeFromOffline;
-
                 $scope.openSendEmergencyEmail = function () {
                     jQuery("#emergency-email").val('');
                     jQuery("#send-emergency-email").modal("show");
                 };
                 $scope.sendEmergencyEmail = this.sendEmergencyEmail;
+                $scope.zipSite = this.zipSite;
             }
             ;
-            BuildingController.prototype.takeOffLine = function () {
+            //downlaod all files for selected building
+            BuildingController.prototype.zipSite = function () {
                 var scope = this;
-                if (!window.localStorage.getItem("OB_" + scope.CurrentBuilding.Id)) {
-                    window.localStorage.setItem("OB_" + scope.CurrentBuilding.Id, scope.CurrentBuilding.Id);
-                    scope.CurrentBuilding.IsOffline = true;
-                    scope.OnlineMode = !scope.CurrentBuilding.IsOffline;
-                }
-            };
-            BuildingController.prototype.removeFromOffline = function () {
-                var scope = this;
-                if (window.localStorage.getItem("OB_" + scope.CurrentBuilding.Id)) {
-                    window.localStorage.removeItem("OB_" + scope.CurrentBuilding.Id);
-                    scope.CurrentBuilding.IsOffline = false;
-                    scope.OnlineMode = !scope.CurrentBuilding.IsOffline;
-                }
+                scope.IsSaving = true;
+                var url = "DownloadBuildingFiles?Id=" + scope.CurrentBuilding.Id;
+                return TKWApp.Data.DataManager.Collections["Buildings"].getFromUrl(url).then(function (data) {
+                    scope.IsSaving = false;
+                    if (data) {
+                        window.open(data, '_blank', '');
+                    }
+                    else {
+                        alert(JSON.stringify(data.responseText));
+                    }
+                    jQuery("#send-emergency-email").modal("hide");
+                }, function (error) {
+                    scope.IsSaving = false;
+                    alert(JSON.stringify(error));
+                    jQuery("#saveSiteFailure").click();
+                }, function (error) {
+                    // display an error
+                    scope.IsSaving = false;
+                    alert(JSON.stringify(error));
+                    jQuery("#saveSiteFailure").click();
+                });
             };
             BuildingController.prototype.selectPlanSize = function (value) {
                 var scope = this;
@@ -334,11 +336,6 @@ var RapApp;
                     // after a jquery async ajax call, sometimes angular does not know to refresh the html
                     // this forces it to do so
                     self.bindFolderViewFiles(response, "");
-                    self.$scope.OnlineMode = !self.$scope.CurrentBuilding.IsOffline;
-                    if (window.localStorage.getItem("OB_" + self.$scope.CurrentBuilding.Id)) {
-                        self.$scope.CurrentBuilding.IsOffline = true;
-                        self.$scope.OnlineMode = !self.$scope.CurrentBuilding.IsOffline;
-                    }
                     self.loadClients();
                     var src = self.getFeaturedImage(self.$scope.CurrentBuilding);
                     if (src == null)
@@ -447,58 +444,43 @@ var RapApp;
                 var url = null;
                 for (var i = 0; i < b.BuildingImages.length; i++) {
                     if (b.BuildingImages[i].Id === featured) {
-                        url = RapApp.FileUtils.getImageUrl(b.BuildingImages[i].BucketPath, b.BuildingImages[i].BucketName, b.BuildingImages[i].FileName);
+                        url = b.BuildingImages[i].Url;
                     }
                 }
                 if (!url && b.BuildingImages.length > 0) {
                     // featured image is not in the list
                     // normally this should never happen, but just in case
                     // we consider the first image as featured
-                    url = RapApp.FileUtils.getImageUrl(b.BuildingImages[0].BucketPath, b.BuildingImages[0].BucketName, b.BuildingImages[0].FileName);
+                    url = b.BuildingImages[0].Url;
                 }
                 return url;
             }; // returns the url for the building's featured image
             BuildingController.prototype.getBuildingImage = function (bi) {
-                return RapApp.FileUtils.getImageUrl(bi.BucketPath, bi.BucketName, bi.FileName);
+                return bi.Url;
+                //return RapApp.FileUtils.getImageUrl(bi.BucketPath, bi.BucketName, bi.FileName);
             };
             BuildingController.prototype.getFileLink = function (fi) {
-                var fileLink = RapApp.FileUtils.getImageUrl(fi.File.BucketPath, fi.File.BucketName, fi.File.FileName);
+                //var fileLink = RapApp.FileUtils.getImageUrl(fi.File.BucketPath, fi.File.BucketName, fi.File.FileName);
+                var fileLink = fi.File.Url;
                 return fileLink;
             };
-            BuildingController.prototype.openFileLink = function (fi) {
-                var fileLink = RapApp.FileUtils.getImageUrl(fi.File.BucketPath, fi.File.BucketName, fi.File.FileName);
-                if (TKWApp.Configuration.IsMobile.iOS()) {
-                    window.open(fileLink, '_system', 'location=no,hidden=no,closebuttoncaption=Done,toolbar=no');
-                }
-                else {
-                    window.open(fileLink, '_blank','location=no,hidden=no,closebuttoncaption=Done,toolbar=no');
-                }
-                //window.open(fileLink, '_blank', 'location=no,hidden=yes,closebuttoncaption=Done,toolbar=no');
-                return false;
-            };
-            BuildingController.prototype.openFile = function (fi) {
-               if (TKWApp.Configuration.IsMobile.iOS()) {
-                   window.open(fi, '_system', 'location=no,hidden=no,closebuttoncaption=Done,toolbar=no');
-                }
-                else {
-                   window.open(fi, '_blank', 'location=no,hidden=no,closebuttoncaption=Done,toolbar=no');
-                }
-                //window.open(fi, '_blank', 'location=yes,hidden=no,closebuttoncaption=Done,toolbar=no');
-                return false;
-            };
             BuildingController.prototype.getPlanThumbnail = function (plan) {
-                var fileLink = RapApp.FileUtils.getImageUrl(plan.PlanThumbnailFile.BucketPath, plan.PlanThumbnailFile.BucketName, plan.PlanThumbnailFile.FileName);
+                //var fileLink = RapApp.FileUtils.getImageUrl(plan.PlanThumbnailFile.BucketPath, plan.PlanThumbnailFile.BucketName, plan.PlanThumbnailFile.FileName);
+                var fileLink = plan.PlanFile.ThumbUrl;
                 return fileLink;
             };
             BuildingController.prototype.createNewBuildingImage = function () {
-                var scope = this;
-                scope.AddBuildingImageModel = new RapApp.Models.BuildimgImageUploadModel(document.getElementById("fuBuildingImage"), document.getElementById("fuBuildingImagePreview"));
-                scope.AddBuildingImageModel.Height = 300;
-                scope.AddBuildingImageModel.Width = 300;
-                scope.AddBuildingImageModel.Description = "Building image";
-                scope.AddBuildingImageModel.BuildingId = scope.CurrentBuilding.Id;
-                scope.AddBuildingImageModel.KeepAspectRatio = false;
-                scope.AddBuildingImageModel.Uploader.clearImagePreview(document.getElementById("fuBuildingImage"), document.getElementById("fuBuildingImagePreview"));
+                //var scope: RapApp.Models.ISingleBuilding = <RapApp.Models.ISingleBuilding><any>this;
+                //scope.AddBuildingImageModel = new RapApp.Models.BuildimgImageUploadModel(
+                //    <HTMLInputElement>document.getElementById("fuBuildingImage"),
+                //    <HTMLImageElement>document.getElementById("fuBuildingImagePreview")
+                //);
+                //scope.AddBuildingImageModel.Height = 300;
+                //scope.AddBuildingImageModel.Width = 300;
+                //scope.AddBuildingImageModel.Description = "Building image";
+                //scope.AddBuildingImageModel.BuildingId = scope.CurrentBuilding.Id;
+                //scope.AddBuildingImageModel.KeepAspectRatio = false;
+                //scope.AddBuildingImageModel.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuBuildingImage"), <HTMLImageElement>document.getElementById("fuBuildingImagePreview"));
             };
             BuildingController.prototype.saveNewBuildingImage = function () {
                 var scope = this;
@@ -941,16 +923,21 @@ var RapApp;
                 });
             };
             BuildingController.prototype.createNewPlan = function () {
-                var scope = this;
-                scope.AddPlanModel = new RapApp.Models.BuildimgPlanUploadModel(document.getElementById("fuPlanImage"), document.getElementById("fuPlanImagePreview"));
-                scope.AddPlanModel.Description = "Floor plan";
-                scope.AddPlanModel.BuildingId = scope.CurrentBuilding.Id;
-                scope.AddPlanModel.PlanName = "";
-                scope.AddPlanModel.Height = 600;
-                scope.AddPlanModel.Width = 900;
-                scope.AddPlanModel.PlanDescription = "";
-                scope.AddPlanModel.KeepAspectRatio = false;
-                scope.AddPlanModel.Uploader.clearImagePreview(document.getElementById("fuPlanImage"), document.getElementById("fuPlanImagePreview"));
+                //var scope: RapApp.Models.ISingleBuilding = <RapApp.Models.ISingleBuilding><any>this;
+                //scope.AddPlanModel = new RapApp.Models.BuildimgPlanUploadModel(
+                //    <HTMLInputElement>document.getElementById("fuPlanImage"),
+                //    <HTMLImageElement>document.getElementById("fuPlanImagePreview")
+                //);
+                //scope.AddPlanModel.Description = "Floor plan";
+                //scope.AddPlanModel.BuildingId = scope.CurrentBuilding.Id;
+                //scope.AddPlanModel.PlanName = "";
+                //scope.AddPlanModel.Height = 600;
+                //scope.AddPlanModel.Width = 900;
+                //scope.AddPlanModel.PlanDescription = "";
+                //scope.AddPlanModel.KeepAspectRatio = false;
+                //scope.AddPlanModel.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuPlanImage"),
+                //    <HTMLImageElement>document.getElementById("fuPlanImagePreview")
+                //);
             };
             BuildingController.prototype.saveNewPlan = function () {
                 var scope = this;
@@ -1287,11 +1274,11 @@ var RapApp;
                 });
             };
             BuildingController.prototype.foldActAddFile = function () {
-                var self = this;
-                self.Controller.Uploader = new TKWApp.Services.FileUploader();
-                self.Controller.Uploader.registerUploader(document.getElementById("fuFolderFile"));
-                self.Controller.Uploader.clearImagePreview(document.getElementById("fuFolderFile"), document.getElementById("fuFolderFile"));
-                jQuery("#tree_info_add_file").modal("show");
+                //var self: any = <any>this;
+                //self.Controller.Uploader = new TKWApp.Services.FileUploader();
+                //self.Controller.Uploader.registerUploader(<HTMLInputElement>document.getElementById("fuFolderFile"));
+                //self.Controller.Uploader.clearImagePreview(<HTMLInputElement>document.getElementById("fuFolderFile"), <HTMLImageElement>document.getElementById("fuFolderFile"));
+                //(<any>jQuery("#tree_info_add_file")).modal("show");
             };
             BuildingController.prototype.createFile = function () {
                 var self = this;
@@ -1473,3 +1460,4 @@ var RapApp;
         }
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
+//# sourceMappingURL=building-controller.js.map

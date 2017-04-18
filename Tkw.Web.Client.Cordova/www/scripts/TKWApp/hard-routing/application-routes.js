@@ -41,14 +41,10 @@ var TKWApp;
                         Plan: "plan.html",
                         PlanEdit: "plan-edit.html",
                         CopySite: "copy-site.html",
-                        ImportPlan: "plan-bulk-create.html",
-                        FileManager: "filemanager.html",
-                        LeftMenu: "left-menu.html",
-                        AppMenu: "app-menu.html",
-                        Search: "search.html",
-                        OfflineDashboard: "dashboard-offline.html",
-                        OfflineSite: "site-offline.html",
-                        OfflinePlan: "plan-offline.html",
+                        // partials
+                        LeftMenu: TKWApp.Configuration.ConfigurationManager.ServerUri + "/AngularPartials/left-menu.html",
+                        AppMenu: TKWApp.Configuration.ConfigurationManager.ServerUri + "/AngularPartials/app-menu.html",
+                        Search: TKWApp.Configuration.ConfigurationManager.ServerUri + "/AngularPartials/search.html",
                     };
                 }
             }
