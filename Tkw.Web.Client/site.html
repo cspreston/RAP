@@ -204,11 +204,13 @@
                             </div>
                             <!--.col-md-9-->
                         </div>
-
+                        
+                        <!--
                         <div class="checkboxer">
                             <input id="fileCheckBox" type="checkbox" ng-click="checkFileBox()" ng-checked="isFileCheckBoxSelected()">
                             <label for="fileCheckBox">Load from file</label>
                         </div>
+                        -->
                         <div class="row" ng-show="isFileCheckBoxSelected()">
                             <div class="col-md-3">Select File</div>
                             <!--.col-md-3-->
@@ -495,11 +497,12 @@
                             </div>
                             <!--.col-md-9-->
                         </div>
-
+                        <!--
                         <div class="checkboxer">
                             <input id="ciFileCheckBox" type="checkbox" ng-click="checkFileBox()" ng-checked="isFileCheckBoxSelected()">
                             <label for="ciFileCheckBox">Load from file</label>
                         </div>
+                        -->
                         <div class="row" ng-show="isFileCheckBoxSelected()">
                             <div class="col-md-3">Select File</div>
                             <!--.col-md-3-->
@@ -1223,10 +1226,11 @@
                                     <li>
                                         <a href="#about_disaster" ng-show="CurrentBuilding.ShowDisaster" data-toggle="tab">Disaster Information</a>
                                     </li>
+                                    <!--
                                     <li>
                                         <a href="#about_folders" ng-show="CurrentBuilding.ShowFolders" data-toggle="tab">Folders</a>
                                     </li>
-
+                                    -->
                                 </ul>
                                 <div class="featured-image" background-fallback-src="{{DefaultBuildingImage}}"
                                      style="background-size: contain;background-repeat: no-repeat;background-position: center center;width: 80%;height: 200px;" id="FeaturedImage"></div>
@@ -1351,9 +1355,11 @@
                                         </div>
                                         <div>
                                             <div class="row p-b-20">
+                                                <!--
                                                 <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#add_building_file" ng-click="createNewFile('PricingFile')">
                                                     Add Pricing Info Files
                                                 </button>
+                                                -->
                                                 <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#add_pricing_info" ng-click="createNewPricingInfo()">
                                                     Add Pricing Info
                                                 </button>
@@ -1454,9 +1460,11 @@
                                         </div>
                                         <div>
                                             <div class="row p-b-20">
+                                                <!--
                                                 <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#add_building_file" ng-click="createNewFile('ContactFile')">
                                                     Add Contact Info Files
                                                 </button>
+                                                -->
                                                 <button class="btn btn-success btn-ripple pull-right" data-toggle="modal" data-target="#add_contact_info"
                                                         ng-show="isInRole" ng-click="createNewContactInfo()">
                                                     Add Contact Info
