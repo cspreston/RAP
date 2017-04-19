@@ -115,6 +115,8 @@
     <script src="Scripts/aws/awsUploader.js"></script>
     <script src="Scripts/aws/planUploader.js"></script>
     <script src="Scripts/aws/imageUploader.js"></script>
+    <script src="Scripts/aws/fileUploader.js"></script>
+    <script src="Scripts/aws/disasterInfoUploader.js"></script>
 
 </head>
 
@@ -202,11 +204,13 @@
                             </div>
                             <!--.col-md-9-->
                         </div>
-
+                        
+                        <!--
                         <div class="checkboxer">
                             <input id="fileCheckBox" type="checkbox" ng-click="checkFileBox()" ng-checked="isFileCheckBoxSelected()">
                             <label for="fileCheckBox">Load from file</label>
                         </div>
+                        -->
                         <div class="row" ng-show="isFileCheckBoxSelected()">
                             <div class="col-md-3">Select File</div>
                             <!--.col-md-3-->
@@ -493,11 +497,12 @@
                             </div>
                             <!--.col-md-9-->
                         </div>
-
+                        <!--
                         <div class="checkboxer">
                             <input id="ciFileCheckBox" type="checkbox" ng-click="checkFileBox()" ng-checked="isFileCheckBoxSelected()">
                             <label for="ciFileCheckBox">Load from file</label>
                         </div>
+                        -->
                         <div class="row" ng-show="isFileCheckBoxSelected()">
                             <div class="col-md-3">Select File</div>
                             <!--.col-md-3-->
@@ -760,67 +765,7 @@
     <!--building plan modal -->
     <!--Add file modal-->
     <div class="modal fade full-height from-left in" id="add_building_file" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Add Building File</h4>
-                </div>
-                <ng-form name="addFile">
-                    <div class="modal-body">
-                        <div class="legend">Details</div>
-
-                        <div class="row">
-                            <div class="col-md-3">Name</div>
-                            <!--.col-md-3-->
-                            <div class="col-md-9">
-                                <div class="inputer">
-                                    <div class="input-wrapper">
-                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Name" style="height: 38px !important;"
-                                                  ng-model="AddFileModel.FileName" ng-attr-name="{{AddFileModel.FileName}}" ng-required="true"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.col-md-9-->
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-3">Description</div>
-                            <!--.col-md-3-->
-                            <div class="col-md-9">
-                                <div class="inputer">
-                                    <div class="input-wrapper">
-                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;" ng-model="AddFileModel.FileDescription" ng-attr-name="{{AddFileModel.FileDescription}}"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.col-md-9-->
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-3">Select File</div>
-                            <!--.col-md-3-->
-                            <div class="col-md-9">
-                                <div class="inputer">
-                                    <div class="input-wrapper k-content">
-                                        <input type="file" id="fuFile" multiple />
-                                        <div class="logger well well-sm" style="margin-top:10px; display:none">
-                                            Preview:
-                                            <br />
-                                            <img id="fuFilePreview" class="preview-image" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.col-md-9-->
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
-                        <button type="button" ng-disabled="addFile.$invalid || IsSaving" class="btn btn-flat-primary btn-ripple" ng-click="saveNewFile()">SAVE</button>
-                    </div>
-                </ng-form>
-            </div>
-        </div>
+        <file-uploader></file-uploader>
     </div>
     <!--file modal-->
     <!--Edit file modal-->
@@ -873,68 +818,7 @@
     <!--file modal-->
     <!--Add disaster info modal-->
     <div class="modal fade full-height from-left in" id="add_building_disaster_info" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
-        <div class="modal-dialog">
-            <ng-form name="disasterInfo">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Add Disaster Info File</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="legend">Details</div>
-
-                        <div class="row">
-                            <div class="col-md-3">Name</div>
-                            <!--.col-md-3-->
-                            <div class="col-md-9">
-                                <div class="inputer">
-                                    <div class="input-wrapper">
-                                        <textarea class="form-control js-auto-size" rows="1" placeholder="Enter Name" style="height: 38px !important;" ng-attr-name="{{AddDisasterInfoModel.DisasterInfoName}}"
-                                                  ng-model="AddDisasterInfoModel.DisasterInfoName" ng-required="true"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.col-md-9-->
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-3">Description</div>
-                            <!--.col-md-3-->
-                            <div class="col-md-9">
-                                <div class="inputer validation">
-                                    <div class="input-wrapper">
-                                        <textarea class="form-control js-auto-size ng-pristine ng-untouched ng-valid" rows="1" placeholder="Enter Description" style="height: 38px !important;"
-                                                  ng-model="AddDisasterInfoModel.DisasterInfoDescription" ng-attr-name="{{AddDisasterInfoModel.DisasterInfoDescription}}"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.col-md-9-->
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-3">Select File</div>
-                            <!--.col-md-3-->
-                            <div class="col-md-9">
-                                <div class="inputer">
-                                    <div class="input-wrapper k-content">
-                                        <input type="file" id="fuDisasterInfo" multiple />
-                                        <div class="logger well well-sm" style="margin-top:10px; display:none">
-                                            Preview:
-                                            <br />
-                                            <img id="fuDisasterInfoPreview" class="preview-image" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--.col-md-9-->
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal" ng-disabled="IsSaving">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
-                        <button type="button" ng-disabled="disasterInfo.$invalid || IsSaving" class="btn btn-flat-primary btn-ripple" ng-click="saveNewDisasterInfo()">SAVE</button>
-                    </div>
-                </div>
-            </ng-form>
-        </div>
+        <disaster-info-uploader></disaster-info-uploader>
     </div>
     <!--file modal-->
     <!--Edit disaster info modal-->
@@ -1342,10 +1226,11 @@
                                     <li>
                                         <a href="#about_disaster" ng-show="CurrentBuilding.ShowDisaster" data-toggle="tab">Disaster Information</a>
                                     </li>
+                                    <!--
                                     <li>
                                         <a href="#about_folders" ng-show="CurrentBuilding.ShowFolders" data-toggle="tab">Folders</a>
                                     </li>
-
+                                    -->
                                 </ul>
                                 <div class="featured-image" background-fallback-src="{{DefaultBuildingImage}}"
                                      style="background-size: contain;background-repeat: no-repeat;background-position: center center;width: 80%;height: 200px;" id="FeaturedImage"></div>
@@ -1470,9 +1355,11 @@
                                         </div>
                                         <div>
                                             <div class="row p-b-20">
+                                                <!--
                                                 <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#add_building_file" ng-click="createNewFile('PricingFile')">
                                                     Add Pricing Info Files
                                                 </button>
+                                                -->
                                                 <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#add_pricing_info" ng-click="createNewPricingInfo()">
                                                     Add Pricing Info
                                                 </button>
@@ -1573,9 +1460,11 @@
                                         </div>
                                         <div>
                                             <div class="row p-b-20">
+                                                <!--
                                                 <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#add_building_file" ng-click="createNewFile('ContactFile')">
                                                     Add Contact Info Files
                                                 </button>
+                                                -->
                                                 <button class="btn btn-success btn-ripple pull-right" data-toggle="modal" data-target="#add_contact_info"
                                                         ng-show="isInRole" ng-click="createNewContactInfo()">
                                                     Add Contact Info

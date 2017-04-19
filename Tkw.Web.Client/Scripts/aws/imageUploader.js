@@ -57,6 +57,8 @@
 
                     iu.parent.CurrentBuilding.BuildingImages.push(newImage);
                     $('#add_building_image').modal('hide');
+
+                    $scope.$broadcast('aws-uploader-init');
                 },
                 function (error) {
                     console.log(error);

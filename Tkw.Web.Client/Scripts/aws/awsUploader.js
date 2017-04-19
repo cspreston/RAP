@@ -22,17 +22,25 @@
 
         var au = this;
 
-		au.file = null;
-		au.progress = 0;
-		au.processing = false;
-		au.finished = false;
-        au.fileName = '';
-	    au.fileUrl = '';
-        au.awsUrl = '';
-		au.thumbUrl = '';
-		au.zoomUrl = '';
+        init();
 
-		au.$onInit = function () {
+        $scope.$on('aws-uploader-init', function(event, data) {
+            init();
+        });
+
+        function init() {
+            au.file = null;
+            au.progress = 0;
+            au.processing = false;
+            au.finished = false;
+            au.fileName = '';
+            au.fileUrl = '';
+            au.awsUrl = '';
+            au.thumbUrl = '';
+            au.zoomUrl = '';
+        }
+
+        au.$onInit = function () {
 		    au.folder = au.folder || 'files';
 		};
 

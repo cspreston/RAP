@@ -51,6 +51,8 @@
     <splash density="port-mdpi" src="res/screens/android/screen-mdpi-portrait.png" />
     <splash density="port-xhdpi" src="res/screens/android/screen-xhdpi-portrait.png" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="Fullscreen" value="True" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="SplashScreen" value="screen" />
     <preference name="windows-target-version" value="8.1" />
     <preference name="KeepRunning" value="true" />
@@ -59,5 +61,4 @@
     <preference name="SuppressesIncrementalRendering" value="True" />
     <preference name="BackupWebStorage" value="local" />
     <preference name="deployment-target" value="8.1" />
-    <preference name="Fullscreen" value="True" />
 </widget>

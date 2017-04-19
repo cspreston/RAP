@@ -98,6 +98,13 @@
     </div><!--.nav-bar-container-->
     <div class="content">
         <div class="page-header full-content bg-blue">
+            <div class="row" ng-if="!acknowldegedNotification" ng-click="acknowldegedNotification = true">
+                <div class="col-sm-12">
+                    <div class="alert alert-info">
+                        <h3><i class="fa fa-exclamation-triangle"></i> We are working to bring you new features. Please email info@restorationaffiliates.com if you notice any issues</h3>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div id="saveDashboardSuccess" class="toastr-notify btn-ripple" data-toastr-title="Info" data-toastr-notification="Successfully saved"
