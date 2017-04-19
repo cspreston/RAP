@@ -58,6 +58,10 @@
             }
         };
 
+        vc.addHotspotAttachment = function () {
+            $('#addHotspotAttachmentModal').modal('show');
+        };
+
         vc.updateSelectedHotspot = function() {
             
             vc.IsSaving = true;

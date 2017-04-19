@@ -4,6 +4,9 @@
             <button class="btn btn-success btn-ripple btn-xs" ng-show="vc.SelectedHotspot" data-toggle="modal" ng-click="vc.editSelectedHotspot()" title="Edit Spot">
                 <i class="fa fa-edit"></i>
             </button>
+            <button class="btn btn-success btn-ripple btn-xs" ng-show="vc.SelectedHotspot" data-toggle="modal" ng-click="vc.addHotspotAttachment()" title="Add Spot Attachment">
+                <i class="fa fa-upload"></i>
+            </button>
             <button class="btn btn-red btn-ripple btn-xs" ng-show="vc.SelectedHotspot" data-toggle="modal" ng-click="vc.confirmDelete()" title="Delete Spot">
                 <i class="fa fa-remove"></i>
             </button>
@@ -21,6 +24,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="modal fade full-height from-left in" id="addHotspotAttachmentModal" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+    <hotspot-uploader hotspot="vc.SelectedHotspot"></hotspot-uploader>
 </div>
 
 <!-- Edit Hotspot Modal -->
@@ -109,17 +116,6 @@
                         </table>
                     </div>
 
-                    <div class="row" ng-show="vc.hotspotActionTypeAllowsAttachment()">
-                        <div class="col-md-12">Select new Attachments</div>
-                        <div class="col-md-12">
-                            Add Plan Uploader
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!--File uploader stuff-->
-                        </div>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" data-dismiss="modal">CANCEL</button>

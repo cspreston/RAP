@@ -321,6 +321,7 @@
   <ItemGroup>
     <Content Include="AngularPartials\app-menu.html" />
     <Content Include="AngularPartials\aws\fileUploader.html" />
+    <Content Include="AngularPartials\aws\hotspotUploader.html" />
     <Content Include="AngularPartials\aws\imageUploader.html" />
     <Content Include="AngularPartials\aws\disasterInfoUploader.html" />
     <Content Include="AngularPartials\aws\planUploader.html" />
@@ -1529,6 +1530,7 @@
     <Content Include="Scripts\app\utils\image-utils.js" />
     <Content Include="Scripts\aws\app.js" />
     <Content Include="Scripts\aws\fileUploader.js" />
+    <Content Include="Scripts\aws\hotspotUploader.js" />
     <Content Include="Scripts\aws\imageUploader.js" />
     <Content Include="Scripts\aws\disasterInfoUploader.js" />
     <Content Include="Scripts\aws\planUploader.js" />
