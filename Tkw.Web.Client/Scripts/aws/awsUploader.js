@@ -142,8 +142,9 @@
 		    return new Promise(function (resolve, reject) {
 
 		        let targetFile = au.fileUrl.replace(au.folder, 'thumbs');
+		        let thumbUrl = 'http://' + window.location.hostname + ':3000/lambda/create/thumb';
 
-		        return $http.post('http://localhost:3000/lambda/create/thumb', {
+		        return $http.post(thumbUrl, {
 		            sourceFile: au.fileUrl,
 		            targetFile: targetFile,
 		            thumbWidth: 200
@@ -168,8 +169,9 @@
 
 		        let fileName = au.fileUrl.split('/').reverse()[0];
 		        let targetFolder = au.fileUrl.replace('/' + fileName, '');
+		        let zoomUrl = 'http://' + window.location.hostname + ':3000/lambda/create/zoom';
 
-		        return $http.post('http://localhost:3000/lambda/create/zoom', {
+		        return $http.post(zoomUrl, {
 		            sourceFile: au.fileUrl,
 		            targetFolder: targetFolder
 		        })
