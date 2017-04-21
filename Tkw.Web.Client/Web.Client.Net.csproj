@@ -355,6 +355,7 @@
     <Compile Include="Areas\Conf\Api\AwsBuildingFileController.cs" />
     <Compile Include="Areas\Conf\Api\AwsBuildingImageController.cs" />
     <Compile Include="Areas\Conf\Api\AwsBuildingPlanController.cs" />
+    <Compile Include="Areas\Conf\Api\AwsHotspotAttachmentController.cs" />
     <Compile Include="Areas\Conf\Api\FileManagerController.cs" />
     <Compile Include="Areas\Conf\Api\HotspotController.cs" />
     <Compile Include="Areas\Conf\Api\HotspotActionTypeController.cs" />

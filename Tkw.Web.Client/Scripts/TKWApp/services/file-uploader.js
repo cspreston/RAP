@@ -38,7 +38,7 @@ var TKWApp;
                 this.fireEvent("onerror", [error]);
             };
             return OperationProgress;
-        })(TKWApp.Observable);
+        }(TKWApp.Observable));
         Services.OperationProgress = OperationProgress;
         /// Contains functionality related to file uploads
         /// We can register and manage file uploads, and upload their files to the server
@@ -210,8 +210,7 @@ var TKWApp;
                 var xhr = new TKWApp.Data.DataStorePromissForJquery(ajaxResult);
             };
             return FileUploader;
-        })();
+        }());
         Services.FileUploader = FileUploader;
     })(Services = TKWApp.Services || (TKWApp.Services = {}));
 })(TKWApp || (TKWApp = {}));
-//# sourceMappingURL=file-uploader.js.map

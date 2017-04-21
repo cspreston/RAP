@@ -282,8 +282,7 @@ var RapApp;
                 return url;
             };
             return BuildingsController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.BuildingsController = BuildingsController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=buildings-controller.js.map

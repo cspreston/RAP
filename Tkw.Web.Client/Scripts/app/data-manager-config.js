@@ -34,4 +34,3 @@ else {
     DataManager.RegisterCollection("BuildingFiles", new TKWApp.Data.LocalStorageAdapter("BuildingFiles", "Id"));
     DataManager.RegisterCollection("BuildingImages", new TKWApp.Data.LocalStorageAdapter("BuildingImages", "Id"));
 }
-//# sourceMappingURL=data-manager-config.js.map

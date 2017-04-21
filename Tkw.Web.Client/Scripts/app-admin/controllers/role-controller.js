@@ -54,8 +54,7 @@ var RapApp;
                 $scope.loadRoles();
             }
             return RoleController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.RoleController = RoleController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=role-controller.js.map

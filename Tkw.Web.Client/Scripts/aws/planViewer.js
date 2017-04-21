@@ -14,20 +14,22 @@
         }
     });
 
-    PlanViewer.$inject = ['$scope', '$element', '$state', '$stateParams'];
+    PlanViewer.$inject = ['$scope', '$http'];
 
-    function PlanViewer($scope, $element, $state, $stateParams) {
+    function PlanViewer($scope, $http) {
 
         let vc = this;
 
         vc.parent = $scope.$parent;
         vc.viewer = null;
-        vc.SelectedHotspot = null;
+        vc.SelectedHotspot = {};
         vc.IsSaving = false;
 
         vc.$onInit = function () {
 
             console.log('Parent: ', vc.parent);
+
+            getCurrentBuilding(vc.parent.BuildingId);
 
             $scope.$watch('vc.parent.CurrentPlan',
                 function (newValue, oldValue) {
@@ -45,7 +47,7 @@
 
             $scope.$watch('vc.SelectedHotspot',
                 function (newValue, oldValue) {
-                    console.log('Selected Hotpsot: ', newValue);
+                    //console.log('Selected Hotpsot: ', newValue);
                 });
         };
 
@@ -181,6 +183,21 @@
                 return false;
             else
                 return true;
+        }
+
+        function getCurrentBuilding(buildingId) {
+            
+            var api = '/api/niv/Building/Get/' + buildingId;
+
+            $http.get(api).then(
+                function (response) {
+                    
+                    vc.CurrentBuilding = response.data;
+                },
+                function (error) {
+                    console.log(error);
+                }
+            );
         }
 
         function initCurrentPlan() {

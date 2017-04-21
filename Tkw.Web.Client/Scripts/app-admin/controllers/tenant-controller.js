@@ -200,8 +200,7 @@ var RapApp;
                 ;
             }
             return TenantController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.TenantController = TenantController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=tenant-controller.js.map

@@ -44,7 +44,7 @@ var RapApp;
             };
             ContactInfoData.ContactInfos = new Array();
             return ContactInfoData;
-        })();
+        }());
         Controllers.ContactInfoData = ContactInfoData;
         var ContactInfoController = (function (_super) {
             __extends(ContactInfoController, _super);
@@ -119,8 +119,7 @@ var RapApp;
                 });
             };
             return ContactInfoController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.ContactInfoController = ContactInfoController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=contact-info-controller.js.map

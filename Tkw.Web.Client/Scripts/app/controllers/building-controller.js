@@ -1422,7 +1422,7 @@ var RapApp;
                 }
             };
             return BuildingController;
-        })(Controllers.BaseController);
+        }(Controllers.BaseController));
         Controllers.BuildingController = BuildingController;
         function getFolder(item, id) {
             if (item.type != 2) {
@@ -1460,4 +1460,3 @@ var RapApp;
         }
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
-//# sourceMappingURL=building-controller.js.map

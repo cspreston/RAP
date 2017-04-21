@@ -46,7 +46,7 @@
             if ((new RegExp(".(mp3|wav)")).test(path)) {
                 return "audio";
             }
-            return null;
+            return "image";
         }
 
         public static getFileTypeCss(fileName: string): string {
