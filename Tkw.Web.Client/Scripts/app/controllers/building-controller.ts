@@ -518,7 +518,7 @@ module RapApp.Controllers {
 
         getFileLink(fi: any) {
             //var fileLink = RapApp.FileUtils.getImageUrl(fi.File.BucketPath, fi.File.BucketName, fi.File.FileName);
-            var fileLink = fi.File.Url;
+            var fileLink = fi.File.FileUrl;
             return fileLink;
         }
 

@@ -461,7 +461,7 @@ var RapApp;
             };
             BuildingController.prototype.getFileLink = function (fi) {
                 //var fileLink = RapApp.FileUtils.getImageUrl(fi.File.BucketPath, fi.File.BucketName, fi.File.FileName);
-                var fileLink = fi.File.Url;
+                var fileLink = fi.File.FileUrl;
                 return fileLink;
             };
             BuildingController.prototype.getPlanThumbnail = function (plan) {
