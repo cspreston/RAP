@@ -53,12 +53,13 @@
 		    let file = au.file;
 		    let newName = au.fileUrl.split('/').reverse()[0];
 		    let path = au.fileUrl.replace(newName, '');
+		    let presignUrl = 'http://' + window.location.hostname + ':3000/s3/presign';
 
 		    file = Upload.rename(file, newName);
 
 		    au.fileName = newName;
 
-		    $http.post('http://localhost:3000/s3/presign', {
+		    $http.post(presignUrl, {
 		        path: path,
 		        fileName: newName,
 		        contentType: file.type,
