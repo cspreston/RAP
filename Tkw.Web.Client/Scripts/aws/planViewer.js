@@ -295,7 +295,7 @@
             console.log('Create: ', overlay);
 
             var display = JSON.parse(overlay.DisplayDetails);
-            var webPoint = new OpenSeadragon.Point(event.layerX - 32, event.layerY - 32);
+            var webPoint = new OpenSeadragon.Point(event.layerX - 16, event.layerY - 16);
             var viewportPoint = vc.viewer.viewport.pointFromPixel(webPoint);
 
             display.Point = viewportPoint;
@@ -342,6 +342,14 @@
                     vc.parent.CurrentPlanHotspots.push(hotspot);
 
                     overlay.Id = hotspot.Dto.Id;
+                    overlay.HotspotDisplayTypeId = hotspot.Dto.HotspotDisplayTypeId;
+                    overlay.HotspotActionTypeId = hotspot.Dto.HotspotActionTypeId;
+
+                    overlay.New = false;
+
+                    //console.log('Hotspot: ', hotspot);
+                    //console.log('Overlay: ', overlay);
+
                     addIconOverlay(overlay);
 
                     setHotspotFocus(hotspot);
@@ -374,7 +382,7 @@
             var img = document.createElement("img");
             img.id = overlay.Id;
             img.src = './Content/Images/Hotspots/' + overlay.HotspotDisplayType.FileName;
-            img.width = '64';
+            img.width = '32';
             img.draggable = true;
             img.title = overlay.Name;
             img.classList.add('zoom-overlay');
@@ -463,7 +471,7 @@
         function moveIconOverlay(overlay, event) {
             
             var display = JSON.parse(overlay.DisplayDetails);
-            var webPoint = new OpenSeadragon.Point(event.layerX - 32, event.layerY - 32);
+            var webPoint = new OpenSeadragon.Point(event.layerX - 16, event.layerY - 16);
             var viewportPoint = vc.viewer.viewport.pointFromPixel(webPoint);
 
             display.Point = viewportPoint;
@@ -520,9 +528,7 @@
 
             if (!hotspot) return false;
 
-            if (hotspot.Dto.HotspotDisplayType.FileName.indexOf('text') !== -1) return true;
-
-            return false;
+            return hotspot.Dto.HotspotDisplayType.FileName && hotspot.Dto.HotspotDisplayType.FileName.indexOf('text') > -1;
         }
     }
 })();

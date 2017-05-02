@@ -200,56 +200,56 @@ namespace Web.Client.Net.Areas.Conf.Api
                         return BadRequest("Item not found");
                     }
                     // EDIT SESSION
-                    if (bld.HotspotActionTypeId != dto.HotspotActionTypeId)
-                    {
-                        var actype = serviceManager.GetService<IHotspotActionTypeService>().GetAll().Where(a => a.IsActive).FirstOrDefault(b => b.Id == dto.HotspotActionTypeId);
-                        var allowfile = actype.AllowedFileTypes;
-                        var serviceFile = serviceManager.GetService<IFilesService>();
-                        List<Files> deleteFiles = new List<Files>();
-                        try
-                        {
-                            foreach (Files file in bld.Files)
-                            {
-                                var name = file.Name;
-                                string patternImage = @"^.*\.(jpg|jpeg|JPEG|JPG|gif|GIF|doc|DOC|pdf|PDF)$";
-                                string patternVideo = @"^.*\.(MP4|mp4|OGG|ogg|WebM|webm)$";
-                                string patternAudio = @"^.*\.(MP3|mp3|OGG|ogg|wav|WAV|Wav)$";
-                                var currentFileType = "";
-                                // The file will be copied only if his content is support by the hotspot
-                                // and if is a support format. (eg: video formats are: mp4, ogg and WebM).
-                                // Otherwise the function will throw and unsupported media type exception.
-                                if (System.Text.RegularExpressions.Regex.IsMatch(name, patternImage))
-                                {
-                                    currentFileType = "image";
-                                }
-                                else if (System.Text.RegularExpressions.Regex.IsMatch(name, patternVideo))
-                                {
-                                    currentFileType = "video";
-                                }
-                                else if (System.Text.RegularExpressions.Regex.IsMatch(name, patternAudio))
-                                {
-                                    currentFileType = "audio";
-                                }
-                                else
-                                {
-                                    currentFileType = "something else, not good";
-                                }
+                    //if (bld.HotspotActionTypeId != dto.HotspotActionTypeId)
+                    //{
+                    //    var actype = serviceManager.GetService<IHotspotActionTypeService>().GetAll().Where(a => a.IsActive).FirstOrDefault(b => b.Id == dto.HotspotActionTypeId);
+                    //    var allowfile = actype.AllowedFileTypes;
+                    //    var serviceFile = serviceManager.GetService<IFilesService>();
+                    //    List<Files> deleteFiles = new List<Files>();
+                    //    try
+                    //    {
+                    //        foreach (Files file in bld.Files)
+                    //        {
+                    //            var name = file.Name;
+                    //            string patternImage = @"^.*\.(jpg|jpeg|JPEG|JPG|gif|GIF|doc|DOC|pdf|PDF)$";
+                    //            string patternVideo = @"^.*\.(MP4|mp4|OGG|ogg|WebM|webm)$";
+                    //            string patternAudio = @"^.*\.(MP3|mp3|OGG|ogg|wav|WAV|Wav)$";
+                    //            var currentFileType = "";
+                    //            // The file will be copied only if his content is support by the hotspot
+                    //            // and if is a support format. (eg: video formats are: mp4, ogg and WebM).
+                    //            // Otherwise the function will throw and unsupported media type exception.
+                    //            if (System.Text.RegularExpressions.Regex.IsMatch(name, patternImage))
+                    //            {
+                    //                currentFileType = "image";
+                    //            }
+                    //            else if (System.Text.RegularExpressions.Regex.IsMatch(name, patternVideo))
+                    //            {
+                    //                currentFileType = "video";
+                    //            }
+                    //            else if (System.Text.RegularExpressions.Regex.IsMatch(name, patternAudio))
+                    //            {
+                    //                currentFileType = "audio";
+                    //            }
+                    //            else
+                    //            {
+                    //                currentFileType = "something else, not good";
+                    //            }
 
-                                if (allowfile.IndexOf(currentFileType, StringComparison.OrdinalIgnoreCase) < 0)
-                                {
-                                    deleteFiles.Add(file);
-                                }
-                            }
-                            foreach (Files file in deleteFiles)
-                            {
-                                await serviceFile.SetDeletedAsync(file);
-                            }
-                        }
-                        catch (Exception e)
-                        {
+                    //            if (allowfile.IndexOf(currentFileType, StringComparison.OrdinalIgnoreCase) < 0)
+                    //            {
+                    //                deleteFiles.Add(file);
+                    //            }
+                    //        }
+                    //        foreach (Files file in deleteFiles)
+                    //        {
+                    //            await serviceFile.SetDeletedAsync(file);
+                    //        }
+                    //    }
+                    //    catch (Exception e)
+                    //    {
 
-                        }
-                    }
+                    //    }
+                    //}
 
                     bld.Name = dto.Name;
                     bld.Description = dto.Description;
