@@ -658,7 +658,8 @@ var RapApp;
                 return null;
             };
             return PlanEditController;
-        }(Controllers.BaseController));
+        })(Controllers.BaseController);
         Controllers.PlanEditController = PlanEditController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
+//# sourceMappingURL=plan-edit-controller.js.map

@@ -87,7 +87,8 @@ var RapApp;
                 };
             }
             return PlanBulkInsertController;
-        }(Controllers.BaseController));
+        })(Controllers.BaseController);
         Controllers.PlanBulkInsertController = PlanBulkInsertController;
     })(Controllers = RapApp.Controllers || (RapApp.Controllers = {}));
 })(RapApp || (RapApp = {}));
+//# sourceMappingURL=plan-bulk-insert-controller.js.map

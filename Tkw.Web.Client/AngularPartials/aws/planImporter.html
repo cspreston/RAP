@@ -1,0 +1,41 @@
+<ng-form name="importPlan">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Import Building Plans</h4>
+            </div>
+            <div class="modal-body">
+                <div class="legend">Plan File</div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div ng-switch="pi.step">
+                            <div ng-switch-default>
+                                <input type="hidden" ng-model="pi.fileUrl" ng-attr-name="{{pi.fileUrl}}" ng-required="true" />
+                                <aws-uploader building="pi.parent.CurrentBuilding" accept="application/pdf" folder="plans" thumb="false" zoom="false" done="pi.urlsCallback(value)"></aws-uploader>
+                            </div>
+                            <div ng-switch-when="pages">
+                                <h3>Reading the file pages... <i class="fa fa-spin fa-spinner"></i></h3>
+                            </div>
+                            <div ng-switch-when="extract">
+                                <h3>Extracting the floor plans... <i class="fa fa-spin fa-spinner"></i></h3>
+                            </div>
+                            <div ng-switch-when="thumbs">
+                                <h3>Generating thumbnail images... <i class="fa fa-spin fa-spinner"></i></h3>
+                            </div>
+                            <div ng-switch-when="zooms">
+                                <h3>Generating deep zoom images... <i class="fa fa-spin fa-spinner"></i></h3>
+                            </div>
+                            <div ng-switch-when="save">
+                                <h3>Saving the new plans... <i class="fa fa-spin fa-spinner"></i></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-flat-primary btn-ripple" data-dismiss="modal">CANCEL<span class="ripple _3 animate" style="height: 107px; width: 107px; top: -36.5px; left: 8.67188px;"></span></button>
+                <button type="button" class="btn btn-flat-primary btn-ripple" ng-show="importPlan.$valid" ng-click="pi.importPlans()">IMPORT</button>
+            </div>
+        </div>
+    </div>
+</ng-form>

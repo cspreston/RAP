@@ -15,7 +15,7 @@ var TKWApp;
                 return this.TranslationTable[op];
             };
             return OperationTranslator;
-        }());
+        })();
         Data.OperationTranslator = OperationTranslator;
         var ODATAOperationTranslator = (function (_super) {
             __extends(ODATAOperationTranslator, _super);
@@ -28,7 +28,7 @@ var TKWApp;
                 };
             }
             return ODATAOperationTranslator;
-        }(OperationTranslator));
+        })(OperationTranslator);
         Data.ODATAOperationTranslator = ODATAOperationTranslator;
         var JSONOperationTranslator = (function (_super) {
             __extends(JSONOperationTranslator, _super);
@@ -41,7 +41,7 @@ var TKWApp;
                 };
             }
             return JSONOperationTranslator;
-        }(OperationTranslator));
+        })(OperationTranslator);
         Data.JSONOperationTranslator = JSONOperationTranslator;
         var SimpleFilter = (function () {
             function SimpleFilter() {
@@ -62,7 +62,7 @@ var TKWApp;
                     return "(" + this.field + " " + this.operation + " " + "'" + this.value + "')";
             };
             return SimpleFilter;
-        }());
+        })();
         Data.SimpleFilter = SimpleFilter;
         var ComposedFilter = (function () {
             function ComposedFilter(query, operation) {
@@ -99,7 +99,7 @@ var TKWApp;
                 return str;
             };
             return ComposedFilter;
-        }());
+        })();
         Data.ComposedFilter = ComposedFilter;
         var Query = (function () {
             function Query() {
@@ -135,7 +135,7 @@ var TKWApp;
                 return this.selector.join(",");
             };
             return Query;
-        }());
+        })();
         Data.Query = Query;
         var QueryTranslator = (function () {
             function QueryTranslator() {
@@ -147,7 +147,8 @@ var TKWApp;
                 return query.getFilterString(new JSONOperationTranslator());
             };
             return QueryTranslator;
-        }());
+        })();
         Data.QueryTranslator = QueryTranslator;
     })(Data = TKWApp.Data || (TKWApp.Data = {}));
 })(TKWApp || (TKWApp = {}));
+//# sourceMappingURL=data-filters.js.map

@@ -114,9 +114,14 @@
     <script src="Scripts/aws/app.js"></script>
     <script src="Scripts/aws/awsUploader.js"></script>
     <script src="Scripts/aws/planUploader.js"></script>
+    <script src="Scripts/aws/planImporter.js"></script>
     <script src="Scripts/aws/imageUploader.js"></script>
     <script src="Scripts/aws/fileUploader.js"></script>
     <script src="Scripts/aws/disasterInfoUploader.js"></script>
+    <script src="Scripts/aws/contactsImporter.js"></script>
+    <script src="Scripts/aws/pricingImporter.js"></script>
+    <script src="Scripts/pdf.js"></script>
+    <script src="Scripts/pdf.worker.js"></script>
 
 </head>
 
@@ -717,6 +722,21 @@
         <plan-uploader></plan-uploader>
     </div>
     <!--building plan info modal-->
+    <!--Import building plans modal -->
+    <div class="modal fade full-height from-left in" id="import_building_plans" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <plan-importer></plan-importer>
+    </div>
+    <!--building plan info modal-->
+    <!--Import building contacts modal -->
+    <div class="modal fade full-height from-left in" id="import_building_contacts" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <contacts-importer></contacts-importer>
+    </div>
+    <!--building plan import modal-->
+    <!--Import building pricing modal -->
+    <div class="modal fade full-height from-left in" id="import_building_pricing" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
+        <pricing-importer></pricing-importer>
+    </div>
+    <!--building plan pricing modal-->
     <!--Edit building plan modal -->
     <div class="modal fade full-height from-left in" id="edit-plan-info" tabindex="-1" role="dialog" aria-hidden="true" style="padding-right: 17px;">
         <ng-form name="editPlanDetailInfo">
@@ -1355,11 +1375,9 @@
                                         </div>
                                         <div>
                                             <div class="row p-b-20">
-                                                <!--
-                                                <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#add_building_file" ng-click="createNewFile('PricingFile')">
-                                                    Add Pricing Info Files
+                                                <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#import_building_pricing">
+                                                    Import Pricing Info
                                                 </button>
-                                                -->
                                                 <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#add_pricing_info" ng-click="createNewPricingInfo()">
                                                     Add Pricing Info
                                                 </button>
@@ -1460,11 +1478,9 @@
                                         </div>
                                         <div>
                                             <div class="row p-b-20">
-                                                <!--
-                                                <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#add_building_file" ng-click="createNewFile('ContactFile')">
-                                                    Add Contact Info Files
+                                                <button class="btn btn-success btn-ripple pull-right" ng-show="isInRole" data-toggle="modal" data-target="#import_building_contacts">
+                                                    Import Contacts
                                                 </button>
-                                                -->
                                                 <button class="btn btn-success btn-ripple pull-right" data-toggle="modal" data-target="#add_contact_info"
                                                         ng-show="isInRole" ng-click="createNewContactInfo()">
                                                     Add Contact Info
@@ -1761,14 +1777,13 @@
                     <div id="views" class="tab-pane" style="position:relative;">
 
                         <div class="row">
-                            <button style="z-index:63000;" ng-show="isInRole" class="btn btn-success btn-ripple pull-right" data-toggle="modal" data-target="#add_building_plan" ng-click="createNewPlan()">
+                            <button style="z-index:63000;" ng-show="isInRole" class="btn btn-success btn-ripple pull-right" data-toggle="modal" data-target="#add_building_plan">
                                 Add new plan
                             </button>
-                            <!--
-                            <button style="z-index:63000;" class="btn btn-success btn-ripple pull-right" ng-show="isInRole" ng-click="importPlansFromPDF()">
+                            <button style="z-index:63000;" ng-show="isInRole" class="btn btn-success btn-ripple pull-right" data-toggle="modal" data-target="#import_building_plans">
                                 Import From PDF
                             </button>
-                            -->
+
                         </div>
 
                         <div class="row" style="position:absolute;width:100%; margin-top:10px;" ui-sortable="sortableViews" ng-model="CurrentBuilding.BuildingPlans">
