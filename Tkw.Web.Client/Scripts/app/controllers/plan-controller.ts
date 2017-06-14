@@ -650,12 +650,14 @@
 
         getSpotFileType(spotFile: any) {
             if (!spotFile) return "";
-            var type = FileUtils.getFileType(spotFile.FileName);
+            //var type = FileUtils.getFileType(spotFile.FileName);
+            var type = FileUtils.getFileType(spotFile.ThumbUrl);
             return type;
         }
 
         isSpotFileType(spotFile: any, fType: string): boolean {
-            var type = FileUtils.getFileType(spotFile.FileName) == fType;
+            //var type = FileUtils.getFileType(spotFile.FileName) == fType;
+            var type = FileUtils.getFileType(spotFile.ThumbUrl) == fType;
             return type;
         }
 

@@ -587,11 +587,13 @@ var RapApp;
             PlanController.prototype.getSpotFileType = function (spotFile) {
                 if (!spotFile)
                     return "";
-                var type = RapApp.FileUtils.getFileType(spotFile.FileName);
+                //var type = FileUtils.getFileType(spotFile.FileName);
+                var type = RapApp.FileUtils.getFileType(spotFile.ThumbUrl);
                 return type;
             };
             PlanController.prototype.isSpotFileType = function (spotFile, fType) {
-                var type = RapApp.FileUtils.getFileType(spotFile.FileName) == fType;
+                //var type = FileUtils.getFileType(spotFile.FileName) == fType;
+                var type = RapApp.FileUtils.getFileType(spotFile.ThumbUrl) == fType;
                 return type;
             };
             PlanController.prototype.getHotspotDisplayTypeImage = function (displayType) {
