@@ -4,7 +4,7 @@
             <button class="btn btn-success btn-ripple btn-xs" ng-show="vc.SelectedHotspot" data-toggle="modal" ng-click="vc.editSelectedHotspot()" title="Edit Spot">
                 <i class="fa fa-edit"></i>
             </button>
-            <button class="btn btn-success btn-ripple btn-xs" ng-show="vc.SelectedHotspot" data-toggle="modal" ng-click="vc.addHotspotAttachment()" title="Add Spot Attachment">
+            <button class="btn btn-success btn-ripple btn-xs" ng-show="vc.SelectedHotspot && vc.SelectedHotspot.Dto.HotspotActionType.AllowAttachment" data-toggle="modal" ng-click="vc.addHotspotAttachment()" title="Add Spot Attachment">
                 <i class="fa fa-upload"></i>
             </button>
             <button class="btn btn-red btn-ripple btn-xs" ng-show="vc.SelectedHotspot" data-toggle="modal" ng-click="vc.confirmDelete()" title="Delete Spot">

@@ -65,6 +65,8 @@
 
                     var newImage = response.data;
 
+                    hu.hotspot.Dto.Files = hu.hotspot.Dto.Files || [];
+
                     hu.hotspot.Dto.Files.push(newImage);
 
                     hu.fileName = '';

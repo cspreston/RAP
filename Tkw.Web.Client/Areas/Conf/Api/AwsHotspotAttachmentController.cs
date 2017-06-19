@@ -13,7 +13,7 @@ using Common.Domain;
 
 namespace Web.Client.Net.Areas.Conf.Api
 {
-   // [Authorize]
+    [Authorize]
     public class AwsHotspotAttachmentController : BaseApiController
     {
         [ResponseType(typeof(FileWithButcketDTO))]
