@@ -14,9 +14,9 @@
         }
     });
 
-    PlanViewer.$inject = ['$scope', '$http'];
+    PlanViewer.$inject = ['$scope', '$http', '$timeout'];
 
-    function PlanViewer($scope, $http) {
+    function PlanViewer($scope, $http, $timeout) {
 
         let vc = this;
 
@@ -128,12 +128,17 @@
                     else {
                         vc.IsSaving = false;
                         vc.SelectedHotspot.Dto.DisplayDetails = data.DisplayDetails;
+                        vc.SelectedHotspot.Dto.HotspotActionType = data.HotspotActionType;
                         vc.SelectedHotspot.DisplayDetails = JSON.parse(data.DisplayDetails);
 
                         if (!textHP)
                             $("#editHotspotModal").modal("hide");
                         else
                             $("#editTextHotspotModal").modal("hide");
+
+                        $timeout(function () {
+                            $scope.$apply();
+                        }, 500);
                     }
                 
                 }, 
